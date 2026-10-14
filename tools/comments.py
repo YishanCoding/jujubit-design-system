@@ -25,7 +25,9 @@ def main(argv=None):
         print('缺少 JJB_DESIGN_AGENT_TOKEN；请用 creds run <设计页 agent 凭据> -- python3 tools/comments.py list 注入。', file=sys.stderr)
         return 2
     base = os.environ.get('JJB_DESIGN_API', 'https://playverseai.com/design/api').rstrip('/')
-    headers = {'Authorization': f'Bearer {token}', 'Accept': 'application/json'}
+    headers = {'Authorization': f'Bearer {token}', 'Accept': 'application/json',
+               # Cloudflare 的浏览器完整性检查会拦 Python-urllib 默认 UA（error 1010）
+               'User-Agent': 'jujubit-design-comments/1'}
     if args.command == 'list':
         request = Request(f'{base}/comments?status={args.status}', headers=headers)
     else:
