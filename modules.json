@@ -263,13 +263,13 @@
   },
   {
    "id": "shape.shadows",
-   "title": "阴影（只允许这 4 种）",
+   "title": "阴影（只允许这 4 种）（验收测试）",
    "file": "playground.src.html",
    "line": 300,
    "edits": [
     {
      "key": "shape.shadows#1",
-     "source": "阴影（只允许这 4 种）"
+     "source": "阴影（只允许这 4 种）（验收测试）"
     }
    ]
   },
