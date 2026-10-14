@@ -14,6 +14,7 @@
 
 ## 每次 push 前
 
+0. 先 `git pull --rebase origin main`，拿到别人和自动构建的最新提交。push 被拒（non-fast-forward）时也是先 pull --rebase 再 push，**不要 `--force`**（仓库已禁止强推）。
 1. `python3 build.py`，确认没有报错。
 2. 打开 `playground.html`，在 1440 和 390 两个宽度检查：没有横向滚动，图片和图标都显示正常。
 3. commit 信息写清楚改了什么，例如「按钮：hover 色改为 brand-400」。
