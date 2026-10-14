@@ -538,7 +538,7 @@
       <div class="jjb-section-head" data-mod="commerce.section-title"><h3 class="jjb-section-head__title">Trending Products</h3><a class="jjb-section-head__more" href="#commerce">View All</a></div>
       <div class="jjb-tabs" role="tablist" style="margin-bottom:32px" data-mod="commerce.filters"><button class="jjb-chip" role="tab" aria-selected="true">Custom Figurines</button><button class="jjb-chip" role="tab" aria-selected="false">Art Toy</button></div>
       <div class="jjb-grid" id="product-grid" data-mod="commerce.product-card"></div>
-      <div class="pg-mod" data-mod="commerce.dots"><div class="pg-sub" data-edit="commerce.dots#1">轮播指示点</div>
+      <div class="pg-mod" data-mod="commerce.dots"><div class="pg-sub" data-edit="commerce.dots#1">轮播指示点（演示：每 3 秒自动切换，可点击；系统开启「减少动态效果」时不自动播放）</div>
       <div class="stage"><div class="jjb-dots"><button aria-label="1"></button><button aria-label="2" aria-current="true"></button><button aria-label="3"></button><button aria-label="4"></button></div></div>
       </div><div class="pg-mod" data-mod="commerce.tags"><div class="pg-sub" data-edit="commerce.tags#1">标签与提示条</div>
       <div class="stage">
@@ -883,6 +883,19 @@ document.addEventListener('click', e => {
   const el = e.target.closest('[data-copy]');
   if (el) copy(el.dataset.copy, el.dataset.label || el.dataset.copy);
 });
+
+// 轮播指示点演示：自动轮换 + 点击切换；悬停暂停；尊重 prefers-reduced-motion
+(() => {
+  const dots = [...document.querySelectorAll('[data-mod="commerce.dots"] .jjb-dots button')];
+  if (!dots.length) return;
+  let i = Math.max(0, dots.findIndex(d => d.getAttribute('aria-current') === 'true')), paused = false;
+  const show = n => { i = (n + dots.length) % dots.length; dots.forEach((d, k) => d.setAttribute('aria-current', k === i ? 'true' : 'false')); };
+  dots.forEach((d, k) => d.addEventListener('click', () => show(k)));
+  const box = dots[0].parentElement;
+  box.addEventListener('mouseenter', () => { paused = true; });
+  box.addEventListener('mouseleave', () => { paused = false; });
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(() => { if (!paused && !document.hidden) show(i + 1); }, 3000);
+})();
 </script>
 </body>
 </html>

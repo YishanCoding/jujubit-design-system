@@ -470,13 +470,13 @@
   },
   {
    "id": "commerce.dots",
-   "title": "轮播指示点",
+   "title": "轮播指示点（演示：每 3 秒自动切换，可点击；系统开启「减少动态效果」时不自动播放）",
    "file": "playground.src.html",
    "line": 435,
    "edits": [
     {
      "key": "commerce.dots#1",
-     "source": "轮播指示点"
+     "source": "轮播指示点（演示：每 3 秒自动切换，可点击；系统开启「减少动态效果」时不自动播放）"
     }
    ]
   },
