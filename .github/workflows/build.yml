@@ -18,11 +18,27 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - run: python3 -m unittest discover -s tests
+      - run: node --test worker/test/
       - run: python3 build.py
       - name: Commit generated files
         run: |
-          git add -A playground.html assets/icons/sprite.svg downloads/
+          git add -A playground.html assets/icons/sprite.svg downloads/ modules.json
           if git diff --cached --quiet; then echo "generated files up to date"; exit 0; fi
           git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
             commit -m "build: 自动生成 playground / sprite / skill 包"
-          git push
+          for attempt in 1 2 3; do
+            if git push; then exit 0; fi
+            if [ "$attempt" -eq 3 ]; then exit 1; fi
+            git fetch origin main
+            git reset --hard origin/main
+            python3 build.py
+            git add -A playground.html assets/icons/sprite.svg downloads/ modules.json
+            if git diff --cached --quiet; then echo "generated files up to date"; exit 0; fi
+            git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -m "build: 自动生成 playground / sprite / skill 包"
+          done
+          exit 1

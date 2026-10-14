@@ -8,11 +8,116 @@
 import json
 import re
 import zipfile
+from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 ICONS = ROOT / "assets" / "icons"
 LOGO = ROOT / "assets" / "logo" / "wordmark-orange.svg"
+
+
+class SourceParser(HTMLParser):
+    """Keep source offsets, never serialize the parsed tree back to HTML."""
+    VOID = set('area base br col embed hr img input link meta param source track wbr'.split())
+
+    def __init__(self, src):
+        super().__init__(convert_charrefs=True)
+        self.src, self.nodes, self.stack = src, [], []
+        self.lines = [0] + [m.end() for m in re.finditer('\n', src)]
+        self.feed(src)
+
+    def source_offset(self):
+        line, col = self.getpos()
+        return self.lines[line - 1] + col
+
+    def handle_starttag(self, tag, attrs):
+        start = self.source_offset()
+        node = dict(tag=tag, attrs=dict(attrs), start=start,
+                    inner=start + len(self.get_starttag_text()), end=None,
+                    line=self.getpos()[0], parent=self.stack[-1] if self.stack else None,
+                    text=[])
+        self.nodes.append(node)
+        if tag not in self.VOID:
+            self.stack.append(node)
+        else:
+            node['end'] = node['inner']
+
+    def handle_startendtag(self, tag, attrs):
+        self.handle_starttag(tag, attrs)
+        if tag not in self.VOID:
+            self.stack.pop()['end'] = self.source_offset() + len(self.get_starttag_text())
+
+    def handle_endtag(self, tag):
+        for i in range(len(self.stack) - 1, -1, -1):
+            if self.stack[i]['tag'] == tag:
+                self.stack[i]['end'] = self.source_offset()
+                del self.stack[i:]
+                break
+
+    def handle_data(self, text):
+        # Source badges do not contribute to module titles.
+        for node in reversed(self.stack):
+            if 'src' in node['attrs'].get('class', '').split():
+                break
+            node['text'].append(text)
+
+
+def _module_data(src):
+    parser = SourceParser(src)
+    modules, by_id, edits = [], {}, []
+    for node in parser.nodes:
+        attrs = node['attrs']
+        if 'data-mod' in attrs:
+            ident = attrs['data-mod']
+            if not ident or not re.fullmatch(r'[a-z0-9]+(\.[a-z0-9-]+)*', ident) or ident in by_id:
+                raise ValueError(f'invalid or duplicate data-mod {ident!r} at line {node["line"]}')
+            mod = dict(id=ident, title=ident, file='playground.src.html', line=node['line'], edits=[])
+            modules.append(mod)
+            by_id[ident] = mod
+        parent = node
+        owners = []
+        while parent:
+            if 'data-mod' in parent['attrs']:
+                owners.append(by_id[parent['attrs']['data-mod']])
+            parent = parent['parent']
+        if not owners:
+            continue
+        classes = attrs.get('class', '').split()
+        if node['tag'] in ('h2', 'h3') or 'pg-sub' in classes:
+            for mod in owners:
+                if '_title' not in mod:
+                    mod['title'] = ''.join(node['text']).strip() or mod['id']
+                    mod['_title'] = True
+        parent = node['parent']
+        eligible = (node['tag'] == 'h2' or (node['tag'] == 'p' and 'lead' in classes)
+                    or 'pg-sub' in classes or 'logo-cap' in classes
+                    or (node['tag'] == 'li' and parent and parent['tag'] == 'ul'
+                        and 'rules' in parent['attrs'].get('class', '').split()))
+        if not eligible or node['end'] is None:
+            continue
+        source = src[node['inner']:node['end']]
+        # Strict source whitelist: attributes, comments and placeholders are excluded.
+        if '{{' in source or '<' in re.sub(r'</?(?:b|code)>|<br>', '', source):
+            continue
+        mod = owners[0]
+        key = f'{mod["id"]}#{len(mod["edits"]) + 1}'
+        mod['edits'].append(dict(key=key, source=source))
+        edits.append((node['inner'] - 1, key))
+    for mod in modules:
+        mod.pop('_title', None)
+    return modules, edits
+
+
+def scan_modules(src: str) -> list[dict]:
+    return _module_data(src)[0]
+
+
+def annotate_edits(src: str, modules: list[dict]) -> str:
+    expected = {e['key'] for mod in modules for e in mod['edits']}
+    for offset, key in reversed(_module_data(src)[1]):
+        if key in expected:
+            src = src[:offset] + f' data-edit="{key}"' + src[offset:]
+    return src
 
 
 def to_symbol(name: str, svg: str) -> str:
@@ -71,13 +176,16 @@ def main() -> None:
     wordmark = re.sub(r'<svg ', '<svg class="jjb-wordmark" role="img" aria-label="JuJuBit" ', wordmark, count=1)
 
     src = (ROOT / "playground.src.html").read_text()
+    modules = scan_modules(src)
+    (ROOT / 'modules.json').write_text(json.dumps({'version': 1, 'modules': modules}, ensure_ascii=False, indent=1) + '\n')
+    src = annotate_edits(src, modules)
     out = (src.replace("{{SPRITE}}", sprite)
               .replace("{{ICONS}}", json.dumps(names))
               .replace("{{WORDMARK}}", wordmark.strip()))
     (ROOT / "playground.html").write_text(out)
     zip_size = build_zip()
     print(f"zip={zip_size//1024}KB ", end="")
-    print(f"icons={len(names)} sprite={len(sprite)//1024}KB playground={len(out)//1024}KB")
+    print(f"icons={len(names)} sprite={len(sprite)//1024}KB playground={len(out)//1024}KB modules={len(modules)}")
 
 
 if __name__ == "__main__":

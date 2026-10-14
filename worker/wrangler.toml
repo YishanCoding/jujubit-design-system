@@ -8,3 +8,8 @@ routes = [
   { pattern = "playverseai.com/design", zone_name = "playverseai.com" },
   { pattern = "playverseai.com/design/*", zone_name = "playverseai.com" },
 ]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "jujubit-design-comments"
+database_id = "3b0f3780-6f50-4cc5-b62f-10b59261bd92"

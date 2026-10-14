@@ -26,3 +26,5 @@ JuJuBit 独立站和 App 的设计规范：token、组件、素材，以及给 A
 3. commit 并 push 到 `main`。GitHub Action 会再构建一次，约 5 分钟后在线页面和 skill 包更新。
 
 改动规则见 `AGENTS.md`。
+
+编辑模式只对授权人开放。
