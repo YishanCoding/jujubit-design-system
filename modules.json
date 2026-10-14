@@ -25,33 +25,33 @@
    ]
   },
   {
-   "id": "brand.logo-grid",
-   "title": "brand.logo-grid",
+   "id": "brand.logos",
+   "title": "brand.logos",
    "file": "playground.src.html",
    "line": 207,
    "edits": [
     {
-     "key": "brand.logo-grid#1",
+     "key": "brand.logos#1",
      "source": "橙色字标 · <code>assets/logo/wordmark-orange.svg</code>"
     },
     {
-     "key": "brand.logo-grid#2",
+     "key": "brand.logos#2",
      "source": "白色字标（橙/深底） · <code>assets/logo/wordmark-white.svg</code>"
     },
     {
-     "key": "brand.logo-grid#3",
+     "key": "brand.logos#3",
      "source": "深色底 <code>--jjb-gradient-logo-dark</code>"
     },
     {
-     "key": "brand.logo-grid#4",
+     "key": "brand.logos#4",
      "source": "3D 字标 · <code>assets/logo/juju-mark.svg</code>（1.1MB，印刷/大图用；网页用 PNG）"
     },
     {
-     "key": "brand.logo-grid#5",
+     "key": "brand.logos#5",
      "source": "App icon 圆角 · <code>assets/app/app-icon-juju-rounded-824.png</code>"
     },
     {
-     "key": "brand.logo-grid#6",
+     "key": "brand.logos#6",
      "source": "App icon 方形 · <code>assets/app/app-icon-juju-square-1025.png</code>"
     }
    ]
@@ -96,13 +96,6 @@
    "edits": []
   },
   {
-   "id": "color.sw-grid",
-   "title": "color.sw-grid",
-   "file": "playground.src.html",
-   "line": 232,
-   "edits": []
-  },
-  {
    "id": "color.neutral",
    "title": "中性色",
    "file": "playground.src.html",
@@ -110,24 +103,10 @@
    "edits": []
   },
   {
-   "id": "color.sw-grid-2",
-   "title": "color.sw-grid-2",
-   "file": "playground.src.html",
-   "line": 234,
-   "edits": []
-  },
-  {
-   "id": "color.text",
+   "id": "color.text-alpha",
    "title": "文字（透明度）",
    "file": "playground.src.html",
    "line": 235,
-   "edits": []
-  },
-  {
-   "id": "color.sw-grid-3",
-   "title": "color.sw-grid-3",
-   "file": "playground.src.html",
-   "line": 236,
    "edits": []
   },
   {
@@ -138,13 +117,6 @@
    "edits": []
   },
   {
-   "id": "color.sw-grid-4",
-   "title": "color.sw-grid-4",
-   "file": "playground.src.html",
-   "line": 238,
-   "edits": []
-  },
-  {
    "id": "color.functional",
    "title": "功能色",
    "file": "playground.src.html",
@@ -152,24 +124,10 @@
    "edits": []
   },
   {
-   "id": "color.sw-grid-5",
-   "title": "color.sw-grid-5",
-   "file": "playground.src.html",
-   "line": 240,
-   "edits": []
-  },
-  {
    "id": "color.accent",
    "title": "辅助色  仅插画、营销图形、标签底",
    "file": "playground.src.html",
    "line": 241,
-   "edits": []
-  },
-  {
-   "id": "color.sw-grid-6",
-   "title": "color.sw-grid-6",
-   "file": "playground.src.html",
-   "line": 242,
    "edits": []
   },
   {
@@ -209,8 +167,8 @@
    ]
   },
   {
-   "id": "type.two",
-   "title": "type.two",
+   "id": "type.fonts",
+   "title": "type.fonts",
    "file": "playground.src.html",
    "line": 254,
    "edits": []
@@ -228,24 +186,10 @@
    ]
   },
   {
-   "id": "type.type-web",
-   "title": "type.type-web",
-   "file": "playground.src.html",
-   "line": 263,
-   "edits": []
-  },
-  {
    "id": "type.app",
    "title": "App 字号阶梯",
    "file": "playground.src.html",
    "line": 264,
-   "edits": []
-  },
-  {
-   "id": "type.type-app",
-   "title": "type.type-app",
-   "file": "playground.src.html",
-   "line": 265,
    "edits": []
   },
   {
@@ -281,10 +225,17 @@
    ]
   },
   {
-   "id": "layout.two",
-   "title": "layout.two",
+   "id": "layout.spacing",
+   "title": "layout.spacing",
    "file": "playground.src.html",
-   "line": 277,
+   "line": 278,
+   "edits": []
+  },
+  {
+   "id": "layout.dimensions",
+   "title": "layout.dimensions",
+   "file": "playground.src.html",
+   "line": 279,
    "edits": []
   },
   {
@@ -304,8 +255,8 @@
    ]
   },
   {
-   "id": "shape.radius-grid",
-   "title": "shape.radius-grid",
+   "id": "shape.radii",
+   "title": "shape.radii",
    "file": "playground.src.html",
    "line": 299,
    "edits": []
@@ -323,13 +274,6 @@
    ]
   },
   {
-   "id": "shape.shadow-stage",
-   "title": "shape.shadow-stage",
-   "file": "playground.src.html",
-   "line": 301,
-   "edits": []
-  },
-  {
    "id": "shape.gradients",
    "title": "渐变 / 毛玻璃",
    "file": "playground.src.html",
@@ -340,13 +284,6 @@
      "source": "渐变 / 毛玻璃"
     }
    ]
-  },
-  {
-   "id": "shape.sw-grid",
-   "title": "shape.sw-grid",
-   "file": "playground.src.html",
-   "line": 303,
-   "edits": []
   },
   {
    "id": "motion",
@@ -365,15 +302,15 @@
    ]
   },
   {
-   "id": "motion.ease-demo",
-   "title": "motion.ease-demo",
+   "id": "motion.easing",
+   "title": "motion.easing",
    "file": "playground.src.html",
    "line": 310,
    "edits": []
   },
   {
-   "id": "motion.example-2",
-   "title": "motion.example-2",
+   "id": "motion.playback",
+   "title": "motion.playback",
    "file": "playground.src.html",
    "line": 311,
    "edits": []
@@ -391,13 +328,6 @@
    ]
   },
   {
-   "id": "motion.reveal-box",
-   "title": "motion.reveal-box",
-   "file": "playground.src.html",
-   "line": 316,
-   "edits": []
-  },
-  {
    "id": "motion.skeleton",
    "title": "骨架屏：#F0F0F0 ↔ #EEEEEE，1 秒循环",
    "file": "playground.src.html",
@@ -405,24 +335,10 @@
    "edits": []
   },
   {
-   "id": "motion.example-4",
-   "title": "motion.example-4",
-   "file": "playground.src.html",
-   "line": 318,
-   "edits": []
-  },
-  {
    "id": "motion.videos",
    "title": "品牌与 App 动效交付视频  压缩预览版（720p），原片找设计团队",
    "file": "playground.src.html",
    "line": 322,
-   "edits": []
-  },
-  {
-   "id": "motion.video-grid",
-   "title": "motion.video-grid",
-   "file": "playground.src.html",
-   "line": 323,
    "edits": []
   },
   {
@@ -462,15 +378,15 @@
    ]
   },
   {
-   "id": "icons.icon-tools",
-   "title": "icons.icon-tools",
+   "id": "icons.controls",
+   "title": "icons.controls",
    "file": "playground.src.html",
    "line": 335,
    "edits": []
   },
   {
-   "id": "icons.icon-grid",
-   "title": "icons.icon-grid",
+   "id": "icons.library",
+   "title": "icons.library",
    "file": "playground.src.html",
    "line": 341,
    "edits": []
@@ -492,8 +408,8 @@
    ]
   },
   {
-   "id": "buttons.state-table",
-   "title": "buttons.state-table",
+   "id": "buttons.states",
+   "title": "buttons.states",
    "file": "playground.src.html",
    "line": 352,
    "edits": []
@@ -511,31 +427,10 @@
    ]
   },
   {
-   "id": "buttons.stage",
-   "title": "buttons.stage",
-   "file": "playground.src.html",
-   "line": 360,
-   "edits": []
-  },
-  {
    "id": "buttons.live",
    "title": "线上新版用法",
    "file": "playground.src.html",
    "line": 367,
-   "edits": []
-  },
-  {
-   "id": "buttons.stage-3",
-   "title": "buttons.stage-3",
-   "file": "playground.src.html",
-   "line": 368,
-   "edits": []
-  },
-  {
-   "id": "buttons.stage-4",
-   "title": "buttons.stage-4",
-   "file": "playground.src.html",
-   "line": 374,
    "edits": []
   },
   {
@@ -555,15 +450,15 @@
    ]
   },
   {
-   "id": "nav.nav-frame",
-   "title": "nav.nav-frame",
+   "id": "nav.solid",
+   "title": "nav.solid",
    "file": "playground.src.html",
    "line": 389,
    "edits": []
   },
   {
-   "id": "nav.nav-frame-2",
-   "title": "nav.nav-frame-2",
+   "id": "nav.glass",
+   "title": "nav.glass",
    "file": "playground.src.html",
    "line": 403,
    "edits": []
@@ -585,22 +480,22 @@
    ]
   },
   {
-   "id": "commerce.jjb-section-head",
+   "id": "commerce.section-title",
    "title": "Trending Products",
    "file": "playground.src.html",
    "line": 432,
    "edits": []
   },
   {
-   "id": "commerce.jjb-tabs",
-   "title": "commerce.jjb-tabs",
+   "id": "commerce.filters",
+   "title": "commerce.filters",
    "file": "playground.src.html",
    "line": 433,
    "edits": []
   },
   {
-   "id": "commerce.product-grid",
-   "title": "commerce.product-grid",
+   "id": "commerce.product-card",
+   "title": "commerce.product-card",
    "file": "playground.src.html",
    "line": 434,
    "edits": []
@@ -618,13 +513,6 @@
    ]
   },
   {
-   "id": "commerce.stage",
-   "title": "commerce.stage",
-   "file": "playground.src.html",
-   "line": 436,
-   "edits": []
-  },
-  {
    "id": "commerce.tags",
    "title": "标签与提示条",
    "file": "playground.src.html",
@@ -637,24 +525,10 @@
    ]
   },
   {
-   "id": "commerce.stage-5",
-   "title": "commerce.stage-5",
-   "file": "playground.src.html",
-   "line": 438,
-   "edits": []
-  },
-  {
    "id": "commerce.options",
    "title": "胶囊选项（App / 生成工具里的风格选择）",
    "file": "playground.src.html",
    "line": 445,
-   "edits": []
-  },
-  {
-   "id": "commerce.stage-6",
-   "title": "commerce.stage-6",
-   "file": "playground.src.html",
-   "line": 446,
    "edits": []
   },
   {
@@ -686,13 +560,6 @@
    ]
   },
   {
-   "id": "blocks.tpl-track",
-   "title": "blocks.tpl-track",
-   "file": "playground.src.html",
-   "line": 471,
-   "edits": []
-  },
-  {
    "id": "blocks.steps",
    "title": "How it works（黑底步骤，点击切换）",
    "file": "playground.src.html",
@@ -703,13 +570,6 @@
      "source": "How it works（黑底步骤，点击切换）"
     }
    ]
-  },
-  {
-   "id": "blocks.stage",
-   "title": "blocks.stage",
-   "file": "playground.src.html",
-   "line": 474,
-   "edits": []
   },
   {
    "id": "blocks.categories",
@@ -724,13 +584,6 @@
    ]
   },
   {
-   "id": "blocks.cat-grid",
-   "title": "blocks.cat-grid",
-   "file": "playground.src.html",
-   "line": 488,
-   "edits": []
-  },
-  {
    "id": "blocks.trust",
    "title": "信任卡（灰底区块）",
    "file": "playground.src.html",
@@ -741,13 +594,6 @@
      "source": "信任卡（灰底区块）"
     }
    ]
-  },
-  {
-   "id": "blocks.jjb-section--soft",
-   "title": "blocks.jjb-section--soft",
-   "file": "playground.src.html",
-   "line": 491,
-   "edits": []
   },
   {
    "id": "blocks.reviews",
@@ -762,13 +608,6 @@
    ]
   },
   {
-   "id": "blocks.reviews-5",
-   "title": "blocks.reviews-5",
-   "file": "playground.src.html",
-   "line": 494,
-   "edits": []
-  },
-  {
    "id": "blocks.social",
    "title": "社媒竖版视频（深灰底，居中一张放大）",
    "file": "playground.src.html",
@@ -779,13 +618,6 @@
      "source": "社媒竖版视频（深灰底，居中一张放大）"
     }
    ]
-  },
-  {
-   "id": "blocks.jjb-social",
-   "title": "blocks.jjb-social",
-   "file": "playground.src.html",
-   "line": 497,
-   "edits": []
   },
   {
    "id": "forms",
@@ -804,8 +636,8 @@
    ]
   },
   {
-   "id": "forms.two",
-   "title": "forms.two",
+   "id": "forms.fields",
+   "title": "forms.fields",
    "file": "playground.src.html",
    "line": 519,
    "edits": []
@@ -815,13 +647,6 @@
    "title": "FAQ",
    "file": "playground.src.html",
    "line": 526,
-   "edits": []
-  },
-  {
-   "id": "forms.jjb-faq",
-   "title": "forms.jjb-faq",
-   "file": "playground.src.html",
-   "line": 527,
    "edits": []
   },
   {
@@ -841,15 +666,29 @@
    ]
   },
   {
-   "id": "feedback.stage",
-   "title": "feedback.stage",
+   "id": "feedback.toast",
+   "title": "feedback.toast",
    "file": "playground.src.html",
-   "line": 545,
+   "line": 546,
    "edits": []
   },
   {
-   "id": "feedback.example-2",
-   "title": "feedback.example-2",
+   "id": "feedback.dialog",
+   "title": "feedback.dialog",
+   "file": "playground.src.html",
+   "line": 547,
+   "edits": []
+  },
+  {
+   "id": "feedback.sheet",
+   "title": "feedback.sheet",
+   "file": "playground.src.html",
+   "line": 553,
+   "edits": []
+  },
+  {
+   "id": "feedback.toast-trigger",
+   "title": "feedback.toast-trigger",
    "file": "playground.src.html",
    "line": 559,
    "edits": []
@@ -871,8 +710,8 @@
    ]
   },
   {
-   "id": "app.stage",
-   "title": "app.stage",
+   "id": "app.buttons",
+   "title": "app.buttons",
    "file": "playground.src.html",
    "line": 566,
    "edits": []
@@ -888,13 +727,6 @@
      "source": "风格模板色"
     }
    ]
-  },
-  {
-   "id": "app.tpl-grid",
-   "title": "app.tpl-grid",
-   "file": "playground.src.html",
-   "line": 576,
-   "edits": []
   },
   {
    "id": "app.stickers",
@@ -925,7 +757,7 @@
    ]
   },
   {
-   "id": "page.nav-frame",
+   "id": "page.landing",
    "title": "Trending Products",
    "file": "playground.src.html",
    "line": 586,
@@ -948,8 +780,8 @@
    ]
   },
   {
-   "id": "assets.asset-table",
-   "title": "assets.asset-table",
+   "id": "assets.catalog",
+   "title": "assets.catalog",
    "file": "playground.src.html",
    "line": 626,
    "edits": []
@@ -983,13 +815,6 @@
    ]
   },
   {
-   "id": "ai.ai-cmd",
-   "title": "ai.ai-cmd",
-   "file": "playground.src.html",
-   "line": 642,
-   "edits": []
-  },
-  {
    "id": "ai.download",
    "title": "2. 手动下载",
    "file": "playground.src.html",
@@ -1002,13 +827,6 @@
    ]
   },
   {
-   "id": "ai.example-2",
-   "title": "ai.example-2",
-   "file": "playground.src.html",
-   "line": 645,
-   "edits": []
-  },
-  {
    "id": "ai.prompt",
    "title": "3. 不装 skill，直接给 agent 这段话",
    "file": "playground.src.html",
@@ -1019,13 +837,6 @@
      "source": "3. 不装 skill，直接给 agent 这段话"
     }
    ]
-  },
-  {
-   "id": "ai.ai-cmd-3",
-   "title": "ai.ai-cmd-3",
-   "file": "playground.src.html",
-   "line": 651,
-   "edits": []
   },
   {
    "id": "ai.contribute",
