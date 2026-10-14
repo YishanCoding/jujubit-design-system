@@ -11,6 +11,8 @@
 - 不要提交大文件：单个文件不超过 5MB；视频先压到 720p 再放 `assets/motion/`。
 - 不要改 `worker/` 和 `.github/`。
 - 这是公开仓库：不要写入账号、密码、token、内部链接或未公开的业务数据。
+- `data-mod` 永不改名，不删除仍有评论的模块；改名等于删除该模块的评论。先处理评论，再决定结构变更。
+- 页面只改 `playground.src.html`；`modules.json` 由 `build.py` 生成，不要手改。行号只作参考，以 `data-mod` 搜索定位为准。
 
 ## 每次 push 前
 

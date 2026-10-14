@@ -1,0 +1,1043 @@
+{
+ "version": 1,
+ "modules": [
+  {
+   "id": "hero",
+   "title": "hero",
+   "file": "playground.src.html",
+   "line": 190,
+   "edits": []
+  },
+  {
+   "id": "brand",
+   "title": "品牌与 Logo",
+   "file": "playground.src.html",
+   "line": 204,
+   "edits": [
+    {
+     "key": "brand#1",
+     "source": "品牌与 Logo"
+    },
+    {
+     "key": "brand#2",
+     "source": "两套标识：横版字标 <b>JuJuBit</b>（网站页头、页脚、邮件）和 3D 字标 <b>JuJu</b>（App icon、头像、社媒方图）。深底用浅色标，浅底用深色或橙色标。"
+    }
+   ]
+  },
+  {
+   "id": "brand.logo-grid",
+   "title": "brand.logo-grid",
+   "file": "playground.src.html",
+   "line": 207,
+   "edits": [
+    {
+     "key": "brand.logo-grid#1",
+     "source": "橙色字标 · <code>assets/logo/wordmark-orange.svg</code>"
+    },
+    {
+     "key": "brand.logo-grid#2",
+     "source": "白色字标（橙/深底） · <code>assets/logo/wordmark-white.svg</code>"
+    },
+    {
+     "key": "brand.logo-grid#3",
+     "source": "深色底 <code>--jjb-gradient-logo-dark</code>"
+    },
+    {
+     "key": "brand.logo-grid#4",
+     "source": "3D 字标 · <code>assets/logo/juju-mark.svg</code>（1.1MB，印刷/大图用；网页用 PNG）"
+    },
+    {
+     "key": "brand.logo-grid#5",
+     "source": "App icon 圆角 · <code>assets/app/app-icon-juju-rounded-824.png</code>"
+    },
+    {
+     "key": "brand.logo-grid#6",
+     "source": "App icon 方形 · <code>assets/app/app-icon-juju-square-1025.png</code>"
+    }
+   ]
+  },
+  {
+   "id": "brand.rules",
+   "title": "brand.rules",
+   "file": "playground.src.html",
+   "line": 221,
+   "edits": [
+    {
+     "key": "brand.rules#1",
+     "source": "<b>可以：</b>深底配浅色标、浅底配深色/橙色标；横版字标最小高度 22px（页头 25px）。"
+    },
+    {
+     "key": "brand.rules#2",
+     "source": "<b>不可以：</b>加描边、变形缩放、加阴影、改颜色、放在低对比底色上、改透视、改字母间距（对外规范 1.7）。"
+    }
+   ]
+  },
+  {
+   "id": "color",
+   "title": "色彩",
+   "file": "playground.src.html",
+   "line": 228,
+   "edits": [
+    {
+     "key": "color#1",
+     "source": "色彩"
+    },
+    {
+     "key": "color#2",
+     "source": "一个主色：JuJu Orange <code>#FF5A11</code>，只用在主按钮、选中态和关键强调。大面积底色用白、浅灰和品牌浅底。文字不用实色灰，用黑色透明度分四级。点击色块复制 CSS 变量。"
+    }
+   ]
+  },
+  {
+   "id": "color.brand",
+   "title": "品牌色",
+   "file": "playground.src.html",
+   "line": 231,
+   "edits": []
+  },
+  {
+   "id": "color.sw-grid",
+   "title": "color.sw-grid",
+   "file": "playground.src.html",
+   "line": 232,
+   "edits": []
+  },
+  {
+   "id": "color.neutral",
+   "title": "中性色",
+   "file": "playground.src.html",
+   "line": 233,
+   "edits": []
+  },
+  {
+   "id": "color.sw-grid-2",
+   "title": "color.sw-grid-2",
+   "file": "playground.src.html",
+   "line": 234,
+   "edits": []
+  },
+  {
+   "id": "color.text",
+   "title": "文字（透明度）",
+   "file": "playground.src.html",
+   "line": 235,
+   "edits": []
+  },
+  {
+   "id": "color.sw-grid-3",
+   "title": "color.sw-grid-3",
+   "file": "playground.src.html",
+   "line": 236,
+   "edits": []
+  },
+  {
+   "id": "color.surface",
+   "title": "面与遮罩",
+   "file": "playground.src.html",
+   "line": 237,
+   "edits": []
+  },
+  {
+   "id": "color.sw-grid-4",
+   "title": "color.sw-grid-4",
+   "file": "playground.src.html",
+   "line": 238,
+   "edits": []
+  },
+  {
+   "id": "color.functional",
+   "title": "功能色",
+   "file": "playground.src.html",
+   "line": 239,
+   "edits": []
+  },
+  {
+   "id": "color.sw-grid-5",
+   "title": "color.sw-grid-5",
+   "file": "playground.src.html",
+   "line": 240,
+   "edits": []
+  },
+  {
+   "id": "color.accent",
+   "title": "辅助色  仅插画、营销图形、标签底",
+   "file": "playground.src.html",
+   "line": 241,
+   "edits": []
+  },
+  {
+   "id": "color.sw-grid-6",
+   "title": "color.sw-grid-6",
+   "file": "playground.src.html",
+   "line": 242,
+   "edits": []
+  },
+  {
+   "id": "color.rules",
+   "title": "color.rules",
+   "file": "playground.src.html",
+   "line": 243,
+   "edits": [
+    {
+     "key": "color.rules#1",
+     "source": "<b>主按钮 hover 变浅</b>（<code>#FF7B41</code>），按下变深（<code>#E54913</code>），禁用换灰 <code>#CCCCCC</code>，不用 opacity。"
+    },
+    {
+     "key": "color.rules#2",
+     "source": "辅助色不能用在按钮、链接、价格上；页面上同屏辅助色不超过 2 个。"
+    },
+    {
+     "key": "color.rules#3",
+     "source": "Judge.me 评价星色 <code>#108474</code> 归第三方，不改也不借用。"
+    }
+   ]
+  },
+  {
+   "id": "type",
+   "title": "字体",
+   "file": "playground.src.html",
+   "line": 251,
+   "edits": [
+    {
+     "key": "type#1",
+     "source": "字体"
+    },
+    {
+     "key": "type#2",
+     "source": "两个字族，各管一件事。Bebas Neue 只有大写字形，只用于标题、导航和 tab；正文、按钮、表单全部用 Outfit。不引入第三个字族。"
+    }
+   ]
+  },
+  {
+   "id": "type.two",
+   "title": "type.two",
+   "file": "playground.src.html",
+   "line": 254,
+   "edits": []
+  },
+  {
+   "id": "type.web",
+   "title": "Web 字号阶梯（桌面 / 手机）",
+   "file": "playground.src.html",
+   "line": 262,
+   "edits": [
+    {
+     "key": "type.web#1",
+     "source": "Web 字号阶梯（桌面 / 手机）"
+    }
+   ]
+  },
+  {
+   "id": "type.type-web",
+   "title": "type.type-web",
+   "file": "playground.src.html",
+   "line": 263,
+   "edits": []
+  },
+  {
+   "id": "type.app",
+   "title": "App 字号阶梯",
+   "file": "playground.src.html",
+   "line": 264,
+   "edits": []
+  },
+  {
+   "id": "type.type-app",
+   "title": "type.type-app",
+   "file": "playground.src.html",
+   "line": 265,
+   "edits": []
+  },
+  {
+   "id": "type.rules",
+   "title": "type.rules",
+   "file": "playground.src.html",
+   "line": 266,
+   "edits": [
+    {
+     "key": "type.rules#1",
+     "source": "标题行高 1.2，正文行高 1.6；字距一律用 <code>em</code>（站点有 /ja /ko，px 字距会撑坏非拉丁字形）。"
+    },
+    {
+     "key": "type.rules#2",
+     "source": "大写小标两种：区块上标 14px / <code>0.2em</code>；商品品牌副标 14px / <code>0.15em</code>，颜色 tertiary。"
+    }
+   ]
+  },
+  {
+   "id": "layout",
+   "title": "间距与布局",
+   "file": "playground.src.html",
+   "line": 274,
+   "edits": [
+    {
+     "key": "layout#1",
+     "source": "间距与布局"
+    },
+    {
+     "key": "layout#2",
+     "source": "首页区块全宽铺满，左右留 30px（手机 20px）。文章、政策、表单等窄内容页用 1220px 居中容器。卡片网格间距统一 12px（Figma 稿是 30，线上已改）。商品桌面 4 列、手机 2 列。"
+    }
+   ]
+  },
+  {
+   "id": "layout.two",
+   "title": "layout.two",
+   "file": "playground.src.html",
+   "line": 277,
+   "edits": []
+  },
+  {
+   "id": "shape",
+   "title": "圆角与阴影",
+   "file": "playground.src.html",
+   "line": 296,
+   "edits": [
+    {
+     "key": "shape#1",
+     "source": "圆角与阴影"
+    },
+    {
+     "key": "shape#2",
+     "source": "按钮、胶囊、tab 一律全圆角。弹窗和大卡片 20px，半屏面板 16px，toast 和徽章 12px，提示条 8px。阴影只有 4 种，只给浮起来的东西用；商品卡和 logo 不加阴影，层次靠边框和底色。"
+    }
+   ]
+  },
+  {
+   "id": "shape.radius-grid",
+   "title": "shape.radius-grid",
+   "file": "playground.src.html",
+   "line": 299,
+   "edits": []
+  },
+  {
+   "id": "shape.shadows",
+   "title": "阴影（只允许这 4 种）",
+   "file": "playground.src.html",
+   "line": 300,
+   "edits": [
+    {
+     "key": "shape.shadows#1",
+     "source": "阴影（只允许这 4 种）"
+    }
+   ]
+  },
+  {
+   "id": "shape.shadow-stage",
+   "title": "shape.shadow-stage",
+   "file": "playground.src.html",
+   "line": 301,
+   "edits": []
+  },
+  {
+   "id": "shape.gradients",
+   "title": "渐变 / 毛玻璃",
+   "file": "playground.src.html",
+   "line": 302,
+   "edits": [
+    {
+     "key": "shape.gradients#1",
+     "source": "渐变 / 毛玻璃"
+    }
+   ]
+  },
+  {
+   "id": "shape.sw-grid",
+   "title": "shape.sw-grid",
+   "file": "playground.src.html",
+   "line": 303,
+   "edits": []
+  },
+  {
+   "id": "motion",
+   "title": "动效",
+   "file": "playground.src.html",
+   "line": 307,
+   "edits": [
+    {
+     "key": "motion#1",
+     "source": "动效"
+    },
+    {
+     "key": "motion#2",
+     "source": "Web 动效：一条缓动曲线 <code>cubic-bezier(.165,.84,.44,1)</code>，四档时长。Figma 没有 motion token，这部分沿用线上实测值；App 动效以设计团队交付的视频为准（下方）。用户开启“减少动态效果”时全部关掉。"
+    }
+   ]
+  },
+  {
+   "id": "motion.ease-demo",
+   "title": "motion.ease-demo",
+   "file": "playground.src.html",
+   "line": 310,
+   "edits": []
+  },
+  {
+   "id": "motion.example-2",
+   "title": "motion.example-2",
+   "file": "playground.src.html",
+   "line": 311,
+   "edits": []
+  },
+  {
+   "id": "motion.reveal",
+   "title": "入场：translateY(20px) → 0，只触发一次",
+   "file": "playground.src.html",
+   "line": 315,
+   "edits": [
+    {
+     "key": "motion.reveal#1",
+     "source": "入场：translateY(20px) → 0，只触发一次"
+    }
+   ]
+  },
+  {
+   "id": "motion.reveal-box",
+   "title": "motion.reveal-box",
+   "file": "playground.src.html",
+   "line": 316,
+   "edits": []
+  },
+  {
+   "id": "motion.skeleton",
+   "title": "骨架屏：#F0F0F0 ↔ #EEEEEE，1 秒循环",
+   "file": "playground.src.html",
+   "line": 317,
+   "edits": []
+  },
+  {
+   "id": "motion.example-4",
+   "title": "motion.example-4",
+   "file": "playground.src.html",
+   "line": 318,
+   "edits": []
+  },
+  {
+   "id": "motion.videos",
+   "title": "品牌与 App 动效交付视频  压缩预览版（720p），原片找设计团队",
+   "file": "playground.src.html",
+   "line": 322,
+   "edits": []
+  },
+  {
+   "id": "motion.video-grid",
+   "title": "motion.video-grid",
+   "file": "playground.src.html",
+   "line": 323,
+   "edits": []
+  },
+  {
+   "id": "motion.rules",
+   "title": "motion.rules",
+   "file": "playground.src.html",
+   "line": 324,
+   "edits": [
+    {
+     "key": "motion.rules#1",
+     "source": "hover / 按下 / 颜色变化 200ms；展开、抽屉、tab 切换 300ms；滚动入场 500ms；首屏 800ms。"
+    },
+    {
+     "key": "motion.rules#2",
+     "source": "不用 <code>ease</code> / <code>ease-in-out</code>；只有循环内容（跑马灯、加载转圈）用 <code>linear</code>。"
+    },
+    {
+     "key": "motion.rules#3",
+     "source": "不只靠 opacity 做 hover，要同时改底色、描边或位移。"
+    }
+   ]
+  },
+  {
+   "id": "icons",
+   "title": "图标",
+   "file": "playground.src.html",
+   "line": 332,
+   "edits": [
+    {
+     "key": "icons#1",
+     "source": "图标"
+    },
+    {
+     "key": "icons#2",
+     "source": "设计团队组件库的 58 个线性图标（48 画板、3.6 线宽），颜色跟随 <code>currentColor</code>。点击图标复制引用代码。"
+    }
+   ]
+  },
+  {
+   "id": "icons.icon-tools",
+   "title": "icons.icon-tools",
+   "file": "playground.src.html",
+   "line": 335,
+   "edits": []
+  },
+  {
+   "id": "icons.icon-grid",
+   "title": "icons.icon-grid",
+   "file": "playground.src.html",
+   "line": 341,
+   "edits": []
+  },
+  {
+   "id": "buttons",
+   "title": "按钮",
+   "file": "playground.src.html",
+   "line": 349,
+   "edits": [
+    {
+     "key": "buttons#1",
+     "source": "按钮"
+    },
+    {
+     "key": "buttons#2",
+     "source": "Web 三档高度 44 / 50 / 54，字体 Outfit 600（小号 500），全圆角，宽度随内容。主按钮橙色，次按钮黑色，描边按钮用于第三层级。每个页面主按钮只放一个。"
+    }
+   ]
+  },
+  {
+   "id": "buttons.state-table",
+   "title": "buttons.state-table",
+   "file": "playground.src.html",
+   "line": 352,
+   "edits": []
+  },
+  {
+   "id": "buttons.sizes",
+   "title": "尺寸与图标位",
+   "file": "playground.src.html",
+   "line": 359,
+   "edits": [
+    {
+     "key": "buttons.sizes#1",
+     "source": "尺寸与图标位"
+    }
+   ]
+  },
+  {
+   "id": "buttons.stage",
+   "title": "buttons.stage",
+   "file": "playground.src.html",
+   "line": 360,
+   "edits": []
+  },
+  {
+   "id": "buttons.live",
+   "title": "线上新版用法",
+   "file": "playground.src.html",
+   "line": 367,
+   "edits": []
+  },
+  {
+   "id": "buttons.stage-3",
+   "title": "buttons.stage-3",
+   "file": "playground.src.html",
+   "line": 368,
+   "edits": []
+  },
+  {
+   "id": "buttons.stage-4",
+   "title": "buttons.stage-4",
+   "file": "playground.src.html",
+   "line": 374,
+   "edits": []
+  },
+  {
+   "id": "nav",
+   "title": "公告栏与导航",
+   "file": "playground.src.html",
+   "line": 386,
+   "edits": [
+    {
+     "key": "nav#1",
+     "source": "公告栏与导航"
+    },
+    {
+     "key": "nav#2",
+     "source": "公告栏 48px 橙色渐变，左右箭头切换文案。页头 78px（手机 56px）：压在首屏图上时是半透明毛玻璃（<code>--jjb-header-glass</code> + saturate 1.8 blur 20），滚动后切白底加 <code>--jjb-shadow-header</code>。菜单居中，Bebas 20；右侧依次是 Log In 胶囊、搜索/账户/购物车 20px 图标、橙色 CREATE 36px。"
+    }
+   ]
+  },
+  {
+   "id": "nav.nav-frame",
+   "title": "nav.nav-frame",
+   "file": "playground.src.html",
+   "line": 389,
+   "edits": []
+  },
+  {
+   "id": "nav.nav-frame-2",
+   "title": "nav.nav-frame-2",
+   "file": "playground.src.html",
+   "line": 403,
+   "edits": []
+  },
+  {
+   "id": "commerce",
+   "title": "区块标题、商品卡与标签",
+   "file": "playground.src.html",
+   "line": 429,
+   "edits": [
+    {
+     "key": "commerce#1",
+     "source": "区块标题、商品卡与标签"
+    },
+    {
+     "key": "commerce#2",
+     "source": "区块标题居中，Bebas 64（手机 28）；右侧 View All 18px 500。筛选用黑白胶囊（42px），不再用下划线 tab。商品卡 4 列，间距 12px。卡片没有品牌副标，也没有 Quick view。标题 16px 500，最多两行；价格 16px 500。鼠标悬停时淡入第二张商品图（220ms）。价格为示例。"
+    }
+   ]
+  },
+  {
+   "id": "commerce.jjb-section-head",
+   "title": "Trending Products",
+   "file": "playground.src.html",
+   "line": 432,
+   "edits": []
+  },
+  {
+   "id": "commerce.jjb-tabs",
+   "title": "commerce.jjb-tabs",
+   "file": "playground.src.html",
+   "line": 433,
+   "edits": []
+  },
+  {
+   "id": "commerce.product-grid",
+   "title": "commerce.product-grid",
+   "file": "playground.src.html",
+   "line": 434,
+   "edits": []
+  },
+  {
+   "id": "commerce.dots",
+   "title": "轮播指示点",
+   "file": "playground.src.html",
+   "line": 435,
+   "edits": [
+    {
+     "key": "commerce.dots#1",
+     "source": "轮播指示点"
+    }
+   ]
+  },
+  {
+   "id": "commerce.stage",
+   "title": "commerce.stage",
+   "file": "playground.src.html",
+   "line": 436,
+   "edits": []
+  },
+  {
+   "id": "commerce.tags",
+   "title": "标签与提示条",
+   "file": "playground.src.html",
+   "line": 437,
+   "edits": [
+    {
+     "key": "commerce.tags#1",
+     "source": "标签与提示条"
+    }
+   ]
+  },
+  {
+   "id": "commerce.stage-5",
+   "title": "commerce.stage-5",
+   "file": "playground.src.html",
+   "line": 438,
+   "edits": []
+  },
+  {
+   "id": "commerce.options",
+   "title": "胶囊选项（App / 生成工具里的风格选择）",
+   "file": "playground.src.html",
+   "line": 445,
+   "edits": []
+  },
+  {
+   "id": "commerce.stage-6",
+   "title": "commerce.stage-6",
+   "file": "playground.src.html",
+   "line": 446,
+   "edits": []
+  },
+  {
+   "id": "blocks",
+   "title": "首页区块",
+   "file": "playground.src.html",
+   "line": 466,
+   "edits": [
+    {
+     "key": "blocks#1",
+     "source": "首页区块"
+    },
+    {
+     "key": "blocks#2",
+     "source": "2026-10 上线首页的区块。模板卡、分类卡、信任卡和买家秀图统一 12px 圆角（手机 8px），卡片间距 12px。图片取自线上，只作示例。"
+    }
+   ]
+  },
+  {
+   "id": "blocks.templates",
+   "title": "模板入口（横向轮播；模板色已做进图片里）",
+   "file": "playground.src.html",
+   "line": 470,
+   "edits": [
+    {
+     "key": "blocks.templates#1",
+     "source": "模板入口（横向轮播；模板色已做进图片里）"
+    }
+   ]
+  },
+  {
+   "id": "blocks.tpl-track",
+   "title": "blocks.tpl-track",
+   "file": "playground.src.html",
+   "line": 471,
+   "edits": []
+  },
+  {
+   "id": "blocks.steps",
+   "title": "How it works（黑底步骤，点击切换）",
+   "file": "playground.src.html",
+   "line": 473,
+   "edits": [
+    {
+     "key": "blocks.steps#1",
+     "source": "How it works（黑底步骤，点击切换）"
+    }
+   ]
+  },
+  {
+   "id": "blocks.stage",
+   "title": "blocks.stage",
+   "file": "playground.src.html",
+   "line": 474,
+   "edits": []
+  },
+  {
+   "id": "blocks.categories",
+   "title": "分类卡",
+   "file": "playground.src.html",
+   "line": 487,
+   "edits": [
+    {
+     "key": "blocks.categories#1",
+     "source": "分类卡"
+    }
+   ]
+  },
+  {
+   "id": "blocks.cat-grid",
+   "title": "blocks.cat-grid",
+   "file": "playground.src.html",
+   "line": 488,
+   "edits": []
+  },
+  {
+   "id": "blocks.trust",
+   "title": "信任卡（灰底区块）",
+   "file": "playground.src.html",
+   "line": 490,
+   "edits": [
+    {
+     "key": "blocks.trust#1",
+     "source": "信任卡（灰底区块）"
+    }
+   ]
+  },
+  {
+   "id": "blocks.jjb-section--soft",
+   "title": "blocks.jjb-section--soft",
+   "file": "playground.src.html",
+   "line": 491,
+   "edits": []
+  },
+  {
+   "id": "blocks.reviews",
+   "title": "评价卡",
+   "file": "playground.src.html",
+   "line": 493,
+   "edits": [
+    {
+     "key": "blocks.reviews#1",
+     "source": "评价卡"
+    }
+   ]
+  },
+  {
+   "id": "blocks.reviews-5",
+   "title": "blocks.reviews-5",
+   "file": "playground.src.html",
+   "line": 494,
+   "edits": []
+  },
+  {
+   "id": "blocks.social",
+   "title": "社媒竖版视频（深灰底，居中一张放大）",
+   "file": "playground.src.html",
+   "line": 496,
+   "edits": [
+    {
+     "key": "blocks.social#1",
+     "source": "社媒竖版视频（深灰底，居中一张放大）"
+    }
+   ]
+  },
+  {
+   "id": "blocks.jjb-social",
+   "title": "blocks.jjb-social",
+   "file": "playground.src.html",
+   "line": 497,
+   "edits": []
+  },
+  {
+   "id": "forms",
+   "title": "表单与 FAQ",
+   "file": "playground.src.html",
+   "line": 516,
+   "edits": [
+    {
+     "key": "forms#1",
+     "source": "表单与 FAQ"
+    },
+    {
+     "key": "forms#2",
+     "source": "Figma 组件库的表单区还是空的，这里沿用线上规则：44px 高、4px 圆角、1px 描边，聚焦时黑描边加蓝色焦点环，错误用红色描边和说明文字。FAQ 是新版样式：左侧分类，右侧 Bebas 问题，用 +/– 图标，答案灰色 14px。"
+    }
+   ]
+  },
+  {
+   "id": "forms.two",
+   "title": "forms.two",
+   "file": "playground.src.html",
+   "line": 519,
+   "edits": []
+  },
+  {
+   "id": "forms.faq",
+   "title": "FAQ",
+   "file": "playground.src.html",
+   "line": 526,
+   "edits": []
+  },
+  {
+   "id": "forms.jjb-faq",
+   "title": "forms.jjb-faq",
+   "file": "playground.src.html",
+   "line": 527,
+   "edits": []
+  },
+  {
+   "id": "feedback",
+   "title": "反馈与浮层",
+   "file": "playground.src.html",
+   "line": 542,
+   "edits": [
+    {
+     "key": "feedback#1",
+     "source": "反馈与浮层"
+    },
+    {
+     "key": "feedback#2",
+     "source": "toast：80% 黑底、12px 圆角，带淡蓝光晕阴影。弹窗：白底、20px 圆角、宽 300，右上角 35px 关闭钮。底部抽屉：顶部两角 20px，向上的柔和阴影。"
+    }
+   ]
+  },
+  {
+   "id": "feedback.stage",
+   "title": "feedback.stage",
+   "file": "playground.src.html",
+   "line": 545,
+   "edits": []
+  },
+  {
+   "id": "feedback.example-2",
+   "title": "feedback.example-2",
+   "file": "playground.src.html",
+   "line": 559,
+   "edits": []
+  },
+  {
+   "id": "app",
+   "title": "App 专属",
+   "file": "playground.src.html",
+   "line": 563,
+   "edits": [
+    {
+     "key": "app#1",
+     "source": "App 专属"
+    },
+    {
+     "key": "app#2",
+     "source": "App 按钮三档 36 / 44 / 54，没有 hover 态；次按钮白底。风格模板卡用各自的模板色做底，底部叠同色相深色渐变。独立站的模板入口直接用带模板色的图片（见 11 首页区块），不在 CSS 里另写模板色。"
+    }
+   ]
+  },
+  {
+   "id": "app.stage",
+   "title": "app.stage",
+   "file": "playground.src.html",
+   "line": 566,
+   "edits": []
+  },
+  {
+   "id": "app.templates",
+   "title": "风格模板色",
+   "file": "playground.src.html",
+   "line": 575,
+   "edits": [
+    {
+     "key": "app.templates#1",
+     "source": "风格模板色"
+    }
+   ]
+  },
+  {
+   "id": "app.tpl-grid",
+   "title": "app.tpl-grid",
+   "file": "playground.src.html",
+   "line": 576,
+   "edits": []
+  },
+  {
+   "id": "app.stickers",
+   "title": "贴纸素材规范",
+   "file": "playground.src.html",
+   "line": 577,
+   "edits": [
+    {
+     "key": "app.stickers#1",
+     "source": "贴纸素材规范"
+    }
+   ]
+  },
+  {
+   "id": "page",
+   "title": "页面拼装示例",
+   "file": "playground.src.html",
+   "line": 583,
+   "edits": [
+    {
+     "key": "page#1",
+     "source": "页面拼装示例"
+    },
+    {
+     "key": "page#2",
+     "source": "一个新落地页的最小骨架：公告栏 → 毛玻璃页头压首图 → 区块（居中标题 + View All + 网格）→ 黑底页脚。区块上下各 50px（手机 32px），首页区块全宽，左右只留 30px（手机 20px）。新页面从这里复制结构，再替换内容。"
+    }
+   ]
+  },
+  {
+   "id": "page.nav-frame",
+   "title": "Trending Products",
+   "file": "playground.src.html",
+   "line": 586,
+   "edits": []
+  },
+  {
+   "id": "assets",
+   "title": "素材清单",
+   "file": "playground.src.html",
+   "line": 623,
+   "edits": [
+    {
+     "key": "assets#1",
+     "source": "素材清单"
+    },
+    {
+     "key": "assets#2",
+     "source": "所有素材都在仓库里，可直接引用。完整清单和来源见 <code>assets/README.md</code>。"
+    }
+   ]
+  },
+  {
+   "id": "assets.asset-table",
+   "title": "assets.asset-table",
+   "file": "playground.src.html",
+   "line": 626,
+   "edits": []
+  },
+  {
+   "id": "ai",
+   "title": "给 AI 用",
+   "file": "playground.src.html",
+   "line": 638,
+   "edits": [
+    {
+     "key": "ai#1",
+     "source": "给 AI 用"
+    },
+    {
+     "key": "ai#2",
+     "source": "把本规范装成 agent skill。装好后对 Claude Code 或 Codex 说“按 JuJuBit 设计规范做一个 xx 页面”，它会自动读取规则、token、组件和素材。skill 跟着本页自动更新，重新跑一次安装命令就能拿到最新版。"
+    }
+   ]
+  },
+  {
+   "id": "ai.install",
+   "title": "1. 一键安装（Claude Code + Codex，macOS / Linux）",
+   "file": "playground.src.html",
+   "line": 641,
+   "edits": [
+    {
+     "key": "ai.install#1",
+     "source": "1. 一键安装（Claude Code + Codex，macOS / Linux）"
+    }
+   ]
+  },
+  {
+   "id": "ai.ai-cmd",
+   "title": "ai.ai-cmd",
+   "file": "playground.src.html",
+   "line": 642,
+   "edits": []
+  },
+  {
+   "id": "ai.download",
+   "title": "2. 手动下载",
+   "file": "playground.src.html",
+   "line": 644,
+   "edits": [
+    {
+     "key": "ai.download#1",
+     "source": "2. 手动下载"
+    }
+   ]
+  },
+  {
+   "id": "ai.example-2",
+   "title": "ai.example-2",
+   "file": "playground.src.html",
+   "line": 645,
+   "edits": []
+  },
+  {
+   "id": "ai.prompt",
+   "title": "3. 不装 skill，直接给 agent 这段话",
+   "file": "playground.src.html",
+   "line": 650,
+   "edits": [
+    {
+     "key": "ai.prompt#1",
+     "source": "3. 不装 skill，直接给 agent 这段话"
+    }
+   ]
+  },
+  {
+   "id": "ai.ai-cmd-3",
+   "title": "ai.ai-cmd-3",
+   "file": "playground.src.html",
+   "line": 651,
+   "edits": []
+  },
+  {
+   "id": "ai.contribute",
+   "title": "修改规范",
+   "file": "playground.src.html",
+   "line": 652,
+   "edits": [
+    {
+     "key": "ai.contribute#1",
+     "source": "修改规范"
+    }
+   ]
+  }
+ ]
+}

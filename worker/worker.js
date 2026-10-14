@@ -1,3 +1,7 @@
+import { json, HttpError } from './src/http.js';
+import { readSession, isAgent, handleLogin, handleLogout } from './src/auth.js';
+import { handleComments } from './src/comments.js';
+import { handleEdits } from './src/edits.js';
 // playverseai.com/design* → 实时读取 GitHub 仓库 main 分支（公开仓库，无需密钥）。
 // 仓库 push 后，GitHub raw 缓存约 5 分钟，这里再缓存 60 秒。
 const RAW = "https://raw.githubusercontent.com/YishanCoding/jujubit-design-system/main/";
@@ -8,25 +12,62 @@ const TYPES = {
   jpg: "image/jpeg", jpeg: "image/jpeg", webp: "image/webp", gif: "image/gif", mp4: "video/mp4",
   ttf: "font/ttf", woff: "font/woff", woff2: "font/woff2", zip: "application/zip",
 };
-const ALLOWED = /^(playground\.html|tokens\.css|components\.css|install\.sh|(assets|skill|downloads)\/[A-Za-z0-9_\-./]+)$/;
+const ALLOWED = /^(playground\.html|tokens\.css|components\.css|install\.sh|modules\.json|editor\/[A-Za-z0-9_\-.]+|(assets|skill|downloads)\/[A-Za-z0-9_\-./]+)$/;
 
-export default {
-  async fetch(request) {
-    const url = new URL(request.url);
-    if (url.pathname === "/design") return Response.redirect(url.origin + "/design/" + url.search, 301);
-    let path = decodeURIComponent(url.pathname.replace(/^\/design\/?/, ""));
-    if (path === "" || path === "index.html") path = "playground.html";
-    if (!ALLOWED.test(path) || path.includes("..")) return new Response("Not Found", { status: 404 });
-    const upstream = await fetch(RAW + path, { cf: { cacheTtl: 60, cacheEverything: true } });
-    if (!upstream.ok) return new Response("Not Found", { status: 404 });
-    const ext = path.split(".").pop().toLowerCase();
-    const headers = new Headers({
-      "Content-Type": TYPES[ext] || "application/octet-stream",
-      "Cache-Control": "public, max-age=60",
-      "X-Robots-Tag": "noindex",
-      "Access-Control-Allow-Origin": "*",
-    });
-    if (ext === "zip") headers.set("Content-Disposition", 'attachment; filename="jujubit-design-system-skill.zip"');
-    return new Response(upstream.body, { status: 200, headers });
-  },
-};
+export function injectEditor(response, Rewriter = HTMLRewriter) {
+  return new Rewriter().on('body', {
+    element(element) { element.append('<link rel="stylesheet" href="editor/editor.css"><script src="editor/editor.js" defer></script>', {html:true}); },
+  }).transform(response);
+}
+
+export async function route(request, env, deps = {}) {
+  const url = new URL(request.url);
+  const fetchFn = deps.fetchFn || fetch;
+  const nowSec = deps.nowSec ?? Math.floor(Date.now()/1000);
+  const rawBase = env.RAW_BASE || RAW;
+  if (url.pathname.startsWith('/design/api/')) {
+    try {
+      const path = url.pathname.slice('/design/api/'.length);
+      const method = request.method;
+      const known = (path === 'login' && method === 'POST') || (path === 'logout' && method === 'POST')
+        || (path === 'me' && method === 'GET') || (path === 'edits' && method === 'POST')
+        || (path === 'comments' && ['GET','POST'].includes(method))
+        || (/^comments\/[1-9]\d*$/.test(path) && ['PATCH','DELETE'].includes(method));
+      if (!known) return json({error:'not_found'},404);
+      if (path === 'login') return await handleLogin(env,request,request.headers.get('CF-Connecting-IP') || '0.0.0.0',nowSec);
+      const caller = (await isAgent(env,request)) ? 'agent' : await readSession(env,request,nowSec);
+      if (!caller) return json({error:'unauthorized'},401);
+      if (caller === 'agent' && !((path === 'comments' && method === 'GET') || (/^comments\/[1-9]\d*$/.test(path) && method === 'PATCH'))) return json({error:'forbidden'},403);
+      if (['POST','PATCH','DELETE'].includes(method) && request.headers.get('Content-Type')?.split(';')[0].trim().toLowerCase() !== 'application/json') return json({error:'unsupported_media_type'},415);
+      if (path === 'me') return json({who:caller});
+      if (path === 'logout') return handleLogout();
+      const context = {db:env.DB,fetchFn,rawBase,nowSec};
+      if (path === 'edits') return await handleEdits(env,request,caller,context);
+      return await handleComments(env,request,caller,context);
+    } catch (error) {
+      // Never log request bodies, cookies, credentials or upstream error payloads.
+      return json({error:error instanceof HttpError ? error.message : 'internal_error'}, error instanceof HttpError ? error.status : 500);
+    }
+  }
+  if (url.pathname === "/design") return Response.redirect(url.origin + "/design/" + url.search, 301);
+  if (!url.pathname.startsWith('/design/')) return new Response('Not Found', {status:404});
+  let path;
+  try { path = decodeURIComponent(url.pathname.slice('/design/'.length)); }
+  catch { return new Response('Not Found', {status:404}); }
+  if (path === "" || path === "index.html") path = "playground.html";
+  if (!ALLOWED.test(path) || path.includes("..")) return new Response("Not Found", { status: 404 });
+  const upstream = await fetchFn(rawBase + path, { cf: { cacheTtl: 60, cacheEverything: true } });
+  if (!upstream.ok) return new Response("Not Found", { status: 404 });
+  const ext = path.split(".").pop().toLowerCase();
+  const headers = new Headers({
+    "Content-Type": TYPES[ext] || "application/octet-stream",
+    "Cache-Control": "public, max-age=60",
+    "X-Robots-Tag": "noindex",
+    "Access-Control-Allow-Origin": "*",
+  });
+  if (ext === "zip") headers.set("Content-Disposition", 'attachment; filename="jujubit-design-system-skill.zip"');
+  const response = new Response(upstream.body, { status: 200, headers });
+  return path === 'playground.html' ? (deps.injectEditor || injectEditor)(response) : response;
+}
+
+export default { fetch(request,env) { return route(request,env); } };

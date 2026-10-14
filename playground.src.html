@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="tokens.css">
 <link rel="stylesheet" href="components.css">
 <style>
+  .pg-mod{display:contents}
   body { margin: 0; background: var(--jjb-surface); }
   .pg { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
   .pg-side { position: sticky; top: 0; height: 100vh; overflow: auto; padding: 28px 20px; border-right: 1px solid var(--jjb-border);
@@ -186,7 +187,7 @@
   </aside>
 
   <main class="pg-main">
-    <section class="pg-hero">
+    <section class="pg-hero" data-mod="hero">
       <div class="jjb-display" aria-hidden="true">JUJUBIT</div>
       <div class="jjb-eyebrow">Design System v2</div>
       <h1 class="jjb-h1" style="margin-top:12px">JuJuBit Design Playground</h1>
@@ -200,10 +201,10 @@
     </section>
 
     <!-- 01 BRAND -->
-    <section class="pg-sec" id="brand">
+    <section class="pg-sec" id="brand" data-mod="brand">
       <header><span class="num">01</span><h2 class="jjb-h2">品牌与 Logo</h2><span class="src src--f">F</span></header>
       <p class="lead">两套标识：横版字标 <b>JuJuBit</b>（网站页头、页脚、邮件）和 3D 字标 <b>JuJu</b>（App icon、头像、社媒方图）。深底用浅色标，浅底用深色或橙色标。</p>
-      <div class="logo-grid">
+      <div class="logo-grid" data-mod="brand.logo-grid">
         <div><div class="logo-tile" style="background:#fff;color:var(--jjb-brand-500)">{{WORDMARK}}</div>
           <div class="logo-cap">橙色字标 · <code>assets/logo/wordmark-orange.svg</code></div></div>
         <div><div class="logo-tile" style="background:var(--jjb-brand-500)"><img src="assets/logo/wordmark-white.svg" alt="JuJuBit"></div>
@@ -217,40 +218,40 @@
         <div><div class="logo-tile" style="background:var(--jjb-neutral-200)"><img src="assets/app/app-icon-juju-square-1025.png" alt="JuJuBit App icon square" style="width:130px"></div>
           <div class="logo-cap">App icon 方形 · <code>assets/app/app-icon-juju-square-1025.png</code></div></div>
       </div>
-      <ul class="rules">
+      <ul class="rules" data-mod="brand.rules">
         <li><b>可以：</b>深底配浅色标、浅底配深色/橙色标；横版字标最小高度 22px（页头 25px）。</li>
         <li><b>不可以：</b>加描边、变形缩放、加阴影、改颜色、放在低对比底色上、改透视、改字母间距（对外规范 1.7）。</li>
       </ul>
     </section>
 
     <!-- 02 COLOR -->
-    <section class="pg-sec" id="color">
+    <section class="pg-sec" id="color" data-mod="color">
       <header><span class="num">02</span><h2 class="jjb-h2">色彩</h2></header>
       <p class="lead">一个主色：JuJu Orange <code>#FF5A11</code>，只用在主按钮、选中态和关键强调。大面积底色用白、浅灰和品牌浅底。文字不用实色灰，用黑色透明度分四级。点击色块复制 CSS 变量。</p>
-      <div class="pg-sub">品牌色 <span class="src src--f">F</span></div>
-      <div class="sw-grid" data-swatches="brand"></div>
-      <div class="pg-sub">中性色 <span class="src src--f">F</span></div>
-      <div class="sw-grid" data-swatches="neutral"></div>
-      <div class="pg-sub">文字（透明度） <span class="src src--f">F</span></div>
-      <div class="sw-grid" data-swatches="text"></div>
-      <div class="pg-sub">面与遮罩 <span class="src src--fs">F稿</span></div>
-      <div class="sw-grid" data-swatches="surface"></div>
-      <div class="pg-sub">功能色 <span class="src src--live">线上</span></div>
-      <div class="sw-grid" data-swatches="func"></div>
-      <div class="pg-sub">辅助色 <span class="src src--f">F</span> 仅插画、营销图形、标签底</div>
-      <div class="sw-grid" data-swatches="accent"></div>
-      <ul class="rules">
+      <div class="pg-mod" data-mod="color.brand"><div class="pg-sub">品牌色 <span class="src src--f">F</span></div>
+      <div class="sw-grid" data-swatches="brand" data-mod="color.sw-grid"></div>
+      </div><div class="pg-mod" data-mod="color.neutral"><div class="pg-sub">中性色 <span class="src src--f">F</span></div>
+      <div class="sw-grid" data-swatches="neutral" data-mod="color.sw-grid-2"></div>
+      </div><div class="pg-mod" data-mod="color.text"><div class="pg-sub">文字（透明度） <span class="src src--f">F</span></div>
+      <div class="sw-grid" data-swatches="text" data-mod="color.sw-grid-3"></div>
+      </div><div class="pg-mod" data-mod="color.surface"><div class="pg-sub">面与遮罩 <span class="src src--fs">F稿</span></div>
+      <div class="sw-grid" data-swatches="surface" data-mod="color.sw-grid-4"></div>
+      </div><div class="pg-mod" data-mod="color.functional"><div class="pg-sub">功能色 <span class="src src--live">线上</span></div>
+      <div class="sw-grid" data-swatches="func" data-mod="color.sw-grid-5"></div>
+      </div><div class="pg-mod" data-mod="color.accent"><div class="pg-sub">辅助色 <span class="src src--f">F</span> 仅插画、营销图形、标签底</div>
+      <div class="sw-grid" data-swatches="accent" data-mod="color.sw-grid-6"></div>
+      <ul class="rules" data-mod="color.rules">
         <li><b>主按钮 hover 变浅</b>（<code>#FF7B41</code>），按下变深（<code>#E54913</code>），禁用换灰 <code>#CCCCCC</code>，不用 opacity。</li>
         <li>辅助色不能用在按钮、链接、价格上；页面上同屏辅助色不超过 2 个。</li>
         <li>Judge.me 评价星色 <code>#108474</code> 归第三方，不改也不借用。</li>
       </ul>
-    </section>
+    </div></section>
 
     <!-- 03 TYPE -->
-    <section class="pg-sec" id="type">
+    <section class="pg-sec" id="type" data-mod="type">
       <header><span class="num">03</span><h2 class="jjb-h2">字体</h2><span class="src src--f">F</span></header>
       <p class="lead">两个字族，各管一件事。Bebas Neue 只有大写字形，只用于标题、导航和 tab；正文、按钮、表单全部用 Outfit。不引入第三个字族。</p>
-      <div class="two">
+      <div class="two" data-mod="type.two">
         <div class="font-card"><div class="jjb-mini jjb-muted">Display · <code>assets/fonts/BebasNeue-Regular.ttf</code></div>
           <div class="big" style="font-family:var(--jjb-font-display);margin-top:12px">BEBAS NEUE 400</div>
           <div class="jjb-body-s jjb-muted" style="margin-top:12px">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</div></div>
@@ -258,22 +259,22 @@
           <div class="big" style="font-family:var(--jjb-font-body);font-size:48px;font-weight:600;margin-top:16px">Outfit 400–700</div>
           <div class="jjb-body-s jjb-muted" style="margin-top:12px">Aa Bb Cc — <span style="font-weight:400">400</span> <span style="font-weight:500">500</span> <span style="font-weight:600">600</span> <span style="font-weight:700">700</span></div></div>
       </div>
-      <div class="pg-sub">Web 字号阶梯（桌面 / 手机）</div>
-      <div id="type-web"></div>
-      <div class="pg-sub">App 字号阶梯 <span class="src src--app">App</span></div>
-      <div id="type-app"></div>
-      <ul class="rules">
+      <div class="pg-mod" data-mod="type.web"><div class="pg-sub">Web 字号阶梯（桌面 / 手机）</div>
+      <div id="type-web" data-mod="type.type-web"></div>
+      </div><div class="pg-mod" data-mod="type.app"><div class="pg-sub">App 字号阶梯 <span class="src src--app">App</span></div>
+      <div id="type-app" data-mod="type.type-app"></div>
+      <ul class="rules" data-mod="type.rules">
         <li>标题行高 1.2，正文行高 1.6；字距一律用 <code>em</code>（站点有 /ja /ko，px 字距会撑坏非拉丁字形）。</li>
         <li>大写小标两种：区块上标 14px / <code>0.2em</code>；商品品牌副标 14px / <code>0.15em</code>，颜色 tertiary。</li>
         <li>手机端 Web 标题字号 Figma 未定义，取线上实测值（标 <span class="src src--live">线上</span>）。</li>
       </ul>
-    </section>
+    </div></section>
 
     <!-- 04 LAYOUT -->
-    <section class="pg-sec" id="layout">
+    <section class="pg-sec" id="layout" data-mod="layout">
       <header><span class="num">04</span><h2 class="jjb-h2">间距与布局</h2><span class="src src--new">新版</span></header>
       <p class="lead">首页区块全宽铺满，左右留 30px（手机 20px）。文章、政策、表单等窄内容页用 1220px 居中容器。卡片网格间距统一 12px（Figma 稿是 30，线上已改）。商品桌面 4 列、手机 2 列。</p>
-      <div class="two">
+      <div class="two" data-mod="layout.two">
         <div id="space-scale"></div>
         <table class="state-table">
           <tr><th>Token</th><th>值</th><th>用途</th></tr>
@@ -292,52 +293,52 @@
     </section>
 
     <!-- 05 SHAPE -->
-    <section class="pg-sec" id="shape">
+    <section class="pg-sec" id="shape" data-mod="shape">
       <header><span class="num">05</span><h2 class="jjb-h2">圆角与阴影</h2><span class="src src--fs">F稿</span></header>
       <p class="lead">按钮、胶囊、tab 一律全圆角。弹窗和大卡片 20px，半屏面板 16px，toast 和徽章 12px，提示条 8px。阴影只有 4 种，只给浮起来的东西用；商品卡和 logo 不加阴影，层次靠边框和底色。</p>
-      <div class="radius-grid" id="radius-grid"></div>
-      <div class="pg-sub">阴影（只允许这 4 种）</div>
-      <div class="shadow-stage"><div class="shadow-grid" id="shadow-grid"></div></div>
-      <div class="pg-sub">渐变 / 毛玻璃</div>
-      <div class="sw-grid" data-swatches="gradient"></div>
-    </section>
+      <div class="radius-grid" id="radius-grid" data-mod="shape.radius-grid"></div>
+      <div class="pg-mod" data-mod="shape.shadows"><div class="pg-sub">阴影（只允许这 4 种）</div>
+      <div class="shadow-stage" data-mod="shape.shadow-stage"><div class="shadow-grid" id="shadow-grid"></div></div>
+      </div><div class="pg-mod" data-mod="shape.gradients"><div class="pg-sub">渐变 / 毛玻璃</div>
+      <div class="sw-grid" data-swatches="gradient" data-mod="shape.sw-grid"></div>
+    </div></section>
 
     <!-- 06 MOTION -->
-    <section class="pg-sec" id="motion">
+    <section class="pg-sec" id="motion" data-mod="motion">
       <header><span class="num">06</span><h2 class="jjb-h2">动效</h2><span class="src src--live">线上</span></header>
       <p class="lead">Web 动效：一条缓动曲线 <code>cubic-bezier(.165,.84,.44,1)</code>，四档时长。Figma 没有 motion token，这部分沿用线上实测值；App 动效以设计团队交付的视频为准（下方）。用户开启“减少动态效果”时全部关掉。</p>
-      <div class="ease-demo" id="ease-demo"></div>
-      <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
+      <div class="ease-demo" id="ease-demo" data-mod="motion.ease-demo"></div>
+      <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap" data-mod="motion.example-2">
         <button class="jjb-btn jjb-btn--secondary jjb-btn--s" id="play-ease">播放时长对比</button>
         <button class="jjb-btn jjb-btn--outline jjb-btn--s" id="play-reveal">播放入场（错峰 60ms）</button>
       </div>
-      <div class="pg-sub">入场：translateY(20px) → 0，只触发一次</div>
-      <div class="reveal-box" id="reveal-box"><div class="jjb-reveal"></div><div class="jjb-reveal"></div><div class="jjb-reveal"></div><div class="jjb-reveal"></div><div class="jjb-reveal"></div><div class="jjb-reveal"></div></div>
-      <div class="pg-sub">骨架屏：#F0F0F0 ↔ #EEEEEE，1 秒循环 <span class="src src--fs">F稿</span></div>
-      <div style="display:grid;grid-template-columns:120px 1fr;gap:16px;max-width:520px">
+      <div class="pg-mod" data-mod="motion.reveal"><div class="pg-sub">入场：translateY(20px) → 0，只触发一次</div>
+      <div class="reveal-box" id="reveal-box" data-mod="motion.reveal-box"><div class="jjb-reveal"></div><div class="jjb-reveal"></div><div class="jjb-reveal"></div><div class="jjb-reveal"></div><div class="jjb-reveal"></div><div class="jjb-reveal"></div></div>
+      </div><div class="pg-mod" data-mod="motion.skeleton"><div class="pg-sub">骨架屏：#F0F0F0 ↔ #EEEEEE，1 秒循环 <span class="src src--fs">F稿</span></div>
+      <div style="display:grid;grid-template-columns:120px 1fr;gap:16px;max-width:520px" data-mod="motion.example-4">
         <div class="jjb-skeleton" style="aspect-ratio:1"></div>
         <div style="display:grid;gap:10px;align-content:center"><div class="jjb-skeleton" style="height:14px;width:60%"></div><div class="jjb-skeleton" style="height:18px"></div><div class="jjb-skeleton" style="height:18px;width:40%"></div></div>
       </div>
-      <div class="pg-sub">品牌与 App 动效交付视频 <span class="src src--app">App</span> 压缩预览版（720p），原片找设计团队</div>
-      <div class="video-grid" id="video-grid"></div>
-      <ul class="rules">
+      </div><div class="pg-mod" data-mod="motion.videos"><div class="pg-sub">品牌与 App 动效交付视频 <span class="src src--app">App</span> 压缩预览版（720p），原片找设计团队</div>
+      <div class="video-grid" id="video-grid" data-mod="motion.video-grid"></div>
+      <ul class="rules" data-mod="motion.rules">
         <li>hover / 按下 / 颜色变化 200ms；展开、抽屉、tab 切换 300ms；滚动入场 500ms；首屏 800ms。</li>
         <li>不用 <code>ease</code> / <code>ease-in-out</code>；只有循环内容（跑马灯、加载转圈）用 <code>linear</code>。</li>
         <li>不只靠 opacity 做 hover，要同时改底色、描边或位移。</li>
       </ul>
-    </section>
+    </div></section>
 
     <!-- 07 ICONS -->
-    <section class="pg-sec" id="icons">
+    <section class="pg-sec" id="icons" data-mod="icons">
       <header><span class="num">07</span><h2 class="jjb-h2">图标</h2><span class="src src--f">F</span></header>
       <p class="lead">设计团队组件库的 58 个线性图标（48 画板、3.6 线宽），颜色跟随 <code>currentColor</code>。点击图标复制引用代码。</p>
-      <div class="icon-tools">
+      <div class="icon-tools" data-mod="icons.icon-tools">
         <input class="jjb-input" id="icon-q" placeholder="搜索图标，如 cart">
         <button class="jjb-option" aria-pressed="true" data-icon-bg="light">浅底</button>
         <button class="jjb-option" aria-pressed="false" data-icon-bg="dark">深底</button>
         <button class="jjb-option" aria-pressed="false" data-icon-color="var(--jjb-brand-500)">橙色</button>
       </div>
-      <div class="icon-grid" id="icon-grid"></div>
+      <div class="icon-grid" id="icon-grid" data-mod="icons.icon-grid"></div>
       <details class="snippet"><summary>引用方式</summary><pre>&lt;!-- 页面里先内联一次 assets/icons/sprite.svg，然后： --&gt;
 &lt;svg class="jjb-icon" aria-hidden="true"&gt;&lt;use href="#i-cart"/&gt;&lt;/svg&gt;
 &lt;!-- 或直接引单文件（颜色不可改）： --&gt;
@@ -345,32 +346,32 @@
     </section>
 
     <!-- 08 BUTTONS -->
-    <section class="pg-sec" id="buttons">
+    <section class="pg-sec" id="buttons" data-mod="buttons">
       <header><span class="num">08</span><h2 class="jjb-h2">按钮</h2><span class="src src--f">F</span></header>
       <p class="lead">Web 三档高度 44 / 50 / 54，字体 Outfit 600（小号 500），全圆角，宽度随内容。主按钮橙色，次按钮黑色，描边按钮用于第三层级。每个页面主按钮只放一个。</p>
-      <table class="state-table">
+      <table class="state-table" data-mod="buttons.state-table">
         <tr><th>Web</th><th>Default</th><th>Hover</th><th>Pressed</th><th>Disabled</th></tr>
         <tr><td>Primary</td><td><button class="jjb-btn jjb-btn--primary">Create Yours</button></td><td><button class="jjb-btn jjb-btn--primary is-hover">Create Yours</button></td><td><button class="jjb-btn jjb-btn--primary is-active">Create Yours</button></td><td><button class="jjb-btn jjb-btn--primary" disabled>Create Yours</button></td></tr>
         <tr><td>Secondary</td><td><button class="jjb-btn jjb-btn--secondary">Shop Now</button></td><td><button class="jjb-btn jjb-btn--secondary is-hover">Shop Now</button></td><td><button class="jjb-btn jjb-btn--secondary">Shop Now</button></td><td><button class="jjb-btn jjb-btn--secondary" disabled>Shop Now</button></td></tr>
         <tr><td>Outline <span class="src src--fs">F稿</span></td><td><button class="jjb-btn jjb-btn--outline">Learn More</button></td><td><button class="jjb-btn jjb-btn--outline is-hover">Learn More</button></td><td><button class="jjb-btn jjb-btn--outline">Learn More</button></td><td><button class="jjb-btn jjb-btn--outline" disabled>Learn More</button></td></tr>
         <tr><td>Text <span class="src src--live">线上</span></td><td><button class="jjb-btn jjb-btn--text">View all</button></td><td></td><td></td><td><button class="jjb-btn jjb-btn--text" disabled>View all</button></td></tr>
       </table>
-      <div class="pg-sub">尺寸与图标位</div>
-      <div class="stage">
+      <div class="pg-mod" data-mod="buttons.sizes"><div class="pg-sub">尺寸与图标位</div>
+      <div class="stage" data-mod="buttons.stage">
         <button class="jjb-btn jjb-btn--primary jjb-btn--l"><svg class="jjb-icon"><use href="#i-magic_wand"/></svg>Large 54</button>
         <button class="jjb-btn jjb-btn--primary">Medium 50</button>
         <button class="jjb-btn jjb-btn--primary jjb-btn--s">Small 44</button>
         <button class="jjb-btn jjb-btn--secondary jjb-btn--s"><svg class="jjb-icon jjb-icon--20"><use href="#i-cart"/></svg>Add to cart</button>
         <button class="jjb-icon-btn" aria-label="Next"><svg class="jjb-icon"><use href="#i-chevron_right"/></svg></button>
       </div>
-      <div class="pg-sub">线上新版用法 <span class="src src--new">新版</span></div>
-      <div class="stage">
+      </div><div class="pg-mod" data-mod="buttons.live"><div class="pg-sub">线上新版用法 <span class="src src--new">新版</span></div>
+      <div class="stage" data-mod="buttons.stage-3">
         <a class="jjb-btn jjb-btn--primary jjb-btn--hero" href="#buttons">Create Your Own</a>
         <a class="jjb-btn jjb-btn--primary" href="#buttons"><svg class="jjb-icon jjb-icon--20"><use href="#i-sparkle"/></svg>CREATE</a>
         <a class="jjb-btn jjb-btn--outline jjb-btn--pill" href="#buttons">SHOP</a>
         <a class="jjb-btn jjb-btn--outline jjb-btn--pill" href="#buttons">Customize</a>
       </div>
-      <div class="stage stage--dark" style="margin-top:12px"><a class="jjb-btn jjb-btn--white jjb-btn--pill" href="#buttons">Create Now</a></div>
+      <div class="stage stage--dark" style="margin-top:12px" data-mod="buttons.stage-4"><a class="jjb-btn jjb-btn--white jjb-btn--pill" href="#buttons">Create Now</a></div>
       <p class="note">首屏 CTA 50 / 18px 500（手机 36 / 14）；How it works 的 CREATE 50 / 16px 600 带 sparkle 图标；卡片内胶囊 38 / 14px 500。</p>
       <details class="snippet"><summary>Markup</summary><pre>&lt;button class="jjb-btn jjb-btn--primary jjb-btn--l"&gt;Create Yours&lt;/button&gt;
 &lt;button class="jjb-btn jjb-btn--secondary"&gt;Shop Now&lt;/button&gt;
@@ -379,13 +380,13 @@
 &lt;a class="jjb-btn jjb-btn--primary jjb-btn--hero" href="/products/customize-your-own"&gt;Create Your Own&lt;/a&gt;
 &lt;a class="jjb-btn jjb-btn--outline jjb-btn--pill" href="/collections/trpg"&gt;SHOP&lt;/a&gt;
 &lt;a class="jjb-btn jjb-btn--white jjb-btn--pill" href="…"&gt;Create Now&lt;/a&gt;</pre></details>
-    </section>
+    </div></section>
 
     <!-- 09 NAV -->
-    <section class="pg-sec" id="nav">
+    <section class="pg-sec" id="nav" data-mod="nav">
       <header><span class="num">09</span><h2 class="jjb-h2">公告栏与导航</h2><span class="src src--new">新版</span></header>
       <p class="lead">公告栏 48px 橙色渐变，左右箭头切换文案。页头 78px（手机 56px）：压在首屏图上时是半透明毛玻璃（<code>--jjb-header-glass</code> + saturate 1.8 blur 20），滚动后切白底加 <code>--jjb-shadow-header</code>。菜单居中，Bebas 20；右侧依次是 Log In 胶囊、搜索/账户/购物车 20px 图标、橙色 CREATE 36px。</p>
-      <div class="nav-frame">
+      <div class="nav-frame" data-mod="nav.nav-frame">
         <div class="jjb-announce"><button aria-label="Previous"><svg class="jjb-icon jjb-icon--20"><use href="#i-chevron_left"/></svg></button><span>Create Your Own Design — Get 15% OFF</span><button aria-label="Next"><svg class="jjb-icon jjb-icon--20"><use href="#i-chevron_right"/></svg></button></div>
         <header class="jjb-nav">
           <svg class="jjb-nav__logo" viewBox="0 0 89 22"><use href="#logo-wordmark"/></svg>
@@ -399,7 +400,7 @@
           </div>
         </header>
       </div>
-      <div class="nav-frame nav-frame--photo" style="margin-top:16px">
+      <div class="nav-frame nav-frame--photo" style="margin-top:16px" data-mod="nav.nav-frame-2">
         <header class="jjb-nav jjb-nav--glass">
           <svg class="jjb-nav__logo" viewBox="0 0 89 22"><use href="#logo-wordmark"/></svg>
           <nav class="jjb-nav__menu"><a class="jjb-nav__link" href="#nav">Create</a><a class="jjb-nav__link" href="#nav">Templates</a><a class="jjb-nav__link" href="#nav">Categories</a><a class="jjb-nav__link" href="#nav">How it works</a><a class="jjb-nav__link" href="#nav">About us</a></nav>
@@ -425,24 +426,24 @@
     </section>
 
     <!-- 10 COMMERCE -->
-    <section class="pg-sec" id="commerce">
+    <section class="pg-sec" id="commerce" data-mod="commerce">
       <header><span class="num">10</span><h2 class="jjb-h2">区块标题、商品卡与标签</h2><span class="src src--new">新版</span></header>
       <p class="lead">区块标题居中，Bebas 64（手机 28）；右侧 View All 18px 500。筛选用黑白胶囊（42px），不再用下划线 tab。商品卡 4 列，间距 12px。卡片没有品牌副标，也没有 Quick view。标题 16px 500，最多两行；价格 16px 500。鼠标悬停时淡入第二张商品图（220ms）。价格为示例。</p>
-      <div class="jjb-section-head"><h3 class="jjb-section-head__title">Trending Products</h3><a class="jjb-section-head__more" href="#commerce">View All</a></div>
-      <div class="jjb-tabs" role="tablist" style="margin-bottom:32px"><button class="jjb-chip" role="tab" aria-selected="true">Custom Figurines</button><button class="jjb-chip" role="tab" aria-selected="false">Art Toy</button></div>
-      <div class="jjb-grid" id="product-grid"></div>
-      <div class="pg-sub">轮播指示点</div>
-      <div class="stage"><div class="jjb-dots"><button aria-label="1"></button><button aria-label="2" aria-current="true"></button><button aria-label="3"></button><button aria-label="4"></button></div></div>
-      <div class="pg-sub">标签与提示条</div>
-      <div class="stage">
+      <div class="jjb-section-head" data-mod="commerce.jjb-section-head"><h3 class="jjb-section-head__title">Trending Products</h3><a class="jjb-section-head__more" href="#commerce">View All</a></div>
+      <div class="jjb-tabs" role="tablist" style="margin-bottom:32px" data-mod="commerce.jjb-tabs"><button class="jjb-chip" role="tab" aria-selected="true">Custom Figurines</button><button class="jjb-chip" role="tab" aria-selected="false">Art Toy</button></div>
+      <div class="jjb-grid" id="product-grid" data-mod="commerce.product-grid"></div>
+      <div class="pg-mod" data-mod="commerce.dots"><div class="pg-sub">轮播指示点</div>
+      <div class="stage" data-mod="commerce.stage"><div class="jjb-dots"><button aria-label="1"></button><button aria-label="2" aria-current="true"></button><button aria-label="3"></button><button aria-label="4"></button></div></div>
+      </div><div class="pg-mod" data-mod="commerce.tags"><div class="pg-sub">标签与提示条</div>
+      <div class="stage" data-mod="commerce.stage-5">
         <span class="jjb-tag jjb-tag--brand">New</span>
         <span class="jjb-tag jjb-tag--sale">-20%</span>
         <span class="jjb-tag jjb-tag--soft">Customizable</span>
         <span class="jjb-tag jjb-tag--neutral">Pre-order</span>
         <div class="jjb-tip"><svg class="jjb-icon jjb-icon--20"><use href="#i-sparkle"/></svg>3 free generations left today</div>
       </div>
-      <div class="pg-sub">胶囊选项（App / 生成工具里的风格选择）<span class="src src--f">F</span></div>
-      <div class="stage">
+      </div><div class="pg-mod" data-mod="commerce.options"><div class="pg-sub">胶囊选项（App / 生成工具里的风格选择）<span class="src src--f">F</span></div>
+      <div class="stage" data-mod="commerce.stage-6">
         <button class="jjb-option" aria-pressed="true">All</button><button class="jjb-option" aria-pressed="false">Chibi</button><button class="jjb-option" aria-pressed="false">Anime</button><button class="jjb-option" aria-pressed="false">Pet</button>
       </div>
       <details class="snippet"><summary>Markup</summary><pre>&lt;div class="jjb-section-head"&gt;
@@ -459,18 +460,18 @@
   &lt;span class="jjb-card__title"&gt;Product title&lt;/span&gt;
   &lt;span class="jjb-card__price"&gt;$24.99&lt;/span&gt;
 &lt;/a&gt;</pre></details>
-    </section>
+    </div></section>
 
     <!-- 11 HOME BLOCKS -->
-    <section class="pg-sec" id="blocks">
+    <section class="pg-sec" id="blocks" data-mod="blocks">
       <header><span class="num">11</span><h2 class="jjb-h2">首页区块</h2><span class="src src--new">新版</span></header>
       <p class="lead">2026-10 上线首页的区块。模板卡、分类卡、信任卡和买家秀图统一 12px 圆角（手机 8px），卡片间距 12px。图片取自线上，只作示例。</p>
 
-      <div class="pg-sub">模板入口（横向轮播；模板色已做进图片里）</div>
-      <div class="jjb-track" id="tpl-track"></div>
+      <div class="pg-mod" data-mod="blocks.templates"><div class="pg-sub">模板入口（横向轮播；模板色已做进图片里）</div>
+      <div class="jjb-track" id="tpl-track" data-mod="blocks.tpl-track"></div>
 
-      <div class="pg-sub">How it works（黑底步骤，点击切换）</div>
-      <div class="stage stage--dark hiw-demo">
+      </div><div class="pg-mod" data-mod="blocks.steps"><div class="pg-sub">How it works（黑底步骤，点击切换）</div>
+      <div class="stage stage--dark hiw-demo" data-mod="blocks.stage">
         <img src="https://jujubit.ai/cdn/shop/files/img01.png?v=1783938670&width=800" alt="">
         <div>
           <div class="jjb-steps" id="steps">
@@ -483,17 +484,17 @@
         </div>
       </div>
 
-      <div class="pg-sub">分类卡</div>
-      <div class="jjb-grid cat-grid" id="cat-grid"></div>
+      </div><div class="pg-mod" data-mod="blocks.categories"><div class="pg-sub">分类卡</div>
+      <div class="jjb-grid cat-grid" id="cat-grid" data-mod="blocks.cat-grid"></div>
 
-      <div class="pg-sub">信任卡（灰底区块）</div>
-      <div class="jjb-section--soft" style="padding:30px;border-radius:12px"><div class="jjb-trust" id="trust"></div></div>
+      </div><div class="pg-mod" data-mod="blocks.trust"><div class="pg-sub">信任卡（灰底区块）</div>
+      <div class="jjb-section--soft" style="padding:30px;border-radius:12px" data-mod="blocks.jjb-section--soft"><div class="jjb-trust" id="trust"></div></div>
 
-      <div class="pg-sub">评价卡</div>
-      <div class="jjb-grid" id="reviews"></div>
+      </div><div class="pg-mod" data-mod="blocks.reviews"><div class="pg-sub">评价卡</div>
+      <div class="jjb-grid" id="reviews" data-mod="blocks.reviews-5"></div>
 
-      <div class="pg-sub">社媒竖版视频（深灰底，居中一张放大）</div>
-      <div class="jjb-social" style="padding:40px 0;border-radius:12px">
+      </div><div class="pg-mod" data-mod="blocks.social"><div class="pg-sub">社媒竖版视频（深灰底，居中一张放大）</div>
+      <div class="jjb-social" style="padding:40px 0;border-radius:12px" data-mod="blocks.jjb-social">
         <div class="jjb-social__row"><div class="jjb-social__item"></div><div class="jjb-social__item"></div><div class="jjb-social__item" aria-current="true"></div><div class="jjb-social__item"></div><div class="jjb-social__item"></div></div>
       </div>
       <details class="snippet"><summary>Markup</summary><pre>&lt;a class="jjb-tpl-card" href="…"&gt;&lt;img src="…" alt="Mini Pop"&gt;
@@ -509,21 +510,21 @@
 &lt;article class="jjb-review"&gt;&lt;div class="jjb-review__img"&gt;&lt;img src="…" alt="Customer photo"&gt;&lt;/div&gt;
   &lt;div class="jjb-review__stars" aria-label="5 stars"&gt;★★★★★&lt;/div&gt;&lt;p class="jjb-review__text"&gt;…&lt;/p&gt;
   &lt;div class="jjb-review__author"&gt;&lt;img src="…" alt=""&gt;Name&lt;/div&gt;&lt;a class="jjb-review__more" href="…"&gt;More Workflow&lt;/a&gt;&lt;/article&gt;</pre></details>
-    </section>
+    </div></section>
 
     <!-- 12 FORMS -->
-    <section class="pg-sec" id="forms">
+    <section class="pg-sec" id="forms" data-mod="forms">
       <header><span class="num">12</span><h2 class="jjb-h2">表单与 FAQ</h2><span class="src src--live">线上</span></header>
       <p class="lead">Figma 组件库的表单区还是空的，这里沿用线上规则：44px 高、4px 圆角、1px 描边，聚焦时黑描边加蓝色焦点环，错误用红色描边和说明文字。FAQ 是新版样式：左侧分类，右侧 Bebas 问题，用 +/– 图标，答案灰色 14px。</p>
-      <div class="two">
+      <div class="two" data-mod="forms.two">
         <div style="display:grid;gap:16px">
           <div class="jjb-field"><label for="f1">Email</label><input class="jjb-input" id="f1" placeholder="you@example.com"><div class="jjb-field__msg">We'll send your order updates here.</div></div>
           <div class="jjb-field is-error"><label for="f2">Order number</label><input class="jjb-input" id="f2" value="JJB-12"><div class="jjb-field__msg">Order number should look like JJB-123456.</div></div>
           <button class="jjb-btn jjb-btn--primary" style="justify-self:start">Track order</button>
         </div>
       </div>
-      <div class="pg-sub">FAQ <span class="src src--new">新版</span></div>
-      <div class="jjb-faq">
+      <div class="pg-mod" data-mod="forms.faq"><div class="pg-sub">FAQ <span class="src src--new">新版</span></div>
+      <div class="jjb-faq" data-mod="forms.jjb-faq">
         <ul class="jjb-faq__cats"><li><button aria-current="true">All</button></li><li><button>Sizing</button></li><li><button>Shipping</button></li><li><button>Customization</button></li><li><button>Pricing</button></li></ul>
         <div>
           <details open><summary>How big is my miniature?</summary><div>示例回答。尺寸、时效等硬事实以 brand-constants.md 为准，不在这里写死。</div></details>
@@ -535,13 +536,13 @@
   &lt;ul class="jjb-faq__cats"&gt;&lt;li&gt;&lt;button aria-current="true"&gt;All&lt;/button&gt;&lt;/li&gt;…&lt;/ul&gt;
   &lt;div&gt;&lt;details open&gt;&lt;summary&gt;Question?&lt;/summary&gt;&lt;div&gt;Answer.&lt;/div&gt;&lt;/details&gt;…&lt;/div&gt;
 &lt;/div&gt;</pre></details>
-    </section>
+    </div></section>
 
     <!-- 12 FEEDBACK -->
-    <section class="pg-sec" id="feedback">
+    <section class="pg-sec" id="feedback" data-mod="feedback">
       <header><span class="num">13</span><h2 class="jjb-h2">反馈与浮层</h2><span class="src src--f">F</span></header>
       <p class="lead">toast：80% 黑底、12px 圆角，带淡蓝光晕阴影。弹窗：白底、20px 圆角、宽 300，右上角 35px 关闭钮。底部抽屉：顶部两角 20px，向上的柔和阴影。</p>
-      <div class="stage stage--sunken" style="align-items:flex-start">
+      <div class="stage stage--sunken" style="align-items:flex-start" data-mod="feedback.stage">
         <div class="jjb-toast"><svg class="jjb-icon jjb-icon--20"><use href="#i-check"/></svg>Added to cart</div>
         <div class="jjb-dialog">
           <button class="jjb-dialog__close" aria-label="Close"><svg class="jjb-icon jjb-icon--20"><use href="#i-close"/></svg></button>
@@ -555,14 +556,14 @@
           <div style="display:flex;gap:6px;margin-top:12px"><button class="jjb-option" aria-pressed="true">6 cm</button><button class="jjb-option" aria-pressed="false">10 cm</button><button class="jjb-option" aria-pressed="false">15 cm</button></div>
         </div>
       </div>
-      <div style="margin-top:14px"><button class="jjb-btn jjb-btn--secondary jjb-btn--s" id="show-toast">触发 toast</button></div>
+      <div style="margin-top:14px" data-mod="feedback.example-2"><button class="jjb-btn jjb-btn--secondary jjb-btn--s" id="show-toast">触发 toast</button></div>
     </section>
 
     <!-- 13 APP -->
-    <section class="pg-sec" id="app">
+    <section class="pg-sec" id="app" data-mod="app">
       <header><span class="num">14</span><h2 class="jjb-h2">App 专属</h2><span class="src src--app">App</span></header>
       <p class="lead">App 按钮三档 36 / 44 / 54，没有 hover 态；次按钮白底。风格模板卡用各自的模板色做底，底部叠同色相深色渐变。独立站的模板入口直接用带模板色的图片（见 11 首页区块），不在 CSS 里另写模板色。</p>
-      <div class="stage stage--sunken">
+      <div class="stage stage--sunken" data-mod="app.stage">
         <button class="jjb-app-btn jjb-app-btn--primary jjb-app-btn--l">Generate</button>
         <button class="jjb-app-btn jjb-app-btn--primary">Generate</button>
         <button class="jjb-app-btn jjb-app-btn--primary is-active">Pressed</button>
@@ -571,18 +572,18 @@
         <button class="jjb-app-btn jjb-app-btn--secondary jjb-app-btn--s">Small 36</button>
         <button class="jjb-app-btn jjb-app-btn--ghost"><svg class="jjb-icon jjb-icon--20" style="width:16px;height:16px"><use href="#i-share"/></svg>Share</button>
       </div>
-      <div class="pg-sub">风格模板色</div>
-      <div class="tpl-grid" id="tpl-grid"></div>
-      <div class="pg-sub">贴纸素材规范</div>
+      <div class="pg-mod" data-mod="app.templates"><div class="pg-sub">风格模板色</div>
+      <div class="tpl-grid" id="tpl-grid" data-mod="app.tpl-grid"></div>
+      </div><div class="pg-mod" data-mod="app.stickers"><div class="pg-sub">贴纸素材规范</div>
       <img src="assets/app/sticker-pack-spec.png" alt="贴纸素材规范：封面图和素材图均 500×500 png，素材图四周 30px，白色外描边 10px" style="width:100%;border-radius:16px">
       <p class="jjb-body-s jjb-muted">封面图 500×500 png；素材图 500×500 png，四周留 30px，白色外描边 10px。</p>
-    </section>
+    </div></section>
 
     <!-- 14 PAGE -->
-    <section class="pg-sec" id="page">
+    <section class="pg-sec" id="page" data-mod="page">
       <header><span class="num">15</span><h2 class="jjb-h2">页面拼装示例</h2></header>
       <p class="lead">一个新落地页的最小骨架：公告栏 → 毛玻璃页头压首图 → 区块（居中标题 + View All + 网格）→ 黑底页脚。区块上下各 50px（手机 32px），首页区块全宽，左右只留 30px（手机 20px）。新页面从这里复制结构，再替换内容。</p>
-      <div class="nav-frame">
+      <div class="nav-frame" data-mod="page.nav-frame">
         <div class="jjb-announce"><span>示例公告</span></div>
         <div style="position:relative;height:420px;background:url('https://jujubit.ai/cdn/shop/collections/Figurines.jpg?width=1600') center/cover, var(--jjb-dark-grey);display:grid;align-content:end;padding:40px 57px 60px;color:#fff">
           <header class="jjb-nav jjb-nav--glass" style="position:absolute;inset:0 0 auto">
@@ -619,10 +620,10 @@
     </section>
 
     <!-- 15 ASSETS -->
-    <section class="pg-sec" id="assets">
+    <section class="pg-sec" id="assets" data-mod="assets">
       <header><span class="num">16</span><h2 class="jjb-h2">素材清单</h2></header>
       <p class="lead">所有素材都在仓库里，可直接引用。完整清单和来源见 <code>assets/README.md</code>。</p>
-      <table class="asset-table">
+      <table class="asset-table" data-mod="assets.asset-table">
         <tr><th>素材</th><th>路径</th><th>用途</th></tr>
         <tr><td>Token / 组件样式</td><td><code>tokens.css</code> · <code>components.css</code></td><td>每个新页面必引</td></tr>
         <tr><td>字体</td><td><code>assets/fonts/</code></td><td>Bebas Neue、Outfit 可变字体（OFL）</td></tr>
@@ -634,23 +635,23 @@
       </table>
     </section>
     <!-- 17 AI -->
-    <section class="pg-sec" id="ai">
+    <section class="pg-sec" id="ai" data-mod="ai">
       <header><span class="num">17</span><h2 class="jjb-h2">给 AI 用</h2></header>
       <p class="lead">把本规范装成 agent skill。装好后对 Claude Code 或 Codex 说“按 JuJuBit 设计规范做一个 xx 页面”，它会自动读取规则、token、组件和素材。skill 跟着本页自动更新，重新跑一次安装命令就能拿到最新版。</p>
-      <div class="pg-sub">1. 一键安装（Claude Code + Codex，macOS / Linux）</div>
-      <div class="ai-cmd"><code>curl -fsSL https://playverseai.com/design/install.sh | bash</code><button class="jjb-btn jjb-btn--secondary jjb-btn--s" data-copy="curl -fsSL https://playverseai.com/design/install.sh | bash" data-label="安装命令">复制</button></div>
+      <div class="pg-mod" data-mod="ai.install"><div class="pg-sub">1. 一键安装（Claude Code + Codex，macOS / Linux）</div>
+      <div class="ai-cmd" data-mod="ai.ai-cmd"><code>curl -fsSL https://playverseai.com/design/install.sh | bash</code><button class="jjb-btn jjb-btn--secondary jjb-btn--s" data-copy="curl -fsSL https://playverseai.com/design/install.sh | bash" data-label="安装命令">复制</button></div>
       <p class="note">装到 <code>~/.claude/skills/jujubit-design-system</code> 和 <code>~/.codex/skills/jujubit-design-system</code>。只装一个：命令末尾加 <code>-s claude</code> 或 <code>-s codex</code>。装完重启 agent。</p>
-      <div class="pg-sub">2. 手动下载</div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
+      </div><div class="pg-mod" data-mod="ai.download"><div class="pg-sub">2. 手动下载</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap" data-mod="ai.example-2">
         <a class="jjb-btn jjb-btn--primary jjb-btn--s" href="downloads/jujubit-design-system-skill.zip" download>下载 skill 包（zip）</a>
         <a class="jjb-btn jjb-btn--outline jjb-btn--s" href="skill/jujubit-design-system/SKILL.md" target="_blank" rel="noopener">查看 SKILL.md</a>
       </div>
       <p class="note">解压后把 <code>jujubit-design-system</code> 文件夹放进 agent 的 skills 目录。包里带 tokens.css、components.css、字体、Logo 和图标，离线也能用。</p>
-      <div class="pg-sub">3. 不装 skill，直接给 agent 这段话</div>
-      <div class="ai-cmd"><code>按 JuJuBit 设计规范做这个页面。先读 https://playverseai.com/design/skill/jujubit-design-system/SKILL.md ，页面引用 https://playverseai.com/design/tokens.css 和 https://playverseai.com/design/components.css ，组件 markup 从 https://playverseai.com/design/ 复制，不要新增色值、字号、圆角。</code><button class="jjb-btn jjb-btn--secondary jjb-btn--s" data-copy="按 JuJuBit 设计规范做这个页面。先读 https://playverseai.com/design/skill/jujubit-design-system/SKILL.md ，页面引用 https://playverseai.com/design/tokens.css 和 https://playverseai.com/design/components.css ，组件 markup 从 https://playverseai.com/design/ 复制，不要新增色值、字号、圆角。" data-label="提示词">复制</button></div>
-      <div class="pg-sub">修改规范</div>
+      </div><div class="pg-mod" data-mod="ai.prompt"><div class="pg-sub">3. 不装 skill，直接给 agent 这段话</div>
+      <div class="ai-cmd" data-mod="ai.ai-cmd-3"><code>按 JuJuBit 设计规范做这个页面。先读 https://playverseai.com/design/skill/jujubit-design-system/SKILL.md ，页面引用 https://playverseai.com/design/tokens.css 和 https://playverseai.com/design/components.css ，组件 markup 从 https://playverseai.com/design/ 复制，不要新增色值、字号、圆角。</code><button class="jjb-btn jjb-btn--secondary jjb-btn--s" data-copy="按 JuJuBit 设计规范做这个页面。先读 https://playverseai.com/design/skill/jujubit-design-system/SKILL.md ，页面引用 https://playverseai.com/design/tokens.css 和 https://playverseai.com/design/components.css ，组件 markup 从 https://playverseai.com/design/ 复制，不要新增色值、字号、圆角。" data-label="提示词">复制</button></div>
+      </div><div class="pg-mod" data-mod="ai.contribute"><div class="pg-sub">修改规范</div>
       <p class="note">源文件在 <a href="https://github.com/YishanCoding/jujubit-design-system" target="_blank" rel="noopener">github.com/YishanCoding/jujubit-design-system</a>。改动 push 到 main 后自动构建，约 5 分钟后本页和 skill 包更新。</p>
-    </section>
+    </div></section>
   </main>
 </div>
 <div class="jjb-toast copied" id="copied">已复制</div>

@@ -1,0 +1,49 @@
+/* Editor-only stylesheet, injected by the Worker; uses existing design tokens. */
+.jjb-editor-bar, .jjb-editor-panel, .jjb-editor-login {
+  font-family: var(--jjb-font-body);
+  color: var(--jjb-text-primary);
+  background: var(--jjb-surface);
+  overflow-wrap: anywhere;
+}
+.jjb-editor-bar {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: var(--jjb-space-2); padding: var(--jjb-space-3);
+  border-bottom: 1px solid var(--jjb-border); box-shadow: var(--jjb-shadow-soft);
+}
+.jjb-editor-panel-open { padding-right: calc(var(--jjb-space-10) * 3 + var(--jjb-space-9)); }
+.jjb-editor-panel {
+  position: fixed; inset: 0 0 0 auto; z-index: 30;
+  width: calc(var(--jjb-space-10) * 3 + var(--jjb-space-9)); max-width: 100%;
+  overflow-y: auto; padding: var(--jjb-space-5); box-sizing: border-box;
+  border-left: 1px solid var(--jjb-border); box-shadow: var(--jjb-shadow-sheet);
+  display: flex; flex-direction: column; gap: var(--jjb-space-3);
+}
+.jjb-editor-panel .jjb-btn, .jjb-editor-bar .jjb-btn { white-space: normal; max-width: 100%; }
+.jjb-editor-panel textarea { width: 100%; height: auto; min-height: var(--jjb-space-10); resize: vertical; }
+.jjb-editor-comment { border-bottom: 1px solid var(--jjb-border); padding-bottom: var(--jjb-space-4); }
+.jjb-editor-comment .jjb-btn { margin: var(--jjb-space-1); }
+.jjb-editor-comment-body { white-space: pre-wrap; overflow-wrap: anywhere; }
+.jjb-editor-login { border: 1px solid var(--jjb-border); box-shadow: var(--jjb-shadow-soft); }
+.jjb-editor-login form { display: grid; gap: var(--jjb-space-3); }
+.jjb-editor-login::backdrop { background: var(--jjb-mask); }
+.jjb-editing [data-edit] { cursor: text; }
+.jjb-editing [data-edit]:focus { outline: 1px solid var(--jjb-brand-500); outline-offset: var(--jjb-space-1); }
+.jjb-editing .is-dirty { background: var(--jjb-brand-light-bg); }
+.jjb-editor-hover {
+  position: fixed; z-index: 10; pointer-events: none; box-sizing: border-box;
+  outline: 1px solid var(--jjb-brand-500); color: var(--jjb-brand-600);
+  font-family: var(--jjb-font-body); font-size: var(--jjb-type-mini);
+  text-align: right;
+}
+.jjb-editor-badge { position: fixed; z-index: 11; background: var(--jjb-brand-500); color: var(--jjb-text-on-dark); }
+.jjb-editor-toast {
+  position: fixed; bottom: var(--jjb-space-5); left: var(--jjb-space-5); z-index: 40;
+  max-width: calc(100% - var(--jjb-space-8)); box-sizing: border-box; flex-wrap: wrap;
+}
+.jjb-editor-toast a { color: var(--jjb-text-on-dark); }
+.jjb-editor-toast[hidden], .jjb-editor-hover[hidden], .jjb-editor-badge[hidden], .jjb-editor-entry[hidden] { display: none; }
+@media (max-width: 960px) {
+  .jjb-editor-panel-open { padding-right: 0; }
+  .jjb-editor-panel { position: relative; width: 100%; max-height: 60dvh; border-left: 0; border-bottom: 1px solid var(--jjb-border); }
+}
