@@ -35,6 +35,15 @@ Logo 源文件 `.ai`不进仓库。需要时找设计团队要。
 | `app-icon-juju-rounded-824.png` | 带圆角的图标，用在网页的下载 App 卡片上 | 设计素材归档 |
 | `sticker-pack-spec.png` | 贴纸素材规范：封面和素材都是 500×500 PNG，四周留 30px，白色外描边 10px | 设计素材归档 |
 
+## 品牌人物 `people/`
+
+| 文件 | 用途 | 来源 |
+|---|---|---|
+| `maya-portrait.jpg` · `danny-portrait.jpg` | 两位代言人的设定照 | AI 设定图（2026-10-14），正式实拍前作选角依据 |
+| `maya-3-styles.jpg` · `danny-3-styles.jpg` | 锚点跨风格示例：大头潮玩、3D 动画、跑团微缩 | 同上 |
+
+使用规则见设计页第 02 节「品牌人物」。
+
 ## 图标 `icons/`
 
 - 共 58 个 SVG，来自 Figma 组件库 `136:20281`–`136:20339`。黑色描边和填充已改为 `currentColor`。

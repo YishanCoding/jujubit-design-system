@@ -49,6 +49,7 @@ Use the first that exists:
 - Product cards: no brand subtitle, no Quick view; an optional second image fades in on hover. Section titles are centered Bebas 64 (mobile 28) with a right-aligned View All. Grid gap is 12px.
 - Web vs App: `--jjb-app-*` tokens, `.jjb-app-btn`, and the sticker spec are App-only. On the website, template colors appear only inside template card images.
 - Label evidence truthfully: AI previews, product renders, and real product photos are different things. Prices in the playground are samples.
+- Brand people: when a page or asset needs a real-person image, use only the two spokespeople Maya and Danny (playground section 02, `assets/people/`), with the fixed English descriptions verbatim and their anchors kept (glasses + orange scrunchie/beanie). Orange appears only as that accessory and the box. Never use them in reviews, testimonials, or "Real Figurines. Real People." — those need real, consented customers. Tone: curious, playful, proud of their creation; not tearful or model-glam.
 - On the web use the SVG/PNG wordmark, not the 1.1MB `juju-mark.svg`. Motion files in `assets/motion/` are 720p previews.
 
 ## 处理设计页评论
