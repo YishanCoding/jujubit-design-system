@@ -16,10 +16,6 @@
    "edits": [
     {
      "key": "brand#1",
-     "source": "品牌与 Logo"
-    },
-    {
-     "key": "brand#2",
      "source": "两套标识：横版字标 <b>JuJuBit</b>（网站页头、页脚、邮件）和 3D 字标 <b>JuJu</b>（App icon、头像、社媒方图）。深底用浅色标，浅底用深色或橙色标。"
     }
    ]
@@ -80,10 +76,6 @@
    "edits": [
     {
      "key": "color#1",
-     "source": "色彩"
-    },
-    {
-     "key": "color#2",
      "source": "一个主色：JuJu Orange <code>#FF5A11</code>，只用在主按钮、选中态和关键强调。大面积底色用白、浅灰和品牌浅底。文字不用实色灰，用黑色透明度分四级。点击色块复制 CSS 变量。"
     }
    ]
@@ -158,10 +150,6 @@
    "edits": [
     {
      "key": "type#1",
-     "source": "字体"
-    },
-    {
-     "key": "type#2",
      "source": "两个字族，各管一件事。Bebas Neue 只有大写字形，只用于标题、导航和 tab；正文、按钮、表单全部用 Outfit。不引入第三个字族。"
     }
    ]
@@ -216,10 +204,6 @@
    "edits": [
     {
      "key": "layout#1",
-     "source": "间距与布局"
-    },
-    {
-     "key": "layout#2",
      "source": "首页区块全宽铺满，左右留 30px（手机 20px）。文章、政策、表单等窄内容页用 1220px 居中容器。卡片网格间距统一 12px（Figma 稿是 30，线上已改）。商品桌面 4 列、手机 2 列。"
     }
    ]
@@ -246,10 +230,6 @@
    "edits": [
     {
      "key": "shape#1",
-     "source": "圆角与阴影"
-    },
-    {
-     "key": "shape#2",
      "source": "按钮、胶囊、tab 一律全圆角。弹窗和大卡片 20px，半屏面板 16px，toast 和徽章 12px，提示条 8px。阴影只有 4 种，只给浮起来的东西用；商品卡和 logo 不加阴影，层次靠边框和底色。"
     }
    ]
@@ -293,10 +273,6 @@
    "edits": [
     {
      "key": "motion#1",
-     "source": "动效"
-    },
-    {
-     "key": "motion#2",
      "source": "Web 动效：一条缓动曲线 <code>cubic-bezier(.165,.84,.44,1)</code>，四档时长。Figma 没有 motion token，这部分沿用线上实测值；App 动效以设计团队交付的视频为准（下方）。用户开启“减少动态效果”时全部关掉。"
     }
    ]
@@ -369,10 +345,6 @@
    "edits": [
     {
      "key": "icons#1",
-     "source": "图标"
-    },
-    {
-     "key": "icons#2",
      "source": "设计团队组件库的 58 个线性图标（48 画板、3.6 线宽），颜色跟随 <code>currentColor</code>。点击图标复制引用代码。"
     }
    ]
@@ -399,10 +371,6 @@
    "edits": [
     {
      "key": "buttons#1",
-     "source": "按钮"
-    },
-    {
-     "key": "buttons#2",
      "source": "Web 三档高度 44 / 50 / 54，字体 Outfit 600（小号 500），全圆角，宽度随内容。主按钮橙色，次按钮黑色，描边按钮用于第三层级。每个页面主按钮只放一个。"
     }
    ]
@@ -539,10 +507,6 @@
    "edits": [
     {
      "key": "blocks#1",
-     "source": "首页区块"
-    },
-    {
-     "key": "blocks#2",
      "source": "2026-10 上线首页的区块。模板卡、分类卡、信任卡和买家秀图统一 12px 圆角（手机 8px），卡片间距 12px。图片取自线上，只作示例。"
     }
    ]
@@ -576,12 +540,7 @@
    "title": "分类卡",
    "file": "playground.src.html",
    "line": 487,
-   "edits": [
-    {
-     "key": "blocks.categories#1",
-     "source": "分类卡"
-    }
-   ]
+   "edits": []
   },
   {
    "id": "blocks.trust",
@@ -627,10 +586,6 @@
    "edits": [
     {
      "key": "forms#1",
-     "source": "表单与 FAQ"
-    },
-    {
-     "key": "forms#2",
      "source": "Figma 组件库的表单区还是空的，这里沿用线上规则：44px 高、4px 圆角、1px 描边，聚焦时黑描边加蓝色焦点环，错误用红色描边和说明文字。FAQ 是新版样式：左侧分类，右侧 Bebas 问题，用 +/– 图标，答案灰色 14px。"
     }
    ]
@@ -701,10 +656,6 @@
    "edits": [
     {
      "key": "app#1",
-     "source": "App 专属"
-    },
-    {
-     "key": "app#2",
      "source": "App 按钮三档 36 / 44 / 54，没有 hover 态；次按钮白底。风格模板卡用各自的模板色做底，底部叠同色相深色渐变。独立站的模板入口直接用带模板色的图片（见 11 首页区块），不在 CSS 里另写模板色。"
     }
    ]
@@ -733,12 +684,7 @@
    "title": "贴纸素材规范",
    "file": "playground.src.html",
    "line": 577,
-   "edits": [
-    {
-     "key": "app.stickers#1",
-     "source": "贴纸素材规范"
-    }
-   ]
+   "edits": []
   },
   {
    "id": "page",
@@ -748,10 +694,6 @@
    "edits": [
     {
      "key": "page#1",
-     "source": "页面拼装示例"
-    },
-    {
-     "key": "page#2",
      "source": "一个新落地页的最小骨架：公告栏 → 毛玻璃页头压首图 → 区块（居中标题 + View All + 网格）→ 黑底页脚。区块上下各 50px（手机 32px），首页区块全宽，左右只留 30px（手机 20px）。新页面从这里复制结构，再替换内容。"
     }
    ]
@@ -771,10 +713,6 @@
    "edits": [
     {
      "key": "assets#1",
-     "source": "素材清单"
-    },
-    {
-     "key": "assets#2",
      "source": "所有素材都在仓库里，可直接引用。完整清单和来源见 <code>assets/README.md</code>。"
     }
    ]
@@ -794,10 +732,6 @@
    "edits": [
     {
      "key": "ai#1",
-     "source": "给 AI 用"
-    },
-    {
-     "key": "ai#2",
      "source": "把本规范装成 agent skill。装好后对 Claude Code 或 Codex 说“按 JuJuBit 设计规范做一个 xx 页面”，它会自动读取规则、token、组件和素材。skill 跟着本页自动更新，重新跑一次安装命令就能拿到最新版。"
     }
    ]

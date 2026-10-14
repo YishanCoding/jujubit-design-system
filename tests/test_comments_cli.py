@@ -14,6 +14,13 @@ class CommentsCliTests(unittest.TestCase):
             self.assertEqual(comments.main(['list']), 2)
         self.assertIn('creds run', output.getvalue())
 
+    def test_agent_token_fallback(self):
+        out = io.StringIO()
+        with patch.dict(os.environ, {'AGENT_TOKEN': 'fallback-token'}, clear=False), patch('tools.comments.urlopen', return_value=io.BytesIO(b'{"comments":[]}')) as fetch, contextlib.redirect_stdout(out):
+            os.environ.pop('JJB_DESIGN_AGENT_TOKEN', None)
+            self.assertEqual(comments.main(['list']), 0)
+        self.assertEqual(fetch.call_args.args[0].get_header('Authorization'), 'Bearer fallback-token')
+
     def test_list_format(self):
         data = {'comments': [
             {'id': 1, 'mod': 'color', 'author': 'yingrui', 'body': 'test-comment\nsecond line', 'module': {'file': 'playground.src.html', 'line': 42}},

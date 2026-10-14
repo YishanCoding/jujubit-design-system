@@ -20,7 +20,8 @@ def main(argv=None):
     reopen = commands.add_parser('reopen')
     reopen.add_argument('id', type=int)
     args = parser.parse_args(argv)
-    token = os.environ.get('JJB_DESIGN_AGENT_TOKEN')
+    # creds run 注入的变量名是 AGENT_TOKEN（与 Worker secret 同名），这里两个都认
+    token = os.environ.get('JJB_DESIGN_AGENT_TOKEN') or os.environ.get('AGENT_TOKEN')
     if not token:
         print('缺少 JJB_DESIGN_AGENT_TOKEN；请用 creds run <设计页 agent 凭据> -- python3 tools/comments.py list 注入。', file=sys.stderr)
         return 2

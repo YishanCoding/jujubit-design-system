@@ -57,7 +57,7 @@ Use the first that exists:
 `data-mod` 是永久编号，永不改名；不删除仍有评论的模块，改名等于删除评论。
 只改 `playground.src.html`，`modules.json` 和 `playground.html` 都由 build 生成。
 
-1. 用 `creds run '<设计页 agent 凭据>' -- python3 tools/comments.py list` 读取待处理评论；凭据通过 `JJB_DESIGN_AGENT_TOKEN` 注入，不落盘。可加 `--status all` 或 `--json`。
+1. 用 `creds run '<设计页 agent 凭据>' -- python3 tools/comments.py list` 读取待处理评论；凭据以 `AGENT_TOKEN`（或 `JJB_DESIGN_AGENT_TOKEN`）注入，不落盘。可加 `--status all` 或 `--json`。
 2. 逐条按模块 id 搜索源文件并修改。输出里的 `file:line` 只作参考。
 3. 执行 `python3 build.py`，并按仓库规则完成测试与 1440/390 视觉检查。
 4. commit 并 push；遵守本次任务授权与仓库发布门禁，未获 push 或发布授权时只保留本地改动。

@@ -99,6 +99,10 @@ def _module_data(src):
         # Strict source whitelist: attributes, comments and placeholders are excluded.
         if '{{' in source or '<' in re.sub(r'</?(?:b|code)>|<br>', '', source):
             continue
+        # Worker 按原文匹配替换，原文在源文件里不唯一时保存必然 ambiguous（如与侧栏导航同名的区块标题），
+        # 干脆不开放网页编辑，改走评论交给 agent。
+        if src.count(source) != 1:
+            continue
         mod = owners[0]
         key = f'{mod["id"]}#{len(mod["edits"]) + 1}'
         mod['edits'].append(dict(key=key, source=source))
