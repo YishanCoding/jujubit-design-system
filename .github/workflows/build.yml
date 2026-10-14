@@ -1,0 +1,28 @@
+name: build
+# push 到 main 后自动跑 build.py，把生成的 playground.html / sprite.svg / skill 包提交回 main。
+# 网页直接读取 main 分支，所以这一步完成约 5 分钟后 playverseai.com/design 就会更新。不需要任何密钥。
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: build-main
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 build.py
+      - name: Commit generated files
+        run: |
+          git add -A playground.html assets/icons/sprite.svg downloads/
+          if git diff --cached --quiet; then echo "generated files up to date"; exit 0; fi
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -m "build: 自动生成 playground / sprite / skill 包"
+          git push

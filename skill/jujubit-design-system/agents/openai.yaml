@@ -1,0 +1,4 @@
+interface:
+  display_name: "JuJuBit Design System"
+  short_description: "Build consistent JuJuBit web and app experiences"
+  default_prompt: "Use $jujubit-design-system to design a JuJuBit component for the requested platform."

@@ -1,0 +1,183 @@
+/*
+ * JuJuBit Design Tokens v2 — 唯一可直接引用的 token 文件
+ * JuJuBit 设计规范 v2 | 2026-10-14 | 源：github.com/YishanCoding/jujubit-design-system
+ * 真源优先级：设计团队 Figma（jujubit组件库 pVvAxy9wIEWS6KONJ1KzoI / 规范对外 B5D8pHkGH2iqqUERI15XR3）> 线上实测（DESIGN.md v1.1）
+ * 每组注释标来源：[F] Figma token  [F稿] Figma 设计稿实测  [新版] 2026-10 上线的 jjb_* 新主题实测（Web 组件以它为准，比 Figma 稿新）  [线上] v1.1 旧线上实测，待设计确认
+ * 2026-10-14 复核：Web 区块/组件外观以 [新版] 线上为准；色值、字体、App 规范仍以 Figma 为准。
+ * 新页面只用这里的变量；缺值先开 issue，不写一次性字面量。
+ */
+
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("./assets/fonts/BebasNeue-Regular.ttf") format("truetype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Outfit";
+  src: url("./assets/fonts/Outfit-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900; font-style: normal; font-display: swap;
+}
+
+:root {
+  /* ===== 品牌色 [F] ===== */
+  --jjb-brand-500: #FF5A11;   /* JuJu Orange：主按钮、链接强调、选中态 */
+  --jjb-brand-400: #FF7B41;   /* 主按钮 hover（比默认更浅） */
+  --jjb-brand-600: #E54913;   /* 主按钮 pressed */
+  --jjb-brand-300: #FF9C70;   /* App 主按钮 disabled */
+  --jjb-brand-100: #FFF7F3;   /* 浅橙填充底 */
+  --jjb-brand-light-bg: #FFF1E0; /* 品牌浅底（对外规范 Light BG，用于品牌/插画区块） */
+  --jjb-dark-grey: #141614;   /* 品牌深灰底（对外规范 Dark Grey BG） */
+
+  /* ===== 中性色 [F] ===== */
+  --jjb-neutral-100: #FFFFFF;
+  --jjb-neutral-200: #F9F9F9;   /* 下沉底、App 次按钮 pressed */
+  --jjb-neutral-300: #F0F0F0;   /* 默认边框/分隔线 */
+  --jjb-neutral-400: #DCDCDC;
+  --jjb-neutral-500: #CCCCCC;   /* Web 按钮 disabled 填充 */
+  --jjb-neutral-800: #444444;   /* Web 黑按钮 hover */
+  --jjb-neutral-1000: #000000;
+
+  /* ===== 文字（透明度分级）[F] ===== */
+  --jjb-text-primary: #000000;
+  --jjb-text-secondary: rgba(0,0,0,.7);
+  --jjb-text-tertiary: rgba(0,0,0,.6);   /* 商品副标、说明 */
+  --jjb-text-quartus: rgba(0,0,0,.4);    /* 占位、禁用文字 */
+  --jjb-text-on-dark: #FFFFFF;
+  --jjb-text-on-dark-secondary: rgba(255,255,255,.8);
+  --jjb-text-on-dark-tertiary: rgba(255,255,255,.6);
+  --jjb-text-on-dark-quartus: rgba(255,255,255,.4);
+
+  /* ===== 面与遮罩 ===== */
+  --jjb-surface: #FFFFFF;               /* [F] */
+  --jjb-surface-sunken: var(--jjb-neutral-200); /* [F] */
+  --jjb-surface-media: #F5F5F5;         /* [F稿] 商品图片区底 */
+  --jjb-surface-inverse: #000000;       /* [F稿] Footer、公告栏 */
+  --jjb-mask: rgba(0,0,0,.2);           /* [F] 深色导航底，配 blur(10px) */
+  --jjb-mask-light: rgba(0,0,0,.1);     /* [F] */
+  --jjb-border: var(--jjb-neutral-300); /* [F] */
+  --jjb-border-strong: #000000;         /* [F稿] 描边按钮、hover 描边 */
+  --jjb-surface-card: #F2F2F2;          /* [新版] 分类卡底、信任区块底 */
+  --jjb-surface-dark: #1A1A1A;          /* [新版] 社媒视频区块底 */
+  --jjb-surface-login: #F4F3EA;         /* [新版] 导航 Log In 胶囊底 */
+  --jjb-border-chip: #E5E5E5;           /* [新版] 未选中筛选胶囊描边 */
+  --jjb-dot: #D7D7D7;                   /* [新版] 轮播指示点 */
+  --jjb-text-answer: #7D7D7D;           /* [新版] FAQ 答案、FAQ 未选分类 */
+  --jjb-text-card: #333333;             /* [新版] 信任卡文案 */
+
+  /* ===== 功能色 [线上]，Figma 未定义，待设计确认 ===== */
+  --jjb-sale: #DA3217;
+  --jjb-focus: #4A9AFC;
+  --jjb-stock-ok: #54C63A;
+  --jjb-stock-low: #F4AF29;
+  --jjb-error: #F03742;        /* [F] 对外规范 Warning Red，借作表单错误色 */
+  /* Judge.me 评价星色 #108474 归第三方所有，不改不用 */
+
+  /* ===== 辅助色 [F] 对外规范：只用于插画、营销图形、标签底，不用于按钮/链接 ===== */
+  --jjb-accent-purple: #E7B8FF;
+  --jjb-accent-blue: #98D4FF;
+  --jjb-accent-yellow: #FFCD6D;
+  --jjb-accent-orange: #F89719;
+  --jjb-accent-red: #FF5353;
+
+  /* ===== 字体 [F] ===== */
+  --jjb-font-display: "Bebas Neue", "Arial Narrow", sans-serif; /* 只用于标题/导航/tab，全大写字形 */
+  --jjb-font-body: "Outfit", system-ui, sans-serif;
+
+  /* 区块大标题 [新版]：首页所有区块标题 Bebas 64 / 手机 28，字距 -1.4px */
+  --jjb-type-section: 64px;  --jjb-type-section-m: 28px;  --jjb-ls-section: -.022em;
+  --jjb-type-step: 40px;      /* [新版] How it works 步骤标题 */
+  --jjb-type-card-title: 32px; --jjb-type-card-title-m: 20px; /* [新版] 分类卡标题 Bebas */
+  --jjb-type-nav: 20px;       /* [新版] 导航 Bebas 20 */
+  /* Web 字号 [F] Typography-WEB；手机列为 [线上] */
+  --jjb-type-headline-l: 56px;   --jjb-type-headline-l-m: 32px;
+  --jjb-type-headline-m: 30px;   --jjb-type-headline-m-m: 24px;
+  --jjb-type-headline-s: 22px;   --jjb-type-headline-s-m: 18px;
+  --jjb-type-mini: 12px;          /* Outfit 大写小标 */
+  --jjb-type-body-l: 18px;
+  --jjb-type-body-m: 16px;
+  --jjb-type-body-s: 14px;
+  --jjb-type-foot: 12px;
+  --jjb-type-btn-l: 16px;  --jjb-type-btn-m: 14px;  --jjb-type-btn-s: 12px;
+  --jjb-lh-heading: 1.2;   /* [F] */
+  --jjb-lh-body: 1.6;      /* [F稿] Shopify 主题原生 28.8/18 */
+  --jjb-ls-body: .02em;    /* [F] 品牌规范示范字距 */
+  --jjb-ls-eyebrow: .2em;  /* [F稿] "TOP PICKS" 区块上标 */
+  --jjb-ls-brand: .15em;   /* [F稿] 商品品牌副标 */
+
+  /* App 字号 [F] Typography-APP（全部 Outfit） */
+  --jjb-app-headline-l: 24px;  --jjb-app-headline-m: 22px;  --jjb-app-headline-s: 16px; /* 700 */
+  --jjb-app-body-m: 14px;      --jjb-app-body-s: 12px;      --jjb-app-foot: 10px;
+  --jjb-app-btn-l: 16px;       --jjb-app-btn-m: 14px;       --jjb-app-btn-s: 12px;    /* 600 */
+
+  /* ===== 间距（4px 栅格；Figma 无 spacing token，取稿面实测值） ===== */
+  --jjb-space-1: 4px;  --jjb-space-2: 8px;  --jjb-space-3: 12px; --jjb-space-4: 16px;
+  --jjb-space-5: 20px; --jjb-space-6: 24px; --jjb-space-7: 30px; --jjb-space-8: 40px;
+  --jjb-space-9: 64px; --jjb-space-10: 100px;
+
+  /* ===== 布局 [F稿] ===== */
+  --jjb-container: 1220px;        /* [F稿] 窄内容区：文章、政策、表单页 */
+  /* [新版] 首页区块全宽铺满，只留左右 gutter（1440 视口内容宽 1365），用 .jjb-container--wide */
+  --jjb-gutter: 20px;             /* 手机左右边距 */
+  --jjb-gutter-desktop: 30px;     /* [线上] 桌面窄屏兜底边距 */
+  --jjb-section-gap: 100px;       /* 区块纵向间距（桌面） */
+  --jjb-section-gap-m: 64px;      /* 区块纵向间距（手机首页） */
+  --jjb-grid-gap: 12px;           /* [新版] 商品/分类/信任卡网格间距（Figma 稿 30，线上已改 12） */
+  --jjb-grid-gap-tight: 6px;      /* [新版] 买家秀瀑布流 */
+  --jjb-header-h: 78px;  --jjb-header-h-m: 56px;   /* [新版] */
+  --jjb-announce-h: 48px; --jjb-announce-h-m: 48px; /* [新版] 橙色渐变底 + 左右箭头轮播 */
+  --jjb-bp-md: 768px;             /* [线上] 唯一断点 */
+
+  /* ===== 控件尺寸 [F] ===== */
+  --jjb-btn-h-l: 54px; --jjb-btn-h-m: 50px; --jjb-btn-h-s: 44px;           /* Web */
+  --jjb-app-btn-h-l: 54px; --jjb-app-btn-h-m: 44px; --jjb-app-btn-h-s: 36px; /* App，同 size.control */
+  --jjb-touch-min: 44px;  /* [线上] 手机最小触控区 */
+  --jjb-pill-h: 38px;     /* [新版] 卡片内小胶囊按钮（Create Now / SHOP） */
+  --jjb-chip-h: 42px;     /* [新版] 筛选胶囊 */
+  --jjb-header-btn-h: 36px; /* [新版] 导航 Create 按钮 */
+
+  /* ===== 圆角 [F稿] ===== */
+  --jjb-radius-xs: 4px;    /* 输入框 [线上] */
+  --jjb-radius-sm: 8px;    /* 提示条、数值卡 */
+  --jjb-radius-md: 12px;   /* toast、徽章 */
+  --jjb-radius-lg: 16px;   /* 作品卡、半屏面板顶角 */
+  --jjb-radius-xl: 20px;   /* 弹窗、大卡片、品牌图 */
+  --jjb-radius-pill: 100px;/* 所有按钮、选项胶囊、tab */
+  --jjb-radius-card: 12px; --jjb-radius-card-m: 8px; /* [新版] 模板卡/分类卡/信任卡/买家秀图 */
+  --jjb-radius-video: 30px; /* [新版] 社媒竖版视频卡 */
+  --jjb-radius-full: 50%;  /* 圆形按钮、头像 */
+
+  /* ===== 阴影 [F稿]：只允许这 4 种，卡片和 logo 不加阴影 ===== */
+  --jjb-shadow-float: 0 5px 5px rgba(0,0,0,.1);      /* 悬浮圆钮（轮播箭头） */
+  --jjb-shadow-sheet: 0 -4px 30px rgba(0,0,0,.05);   /* 底部抽屉/半屏面板 */
+  --jjb-shadow-soft: 0 4px 26px rgba(0,0,0,.05);     /* 小浮层按钮 */
+  --jjb-shadow-toast: 10px 10px 30px rgba(29,179,251,.1);
+  --jjb-blur-nav: blur(10px);
+  --jjb-shadow-header: 0 -2px 20px rgba(0,0,0,.1);  /* [新版] 吸顶导航 */
+  --jjb-header-glass: rgba(22,22,22,.18);           /* [新版] 首屏透明导航底 */
+  --jjb-blur-header: saturate(1.8) blur(20px);      /* [新版] */
+
+  /* ===== 渐变 [F稿] ===== */
+  --jjb-gradient-promo: linear-gradient(162deg, #FF5A11 36%, #FF9411 80%, #FFFFFF 100%);
+  --jjb-gradient-announce: linear-gradient(180deg, #FF5A11 0%, #FF8A3D 100%); /* [新版] 公告栏，取色近似，待设计给值 */
+  --jjb-gradient-header-scrim: linear-gradient(180deg, rgba(0,0,0,.3) 0%, rgba(0,0,0,0) 100%);
+  --jjb-gradient-logo-dark: linear-gradient(187deg, #2F2F2F 0%, #000000 73%);
+
+  /* ===== 动效 [线上]，Figma 无 motion token；App 动效以 assets/README.md 里的交付视频为准 ===== */
+  --jjb-ease: cubic-bezier(.165,.84,.44,1);
+  /* [新版] 线上实测：导航 180ms、商品卡换图 220ms、分类图放大 260ms、指示点 300ms、轮播 500ms，均落在下面四档内 */
+  --jjb-dur-micro: 200ms;     /* hover/按下/颜色 */
+  --jjb-dur-base: 300ms;      /* 展开、抽屉、tab 切换 */
+  --jjb-dur-entrance: 500ms;  /* 滚动入场 */
+  --jjb-dur-hero: 800ms;      /* 首屏 */
+  --jjb-dur-skeleton: 1000ms; /* [F稿] 骨架屏 #F0F0F0↔#EEEEEE 循环 */
+  --jjb-stagger: 60ms;        /* 列表错峰，总延迟 ≤600ms */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

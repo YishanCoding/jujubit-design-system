@@ -1,0 +1,887 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JuJuBit Design Playground</title>
+<!-- 由 build.py 从 playground.src.html 生成，改源文件不要改产物。仓库：github.com/YishanCoding/jujubit-design-system -->
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="components.css">
+<style>
+  body { margin: 0; background: var(--jjb-surface); }
+  .pg { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
+  .pg-side { position: sticky; top: 0; height: 100vh; overflow: auto; padding: 28px 20px; border-right: 1px solid var(--jjb-border);
+    background: #fff; }
+  .pg-side .jjb-wordmark { width: 100px; height: auto; color: var(--jjb-brand-500); }
+  .pg-side nav { display: grid; gap: 2px; margin-top: 28px; }
+  .pg-side a { color: var(--jjb-text-secondary); text-decoration: none; font-size: 14px; padding: 7px 10px; border-radius: 8px;
+    transition: background-color var(--jjb-dur-micro) var(--jjb-ease), color var(--jjb-dur-micro) var(--jjb-ease); }
+  .pg-side a:hover { background: var(--jjb-neutral-200); color: #000; }
+  .pg-side .meta { margin-top: 28px; font-size: 12px; color: var(--jjb-text-tertiary); line-height: 1.6; }
+  .pg-main { min-width: 0; padding: 0 48px 120px; }
+  .pg-hero { padding: 64px 0 40px; border-bottom: 1px solid var(--jjb-border); position: relative; overflow: hidden; }
+  .pg-hero .jjb-display { position: absolute; right: -10px; top: 0; }
+  .pg-hero p { max-width: 720px; color: var(--jjb-text-secondary); }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .src { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 100px; font-size: 11px;
+    font-weight: 600; letter-spacing: .04em; white-space: nowrap; }
+  .src--f { background: var(--jjb-brand-100); color: var(--jjb-brand-600); }
+  .src--fs { background: #EEF6FF; color: #1D6FD1; }
+  .src--live { background: #FFF6E0; color: #9A6200; }
+  .src--app { background: #F3EBFF; color: #7A3FC4; }
+  .src--new { background: #E8F8EE; color: #17803D; }
+  .note { margin: 12px 0 0; font-size: 13px; color: var(--jjb-text-tertiary); }
+  .hiw-demo { background: #000; display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; padding: 40px; color: #fff; }
+  .hiw-demo > img { width: 100%; max-width: 420px; }
+  .cat-grid { grid-template-columns: repeat(5, 1fr); }
+  .pg-sec { padding-top: 72px; scroll-margin-top: 8px; }
+  .pg-sec > header { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+  .pg-sec > header .num { font: 400 22px/1 var(--jjb-font-display); color: var(--jjb-brand-500); }
+  .pg-sec > p.lead { color: var(--jjb-text-secondary); max-width: 760px; margin: 0 0 28px; }
+  .pg-sub { font: 600 13px/1.2 var(--jjb-font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--jjb-text-tertiary);
+    margin: 36px 0 14px; display: flex; gap: 10px; align-items: center; }
+  .rules { margin: 16px 0 0; padding: 16px 20px; border-radius: 12px; background: var(--jjb-neutral-200); font-size: 14px; }
+  .rules li { margin: 4px 0; }
+  .rules b { color: #000; }
+  code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+  .copyable { cursor: copy; }
+  /* swatches */
+  .sw-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .sw { display: flex; flex-direction: column; border-radius: 12px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--jjb-border); background: #fff; text-align: left;
+    border: 0; padding: 0; font: inherit; cursor: copy; transition: transform var(--jjb-dur-micro) var(--jjb-ease); }
+  .sw:hover { transform: translateY(-2px); }
+  .sw__chip { height: 72px; box-shadow: inset 0 -1px 0 var(--jjb-border); }
+  .sw__body { padding: 10px 12px 12px; display: grid; gap: 2px; }
+  .sw__name { font-size: 13px; font-weight: 600; }
+  .sw__val, .sw__use { font-size: 11px; color: var(--jjb-text-tertiary); }
+  .checker { background-image: linear-gradient(45deg,#eee 25%,transparent 25%),linear-gradient(-45deg,#eee 25%,transparent 25%),
+    linear-gradient(45deg,transparent 75%,#eee 75%),linear-gradient(-45deg,transparent 75%,#eee 75%);
+    background-size: 12px 12px; background-position: 0 0,0 6px,6px -6px,-6px 0; }
+  /* type */
+  .type-row { display: grid; grid-template-columns: 220px 1fr; gap: 24px; align-items: baseline; padding: 14px 0;
+    border-bottom: 1px solid var(--jjb-border); }
+  .type-row .spec { font-size: 12px; color: var(--jjb-text-tertiary); line-height: 1.5; }
+  .type-row .spec b { color: #000; font-size: 13px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .font-card { padding: 24px; border-radius: 20px; background: var(--jjb-neutral-200); }
+  .font-card .big { font-size: 64px; line-height: 1; }
+  /* scale */
+  .space-row { display: flex; align-items: center; gap: 16px; padding: 6px 0; font-size: 13px; }
+  .space-row .bar { height: 14px; background: var(--jjb-brand-500); border-radius: 3px; }
+  .space-row code { width: 120px; }
+  .radius-grid, .shadow-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+  .radius-item, .shadow-item { display: grid; gap: 10px; justify-items: start; font-size: 12px; color: var(--jjb-text-tertiary); }
+  .radius-item div { width: 110px; height: 80px; background: var(--jjb-brand-100); box-shadow: inset 0 0 0 1.5px var(--jjb-brand-500); }
+  .shadow-item div { width: 120px; height: 80px; background: #fff; border-radius: 12px; }
+  .shadow-stage { padding: 28px; border-radius: 20px; background: var(--jjb-neutral-200); }
+  /* motion */
+  .ease-demo { display: grid; gap: 12px; }
+  .track { position: relative; height: 44px; border-radius: 100px; background: var(--jjb-neutral-200); }
+  .dot { position: absolute; top: 6px; left: 6px; width: 32px; height: 32px; border-radius: 50%; background: var(--jjb-brand-500); }
+  .track.go .dot { left: calc(100% - 38px); }
+  .track span { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--jjb-text-tertiary); }
+  .reveal-box { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+  .reveal-box div { height: 70px; border-radius: 12px; background: var(--jjb-brand-100); box-shadow: inset 0 0 0 1px var(--jjb-brand-500); }
+  .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+  .video-grid figure { margin: 0; display: grid; gap: 6px; min-width: 0; overflow: hidden; grid-template-columns: minmax(0,1fr); font-size: 12px; color: var(--jjb-text-tertiary); }
+  .video-grid video { display: block; width: 100%; max-width: 100%; height: auto; min-width: 0; aspect-ratio: 1; object-fit: contain; background: var(--jjb-dark-grey); border-radius: 12px; }
+  .video-grid figcaption { overflow-wrap: anywhere; word-break: break-all; line-height: 1.4; }
+  .video-grid figcaption b { word-break: normal; color: #000; font-weight: 600; display: block; }
+  /* icons */
+  .icon-tools { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
+  .icon-tools input { width: 220px; }
+  .icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 8px; }
+  .icon-cell { display: grid; justify-items: center; gap: 8px; padding: 16px 6px 10px; border-radius: 12px; border: 0; background: #fff;
+    box-shadow: inset 0 0 0 1px var(--jjb-border); font: 11px/1.2 var(--jjb-font-body); color: var(--jjb-text-tertiary); cursor: copy;
+    transition: box-shadow var(--jjb-dur-micro) var(--jjb-ease), color var(--jjb-dur-micro) var(--jjb-ease); }
+  .icon-cell:hover { box-shadow: inset 0 0 0 1px #000; color: #000; }
+  .icon-cell svg { width: 28px; height: 28px; color: var(--icon-color, #000); }
+  .icon-grid.dark { background: var(--jjb-dark-grey); padding: 8px; border-radius: 16px; }
+  .icon-grid.dark .icon-cell { background: transparent; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); color: rgba(255,255,255,.6); }
+  .icon-grid.dark .icon-cell svg { color: #fff; }
+  /* logo */
+  .logo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .logo-tile { border-radius: 20px; height: 180px; display: grid; place-items: center; padding: 24px; box-shadow: inset 0 0 0 1px var(--jjb-border); }
+  .logo-tile img, .logo-tile svg { max-width: 100%; max-height: 100%; }
+  .logo-tile .jjb-wordmark { width: 170px; height: auto; }
+  .logo-cap { font-size: 12px; color: var(--jjb-text-tertiary); margin-top: 8px; }
+  .logo-cap code { color: #000; }
+  /* demo frames */
+  .stage { border-radius: 20px; box-shadow: inset 0 0 0 1px var(--jjb-border); padding: 28px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .stage--sunken { background: var(--jjb-neutral-200); box-shadow: none; }
+  .stage--dark { background: var(--jjb-dark-grey); box-shadow: none; }
+  .state-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .state-table th { text-align: left; font-weight: 600; color: var(--jjb-text-tertiary); padding: 8px 10px; }
+  .state-table td { padding: 10px; border-top: 1px solid var(--jjb-border); vertical-align: middle; }
+  .is-hover.jjb-btn--primary { background: var(--jjb-brand-400); }
+  .is-active.jjb-btn--primary { background: var(--jjb-brand-600); }
+  .is-hover.jjb-btn--secondary { background: var(--jjb-neutral-800); }
+  .is-hover.jjb-btn--outline { background: var(--jjb-neutral-200); }
+  .is-active.jjb-app-btn--primary { background: var(--jjb-brand-600); }
+  .is-active.jjb-app-btn--secondary { background: var(--jjb-neutral-200); }
+  .nav-frame { border-radius: 16px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--jjb-border); }
+  .nav-frame--photo { background: url("https://cdn.shopify.com/s/files/1/0954/0884/9267/collections/Figurines.jpg?width=1600") center/cover, var(--jjb-dark-grey); }
+  .nav-frame--photo .spacer { height: 120px; }
+  .phone { width: 375px; max-width: 100%; border-radius: 28px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--jjb-border); background: #fff; }
+  .snippet { margin-top: 12px; }
+  .ai-cmd { display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 12px; background: #141614; color: #E8E8E8; }
+  .ai-cmd code { flex: 1; min-width: 0; overflow-wrap: anywhere; font-size: 13px; background: none; color: inherit; }
+  .snippet summary { cursor: pointer; font-size: 13px; color: var(--jjb-text-secondary); }
+  .snippet pre { margin: 8px 0 0; padding: 14px 16px; border-radius: 12px; background: #141614; color: #E8E8E8; overflow: auto;
+    font: 12px/1.6 ui-monospace, Menlo, monospace; }
+  .tpl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .tpl { position: relative; aspect-ratio: 3/4; border-radius: 16px; overflow: hidden; color: #fff; display: flex; align-items: flex-end; padding: 14px;
+    font: 700 16px/1.2 var(--jjb-font-body); }
+  .tpl::after { content: ""; position: absolute; inset: 60% 0 0; background: linear-gradient(180deg, transparent, var(--g)); }
+  .tpl span { position: relative; z-index: 1; }
+  .asset-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .asset-table th, .asset-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--jjb-border); vertical-align: top; }
+  .asset-table th { font-size: 12px; color: var(--jjb-text-tertiary); font-weight: 600; }
+  .copied { position: fixed; left: 50%; bottom: 32px; transform: translate(-50%, 20px); opacity: 0; pointer-events: none;
+    transition: opacity var(--jjb-dur-micro) var(--jjb-ease), transform var(--jjb-dur-micro) var(--jjb-ease); z-index: 10; }
+  .copied.show { opacity: 1; transform: translate(-50%, 0); }
+  @media (max-width: 960px) {
+    .pg { grid-template-columns: 1fr; }
+    .pg-side { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--jjb-border); }
+    .pg-side nav { grid-template-columns: repeat(3, 1fr); }
+    .pg-main { padding: 0 16px 80px; }
+    .two, .type-row { grid-template-columns: 1fr; }
+    .reveal-box { grid-template-columns: repeat(3, 1fr); }
+    .pg-hero .jjb-display { display: none; }
+    .space-row .bar { max-width: 40vw; }
+    .space-row code { width: 110px; flex: none; }
+    .state-table, .asset-table { display: block; overflow-x: auto; }
+    .stage { padding: 16px; }
+    .hiw-demo { grid-template-columns: 1fr; padding: 24px; }
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+    .jjb-trust { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body class="jjb">
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none"><symbol id="i-add" viewBox="0 0 48 48"><g fill="none"><path d="M11.4727 24H35.4726" stroke="currentColor" stroke-width="3.6" stroke-linecap="square"/>
+<path d="M23.4727 36V12" stroke="currentColor" stroke-width="3.6" stroke-linecap="square"/></g></symbol><symbol id="i-add_square" viewBox="0 0 48 48"><g fill="none"><rect x="2.40002" y="7.20001" width="43.2" height="33.6" rx="9.6" stroke="currentColor" stroke-width="3.6"/>
+<path d="M26.4 21.6002H33.6002V26.4H26.4V33.6002H21.6002V26.4H14.4V21.6002H21.6002V14.4H26.4V21.6002Z" fill="currentColor"/></g></symbol><symbol id="i-album" viewBox="0 0 48 48"><g fill="none"><path d="M27.1196 30.2512L20.972 20.2612C20.8647 20.0865 20.7143 19.9422 20.5353 19.8421C20.3564 19.742 20.1547 19.6895 19.9496 19.6895C19.7446 19.6895 19.5429 19.742 19.3639 19.8421C19.1849 19.9422 19.0346 20.0865 18.9272 20.2612L11.4752 32.3716C11.3634 32.5535 11.302 32.7619 11.2976 32.9754C11.2931 33.1888 11.3457 33.3996 11.4499 33.586C11.5541 33.7724 11.7061 33.9276 11.8903 34.0356C12.0745 34.1436 12.2841 34.2005 12.4976 34.2004H37.0304C37.2426 34.2003 37.451 34.1438 37.6343 34.0369C37.8176 33.9299 37.9692 33.7762 38.0738 33.5916C38.1783 33.4069 38.232 33.1978 38.2294 32.9856C38.2268 32.7734 38.1679 32.5657 38.0588 32.3836L32.978 23.9152C32.8713 23.7378 32.7206 23.591 32.5404 23.4891C32.3602 23.3872 32.1567 23.3336 31.9496 23.3336C31.7426 23.3336 31.5391 23.3872 31.3589 23.4891C31.1787 23.591 31.0279 23.7378 30.9212 23.9152L27.1196 30.2512ZM9.14963 9.00043H40.3496C40.9862 9.00043 41.5966 9.25328 42.0467 9.70337C42.4968 10.1535 42.7496 10.7639 42.7496 11.4004V37.8004C42.7496 38.4369 42.4968 39.0474 42.0467 39.4975C41.5966 39.9476 40.9862 40.2004 40.3496 40.2004H9.14963C8.51311 40.2004 7.90267 39.9476 7.45258 39.4975C7.00249 39.0474 6.74963 38.4369 6.74963 37.8004V11.4004C6.74963 10.7639 7.00249 10.1535 7.45258 9.70337C7.90267 9.25328 8.51311 9.00043 9.14963 9.00043ZM33.1496 18.6004C33.4648 18.6005 33.777 18.5384 34.0682 18.4178C34.3594 18.2973 34.624 18.1205 34.8469 17.8976C35.0698 17.6747 35.2466 17.4102 35.3673 17.119C35.4879 16.8277 35.55 16.5156 35.55 16.2004C35.55 15.8852 35.4879 15.5731 35.3673 15.2819C35.2466 14.9907 35.0698 14.7261 34.8469 14.5032C34.624 14.2804 34.3594 14.1036 34.0682 13.983C33.777 13.8624 33.4648 13.8004 33.1496 13.8004C32.5132 13.8005 31.9028 14.0534 31.4528 14.5035C31.0028 14.9536 30.75 15.564 30.75 16.2004C30.75 16.8369 31.0028 17.4473 31.4528 17.8974C31.9028 18.3474 32.5132 18.6003 33.1496 18.6004Z" fill="currentColor"/></g></symbol><symbol id="i-back" viewBox="0 0 48 48"><g fill="none"><rect width="48" height="48" rx="24" fill="white" fill-opacity="0.2"/>
+<path d="M28.3636 32.7273L19.6364 24L28.3636 15.2727" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></g></symbol><symbol id="i-box" viewBox="0 0 48 48"><g fill="none"><path d="M23.9988 26.8204L4.29883 15.4204L5.79883 12.8203L23.9988 23.3604L42.0988 12.9004L43.5988 15.5004L23.9988 26.8204Z" fill="currentColor"/>
+<path d="M25.498 23.5801H22.498V44.7201H25.498V23.5801Z" fill="currentColor"/>
+<path d="M23.9994 47.08L3.2793 35.58V12.46L23.9994 0.959961L44.7192 12.46V35.58L23.9994 47.08ZM6.2793 33.8L23.9994 43.64L41.7192 33.8V14.22L23.9994 4.38L6.2793 14.22V33.8Z" fill="currentColor"/>
+<path d="M35.5004 27.9796H32.5004V20.0396L12.9805 8.7596L15.0005 6.45996L35.5004 18.2996V27.9796Z" fill="currentColor"/></g></symbol><symbol id="i-camera_filled" viewBox="0 0 48 48"><g fill="none"><path d="M28.124 7.49957C28.7612 7.49965 29.3399 7.87167 29.6035 8.45172L31.3867 12.3755H40.25C42.0449 12.3755 43.5 13.8306 43.5 15.6255V36.7505C43.4997 38.5453 42.0448 40.0005 40.25 40.0005H7.75C5.95524 40.0005 4.50026 38.5453 4.5 36.7505V15.6255C4.5 13.8306 5.95507 12.3755 7.75 12.3755H16.6133L18.3965 8.45172C18.6602 7.87168 19.2388 7.49957 19.876 7.49957H28.124ZM24 15.6236C18.6152 15.6236 14.25 19.9889 14.25 25.3736C14.25 30.7584 18.6152 35.1236 24 35.1236C29.3848 35.1236 33.75 30.7584 33.75 25.3736C33.75 19.9889 29.3848 15.6236 24 15.6236ZM24 20.4976C26.6923 20.4976 28.8748 22.6804 28.875 25.3726C28.875 28.065 26.6924 30.2476 24 30.2476C21.3076 30.2476 19.125 28.065 19.125 25.3726C19.1252 22.6804 21.3077 20.4976 24 20.4976Z" fill="currentColor"/></g></symbol><symbol id="i-camera_outline" viewBox="0 0 52 48"><g fill="none"><path d="M1.80005 40.8V16.8C1.80005 14.149 3.94908 12 6.60003 12H7.80005C9.31087 12 10.7335 11.2887 11.64 10.08L16.968 2.97602C17.24 2.61343 17.6667 2.40002 18.1201 2.40002H33.4799C33.9333 2.40002 34.36 2.61343 34.6319 2.97602L39.9599 10.08C40.8665 11.2887 42.2892 12 43.8 12H44.9999C47.651 12 49.8 14.149 49.8 16.8V40.8C49.8 43.4511 47.651 45.6 44.9999 45.6H6.60003C3.94908 45.6 1.80005 43.4511 1.80005 40.8Z" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M25.8001 35.9999C31.1019 35.9999 35.4001 31.7017 35.4001 26.4C35.4001 21.0982 31.1019 16.8 25.8001 16.8C20.4982 16.8 16.2001 21.0982 16.2001 26.4C16.2001 31.7017 20.4982 35.9999 25.8001 35.9999Z" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></g></symbol><symbol id="i-cart" viewBox="0 0 48 48"><g fill="none"><mask id="cart-mask0_136_20291" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="47" height="48">
+<path d="M46.2711 0.960022H0.191162V47.04H46.2711V0.960022Z" fill="white"/>
+</mask>
+<g mask="url(#cart-mask0_136_20291)">
+<path d="M4.26147 4.80005H11.4615L9.06148 33.6H24.7287H32.5623H36.4791H38.4375H39.4167M12.8497 9.59591H41.9682L39.8207 26.4947H9.99829" stroke="currentColor" stroke-width="3.6" stroke-miterlimit="10" stroke-linecap="square"/>
+<path d="M31.6407 43.2C32.9655 43.2 34.0407 42.1248 34.0407 40.8C34.0407 39.4752 32.9655 38.4 31.6407 38.4C30.3159 38.4 29.2407 39.4752 29.2407 40.8C29.2407 42.1248 30.3159 43.2 31.6407 43.2Z" fill="currentColor" stroke="currentColor" stroke-width="3.6" stroke-miterlimit="10" stroke-linecap="square"/>
+<path d="M16.2806 43.2C17.6054 43.2 18.6806 42.1248 18.6806 40.8C18.6806 39.4752 17.6054 38.4 16.2806 38.4C14.9558 38.4 13.8806 39.4752 13.8806 40.8C13.8806 42.1248 14.9558 43.2 16.2806 43.2Z" fill="currentColor" stroke="currentColor" stroke-width="3.6" stroke-miterlimit="10" stroke-linecap="square"/>
+</g></g></symbol><symbol id="i-cart_outline" viewBox="0 0 48 48"><g fill="none"><path d="M9 11H45L40.5 28.5H13.5M40.5 34.5H15L7.5 5H3" stroke="currentColor" stroke-width="3.6" stroke-linejoin="round"/>
+<path d="M37.5 43.5C39.1569 43.5 40.5 42.1569 40.5 40.5C40.5 38.8431 39.1569 37.5 37.5 37.5C35.8431 37.5 34.5 38.8431 34.5 40.5C34.5 42.1569 35.8431 43.5 37.5 43.5Z" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M18 43.5C19.6569 43.5 21 42.1569 21 40.5C21 38.8431 19.6569 37.5 18 37.5C16.3431 37.5 15 38.8431 15 40.5C15 42.1569 16.3431 43.5 18 43.5Z" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></g></symbol><symbol id="i-chat" viewBox="0 0 48 48"><g fill="none"><path d="M6 18C6 13.5817 9.58172 10 14 10H42V26.1111C42 30.5294 38.4183 34.1111 34 34.1111H14.5714L6 38V18Z" stroke="currentColor" stroke-width="3.6"/>
+<circle cx="19" cy="22" r="3" fill="currentColor"/>
+<path d="M34 18L31.4142 20.5858C30.6332 21.3668 30.6332 22.6332 31.4142 23.4142L34 26" stroke="currentColor" stroke-width="3.6"/></g></symbol><symbol id="i-check" viewBox="0 0 48 48"><g fill="none"><path d="M6.85718 18.8571L18.8572 32.5714L41.1429 10.2857" stroke="currentColor" stroke-width="3.6"/></g></symbol><symbol id="i-check_small" viewBox="0 0 48 48"><g fill="none"><path d="M9.6001 22.4002L20.8001 33.6002L38.4001 15.2002" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></g></symbol><symbol id="i-chevron_down" viewBox="0 0 48 48"><g fill="none"><path d="M9 17L24 32L39 17" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></g></symbol><symbol id="i-chevron_left" viewBox="0 0 48 48"><g fill="none"><path d="M31 8L15 24L31 40" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></g></symbol><symbol id="i-chevron_right" viewBox="0 0 48 48"><g fill="none"><path d="M17.0002 12L29.0002 24L17.0002 36" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></g></symbol><symbol id="i-close" viewBox="0 0 48 48"><g fill="none"><path d="M21.1504 23.9998L13.4004 16.2497C13.0337 15.883 12.8504 15.4163 12.8504 14.8497C12.8504 14.283 13.0337 13.8163 13.4004 13.4497C13.767 13.083 14.2337 12.8997 14.8004 12.8997C15.367 12.8997 15.8337 13.083 16.2004 13.4497L24.0004 21.2497L31.8004 13.4497C32.167 13.083 32.6337 12.8997 33.2004 12.8997C33.767 12.8997 34.2337 13.083 34.6004 13.4497C34.967 13.8163 35.1504 14.283 35.1504 14.8497C35.1504 15.4163 34.967 15.883 34.6004 16.2497L26.8503 23.9998L34.6003 31.7499C34.967 32.1165 35.1503 32.5832 35.1503 33.1499C35.1503 33.7165 34.967 34.1832 34.6003 34.5499C34.2337 34.9165 33.767 35.0999 33.2003 35.0999C32.6337 35.0999 32.167 34.9165 31.8003 34.5499L24.0003 26.7499L16.2003 34.5499C15.8337 34.9165 15.367 35.0999 14.8003 35.0999C14.2337 35.0999 13.767 34.9165 13.4003 34.5499C13.0337 34.1832 12.8503 33.7165 12.8503 33.1499C12.8503 32.5832 13.0337 32.1165 13.4003 31.7499L21.1504 23.9998Z" fill="currentColor"/></g></symbol><symbol id="i-close_alert" viewBox="0 0 48 48"><g fill="none"><path d="M10.5 10.5L37.5 37.5" stroke="currentColor" stroke-width="3.6"/>
+<path d="M37.5 10.5L10.5 37.5" stroke="currentColor" stroke-width="3.6"/></g></symbol><symbol id="i-close_circle" viewBox="0 0 80 80"><g fill="none"><circle cx="40" cy="35.5022" r="24.1685" fill="#A2A2A2" fill-opacity="0.2"/>
+<g filter="url(#close_circle-filter1_d_136_20317)">
+<path d="M33.4877 29.0936C34.1954 28.3858 35.343 28.3862 36.0509 29.0936L40 33.0426L43.9491 29.0936C44.657 28.386 45.8045 28.3858 46.5122 29.0936C47.2197 29.8013 47.2197 30.9489 46.5122 31.6567L42.5632 35.6058L46.4086 39.4513C47.1165 40.1592 47.1165 41.3066 46.4086 42.0145C45.7007 42.7221 44.5533 42.7223 43.8454 42.0145L40 38.169L36.1545 42.0145C35.4467 42.7223 34.2992 42.7221 33.5913 42.0145C32.8834 41.3066 32.8834 40.1592 33.5913 39.4513L37.4368 35.6058L33.4877 31.6567C32.7804 30.9489 32.7802 29.8013 33.4877 29.0936Z" fill="currentColor"/>
+</g>
+<defs>
+<filter id="close_circle-filter1_d_136_20317" x="-6.13996" y="-6.24342" width="92.2798" height="92.2799" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4.36364"/>
+<feGaussianBlur stdDeviation="16.3636"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_136_20317"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_136_20317" result="shape"/>
+</filter>
+</defs></g></symbol><symbol id="i-compass" viewBox="0 0 48 48"><g fill="none"><path d="M24.3994 3.62305C35.874 3.62305 45.1765 12.9249 45.1768 24.3994C45.1768 35.8741 35.8741 45.1768 24.3994 45.1768C12.9249 45.1765 3.62305 35.874 3.62305 24.3994C3.62331 12.9251 12.9251 3.62331 24.3994 3.62305ZM24.3994 7.22266C14.9133 7.22292 7.22292 14.9133 7.22266 24.3994C7.22266 33.8857 14.9132 41.5759 24.3994 41.5762C33.8859 41.5762 41.5762 33.8859 41.5762 24.3994C41.5759 14.9132 33.8857 7.22266 24.3994 7.22266ZM16.792 20.6211C15.6908 18.279 18.1328 15.8916 20.5322 16.9688L25.1504 19.0439C27.2412 19.9842 28.9226 21.6285 29.8838 23.6719H29.8818L32.0078 28.1846C33.1091 30.5267 30.6671 32.9141 28.2676 31.8369L23.6494 29.7617C21.5586 28.8214 19.8772 27.1772 18.916 25.1338L16.792 20.6211ZM25.1172 21.7256C24.388 21.5302 23.6131 21.6245 22.9629 21.9883C22.3126 22.3522 21.8397 22.9559 21.6494 23.666C21.4592 24.3761 21.567 25.1351 21.9482 25.7754C22.3295 26.4155 22.9534 26.8847 23.6826 27.0801C24.4119 27.2755 25.1867 27.1811 25.8369 26.8174C26.4872 26.4535 26.9601 25.8498 27.1504 25.1396C27.3406 24.4296 27.2327 23.6705 26.8516 23.0303C26.4703 22.3902 25.8464 21.921 25.1172 21.7256Z" fill="currentColor"/></g></symbol><symbol id="i-copy" viewBox="0 0 48 48"><g fill="none"><path d="M27.82 16.0801H10.1C7.83563 16.0801 6 17.9157 6 20.1801V37.9001C6 40.1644 7.83563 42.0001 10.1 42.0001H27.82C30.0844 42.0001 31.92 40.1644 31.92 37.9001V20.1801C31.92 17.9157 30.0844 16.0801 27.82 16.0801Z" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16.0801 14.98V10.1C16.0801 7.84 17.9201 6 20.1801 6H37.9001C40.1601 6 42.0001 7.84 42.0001 10.1V27.82C42.0001 30.08 40.1601 31.92 37.9001 31.92H32.7201" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></g></symbol><symbol id="i-delete" viewBox="0 0 48 48"><g fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.0056 16.0054H38.0056L35.3806 41.3804H12.6306L10.0056 16.0054Z" stroke="currentColor" stroke-width="3.6" stroke-linejoin="round"/>
+<path d="M20.5088 24.7557V33.5059" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"/>
+<path d="M27.5052 24.7557V33.5037" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"/>
+<path d="M13.5054 16.0053L27.789 5.50543L34.5054 16.0054" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></g></symbol><symbol id="i-dislike" viewBox="0 0 48 48"><g fill="none"><path d="M30.535 27.68L23.1216 39.7867C21.9216 41.76 19.0683 41.84 17.7616 39.92L17.2283 39.1734C15.9216 37.28 15.6016 34.88 16.375 32.72L18.1616 27.68H14.215C10.0016 27.68 7.01497 23.6 8.26831 19.6L11.3083 9.89337C12.0283 7.57337 14.1616 6.0267 16.5883 6.0267H35.975C38.1883 6.0267 39.975 7.81337 39.975 10.0267V23.7067C39.975 25.92 38.1883 27.7067 35.975 27.7067H30.535V27.68Z" stroke="currentColor" stroke-width="3.6" stroke-linejoin="round"/>
+<path d="M31.9734 27.6801V10.0268C31.9734 7.81346 30.1867 6.02679 27.9734 6.02679" stroke="currentColor" stroke-width="3.6" stroke-miterlimit="10"/></g></symbol><symbol id="i-edit" viewBox="0 0 48 48"><g fill="none"><path d="M22.9845 5.57578H15.5065C9.35649 5.57578 5.50049 9.92978 5.50049 16.0938V32.7218C5.50049 38.8858 9.33849 43.2398 15.5065 43.2398H33.1545C39.3245 43.2398 43.1625 38.8858 43.1625 32.7218V24.6658" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M17.6556 21.8406L32.6016 6.8946C34.4636 5.0346 37.4816 5.0346 39.3436 6.8946L41.7776 9.3286C43.6396 11.1906 43.6396 14.2106 41.7776 16.0706L26.7596 31.0886C25.9456 31.9026 24.8416 32.3606 23.6896 32.3606H16.1976L16.3856 24.8006C16.4136 23.6886 16.8676 22.6286 17.6556 21.8406Z" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M30.3304 9.20273L39.4624 18.3347" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></g></symbol><symbol id="i-edit_refine" viewBox="0 0 48 48"><g fill="none"><path d="M22.9864 5.57642H15.5084C9.35844 5.57642 5.50244 9.93042 5.50244 16.0944L5.50244 32.7224C5.50244 38.8864 9.34044 43.2404 15.5084 43.2404H33.1564C39.3264 43.2404 43.1644 38.8864 43.1644 32.7224V24.6664" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M17.6572 21.8425L32.6032 6.89646C34.4652 5.03646 37.4832 5.03646 39.3452 6.89646L41.7792 9.33046C43.6412 11.1925 43.6412 14.2125 41.7792 16.0725L26.7612 31.0905C25.9472 31.9045 24.8432 32.3625 23.6912 32.3625H16.1992L16.3872 24.8025C16.4152 23.6905 16.8692 22.6305 17.6572 21.8425Z" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M30.332 9.20459L39.464 18.3366" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></g></symbol><symbol id="i-edit_square" viewBox="0 0 48 48"><g fill="none"><path d="M37.394 8.24243L18.3334 27.303" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"/>
+<path d="M22.8182 6H14.9697C10.0159 6 6 10.0159 6 14.9697V34.0303C6 38.9841 10.0159 43 14.9697 43H32.9091C37.8629 43 41.8788 38.9841 41.8788 34.0303V25.0606" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"/></g></symbol><symbol id="i-favorite" viewBox="0 0 48 48"><g fill="none"><path d="M24.2933 36.9593C23.2179 37.7784 21.6961 37.7784 20.6207 36.9593C14.3068 32.1503 4.45703 27.2075 4.45703 17.4187C4.45703 11.2604 8.81303 6.45728 14.357 6.45728C17.489 6.45728 20.495 8.0716 22.457 10.6027C24.419 8.0716 27.425 6.45728 30.557 6.45728C36.101 6.45728 40.457 11.2604 40.457 17.4187C40.457 27.2075 30.6072 32.1503 24.2933 36.9593Z" stroke="currentColor" stroke-width="3.6"/></g></symbol><symbol id="i-heart" viewBox="0 0 48 48"><g fill="none"><path d="M24 40C20 37 5 27 5 16C5 4.99999 19 2.99999 24 13C29 2.99999 43 4.99999 43 16C43 27 28 37 24 40Z" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></g></symbol><symbol id="i-inspire" viewBox="0 0 48 48"><g fill="none"><path d="M8 39V16L24 8L40 17V39" stroke="currentColor" stroke-width="3.6"/>
+<path d="M20.3391 19.0089C20.2777 18.607 20.8132 18.4121 21.0245 18.7594C23.5214 22.8644 28.2415 25.0654 32.991 24.3395C33.3928 24.2781 33.5878 24.8136 33.2405 25.025C29.1355 27.5218 26.9345 32.2419 27.6604 36.9914C27.7218 37.3933 27.1863 37.5882 26.975 37.2409C24.4782 33.1359 19.758 30.9349 15.0085 31.6609C14.6066 31.7222 14.4117 31.1867 14.759 30.9754C18.864 28.4786 21.065 23.7584 20.3391 19.0089Z" fill="#999999"/></g></symbol><symbol id="i-language" viewBox="0 0 48 48"><g fill="none"><g clip-path="url(#language-clip0_136_20311)">
+<path d="M24 2.40009C35.9295 2.40009 45.6 12.0706 45.6 24.0001C45.6 35.9296 35.9295 45.6001 24 45.6001C12.0705 45.6001 2.40002 35.9296 2.40002 24.0001C2.40002 12.0706 12.0705 2.40009 24 2.40009ZM31.1613 25.8001H16.8387C17.2365 34.9882 20.6277 42.0001 24 42.0001C27.3714 42.0001 30.7635 34.9882 31.1613 25.8001ZM13.2351 25.8001L6.08912 25.801C6.74972 32.4484 11.0265 38.032 16.9251 40.5565C14.8038 36.9394 13.4628 31.6825 13.2351 25.801V25.8001ZM41.9109 25.801H34.7649C34.5372 31.6834 33.1962 36.9394 31.0749 40.5556C36.9735 38.0329 41.2503 32.4484 41.9109 25.801ZM16.926 7.44459L16.7262 7.53099C10.9293 10.0942 6.74162 15.6274 6.09002 22.2001H13.236C13.4637 16.3177 14.8047 11.0608 16.926 7.44459ZM24 6.00009L23.865 6.00369C20.5386 6.18729 17.232 13.1353 16.8387 22.2001H31.1613C30.7635 13.0129 27.3723 6.00009 24 6.00009ZM31.0749 7.44369L31.2072 7.67319C33.252 11.2804 34.5417 16.4401 34.764 22.2001H41.91C41.2503 15.5518 36.9726 9.96819 31.074 7.44369H31.0749Z" fill="currentColor"/>
+</g>
+<defs>
+<clipPath id="language-clip0_136_20311">
+<rect width="43.2" height="43.2" fill="white" transform="translate(2.40002 2.40009)"/>
+</clipPath>
+</defs></g></symbol><symbol id="i-like" viewBox="0 0 48 48"><g fill="none"><path d="M17.4667 20.32L24.8801 8.21331C26.0801 6.23998 28.9334 6.15998 30.2401 8.07998L30.7734 8.82664C32.0801 10.72 32.4001 13.12 31.6267 15.28L29.8401 20.32H33.7867C38.0001 20.32 40.9867 24.4 39.7334 28.4L36.6934 38.1066C35.9734 40.4266 33.8401 41.9733 31.4134 41.9733H12.0267C9.8134 41.9733 8.02673 40.1866 8.02673 37.9733V24.2933C8.02673 22.08 9.8134 20.2933 12.0267 20.2933H17.4667V20.32Z" stroke="currentColor" stroke-width="3.6" stroke-linejoin="round"/>
+<path d="M16.0267 20.32V38C16.0267 40.2133 17.8134 42 20.0267 42" stroke="currentColor" stroke-width="3.6" stroke-miterlimit="10"/></g></symbol><symbol id="i-loading" viewBox="0 0 48 48"><g fill="none"><path d="M39 24C39 32.2843 32.2843 39 24 39C15.7157 39 9 32.2843 9 24C9 15.7157 15.7157 9 24 9" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></g></symbol><symbol id="i-magic" viewBox="0 0 48 48"><g fill="none"><path d="M19.2596 18.4572L22.0568 7.64583C22.3136 6.65303 23.7202 6.64405 23.9897 7.63349L26.9413 18.4694C27.0313 18.7998 27.2841 19.0612 27.6113 19.1621L39.9585 22.9715C40.8937 23.26 40.9005 24.5814 39.9684 24.8795L27.6033 28.8345C27.2806 28.9377 27.0321 29.1973 26.9431 29.5242L23.9897 40.3665C23.7202 41.356 22.3136 41.347 22.0568 40.3542L19.2579 29.5363C19.1716 29.2027 18.9196 28.937 18.591 28.8332L6.07429 24.8806C5.13746 24.5848 5.14424 23.2567 6.08404 22.9705L18.5829 19.1634C18.916 19.0619 19.1724 18.7944 19.2596 18.4572Z" fill="currentColor"/></g></symbol><symbol id="i-magic_pencil" viewBox="0 0 48 48"><g fill="none"><path d="M24 16L32 24M37 3V11M33 7H41M40 31V39M36 35H44M10.5 40.5L6 42L10 30L29 11L37 19L18 38L10.5 40.5Z" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></g></symbol><symbol id="i-magic_pencil_sparkles" viewBox="0 0 48 48"><g fill="none"><path d="M7.36165 39.3659L10.5789 42.5832C11.5949 43.5992 13.0342 44.1918 14.3888 44.1918C15.7435 44.1918 17.1828 43.5992 18.1988 42.5832L38.1511 22.6308L39.1671 12.9789C39.3364 11.7936 38.4051 10.7776 37.2198 10.7776C37.1351 10.7776 37.0505 10.7776 36.9658 10.7776L27.314 11.7936L7.36165 31.746C5.24503 33.8626 5.24503 37.2493 7.36165 39.3659ZM29.1766 15.6883L34.8492 15.0956L34.2565 20.7682L24.6333 30.476L22.0087 33.1006L16.8441 27.936L19.4687 25.3114L29.1766 15.6883ZM10.2403 34.6246L13.9655 30.8147L19.1301 35.9793L15.3202 39.7046C14.9815 40.0432 14.5582 40.1279 14.3888 40.1279C14.2195 40.1279 13.7962 40.0432 13.4575 39.7046L10.2403 36.4873C9.73227 35.9793 9.73227 35.1326 10.2403 34.6246Z" fill="currentColor"/>
+<path d="M8.69513 3.03047C9.02703 1.66172 10.9737 1.66172 11.3056 3.03047L12.2189 6.79668C12.3374 7.28536 12.7189 7.66692 13.2076 7.78542L16.9738 8.69867C18.3426 9.03057 18.3426 10.9772 16.9738 11.3091L13.2076 12.2224C12.7189 12.3409 12.3374 12.7224 12.2189 13.2111L11.3056 16.9773C10.9737 18.3461 9.02703 18.3461 8.69513 16.9773L7.78188 13.2111C7.66338 12.7224 7.28182 12.3409 6.79314 12.2224L3.02693 11.3091C1.65818 10.9772 1.65818 9.03057 3.02693 8.69867L6.79314 7.78542C7.28182 7.66692 7.66338 7.28536 7.78188 6.79668L8.69513 3.03047Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M10.0004 4.48682L9.34816 7.17648C9.08747 8.25159 8.24805 9.09101 7.17294 9.3517L4.48328 10.0039L7.17294 10.6561C8.24805 10.9168 9.08747 11.7562 9.34816 12.8313L10.0004 15.521L10.6526 12.8313C10.9133 11.7562 11.7527 10.9168 12.8278 10.6561L15.5175 10.0039L12.8278 9.3517C11.7527 9.09101 10.9133 8.25159 10.6526 7.17648L10.0004 4.48682ZM11.3056 3.03047C10.9737 1.66172 9.02703 1.66172 8.69513 3.03047L7.78188 6.79668C7.66338 7.28536 7.28182 7.66692 6.79314 7.78542L3.02693 8.69867C1.65818 9.03057 1.65818 10.9772 3.02693 11.3091L6.79314 12.2224C7.28182 12.3409 7.66338 12.7224 7.78188 13.2111L8.69513 16.9773C9.02703 18.3461 10.9737 18.3461 11.3056 16.9773L12.2189 13.2111C12.3374 12.7224 12.7189 12.3409 13.2076 12.2224L16.9738 11.3091C18.3426 10.9772 18.3426 9.03057 16.9738 8.69867L13.2076 7.78542C12.7189 7.66692 12.3374 7.28536 12.2189 6.79668L11.3056 3.03047Z" fill="currentColor"/>
+<path d="M39.0214 34.7738C39.2704 33.7473 40.7304 33.7473 40.9793 34.7738L41.6642 37.5985C41.7531 37.965 42.0393 38.2512 42.4058 38.34L45.2304 39.025C46.257 39.2739 46.257 40.7339 45.2304 40.9828L42.4058 41.6678C42.0393 41.7566 41.7531 42.0428 41.6642 42.4093L40.9793 45.234C40.7304 46.2605 39.2704 46.2605 39.0214 45.234L38.3365 42.4093C38.2476 42.0428 37.9615 41.7566 37.5949 41.6678L34.7703 40.9828C33.7437 40.7339 33.7437 39.2739 34.7703 39.025L37.5949 38.34C37.9615 38.2512 38.2476 37.965 38.3365 37.5985L39.0214 34.7738Z" fill="currentColor"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M40.0004 35.8661L39.5112 37.8833C39.3157 38.6897 38.6861 39.3192 37.8798 39.5148L35.8626 40.0039L37.8798 40.4931C38.6861 40.6886 39.3157 41.3181 39.5112 42.1245L40.0004 44.1417L40.4895 42.1245C40.685 41.3181 41.3146 40.6886 42.1209 40.4931L44.1382 40.0039L42.1209 39.5148C41.3146 39.3192 40.685 38.6897 40.4895 37.8833L40.0004 35.8661ZM40.9793 34.7738C40.7304 33.7473 39.2704 33.7473 39.0214 34.7738L38.3365 37.5985C38.2476 37.965 37.9615 38.2512 37.5949 38.34L34.7703 39.025C33.7437 39.2739 33.7437 40.7339 34.7703 40.9828L37.5949 41.6678C37.9615 41.7566 38.2476 42.0428 38.3365 42.4093L39.0214 45.234C39.2704 46.2605 40.7304 46.2605 40.9793 45.234L41.6642 42.4093C41.7531 42.0428 42.0393 41.7566 42.4058 41.6678L45.2304 40.9828C46.257 40.7339 46.257 39.2739 45.2304 39.025L42.4058 38.34C42.0393 38.2512 41.7531 37.965 41.6642 37.5985L40.9793 34.7738Z" fill="currentColor"/>
+<path d="M46.0004 4.00391C46.0004 5.10848 45.1049 6.00391 44.0004 6.00391C42.8958 6.00391 42.0004 5.10848 42.0004 4.00391C42.0004 2.89934 42.8958 2.00391 44.0004 2.00391C45.1049 2.00391 46.0004 2.89934 46.0004 4.00391Z" fill="currentColor"/>
+<path d="M26.0004 4.00391C26.0004 5.10848 25.1049 6.00391 24.0004 6.00391C22.8958 6.00391 22.0004 5.10848 22.0004 4.00391C22.0004 2.89934 22.8958 2.00391 24.0004 2.00391C25.1049 2.00391 26.0004 2.89934 26.0004 4.00391Z" fill="currentColor"/>
+<path d="M8.00037 24.0039C8.00037 25.1085 7.10494 26.0039 6.00037 26.0039C4.8958 26.0039 4.00037 25.1085 4.00037 24.0039C4.00037 22.8993 4.8958 22.0039 6.00037 22.0039C7.10494 22.0039 8.00037 22.8993 8.00037 24.0039Z" fill="currentColor"/></g></symbol><symbol id="i-magic_wand" viewBox="0 0 48 48"><g fill="none"><path d="M25.96 11.34V6" stroke="currentColor" stroke-width="3.6" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M36.6606 21.9991H42.0006" stroke="currentColor" stroke-width="3.6" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M37.3 33.3199L33.52 29.54" stroke="currentColor" stroke-width="3.6" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M18.4198 14.4386L14.6398 10.6787" stroke="currentColor" stroke-width="3.6" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M33.5203 14.4206L37.3003 10.6406" stroke="currentColor" stroke-width="3.6" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M26.0206 27.6572C27.5806 26.0972 27.5806 23.5572 26.0206 21.9972C24.4406 20.4372 21.9205 20.4372 20.3405 21.9972L7.18061 35.1772C5.60061 36.7372 5.60061 39.2771 7.18061 40.8371C8.74061 42.3971 11.2805 42.3971 12.8405 40.8371L26.0206 27.6572Z" fill="currentColor"/></g></symbol><symbol id="i-mail" viewBox="0 0 48 48"><g fill="none"><rect x="8" y="12" width="32" height="24" rx="8" stroke="currentColor" stroke-width="3.6"/>
+<path d="M10 18L24 26L38.5 18" stroke="currentColor" stroke-width="3.6"/></g></symbol><symbol id="i-menu" viewBox="0 0 48 48"><g fill="none"><path d="M8 12H40M18 24H40M12 36H40" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></g></symbol><symbol id="i-minus" viewBox="0 0 48 48"><g fill="none"><path d="M12 24H36" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></g></symbol><symbol id="i-more_horizontal" viewBox="0 0 48 48"><g fill="none"><path d="M40.5 30C38.0147 30 36 27.9853 36 25.5C36 23.0147 38.0147 21 40.5 21C42.9853 21 45 23.0147 45 25.5C45 27.9853 42.9853 30 40.5 30ZM25.5 30C23.0147 30 21 27.9853 21 25.5C21 23.0147 23.0147 21 25.5 21C27.9853 21 30 23.0147 30 25.5C30 27.9853 27.9853 30 25.5 30ZM10.5 30C8.01472 30 6 27.9853 6 25.5C6 23.0147 8.01472 21 10.5 21C12.9853 21 15 23.0147 15 25.5C15 27.9853 12.9853 30 10.5 30Z" fill="currentColor"/></g></symbol><symbol id="i-my" viewBox="0 0 48 48"><g fill="none"><path d="M23.9999 25.7143C29.6806 25.7143 34.2857 21.1092 34.2857 15.4286C34.2857 9.74793 29.6806 5.14285 23.9999 5.14285C18.3193 5.14285 13.7142 9.74793 13.7142 15.4286C13.7142 21.1092 18.3193 25.7143 23.9999 25.7143Z" stroke="currentColor" stroke-width="3.6" stroke-linejoin="round"/>
+<path d="M8.57141 44.5714C8.57141 41.8435 9.38416 39.2273 10.8309 37.2983C12.2776 35.3694 14.2397 34.2857 16.2857 34.2857H31.7143C33.7602 34.2857 35.7224 35.3694 37.1691 37.2983C38.6158 39.2273 39.4286 41.8435 39.4286 44.5714" stroke="currentColor" stroke-width="3.6"/></g></symbol><symbol id="i-notification" viewBox="0 0 48 48"><g fill="none"><path d="M19.7998 36C19.7998 38.3196 21.6804 40.2002 24 40.2002C26.3196 40.2002 28.2002 38.3196 28.2002 36H31.7998C31.7998 40.3078 28.3078 43.7998 24 43.7998C19.6922 43.7998 16.2002 40.3078 16.2002 36H19.7998ZM24 3.7002C31.6215 3.7002 37.7998 9.87847 37.7998 17.5V32.2002H42V35.7998H6V32.2002H10.2002V17.5C10.2002 9.87847 16.3785 3.7002 24 3.7002ZM24 7.2998C18.3667 7.2998 13.7998 11.8667 13.7998 17.5V32.2002H34.2002V17.5C34.2002 11.8667 29.6333 7.2998 24 7.2998Z" fill="currentColor"/></g></symbol><symbol id="i-payment" viewBox="0 0 48 48"><g fill="none"><path d="M42 33.75C42 35.4069 40.6569 36.75 39 36.75H9C7.34315 36.75 6 35.4069 6 33.75V23.25H42V33.75ZM12 29.25V32.25H18V29.25H12ZM39 11.25C40.6569 11.25 42 12.5931 42 14.25V18.75H6V14.25C6 12.5931 7.34315 11.25 9 11.25H39Z" fill="currentColor"/></g></symbol><symbol id="i-redo" viewBox="0 0 48 48"><g fill="none"><path d="M10.5 11.7002C11.4941 11.7002 12.2998 12.5059 12.2998 13.5V25.5C12.2998 26.1627 12.8373 26.7002 13.5 26.7002H32.0176L29.0908 23.7725C28.3879 23.0695 28.3879 21.9305 29.0908 21.2275C29.7938 20.5247 30.9328 20.5247 31.6357 21.2275L36.9395 26.5303C38.2281 27.8189 38.228 29.9085 36.9395 31.1973L31.6357 36.501C30.9329 37.2036 29.7937 37.2036 29.0908 36.501C28.3879 35.798 28.3879 34.658 29.0908 33.9551L32.7461 30.2998H13.5C10.849 30.2998 8.7002 28.151 8.7002 25.5V13.5C8.7002 12.5059 9.50589 11.7002 10.5 11.7002Z" fill="currentColor"/></g></symbol><symbol id="i-search" viewBox="0 0 48 48"><g fill="none"><path d="M32.0065 32.0065C38.3281 25.6825 38.4433 15.5449 32.2609 9.36251C26.0785 3.18011 15.9409 3.29531 9.61691 9.61691C3.29531 15.9409 3.18011 26.0785 9.36251 32.2609C15.5449 38.4433 25.6825 38.3281 32.0065 32.0065ZM32.0065 32.0065L43.2001 43.2001" stroke="currentColor" stroke-width="3.6"/></g></symbol><symbol id="i-send" viewBox="0 0 48 48"><g fill="none"><g clip-path="url(#send-clip0_136_20318)">
+<path d="M2.78942 10.5501C2.62822 9.94791 3.13665 9.3778 3.75336 9.46886L45.545 15.6511C46.2878 15.7612 46.5485 16.6996 45.9692 17.1773L13.0971 44.2797C12.6104 44.6809 11.8716 44.4451 11.7083 43.8359L9.12341 34.1889C9.01315 33.7774 9.21832 33.3462 9.60733 33.1726L22.3335 27.4999C27.0509 25.3971 25.0294 18.297 19.9118 18.9941L6.33228 20.8443C5.89987 20.9032 5.49056 20.6309 5.37762 20.2094L2.78942 10.5501Z" fill="currentColor" stroke="currentColor" stroke-width="3.6" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="send-clip0_136_20318">
+<rect width="48" height="48" fill="white"/>
+</clipPath>
+</defs></g></symbol><symbol id="i-setting" viewBox="0 0 48 48"><g fill="none"><path d="M8 15L24 6L40 15V33L24 42L8 33V15Z" stroke="currentColor" stroke-width="3.6"/>
+<circle cx="24" cy="24" r="6" stroke="currentColor" stroke-width="3.6"/></g></symbol><symbol id="i-share" viewBox="0 0 48 48"><g fill="none"><path d="M23.7904 6.07847C23.7904 4.74212 25.4061 4.07287 26.3511 5.01781L40.699 19.3658C41.2967 19.9634 41.2828 20.9366 40.6683 21.5169L26.3203 35.0678C25.3637 35.9712 23.7904 35.293 23.7904 33.9773V26.4572C16.2516 26.4572 11.0325 30.8067 7.82093 34.8214C6.78922 36.1111 4.01353 35.3212 4.20625 33.6809C5.67518 21.1786 11.2231 13.4572 23.7904 13.4572V6.07847Z" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></g></symbol><symbol id="i-shield" viewBox="0 0 48 48"><g fill="none"><path d="M7.125 9.25567L24.0081 4.00003L40.875 9.25567V20.0337C40.875 31.3622 34.0783 41.4194 24.0024 45.0005C13.9238 41.4195 7.125 31.36 7.125 20.0287V9.25567Z" stroke="currentColor" stroke-width="3.6"/>
+<path d="M15.5625 23L22.125 30L33.375 18" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"/></g></symbol><symbol id="i-size" viewBox="0 0 48 48"><g fill="none"><path d="M44 14L34 4L30.25 7.75L26.5 11.5L19 19L11.5 26.5L7.75 30.25L4 34L14 44L44 14Z" stroke="currentColor" stroke-width="3.6" stroke-linejoin="round"/>
+<path d="M30.25 7.75L7.75 30.25" stroke="currentColor" stroke-width="3.6" stroke-linejoin="bevel"/>
+<path d="M9 29L13 33" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14 24L20 30" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19 19L23 23" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24 14L30 20" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M29 9L33 13" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></g></symbol><symbol id="i-sparkle" viewBox="0 0 48 48"><g fill="none"><path d="M22.6592 8.60719C22.7857 7.97469 23.6899 7.97469 23.8166 8.60719C25.3117 16.0826 31.1549 21.9259 38.6303 23.4209C39.2627 23.5474 39.2627 24.4517 38.6303 24.5783C31.1549 26.0734 25.3117 31.9166 23.8166 39.3921C23.6899 40.0245 22.7857 40.0245 22.6592 39.3921C21.1641 31.9166 15.3209 26.0734 7.84549 24.5783C7.21296 24.4517 7.21296 23.5474 7.84549 23.4209C15.3209 21.9259 21.1641 16.0826 22.6592 8.60719Z" fill="currentColor"/></g></symbol><symbol id="i-sparkles" viewBox="0 0 48 48"><g fill="none"><path d="M19.5425 12.0138C20.0664 10.4574 22.2676 10.4574 22.7915 12.0138L24.7944 17.9679C25.4308 19.8595 26.86 21.3804 28.7085 22.1329L34.4087 24.4532C35.8327 25.0329 35.8327 27.0494 34.4087 27.629L28.7085 29.9493C26.86 30.7019 25.4308 32.2228 24.7944 34.1144L22.7915 40.0685C22.2676 41.625 20.0664 41.625 19.5425 40.0685L17.5396 34.1144C16.9032 32.2227 15.474 30.7019 13.6255 29.9493L7.92529 27.629C6.5013 27.0494 6.5013 25.0329 7.92529 24.4532L13.6255 22.1329C15.474 21.3804 16.9032 19.8595 17.5396 17.9679L19.5425 12.0138ZM37.6665 7.20813C37.8874 6.61113 38.7317 6.61113 38.9526 7.20813L39.0679 7.5177C39.7624 9.39456 41.2418 10.8749 43.1187 11.5695L43.4292 11.6837C44.026 11.9047 44.026 12.7489 43.4292 12.9698L43.1187 13.0851C41.242 13.7797 39.7624 15.2592 39.0679 17.1359L38.9526 17.4464C38.7315 18.0429 37.8875 18.0431 37.6665 17.4464L37.5522 17.1359C36.8577 15.259 35.3774 13.7796 33.5005 13.0851L33.1909 12.9698C32.5939 12.7489 32.5939 11.9046 33.1909 11.6837L33.5005 11.5695C35.3774 10.8749 36.8577 9.39463 37.5522 7.5177L37.6665 7.20813Z" fill="currentColor"/></g></symbol><symbol id="i-templet" viewBox="0 0 48 48"><g fill="none"><path d="M31.9702 27.1063C33.5695 24.9365 36.8134 24.9363 38.4126 27.1063L39.9243 29.159C40.1626 29.4823 40.4487 29.7674 40.772 30.0057L42.8237 31.5184C44.9939 33.1176 44.9939 36.3616 42.8237 37.9608L40.772 39.4725C40.4485 39.7108 40.1626 39.9967 39.9243 40.3202L38.4126 42.3719C36.8134 44.5421 33.5694 44.5421 31.9702 42.3719L30.4575 40.3202C30.2192 39.9969 29.9341 39.7108 29.6108 39.4725L27.5581 37.9608C25.3881 36.3616 25.3882 33.1177 27.5581 31.5184L29.6108 30.0057C29.9339 29.7675 30.2193 29.4821 30.4575 29.159L31.9702 27.1063ZM10.9409 26.6942C11.9286 24.9514 14.4396 24.9513 15.4272 26.6942C15.9575 27.6298 17.0126 28.1383 18.0747 27.9696C20.0532 27.655 21.6195 29.6185 20.8725 31.4774C20.4716 32.4754 20.7325 33.6174 21.5268 34.3426C23.006 35.6934 22.4468 38.1416 20.5278 38.7166C19.4976 39.0254 18.7676 39.9414 18.6958 41.0145C18.5622 43.0134 16.2989 44.1026 14.6528 42.9608C13.7692 42.3482 12.5979 42.3481 11.7143 42.9608C10.0682 44.1026 7.80594 43.0134 7.67234 41.0145C7.60058 39.9413 6.86968 39.0254 5.83933 38.7166C3.92028 38.1416 3.36178 35.6934 4.84129 34.3426C5.6355 33.6174 5.89556 32.4754 5.49461 31.4774C4.74769 29.6185 6.31394 27.655 8.29246 27.9696C9.35469 28.1384 10.4106 27.63 10.9409 26.6942ZM31.7261 6.73031C33.2662 4.06275 37.1166 4.06275 38.6567 6.73031L43.854 15.7332C45.394 18.4007 43.4692 21.7351 40.3891 21.7352H29.9936C26.9135 21.7352 24.988 18.4008 26.5278 15.7332L31.7261 6.73031ZM5.18211 7.65219C5.37487 5.45087 7.3157 3.82288 9.51707 4.01547L17.772 4.73715C19.9733 4.9299 21.6012 6.87075 21.4087 9.07211L20.687 17.327C20.4944 19.5284 18.5535 21.1572 16.352 20.9647L8.09715 20.242C5.89567 20.0494 4.26685 18.1085 4.45945 15.9071L5.18211 7.65219Z" fill="currentColor"/></g></symbol><symbol id="i-texture" viewBox="0 0 48 48"><g fill="none"><path d="M24.2715 43.5919C35.096 43.5919 43.8633 34.8245 43.8633 24C43.8633 13.1755 35.096 4.4082 24.2715 4.4082C13.447 4.4082 4.67969 13.1755 4.67969 24C4.67969 34.8245 13.447 43.5919 24.2715 43.5919Z" stroke="currentColor" stroke-width="3.6" stroke-miterlimit="2" stroke-linejoin="bevel"/>
+<path d="M20.2666 13.8667C21.152 13.8667 21.8666 13.152 21.8666 12.2667C21.8666 11.3813 21.152 10.6667 20.2666 10.6667C19.3813 10.6667 18.6666 11.3813 18.6666 12.2667C18.6666 13.152 19.3813 13.8667 20.2666 13.8667Z" fill="currentColor"/>
+<path d="M15.5998 16.8C15.5998 16.8 14.22 18 13.1998 20.4C11.5761 24.2194 13.1998 27.6 13.1998 27.6" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"/></g></symbol><symbol id="i-truck" viewBox="0 0 52 48"><g fill="none"><path d="M43.6067 36.3871C43.6067 39.8077 40.8338 42.5807 37.4132 42.5807C33.9926 42.5807 31.2196 39.8077 31.2196 36.3871C31.2196 32.9665 33.9926 30.1936 37.4132 30.1936C40.8338 30.1936 43.6067 32.9665 43.6067 36.3871Z" stroke="currentColor" stroke-width="3.6"/>
+<path d="M20.3809 36.3871C20.3809 39.8077 17.6079 42.5807 14.1873 42.5807C10.7667 42.5807 7.99377 39.8077 7.99377 36.3871C7.99377 32.9665 10.7667 30.1936 14.1873 30.1936C17.6079 30.1936 20.3809 32.9665 20.3809 36.3871Z" stroke="currentColor" stroke-width="3.6"/>
+<path d="M31.2194 36.3872H20.3807" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"/>
+<path d="M44.3598 36.3871H46.7033C48.4136 36.3871 49.8001 35.0006 49.8001 33.2903L49.8001 25.1212C49.8001 24.3967 49.5461 23.6952 49.0823 23.1387L42.9867 15.8239C42.3983 15.1179 41.5267 14.7097 40.6077 14.7097H29.671" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"/>
+<path d="M7.36587 36.3871H4.89682C3.18652 36.3871 1.80005 35.0006 1.80005 33.2903V8.51612C1.80005 6.80582 3.18652 5.41934 4.89682 5.41934H26.5742C28.2845 5.41934 29.671 6.80582 29.671 8.51612V36.3871" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"/></g></symbol><symbol id="i-undo" viewBox="0 0 48 48"><g fill="none"><path d="M37.5 11.7002C36.5059 11.7002 35.7002 12.5059 35.7002 13.5V25.5C35.7002 26.1627 35.1627 26.7002 34.5 26.7002H15.9824L18.9092 23.7725C19.6121 23.0695 19.6121 21.9305 18.9092 21.2275C18.2062 20.5247 17.0672 20.5247 16.3643 21.2275L11.0605 26.5303C9.77187 27.8189 9.77198 29.9085 11.0605 31.1973L16.3643 36.501C17.0671 37.2036 18.2063 37.2036 18.9092 36.501C19.6121 35.798 19.6121 34.658 18.9092 33.9551L15.2539 30.2998H34.5C37.151 30.2998 39.2998 28.151 39.2998 25.5V13.5C39.2998 12.5059 38.4941 11.7002 37.5 11.7002Z" fill="currentColor"/></g></symbol><symbol id="i-user" viewBox="0 0 48 48"><g fill="none"><path d="M24 26.4C29.302 26.4 33.6 22.1019 33.6 16.8C33.6 11.498 29.302 7.19995 24 7.19995C18.6981 7.19995 14.4 11.498 14.4 16.8C14.4 22.1019 18.6981 26.4 24 26.4Z" stroke="currentColor" stroke-width="3.6" stroke-linejoin="round"/>
+<path d="M4.80005 45.5999C4.80005 43.0539 5.81147 40.6121 7.61182 38.8117C9.41217 37.0114 11.854 35.9999 14.4 35.9999H33.6C36.1461 35.9999 38.5879 37.0114 40.3883 38.8117C42.1886 40.6121 43.2001 43.0539 43.2001 45.5999" stroke="currentColor" stroke-width="3.6"/></g></symbol><symbol id="i-view_2d" viewBox="0 0 48 48"><g fill="none"><path d="M6.47581 24.0005C4.36269 25.6167 1.93175 29.8187 7.00324 33.6975C12.0747 37.5762 18.6132 38.5459 22.8394 38.5459L19.203 33.6975" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M29.2026 38.5459C29.2026 38.5459 44.2026 35.8187 44.2026 28.849C44.2026 25.2126 40.7316 24.0005 40.7316 24.0005" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24.2026 9.45508H30.672C32.2506 9.45508 33.653 9.79794 34.8792 10.4837C36.1054 11.1538 37.0568 12.1122 37.7333 13.359C38.4098 14.5901 38.7481 16.0161 38.7481 17.6369C38.7481 19.2577 38.4098 20.6914 37.7333 21.9382C37.0568 23.1694 36.1054 24.1278 34.8792 24.8135C33.653 25.4836 32.2506 25.8187 30.672 25.8187H24.2026V9.45508ZM30.5451 23.2473C31.6304 23.2473 32.5818 23.0213 33.3993 22.5694C34.2308 22.1018 34.8651 21.4473 35.302 20.6057C35.753 19.7486 35.9785 18.759 35.9785 17.6369C35.9785 16.5148 35.753 15.533 35.302 14.6914C34.8651 13.8343 34.2308 13.1798 33.3993 12.7278C32.5818 12.2603 31.6304 12.0265 30.5451 12.0265H26.9511V23.2473H30.5451Z" fill="currentColor"/>
+<path d="M22.1447 23.2835V25.8187H11.5736V23.8136L17.2689 17.7291C17.9108 17.0377 18.341 16.4384 18.5596 15.9314C18.7917 15.409 18.9078 14.8943 18.9078 14.3872C18.9078 13.6343 18.6825 13.0582 18.2318 12.6587C17.7811 12.2592 17.1187 12.0594 16.2446 12.0594C14.7832 12.0594 13.6633 12.6203 12.8848 13.7419L11.0205 12.1286C11.5805 11.2835 12.3316 10.6305 13.274 10.1695C14.2301 9.69323 15.2954 9.45508 16.4699 9.45508C18.0269 9.45508 19.2698 9.86993 20.1985 10.6996C21.1272 11.5293 21.5916 12.6587 21.5916 14.0876C21.5916 14.9634 21.4277 15.7854 21.0999 16.5537C20.7721 17.3219 20.1439 18.1977 19.2151 19.1811L15.3841 23.2835H22.1447Z" fill="currentColor"/></g></symbol><symbol id="i-view_3d" viewBox="0 0 48 48"><g fill="none"><g clip-path="url(#view_3d-clip0_136_20339)">
+<path d="M6.47581 24.0005C4.36269 25.6167 1.93175 29.8187 7.00324 33.6975C12.0747 37.5762 18.6132 38.5459 22.8394 38.5459L19.203 33.6975" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M29.2026 38.5459C29.2026 38.5459 44.2026 35.8187 44.2026 28.849C44.2026 25.2126 40.7316 24.0005 40.7316 24.0005" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24.2026 9.45508H30.672C32.2506 9.45508 33.653 9.79794 34.8792 10.4837C36.1054 11.1538 37.0568 12.1122 37.7333 13.359C38.4098 14.5901 38.7481 16.0161 38.7481 17.6369C38.7481 19.2577 38.4098 20.6914 37.7333 21.9382C37.0568 23.1694 36.1054 24.1278 34.8792 24.8135C33.653 25.4836 32.2506 25.8187 30.672 25.8187H24.2026V9.45508ZM30.5451 23.2473C31.6304 23.2473 32.5818 23.0213 33.3993 22.5694C34.2308 22.1018 34.8651 21.4473 35.302 20.6057C35.753 19.7486 35.9785 18.759 35.9785 17.6369C35.9785 16.5148 35.753 15.533 35.302 14.6914C34.8651 13.8343 34.2308 13.1798 33.3993 12.7278C32.5818 12.2603 31.6304 12.0265 30.5451 12.0265H26.9511V23.2473H30.5451Z" fill="currentColor"/>
+<path d="M17.9094 16.1158C19.2158 16.3001 20.2124 16.8072 20.8993 17.6369C21.5862 18.4666 21.9296 19.5037 21.9296 20.7483C21.9296 21.6856 21.7208 22.5383 21.3033 23.3066C20.8858 24.0748 20.2528 24.6894 19.4043 25.1503C18.5693 25.5959 17.5458 25.8187 16.3336 25.8187C15.3235 25.8187 14.3471 25.6574 13.4043 25.3347C12.4751 24.9967 11.6804 24.5357 11.0205 23.9519L12.1518 21.6241C12.6636 22.1158 13.2831 22.5076 14.0104 22.7995C14.7511 23.0761 15.5121 23.2144 16.2932 23.2144C17.2225 23.2144 17.9498 22.9993 18.4751 22.569C19.0138 22.1235 19.2831 21.5242 19.2831 20.7713C19.2831 20.0185 19.0272 19.4346 18.5155 19.0197C18.0171 18.5895 17.2495 18.3744 16.2124 18.3744H14.9195V16.3232L18.1316 11.9672H11.7074V9.45508H21.3437V11.4602L17.9094 16.1158Z" fill="currentColor"/>
+</g>
+<defs>
+<clipPath id="view_3d-clip0_136_20339">
+<rect width="48" height="48" fill="white"/>
+</clipPath>
+</defs></g></symbol><symbol id="logo-wordmark" viewBox="0 0 89 22"><g fill="none"><path d="M8.89316 12.9594C8.07227 16.5116 5.73941 19.8049 2.59266 22L0 18.2443C2.2171 16.6909 3.89025 14.3551 4.44804 11.9321L6.26535 4.07404H3.25864L4.19903 0.00292956H11.8891L8.89316 12.9594ZM32.3462 12.9594C31.5253 16.5116 29.1925 19.8049 26.0457 22L23.454 18.2443C25.6711 16.6909 27.3443 14.3551 27.9021 11.9321L29.7194 4.07404H26.7127L27.6531 0.00292956H35.3422L32.3462 12.9594ZM60.8137 0C63.0341 0 64.9706 1.26224 65.8652 3.29575C66.5984 4.96489 66.4758 6.79941 65.5742 8.30725C66.6617 9.52404 67.1567 11.2003 66.8339 12.894L66.8164 12.9779C66.1358 15.9305 63.5712 17.7678 60.1262 17.7678H56.4496C55.3482 17.7677 54.3167 17.4344 53.4888 16.8313C52.7592 17.8201 52.0262 18.918 51.2966 20.1173L51.3005 20.1104L47.6307 17.8762C48.9532 15.7057 50.3005 13.816 51.651 12.2416C51.6756 12.0734 51.7037 11.9017 51.7457 11.7299L54.4536 0H60.8137ZM15.9944 11.4204C15.8401 12.083 15.9281 12.6649 16.2366 13.0541C16.6014 13.51 17.1808 13.6049 17.6018 13.6049C19.289 13.6046 21.1134 12.1042 21.5098 10.3931L22.5478 5.90501H27.2312L25.9578 11.4204V11.4243C25.0842 15.2076 21.4148 18.1708 17.6018 18.1711C15.6162 18.1711 13.8161 17.3395 12.6655 15.8948C11.4903 14.415 11.0798 12.4093 11.5464 10.3931L12.5844 5.90501H17.2678L15.9944 11.4204ZM39.4484 11.4175C39.2941 12.0802 39.3823 12.6594 39.6945 13.0522C40.0593 13.5077 40.6379 13.6019 41.0587 13.6019C42.7461 13.6019 44.5703 12.1014 44.9668 10.3902L46.0058 5.90208H50.6892L50.6853 5.90501L49.4119 11.4214C48.5383 15.2049 44.869 18.168 41.0558 18.1681C39.0702 18.1681 37.2701 17.3401 36.1195 15.8919C34.941 14.4121 34.5339 12.4098 35.0004 10.3902L36.0394 5.90208H40.7218L39.4484 11.4175ZM74.5895 6.07395L71.8913 17.758H67.4677L67.5068 17.5891L70.2039 5.90501H74.6275L74.5895 6.07395ZM82.4963 5.90208H88.9091L88.916 5.90501L87.9336 10.1519L87.9199 10.2154H81.5032L81.3489 10.8774C81.17 11.6419 81.2794 12.3188 81.6477 12.7817C81.995 13.2164 82.5491 13.4447 83.2541 13.4447H86.9864L86.004 17.6906L85.9903 17.7502H83.2541C81.2477 17.7502 79.4306 16.9162 78.2729 15.4612C77.1468 14.0446 76.7187 12.1436 77.0835 10.2115H75.2447V10.1978L76.231 5.90208H78.0727L78.894 2.33876H83.3176L82.4963 5.90208ZM62.0451 10.9126C61.0417 10.3973 58.9373 11.0109 56.3871 13.4652L56.3832 13.4691H60.1301C61.1053 13.4691 62.3225 13.2233 62.6242 12.0522C62.6978 11.5788 62.4731 11.1335 62.0451 10.9126ZM57.1098 7.58853C58.8846 6.6384 60.3997 6.39607 61.5959 6.4626L61.7121 6.33663C62.1997 5.80714 62.0281 5.23867 61.9299 5.02126C61.8351 4.80382 61.5328 4.2918 60.8137 4.2918H57.8705L57.1098 7.58853ZM73.0016 0.108394C74.3054 0.108592 75.3619 1.16541 75.3619 2.46864C75.3617 3.77169 74.3053 4.82771 73.0016 4.82791C71.6979 4.82791 70.6406 3.77182 70.6404 2.46864C70.6404 1.16528 71.6977 0.108394 73.0016 0.108394Z" fill="currentColor"/></g></symbol></svg>
+<div class="pg">
+  <aside class="pg-side">
+    <svg class="jjb-wordmark" role="img" aria-label="JuJuBit" width="89" height="22" viewBox="0 0 89 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.89316 12.9594C8.07227 16.5116 5.73941 19.8049 2.59266 22L0 18.2443C2.2171 16.6909 3.89025 14.3551 4.44804 11.9321L6.26535 4.07404H3.25864L4.19903 0.00292956H11.8891L8.89316 12.9594ZM32.3462 12.9594C31.5253 16.5116 29.1925 19.8049 26.0457 22L23.454 18.2443C25.6711 16.6909 27.3443 14.3551 27.9021 11.9321L29.7194 4.07404H26.7127L27.6531 0.00292956H35.3422L32.3462 12.9594ZM60.8137 0C63.0341 0 64.9706 1.26224 65.8652 3.29575C66.5984 4.96489 66.4758 6.79941 65.5742 8.30725C66.6617 9.52404 67.1567 11.2003 66.8339 12.894L66.8164 12.9779C66.1358 15.9305 63.5712 17.7678 60.1262 17.7678H56.4496C55.3482 17.7677 54.3167 17.4344 53.4888 16.8313C52.7592 17.8201 52.0262 18.918 51.2966 20.1173L51.3005 20.1104L47.6307 17.8762C48.9532 15.7057 50.3005 13.816 51.651 12.2416C51.6756 12.0734 51.7037 11.9017 51.7457 11.7299L54.4536 0H60.8137ZM15.9944 11.4204C15.8401 12.083 15.9281 12.6649 16.2366 13.0541C16.6014 13.51 17.1808 13.6049 17.6018 13.6049C19.289 13.6046 21.1134 12.1042 21.5098 10.3931L22.5478 5.90501H27.2312L25.9578 11.4204V11.4243C25.0842 15.2076 21.4148 18.1708 17.6018 18.1711C15.6162 18.1711 13.8161 17.3395 12.6655 15.8948C11.4903 14.415 11.0798 12.4093 11.5464 10.3931L12.5844 5.90501H17.2678L15.9944 11.4204ZM39.4484 11.4175C39.2941 12.0802 39.3823 12.6594 39.6945 13.0522C40.0593 13.5077 40.6379 13.6019 41.0587 13.6019C42.7461 13.6019 44.5703 12.1014 44.9668 10.3902L46.0058 5.90208H50.6892L50.6853 5.90501L49.4119 11.4214C48.5383 15.2049 44.869 18.168 41.0558 18.1681C39.0702 18.1681 37.2701 17.3401 36.1195 15.8919C34.941 14.4121 34.5339 12.4098 35.0004 10.3902L36.0394 5.90208H40.7218L39.4484 11.4175ZM74.5895 6.07395L71.8913 17.758H67.4677L67.5068 17.5891L70.2039 5.90501H74.6275L74.5895 6.07395ZM82.4963 5.90208H88.9091L88.916 5.90501L87.9336 10.1519L87.9199 10.2154H81.5032L81.3489 10.8774C81.17 11.6419 81.2794 12.3188 81.6477 12.7817C81.995 13.2164 82.5491 13.4447 83.2541 13.4447H86.9864L86.004 17.6906L85.9903 17.7502H83.2541C81.2477 17.7502 79.4306 16.9162 78.2729 15.4612C77.1468 14.0446 76.7187 12.1436 77.0835 10.2115H75.2447V10.1978L76.231 5.90208H78.0727L78.894 2.33876H83.3176L82.4963 5.90208ZM62.0451 10.9126C61.0417 10.3973 58.9373 11.0109 56.3871 13.4652L56.3832 13.4691H60.1301C61.1053 13.4691 62.3225 13.2233 62.6242 12.0522C62.6978 11.5788 62.4731 11.1335 62.0451 10.9126ZM57.1098 7.58853C58.8846 6.6384 60.3997 6.39607 61.5959 6.4626L61.7121 6.33663C62.1997 5.80714 62.0281 5.23867 61.9299 5.02126C61.8351 4.80382 61.5328 4.2918 60.8137 4.2918H57.8705L57.1098 7.58853ZM73.0016 0.108394C74.3054 0.108592 75.3619 1.16541 75.3619 2.46864C75.3617 3.77169 74.3053 4.82771 73.0016 4.82791C71.6979 4.82791 70.6406 3.77182 70.6404 2.46864C70.6404 1.16528 71.6977 0.108394 73.0016 0.108394Z" fill="currentColor"/>
+</svg>
+    <nav>
+      <a href="#brand">01 品牌与 Logo</a>
+      <a href="#color">02 色彩</a>
+      <a href="#type">03 字体</a>
+      <a href="#layout">04 间距与布局</a>
+      <a href="#shape">05 圆角与阴影</a>
+      <a href="#motion">06 动效</a>
+      <a href="#icons">07 图标</a>
+      <a href="#buttons">08 按钮</a>
+      <a href="#nav">09 导航</a>
+      <a href="#commerce">10 区块标题与商品卡</a>
+      <a href="#blocks">11 首页区块</a>
+      <a href="#forms">12 表单与 FAQ</a>
+      <a href="#feedback">13 反馈浮层</a>
+      <a href="#app">14 App 专属</a>
+      <a href="#page">15 页面拼装示例</a>
+      <a href="#assets">16 素材清单</a>
+      <a href="#ai">17 给 AI 用</a>
+    </nav>
+    <div class="meta">v2 · 2026-10-14<br>真源：网页外观=线上新版，色值/字体/App=Figma<br>引用：<code>tokens.css</code> + <code>components.css</code><br>点击色块/图标/代码即复制</div>
+  </aside>
+
+  <main class="pg-main">
+    <section class="pg-hero">
+      <div class="jjb-display" aria-hidden="true">JUJUBIT</div>
+      <div class="jjb-eyebrow">Design System v2</div>
+      <h1 class="jjb-h1" style="margin-top:12px">JuJuBit Design Playground</h1>
+      <p>新页面（独立站 + App）的视觉规范和可复用组件。网页区块和组件外观以 2026-10 上线的新版首页为准（标 <code>[新版]</code>）；色值、字体和 App 规范以设计团队 Figma 为准；两边都没定义的项沿用线上实测值并标出来源，等设计确认。agent 做新页面时先引 <code>tokens.css</code> 和 <code>components.css</code>，再从本页复制组件 markup。</p>
+      <div class="legend">
+        <span class="src src--f">F · Figma token</span>
+        <span class="src src--fs">F稿 · Figma 设计稿实测</span>
+        <span class="src src--live">线上 · v1.1 实测，待设计确认</span>
+        <span class="src src--app">App · 仅 App 页面用</span>
+      </div>
+    </section>
+
+    <!-- 01 BRAND -->
+    <section class="pg-sec" id="brand">
+      <header><span class="num">01</span><h2 class="jjb-h2">品牌与 Logo</h2><span class="src src--f">F</span></header>
+      <p class="lead">两套标识：横版字标 <b>JuJuBit</b>（网站页头、页脚、邮件）和 3D 字标 <b>JuJu</b>（App icon、头像、社媒方图）。深底用浅色标，浅底用深色或橙色标。</p>
+      <div class="logo-grid">
+        <div><div class="logo-tile" style="background:#fff;color:var(--jjb-brand-500)"><svg class="jjb-wordmark" role="img" aria-label="JuJuBit" width="89" height="22" viewBox="0 0 89 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.89316 12.9594C8.07227 16.5116 5.73941 19.8049 2.59266 22L0 18.2443C2.2171 16.6909 3.89025 14.3551 4.44804 11.9321L6.26535 4.07404H3.25864L4.19903 0.00292956H11.8891L8.89316 12.9594ZM32.3462 12.9594C31.5253 16.5116 29.1925 19.8049 26.0457 22L23.454 18.2443C25.6711 16.6909 27.3443 14.3551 27.9021 11.9321L29.7194 4.07404H26.7127L27.6531 0.00292956H35.3422L32.3462 12.9594ZM60.8137 0C63.0341 0 64.9706 1.26224 65.8652 3.29575C66.5984 4.96489 66.4758 6.79941 65.5742 8.30725C66.6617 9.52404 67.1567 11.2003 66.8339 12.894L66.8164 12.9779C66.1358 15.9305 63.5712 17.7678 60.1262 17.7678H56.4496C55.3482 17.7677 54.3167 17.4344 53.4888 16.8313C52.7592 17.8201 52.0262 18.918 51.2966 20.1173L51.3005 20.1104L47.6307 17.8762C48.9532 15.7057 50.3005 13.816 51.651 12.2416C51.6756 12.0734 51.7037 11.9017 51.7457 11.7299L54.4536 0H60.8137ZM15.9944 11.4204C15.8401 12.083 15.9281 12.6649 16.2366 13.0541C16.6014 13.51 17.1808 13.6049 17.6018 13.6049C19.289 13.6046 21.1134 12.1042 21.5098 10.3931L22.5478 5.90501H27.2312L25.9578 11.4204V11.4243C25.0842 15.2076 21.4148 18.1708 17.6018 18.1711C15.6162 18.1711 13.8161 17.3395 12.6655 15.8948C11.4903 14.415 11.0798 12.4093 11.5464 10.3931L12.5844 5.90501H17.2678L15.9944 11.4204ZM39.4484 11.4175C39.2941 12.0802 39.3823 12.6594 39.6945 13.0522C40.0593 13.5077 40.6379 13.6019 41.0587 13.6019C42.7461 13.6019 44.5703 12.1014 44.9668 10.3902L46.0058 5.90208H50.6892L50.6853 5.90501L49.4119 11.4214C48.5383 15.2049 44.869 18.168 41.0558 18.1681C39.0702 18.1681 37.2701 17.3401 36.1195 15.8919C34.941 14.4121 34.5339 12.4098 35.0004 10.3902L36.0394 5.90208H40.7218L39.4484 11.4175ZM74.5895 6.07395L71.8913 17.758H67.4677L67.5068 17.5891L70.2039 5.90501H74.6275L74.5895 6.07395ZM82.4963 5.90208H88.9091L88.916 5.90501L87.9336 10.1519L87.9199 10.2154H81.5032L81.3489 10.8774C81.17 11.6419 81.2794 12.3188 81.6477 12.7817C81.995 13.2164 82.5491 13.4447 83.2541 13.4447H86.9864L86.004 17.6906L85.9903 17.7502H83.2541C81.2477 17.7502 79.4306 16.9162 78.2729 15.4612C77.1468 14.0446 76.7187 12.1436 77.0835 10.2115H75.2447V10.1978L76.231 5.90208H78.0727L78.894 2.33876H83.3176L82.4963 5.90208ZM62.0451 10.9126C61.0417 10.3973 58.9373 11.0109 56.3871 13.4652L56.3832 13.4691H60.1301C61.1053 13.4691 62.3225 13.2233 62.6242 12.0522C62.6978 11.5788 62.4731 11.1335 62.0451 10.9126ZM57.1098 7.58853C58.8846 6.6384 60.3997 6.39607 61.5959 6.4626L61.7121 6.33663C62.1997 5.80714 62.0281 5.23867 61.9299 5.02126C61.8351 4.80382 61.5328 4.2918 60.8137 4.2918H57.8705L57.1098 7.58853ZM73.0016 0.108394C74.3054 0.108592 75.3619 1.16541 75.3619 2.46864C75.3617 3.77169 74.3053 4.82771 73.0016 4.82791C71.6979 4.82791 70.6406 3.77182 70.6404 2.46864C70.6404 1.16528 71.6977 0.108394 73.0016 0.108394Z" fill="currentColor"/>
+</svg></div>
+          <div class="logo-cap">橙色字标 · <code>assets/logo/wordmark-orange.svg</code></div></div>
+        <div><div class="logo-tile" style="background:var(--jjb-brand-500)"><img src="assets/logo/wordmark-white.svg" alt="JuJuBit"></div>
+          <div class="logo-cap">白色字标（橙/深底） · <code>assets/logo/wordmark-white.svg</code></div></div>
+        <div><div class="logo-tile" style="background:var(--jjb-gradient-logo-dark)"><img src="assets/logo/wordmark-white.svg" alt="JuJuBit"></div>
+          <div class="logo-cap">深色底 <code>--jjb-gradient-logo-dark</code></div></div>
+        <div><div class="logo-tile" style="background:var(--jjb-brand-light-bg)"><img src="assets/logo/juju-mark.svg" alt="JuJu"></div>
+          <div class="logo-cap">3D 字标 · <code>assets/logo/juju-mark.svg</code>（1.1MB，印刷/大图用；网页用 PNG）</div></div>
+        <div><div class="logo-tile" style="background:#fff"><img src="assets/app/app-icon-juju-rounded-824.png" alt="JuJuBit App icon" style="width:130px"></div>
+          <div class="logo-cap">App icon 圆角 · <code>assets/app/app-icon-juju-rounded-824.png</code></div></div>
+        <div><div class="logo-tile" style="background:var(--jjb-neutral-200)"><img src="assets/app/app-icon-juju-square-1025.png" alt="JuJuBit App icon square" style="width:130px"></div>
+          <div class="logo-cap">App icon 方形 · <code>assets/app/app-icon-juju-square-1025.png</code></div></div>
+      </div>
+      <ul class="rules">
+        <li><b>可以：</b>深底配浅色标、浅底配深色/橙色标；横版字标最小高度 22px（页头 25px）。</li>
+        <li><b>不可以：</b>加描边、变形缩放、加阴影、改颜色、放在低对比底色上、改透视、改字母间距（对外规范 1.7）。</li>
+      </ul>
+    </section>
+
+    <!-- 02 COLOR -->
+    <section class="pg-sec" id="color">
+      <header><span class="num">02</span><h2 class="jjb-h2">色彩</h2></header>
+      <p class="lead">一个主色：JuJu Orange <code>#FF5A11</code>，只用在主按钮、选中态和关键强调。大面积底色用白、浅灰和品牌浅底。文字不用实色灰，用黑色透明度分四级。点击色块复制 CSS 变量。</p>
+      <div class="pg-sub">品牌色 <span class="src src--f">F</span></div>
+      <div class="sw-grid" data-swatches="brand"></div>
+      <div class="pg-sub">中性色 <span class="src src--f">F</span></div>
+      <div class="sw-grid" data-swatches="neutral"></div>
+      <div class="pg-sub">文字（透明度） <span class="src src--f">F</span></div>
+      <div class="sw-grid" data-swatches="text"></div>
+      <div class="pg-sub">面与遮罩 <span class="src src--fs">F稿</span></div>
+      <div class="sw-grid" data-swatches="surface"></div>
+      <div class="pg-sub">功能色 <span class="src src--live">线上</span></div>
+      <div class="sw-grid" data-swatches="func"></div>
+      <div class="pg-sub">辅助色 <span class="src src--f">F</span> 仅插画、营销图形、标签底</div>
+      <div class="sw-grid" data-swatches="accent"></div>
+      <ul class="rules">
+        <li><b>主按钮 hover 变浅</b>（<code>#FF7B41</code>），按下变深（<code>#E54913</code>），禁用换灰 <code>#CCCCCC</code>，不用 opacity。</li>
+        <li>辅助色不能用在按钮、链接、价格上；页面上同屏辅助色不超过 2 个。</li>
+        <li>Judge.me 评价星色 <code>#108474</code> 归第三方，不改也不借用。</li>
+      </ul>
+    </section>
+
+    <!-- 03 TYPE -->
+    <section class="pg-sec" id="type">
+      <header><span class="num">03</span><h2 class="jjb-h2">字体</h2><span class="src src--f">F</span></header>
+      <p class="lead">两个字族，各管一件事。Bebas Neue 只有大写字形，只用于标题、导航和 tab；正文、按钮、表单全部用 Outfit。不引入第三个字族。</p>
+      <div class="two">
+        <div class="font-card"><div class="jjb-mini jjb-muted">Display · <code>assets/fonts/BebasNeue-Regular.ttf</code></div>
+          <div class="big" style="font-family:var(--jjb-font-display);margin-top:12px">BEBAS NEUE 400</div>
+          <div class="jjb-body-s jjb-muted" style="margin-top:12px">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</div></div>
+        <div class="font-card"><div class="jjb-mini jjb-muted">Body · <code>assets/fonts/Outfit-VariableFont_wght.ttf</code></div>
+          <div class="big" style="font-family:var(--jjb-font-body);font-size:48px;font-weight:600;margin-top:16px">Outfit 400–700</div>
+          <div class="jjb-body-s jjb-muted" style="margin-top:12px">Aa Bb Cc — <span style="font-weight:400">400</span> <span style="font-weight:500">500</span> <span style="font-weight:600">600</span> <span style="font-weight:700">700</span></div></div>
+      </div>
+      <div class="pg-sub">Web 字号阶梯（桌面 / 手机）</div>
+      <div id="type-web"></div>
+      <div class="pg-sub">App 字号阶梯 <span class="src src--app">App</span></div>
+      <div id="type-app"></div>
+      <ul class="rules">
+        <li>标题行高 1.2，正文行高 1.6；字距一律用 <code>em</code>（站点有 /ja /ko，px 字距会撑坏非拉丁字形）。</li>
+        <li>大写小标两种：区块上标 14px / <code>0.2em</code>；商品品牌副标 14px / <code>0.15em</code>，颜色 tertiary。</li>
+        <li>手机端 Web 标题字号 Figma 未定义，取线上实测值（标 <span class="src src--live">线上</span>）。</li>
+      </ul>
+    </section>
+
+    <!-- 04 LAYOUT -->
+    <section class="pg-sec" id="layout">
+      <header><span class="num">04</span><h2 class="jjb-h2">间距与布局</h2><span class="src src--new">新版</span></header>
+      <p class="lead">首页区块全宽铺满，左右留 30px（手机 20px）。文章、政策、表单等窄内容页用 1220px 居中容器。卡片网格间距统一 12px（Figma 稿是 30，线上已改）。商品桌面 4 列、手机 2 列。</p>
+      <div class="two">
+        <div id="space-scale"></div>
+        <table class="state-table">
+          <tr><th>Token</th><th>值</th><th>用途</th></tr>
+          <tr><td><code>.jjb-container--wide</code></td><td>全宽 − 2×30px</td><td>首页区块 <span class="src src--new">新版</span></td></tr>
+          <tr><td><code>--jjb-container</code></td><td>1220px</td><td>窄内容页（文章 / 政策 / 表单）</td></tr>
+          <tr><td><code>--jjb-section-gap</code></td><td>100 / 64px</td><td>区块纵向间距 桌面 / 手机</td></tr>
+          <tr><td><code>--jjb-grid-gap</code></td><td>12px</td><td>商品 / 分类 / 信任卡网格 <span class="src src--new">新版</span></td></tr>
+          <tr><td><code>--jjb-gutter</code></td><td>20px</td><td>手机左右边距</td></tr>
+          <tr><td><code>--jjb-header-h</code></td><td>78 / 56px</td><td>页头 桌面 / 手机 <span class="src src--new">新版</span></td></tr>
+          <tr><td><code>--jjb-announce-h</code></td><td>48px</td><td>公告栏 <span class="src src--new">新版</span></td></tr>
+          <tr><td>区块标题 → 内容</td><td>40px</td><td>手机 20px <span class="src src--new">新版</span></td></tr>
+          <tr><td><code>--jjb-bp-md</code></td><td>768px</td><td>唯一断点 <span class="src src--live">线上</span></td></tr>
+          <tr><td><code>--jjb-touch-min</code></td><td>44px</td><td>手机最小触控区 <span class="src src--live">线上</span></td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- 05 SHAPE -->
+    <section class="pg-sec" id="shape">
+      <header><span class="num">05</span><h2 class="jjb-h2">圆角与阴影</h2><span class="src src--fs">F稿</span></header>
+      <p class="lead">按钮、胶囊、tab 一律全圆角。弹窗和大卡片 20px，半屏面板 16px，toast 和徽章 12px，提示条 8px。阴影只有 4 种，只给浮起来的东西用；商品卡和 logo 不加阴影，层次靠边框和底色。</p>
+      <div class="radius-grid" id="radius-grid"></div>
+      <div class="pg-sub">阴影（只允许这 4 种）</div>
+      <div class="shadow-stage"><div class="shadow-grid" id="shadow-grid"></div></div>
+      <div class="pg-sub">渐变 / 毛玻璃</div>
+      <div class="sw-grid" data-swatches="gradient"></div>
+    </section>
+
+    <!-- 06 MOTION -->
+    <section class="pg-sec" id="motion">
+      <header><span class="num">06</span><h2 class="jjb-h2">动效</h2><span class="src src--live">线上</span></header>
+      <p class="lead">Web 动效：一条缓动曲线 <code>cubic-bezier(.165,.84,.44,1)</code>，四档时长。Figma 没有 motion token，这部分沿用线上实测值；App 动效以设计团队交付的视频为准（下方）。用户开启“减少动态效果”时全部关掉。</p>
+      <div class="ease-demo" id="ease-demo"></div>
+      <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
+        <button class="jjb-btn jjb-btn--secondary jjb-btn--s" id="play-ease">播放时长对比</button>
+        <button class="jjb-btn jjb-btn--outline jjb-btn--s" id="play-reveal">播放入场（错峰 60ms）</button>
+      </div>
+      <div class="pg-sub">入场：translateY(20px) → 0，只触发一次</div>
+      <div class="reveal-box" id="reveal-box"><div class="jjb-reveal"></div><div class="jjb-reveal"></div><div class="jjb-reveal"></div><div class="jjb-reveal"></div><div class="jjb-reveal"></div><div class="jjb-reveal"></div></div>
+      <div class="pg-sub">骨架屏：#F0F0F0 ↔ #EEEEEE，1 秒循环 <span class="src src--fs">F稿</span></div>
+      <div style="display:grid;grid-template-columns:120px 1fr;gap:16px;max-width:520px">
+        <div class="jjb-skeleton" style="aspect-ratio:1"></div>
+        <div style="display:grid;gap:10px;align-content:center"><div class="jjb-skeleton" style="height:14px;width:60%"></div><div class="jjb-skeleton" style="height:18px"></div><div class="jjb-skeleton" style="height:18px;width:40%"></div></div>
+      </div>
+      <div class="pg-sub">品牌与 App 动效交付视频 <span class="src src--app">App</span> 压缩预览版（720p），原片找设计团队</div>
+      <div class="video-grid" id="video-grid"></div>
+      <ul class="rules">
+        <li>hover / 按下 / 颜色变化 200ms；展开、抽屉、tab 切换 300ms；滚动入场 500ms；首屏 800ms。</li>
+        <li>不用 <code>ease</code> / <code>ease-in-out</code>；只有循环内容（跑马灯、加载转圈）用 <code>linear</code>。</li>
+        <li>不只靠 opacity 做 hover，要同时改底色、描边或位移。</li>
+      </ul>
+    </section>
+
+    <!-- 07 ICONS -->
+    <section class="pg-sec" id="icons">
+      <header><span class="num">07</span><h2 class="jjb-h2">图标</h2><span class="src src--f">F</span></header>
+      <p class="lead">设计团队组件库的 58 个线性图标（48 画板、3.6 线宽），颜色跟随 <code>currentColor</code>。点击图标复制引用代码。</p>
+      <div class="icon-tools">
+        <input class="jjb-input" id="icon-q" placeholder="搜索图标，如 cart">
+        <button class="jjb-option" aria-pressed="true" data-icon-bg="light">浅底</button>
+        <button class="jjb-option" aria-pressed="false" data-icon-bg="dark">深底</button>
+        <button class="jjb-option" aria-pressed="false" data-icon-color="var(--jjb-brand-500)">橙色</button>
+      </div>
+      <div class="icon-grid" id="icon-grid"></div>
+      <details class="snippet"><summary>引用方式</summary><pre>&lt;!-- 页面里先内联一次 assets/icons/sprite.svg，然后： --&gt;
+&lt;svg class="jjb-icon" aria-hidden="true"&gt;&lt;use href="#i-cart"/&gt;&lt;/svg&gt;
+&lt;!-- 或直接引单文件（颜色不可改）： --&gt;
+&lt;img src="assets/icons/cart.svg" width="24" height="24" alt=""&gt;</pre></details>
+    </section>
+
+    <!-- 08 BUTTONS -->
+    <section class="pg-sec" id="buttons">
+      <header><span class="num">08</span><h2 class="jjb-h2">按钮</h2><span class="src src--f">F</span></header>
+      <p class="lead">Web 三档高度 44 / 50 / 54，字体 Outfit 600（小号 500），全圆角，宽度随内容。主按钮橙色，次按钮黑色，描边按钮用于第三层级。每个页面主按钮只放一个。</p>
+      <table class="state-table">
+        <tr><th>Web</th><th>Default</th><th>Hover</th><th>Pressed</th><th>Disabled</th></tr>
+        <tr><td>Primary</td><td><button class="jjb-btn jjb-btn--primary">Create Yours</button></td><td><button class="jjb-btn jjb-btn--primary is-hover">Create Yours</button></td><td><button class="jjb-btn jjb-btn--primary is-active">Create Yours</button></td><td><button class="jjb-btn jjb-btn--primary" disabled>Create Yours</button></td></tr>
+        <tr><td>Secondary</td><td><button class="jjb-btn jjb-btn--secondary">Shop Now</button></td><td><button class="jjb-btn jjb-btn--secondary is-hover">Shop Now</button></td><td><button class="jjb-btn jjb-btn--secondary">Shop Now</button></td><td><button class="jjb-btn jjb-btn--secondary" disabled>Shop Now</button></td></tr>
+        <tr><td>Outline <span class="src src--fs">F稿</span></td><td><button class="jjb-btn jjb-btn--outline">Learn More</button></td><td><button class="jjb-btn jjb-btn--outline is-hover">Learn More</button></td><td><button class="jjb-btn jjb-btn--outline">Learn More</button></td><td><button class="jjb-btn jjb-btn--outline" disabled>Learn More</button></td></tr>
+        <tr><td>Text <span class="src src--live">线上</span></td><td><button class="jjb-btn jjb-btn--text">View all</button></td><td></td><td></td><td><button class="jjb-btn jjb-btn--text" disabled>View all</button></td></tr>
+      </table>
+      <div class="pg-sub">尺寸与图标位</div>
+      <div class="stage">
+        <button class="jjb-btn jjb-btn--primary jjb-btn--l"><svg class="jjb-icon"><use href="#i-magic_wand"/></svg>Large 54</button>
+        <button class="jjb-btn jjb-btn--primary">Medium 50</button>
+        <button class="jjb-btn jjb-btn--primary jjb-btn--s">Small 44</button>
+        <button class="jjb-btn jjb-btn--secondary jjb-btn--s"><svg class="jjb-icon jjb-icon--20"><use href="#i-cart"/></svg>Add to cart</button>
+        <button class="jjb-icon-btn" aria-label="Next"><svg class="jjb-icon"><use href="#i-chevron_right"/></svg></button>
+      </div>
+      <div class="pg-sub">线上新版用法 <span class="src src--new">新版</span></div>
+      <div class="stage">
+        <a class="jjb-btn jjb-btn--primary jjb-btn--hero" href="#buttons">Create Your Own</a>
+        <a class="jjb-btn jjb-btn--primary" href="#buttons"><svg class="jjb-icon jjb-icon--20"><use href="#i-sparkle"/></svg>CREATE</a>
+        <a class="jjb-btn jjb-btn--outline jjb-btn--pill" href="#buttons">SHOP</a>
+        <a class="jjb-btn jjb-btn--outline jjb-btn--pill" href="#buttons">Customize</a>
+      </div>
+      <div class="stage stage--dark" style="margin-top:12px"><a class="jjb-btn jjb-btn--white jjb-btn--pill" href="#buttons">Create Now</a></div>
+      <p class="note">首屏 CTA 50 / 18px 500（手机 36 / 14）；How it works 的 CREATE 50 / 16px 600 带 sparkle 图标；卡片内胶囊 38 / 14px 500。</p>
+      <details class="snippet"><summary>Markup</summary><pre>&lt;button class="jjb-btn jjb-btn--primary jjb-btn--l"&gt;Create Yours&lt;/button&gt;
+&lt;button class="jjb-btn jjb-btn--secondary"&gt;Shop Now&lt;/button&gt;
+&lt;button class="jjb-btn jjb-btn--outline jjb-btn--s"&gt;Learn More&lt;/button&gt;
+&lt;a class="jjb-btn jjb-btn--text" href="/collections/all"&gt;View all&lt;/a&gt;
+&lt;a class="jjb-btn jjb-btn--primary jjb-btn--hero" href="/products/customize-your-own"&gt;Create Your Own&lt;/a&gt;
+&lt;a class="jjb-btn jjb-btn--outline jjb-btn--pill" href="/collections/trpg"&gt;SHOP&lt;/a&gt;
+&lt;a class="jjb-btn jjb-btn--white jjb-btn--pill" href="…"&gt;Create Now&lt;/a&gt;</pre></details>
+    </section>
+
+    <!-- 09 NAV -->
+    <section class="pg-sec" id="nav">
+      <header><span class="num">09</span><h2 class="jjb-h2">公告栏与导航</h2><span class="src src--new">新版</span></header>
+      <p class="lead">公告栏 48px 橙色渐变，左右箭头切换文案。页头 78px（手机 56px）：压在首屏图上时是半透明毛玻璃（<code>--jjb-header-glass</code> + saturate 1.8 blur 20），滚动后切白底加 <code>--jjb-shadow-header</code>。菜单居中，Bebas 20；右侧依次是 Log In 胶囊、搜索/账户/购物车 20px 图标、橙色 CREATE 36px。</p>
+      <div class="nav-frame">
+        <div class="jjb-announce"><button aria-label="Previous"><svg class="jjb-icon jjb-icon--20"><use href="#i-chevron_left"/></svg></button><span>Create Your Own Design — Get 15% OFF</span><button aria-label="Next"><svg class="jjb-icon jjb-icon--20"><use href="#i-chevron_right"/></svg></button></div>
+        <header class="jjb-nav">
+          <svg class="jjb-nav__logo" viewBox="0 0 89 22"><use href="#logo-wordmark"/></svg>
+          <nav class="jjb-nav__menu"><a class="jjb-nav__link" href="#nav">Create</a><a class="jjb-nav__link" href="#nav">Templates</a><a class="jjb-nav__link" href="#nav">Categories</a><a class="jjb-nav__link" href="#nav">How it works</a><a class="jjb-nav__link" href="#nav">About us</a></nav>
+          <div class="jjb-nav__actions">
+            <button class="jjb-nav__login" type="button">Log In</button>
+            <button class="jjb-nav__icon" aria-label="Search"><svg><use href="#i-search"/></svg></button>
+            <button class="jjb-nav__icon" aria-label="Account"><svg><use href="#i-user"/></svg></button>
+            <button class="jjb-nav__icon" aria-label="Cart"><svg><use href="#i-cart_outline"/></svg><span class="jjb-badge-count">2</span></button>
+            <a class="jjb-btn jjb-btn--primary jjb-nav__create" href="#nav"><svg class="jjb-icon jjb-icon--20"><use href="#i-sparkle"/></svg>Create</a>
+          </div>
+        </header>
+      </div>
+      <div class="nav-frame nav-frame--photo" style="margin-top:16px">
+        <header class="jjb-nav jjb-nav--glass">
+          <svg class="jjb-nav__logo" viewBox="0 0 89 22"><use href="#logo-wordmark"/></svg>
+          <nav class="jjb-nav__menu"><a class="jjb-nav__link" href="#nav">Create</a><a class="jjb-nav__link" href="#nav">Templates</a><a class="jjb-nav__link" href="#nav">Categories</a><a class="jjb-nav__link" href="#nav">How it works</a><a class="jjb-nav__link" href="#nav">About us</a></nav>
+          <div class="jjb-nav__actions">
+            <button class="jjb-nav__login" type="button">Log In</button>
+            <button class="jjb-nav__icon" aria-label="Search"><svg><use href="#i-search"/></svg></button>
+            <button class="jjb-nav__icon" aria-label="Account"><svg><use href="#i-user"/></svg></button>
+            <button class="jjb-nav__icon" aria-label="Cart"><svg><use href="#i-cart_outline"/></svg><span class="jjb-badge-count">2</span></button>
+            <a class="jjb-btn jjb-btn--primary jjb-nav__create" href="#nav"><svg class="jjb-icon jjb-icon--20"><use href="#i-sparkle"/></svg>Create</a>
+          </div>
+        </header>
+        <div class="spacer"></div>
+      </div>
+      <details class="snippet"><summary>Markup</summary><pre>&lt;header class="jjb-nav jjb-nav--glass"&gt;  &lt;!-- 滚动后移除 --glass --&gt;
+  &lt;svg class="jjb-nav__logo" viewBox="0 0 89 22"&gt;&lt;use href="#logo-wordmark"/&gt;&lt;/svg&gt;
+  &lt;nav class="jjb-nav__menu"&gt;&lt;a class="jjb-nav__link" href="…"&gt;Create&lt;/a&gt;…&lt;/nav&gt;
+  &lt;div class="jjb-nav__actions"&gt;
+    &lt;button class="jjb-nav__login"&gt;Log In&lt;/button&gt;
+    &lt;button class="jjb-nav__icon" aria-label="Search"&gt;&lt;svg&gt;&lt;use href="#i-search"/&gt;&lt;/svg&gt;&lt;/button&gt;
+    &lt;a class="jjb-btn jjb-btn--primary jjb-nav__create" href="…"&gt;&lt;svg class="jjb-icon jjb-icon--20"&gt;&lt;use href="#i-sparkle"/&gt;&lt;/svg&gt;Create&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/header&gt;</pre></details>
+    </section>
+
+    <!-- 10 COMMERCE -->
+    <section class="pg-sec" id="commerce">
+      <header><span class="num">10</span><h2 class="jjb-h2">区块标题、商品卡与标签</h2><span class="src src--new">新版</span></header>
+      <p class="lead">区块标题居中，Bebas 64（手机 28）；右侧 View All 18px 500。筛选用黑白胶囊（42px），不再用下划线 tab。商品卡 4 列，间距 12px。卡片没有品牌副标，也没有 Quick view。标题 16px 500，最多两行；价格 16px 500。鼠标悬停时淡入第二张商品图（220ms）。价格为示例。</p>
+      <div class="jjb-section-head"><h3 class="jjb-section-head__title">Trending Products</h3><a class="jjb-section-head__more" href="#commerce">View All</a></div>
+      <div class="jjb-tabs" role="tablist" style="margin-bottom:32px"><button class="jjb-chip" role="tab" aria-selected="true">Custom Figurines</button><button class="jjb-chip" role="tab" aria-selected="false">Art Toy</button></div>
+      <div class="jjb-grid" id="product-grid"></div>
+      <div class="pg-sub">轮播指示点</div>
+      <div class="stage"><div class="jjb-dots"><button aria-label="1"></button><button aria-label="2" aria-current="true"></button><button aria-label="3"></button><button aria-label="4"></button></div></div>
+      <div class="pg-sub">标签与提示条</div>
+      <div class="stage">
+        <span class="jjb-tag jjb-tag--brand">New</span>
+        <span class="jjb-tag jjb-tag--sale">-20%</span>
+        <span class="jjb-tag jjb-tag--soft">Customizable</span>
+        <span class="jjb-tag jjb-tag--neutral">Pre-order</span>
+        <div class="jjb-tip"><svg class="jjb-icon jjb-icon--20"><use href="#i-sparkle"/></svg>3 free generations left today</div>
+      </div>
+      <div class="pg-sub">胶囊选项（App / 生成工具里的风格选择）<span class="src src--f">F</span></div>
+      <div class="stage">
+        <button class="jjb-option" aria-pressed="true">All</button><button class="jjb-option" aria-pressed="false">Chibi</button><button class="jjb-option" aria-pressed="false">Anime</button><button class="jjb-option" aria-pressed="false">Pet</button>
+      </div>
+      <details class="snippet"><summary>Markup</summary><pre>&lt;div class="jjb-section-head"&gt;
+  &lt;h2 class="jjb-section-head__title"&gt;Trending Products&lt;/h2&gt;
+  &lt;a class="jjb-section-head__more" href="/collections/all"&gt;View All&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="jjb-tabs" role="tablist"&gt;&lt;button class="jjb-chip" role="tab" aria-selected="true"&gt;Custom Figurines&lt;/button&gt;…&lt;/div&gt;
+
+&lt;a class="jjb-card" href="/products/handle"&gt;
+  &lt;span class="jjb-card__media"&gt;
+    &lt;img src="…-01.png?width=800" alt="…" loading="lazy" width="800" height="800"&gt;
+    &lt;img src="…-02.png?width=800" alt="" loading="lazy" width="800" height="800"&gt;  &lt;!-- 可选：hover 第二张 --&gt;
+  &lt;/span&gt;
+  &lt;span class="jjb-card__title"&gt;Product title&lt;/span&gt;
+  &lt;span class="jjb-card__price"&gt;$24.99&lt;/span&gt;
+&lt;/a&gt;</pre></details>
+    </section>
+
+    <!-- 11 HOME BLOCKS -->
+    <section class="pg-sec" id="blocks">
+      <header><span class="num">11</span><h2 class="jjb-h2">首页区块</h2><span class="src src--new">新版</span></header>
+      <p class="lead">2026-10 上线首页的区块。模板卡、分类卡、信任卡和买家秀图统一 12px 圆角（手机 8px），卡片间距 12px。图片取自线上，只作示例。</p>
+
+      <div class="pg-sub">模板入口（横向轮播；模板色已做进图片里）</div>
+      <div class="jjb-track" id="tpl-track"></div>
+
+      <div class="pg-sub">How it works（黑底步骤，点击切换）</div>
+      <div class="stage stage--dark hiw-demo">
+        <img src="https://jujubit.ai/cdn/shop/files/img01.png?v=1783938670&width=800" alt="">
+        <div>
+          <div class="jjb-steps" id="steps">
+            <div class="jjb-step" aria-current="true"><span class="jjb-step__num">01</span><h4 class="jjb-step__title">Pick your style</h4><p class="jjb-step__body">Pop, anime, realistic and more. New styles dropping all the time.</p></div>
+            <div class="jjb-step"><span class="jjb-step__num">02</span><h4 class="jjb-step__title">Upload your image</h4><p class="jjb-step__body">示例文案。</p></div>
+            <div class="jjb-step"><span class="jjb-step__num">03</span><h4 class="jjb-step__title">Preview in 3D</h4><p class="jjb-step__body">示例文案。</p></div>
+            <div class="jjb-step"><span class="jjb-step__num">04</span><h4 class="jjb-step__title">We make &amp; ship it</h4><p class="jjb-step__body">示例文案。</p></div>
+          </div>
+          <a class="jjb-btn jjb-btn--primary" href="#blocks" style="font-size:16px"><svg class="jjb-icon jjb-icon--20"><use href="#i-sparkle"/></svg>CREATE</a>
+        </div>
+      </div>
+
+      <div class="pg-sub">分类卡</div>
+      <div class="jjb-grid cat-grid" id="cat-grid"></div>
+
+      <div class="pg-sub">信任卡（灰底区块）</div>
+      <div class="jjb-section--soft" style="padding:30px;border-radius:12px"><div class="jjb-trust" id="trust"></div></div>
+
+      <div class="pg-sub">评价卡</div>
+      <div class="jjb-grid" id="reviews"></div>
+
+      <div class="pg-sub">社媒竖版视频（深灰底，居中一张放大）</div>
+      <div class="jjb-social" style="padding:40px 0;border-radius:12px">
+        <div class="jjb-social__row"><div class="jjb-social__item"></div><div class="jjb-social__item"></div><div class="jjb-social__item" aria-current="true"></div><div class="jjb-social__item"></div><div class="jjb-social__item"></div></div>
+      </div>
+      <details class="snippet"><summary>Markup</summary><pre>&lt;a class="jjb-tpl-card" href="…"&gt;&lt;img src="…" alt="Mini Pop"&gt;
+  &lt;span class="jjb-tpl-card__footer"&gt;&lt;span class="jjb-tpl-card__name"&gt;Mini Pop&lt;/span&gt;&lt;span class="jjb-btn jjb-btn--white jjb-btn--pill"&gt;Create Now&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;
+
+&lt;div class="jjb-step" aria-current="true"&gt;&lt;span class="jjb-step__num"&gt;01&lt;/span&gt;&lt;h3 class="jjb-step__title"&gt;Pick your style&lt;/h3&gt;&lt;p class="jjb-step__body"&gt;…&lt;/p&gt;&lt;/div&gt;
+
+&lt;a class="jjb-cat-card" href="/collections/trpg"&gt;&lt;span class="jjb-cat-card__img"&gt;&lt;img src="…" alt=""&gt;&lt;/span&gt;
+  &lt;span class="jjb-cat-card__title"&gt;TRPG&lt;/span&gt;&lt;span class="jjb-btn jjb-btn--outline jjb-btn--pill"&gt;SHOP&lt;/span&gt;&lt;/a&gt;
+
+&lt;div class="jjb-trust__card"&gt;&lt;img src="…" alt=""&gt;&lt;p&gt;Quality You Can Trust.&lt;/p&gt;&lt;/div&gt;
+
+&lt;article class="jjb-review"&gt;&lt;div class="jjb-review__img"&gt;&lt;img src="…" alt="Customer photo"&gt;&lt;/div&gt;
+  &lt;div class="jjb-review__stars" aria-label="5 stars"&gt;★★★★★&lt;/div&gt;&lt;p class="jjb-review__text"&gt;…&lt;/p&gt;
+  &lt;div class="jjb-review__author"&gt;&lt;img src="…" alt=""&gt;Name&lt;/div&gt;&lt;a class="jjb-review__more" href="…"&gt;More Workflow&lt;/a&gt;&lt;/article&gt;</pre></details>
+    </section>
+
+    <!-- 12 FORMS -->
+    <section class="pg-sec" id="forms">
+      <header><span class="num">12</span><h2 class="jjb-h2">表单与 FAQ</h2><span class="src src--live">线上</span></header>
+      <p class="lead">Figma 组件库的表单区还是空的，这里沿用线上规则：44px 高、4px 圆角、1px 描边，聚焦时黑描边加蓝色焦点环，错误用红色描边和说明文字。FAQ 是新版样式：左侧分类，右侧 Bebas 问题，用 +/– 图标，答案灰色 14px。</p>
+      <div class="two">
+        <div style="display:grid;gap:16px">
+          <div class="jjb-field"><label for="f1">Email</label><input class="jjb-input" id="f1" placeholder="you@example.com"><div class="jjb-field__msg">We'll send your order updates here.</div></div>
+          <div class="jjb-field is-error"><label for="f2">Order number</label><input class="jjb-input" id="f2" value="JJB-12"><div class="jjb-field__msg">Order number should look like JJB-123456.</div></div>
+          <button class="jjb-btn jjb-btn--primary" style="justify-self:start">Track order</button>
+        </div>
+      </div>
+      <div class="pg-sub">FAQ <span class="src src--new">新版</span></div>
+      <div class="jjb-faq">
+        <ul class="jjb-faq__cats"><li><button aria-current="true">All</button></li><li><button>Sizing</button></li><li><button>Shipping</button></li><li><button>Customization</button></li><li><button>Pricing</button></li></ul>
+        <div>
+          <details open><summary>How big is my miniature?</summary><div>示例回答。尺寸、时效等硬事实以 brand-constants.md 为准，不在这里写死。</div></details>
+          <details><summary>How long does it take? Can I track my order?</summary><div>示例回答。</div></details>
+          <details><summary>Will my figurine actually look like my photo?</summary><div>示例回答。</div></details>
+        </div>
+      </div>
+      <details class="snippet"><summary>FAQ Markup</summary><pre>&lt;div class="jjb-faq"&gt;
+  &lt;ul class="jjb-faq__cats"&gt;&lt;li&gt;&lt;button aria-current="true"&gt;All&lt;/button&gt;&lt;/li&gt;…&lt;/ul&gt;
+  &lt;div&gt;&lt;details open&gt;&lt;summary&gt;Question?&lt;/summary&gt;&lt;div&gt;Answer.&lt;/div&gt;&lt;/details&gt;…&lt;/div&gt;
+&lt;/div&gt;</pre></details>
+    </section>
+
+    <!-- 12 FEEDBACK -->
+    <section class="pg-sec" id="feedback">
+      <header><span class="num">13</span><h2 class="jjb-h2">反馈与浮层</h2><span class="src src--f">F</span></header>
+      <p class="lead">toast：80% 黑底、12px 圆角，带淡蓝光晕阴影。弹窗：白底、20px 圆角、宽 300，右上角 35px 关闭钮。底部抽屉：顶部两角 20px，向上的柔和阴影。</p>
+      <div class="stage stage--sunken" style="align-items:flex-start">
+        <div class="jjb-toast"><svg class="jjb-icon jjb-icon--20"><use href="#i-check"/></svg>Added to cart</div>
+        <div class="jjb-dialog">
+          <button class="jjb-dialog__close" aria-label="Close"><svg class="jjb-icon jjb-icon--20"><use href="#i-close"/></svg></button>
+          <div class="jjb-h3" style="margin-top:8px">Delete this model?</div>
+          <p class="jjb-body-s jjb-muted">This model hasn't been ordered yet. Deleting it can't be undone.</p>
+          <div style="display:grid;gap:10px"><button class="jjb-btn jjb-btn--primary jjb-btn--s">Delete</button><button class="jjb-btn jjb-btn--outline jjb-btn--s">Keep it</button></div>
+        </div>
+        <div class="jjb-sheet" style="width:300px;padding:20px">
+          <div style="width:36px;height:4px;border-radius:4px;background:var(--jjb-neutral-400);margin:0 auto 16px"></div>
+          <div class="jjb-h3" style="font-family:var(--jjb-font-body);font-weight:700;text-transform:none;font-size:16px">Choose size</div>
+          <div style="display:flex;gap:6px;margin-top:12px"><button class="jjb-option" aria-pressed="true">6 cm</button><button class="jjb-option" aria-pressed="false">10 cm</button><button class="jjb-option" aria-pressed="false">15 cm</button></div>
+        </div>
+      </div>
+      <div style="margin-top:14px"><button class="jjb-btn jjb-btn--secondary jjb-btn--s" id="show-toast">触发 toast</button></div>
+    </section>
+
+    <!-- 13 APP -->
+    <section class="pg-sec" id="app">
+      <header><span class="num">14</span><h2 class="jjb-h2">App 专属</h2><span class="src src--app">App</span></header>
+      <p class="lead">App 按钮三档 36 / 44 / 54，没有 hover 态；次按钮白底。风格模板卡用各自的模板色做底，底部叠同色相深色渐变。独立站的模板入口直接用带模板色的图片（见 11 首页区块），不在 CSS 里另写模板色。</p>
+      <div class="stage stage--sunken">
+        <button class="jjb-app-btn jjb-app-btn--primary jjb-app-btn--l">Generate</button>
+        <button class="jjb-app-btn jjb-app-btn--primary">Generate</button>
+        <button class="jjb-app-btn jjb-app-btn--primary is-active">Pressed</button>
+        <button class="jjb-app-btn jjb-app-btn--primary" disabled>Disabled</button>
+        <button class="jjb-app-btn jjb-app-btn--secondary">Remix</button>
+        <button class="jjb-app-btn jjb-app-btn--secondary jjb-app-btn--s">Small 36</button>
+        <button class="jjb-app-btn jjb-app-btn--ghost"><svg class="jjb-icon jjb-icon--20" style="width:16px;height:16px"><use href="#i-share"/></svg>Share</button>
+      </div>
+      <div class="pg-sub">风格模板色</div>
+      <div class="tpl-grid" id="tpl-grid"></div>
+      <div class="pg-sub">贴纸素材规范</div>
+      <img src="assets/app/sticker-pack-spec.png" alt="贴纸素材规范：封面图和素材图均 500×500 png，素材图四周 30px，白色外描边 10px" style="width:100%;border-radius:16px">
+      <p class="jjb-body-s jjb-muted">封面图 500×500 png；素材图 500×500 png，四周留 30px，白色外描边 10px。</p>
+    </section>
+
+    <!-- 14 PAGE -->
+    <section class="pg-sec" id="page">
+      <header><span class="num">15</span><h2 class="jjb-h2">页面拼装示例</h2></header>
+      <p class="lead">一个新落地页的最小骨架：公告栏 → 毛玻璃页头压首图 → 区块（居中标题 + View All + 网格）→ 黑底页脚。区块上下各 50px（手机 32px），首页区块全宽，左右只留 30px（手机 20px）。新页面从这里复制结构，再替换内容。</p>
+      <div class="nav-frame">
+        <div class="jjb-announce"><span>示例公告</span></div>
+        <div style="position:relative;height:420px;background:url('https://jujubit.ai/cdn/shop/collections/Figurines.jpg?width=1600') center/cover, var(--jjb-dark-grey);display:grid;align-content:end;padding:40px 57px 60px;color:#fff">
+          <header class="jjb-nav jjb-nav--glass" style="position:absolute;inset:0 0 auto">
+            <svg class="jjb-nav__logo" viewBox="0 0 89 22"><use href="#logo-wordmark"/></svg>
+            <nav class="jjb-nav__menu"><a class="jjb-nav__link" href="#nav">Create</a><a class="jjb-nav__link" href="#nav">Templates</a><a class="jjb-nav__link" href="#nav">Categories</a><a class="jjb-nav__link" href="#nav">How it works</a><a class="jjb-nav__link" href="#nav">About us</a></nav>
+            <div class="jjb-nav__actions">
+            <button class="jjb-nav__login" type="button">Log In</button>
+            <button class="jjb-nav__icon" aria-label="Search"><svg><use href="#i-search"/></svg></button>
+            <button class="jjb-nav__icon" aria-label="Account"><svg><use href="#i-user"/></svg></button>
+            <button class="jjb-nav__icon" aria-label="Cart"><svg><use href="#i-cart_outline"/></svg><span class="jjb-badge-count">2</span></button>
+            <a class="jjb-btn jjb-btn--primary jjb-nav__create" href="#nav"><svg class="jjb-icon jjb-icon--20"><use href="#i-sparkle"/></svg>Create</a>
+          </div>
+          </header>
+          <div style="position:relative">
+            <p style="margin:0 0 20px;font-size:26px;line-height:1.5;max-width:540px;font-weight:600">Turn your photo into a custom figurine</p>
+            <a class="jjb-btn jjb-btn--primary jjb-btn--hero" href="#page">Create Your Own</a>
+          </div>
+        </div>
+        <div class="jjb-section" style="padding-inline:30px;background:#fff">
+          <div class="jjb-section-head"><h3 class="jjb-section-head__title">Trending Products</h3><a class="jjb-section-head__more" href="#page">View All</a></div>
+          <div class="jjb-grid" id="product-grid-2"></div>
+        </div>
+        <footer class="jjb-footer">
+          <div class="jjb-footer__grid">
+            <div><svg viewBox="0 0 89 22" style="height:30px;color:var(--jjb-brand-500)"><use href="#logo-wordmark"/></svg></div>
+            <div><h4 class="jjb-footer__head">Company</h4><ul class="jjb-footer__links"><li><a href="#page">Products</a></li><li><a href="#page">About Us</a></li><li><a href="#page">Contact Us</a></li></ul></div>
+            <div><h4 class="jjb-footer__head">Policies</h4><ul class="jjb-footer__links"><li><a href="#page">Shipping Policy</a></li><li><a href="#page">Refund &amp; Exchange</a></li></ul></div>
+            <div><h4 class="jjb-footer__head">Support</h4><ul class="jjb-footer__links"><li><a href="#page">Tracking My Order</a></li><li><a href="#page">FAQs</a></li></ul></div>
+            <div><p style="margin:0 0 16px">Subscribe to get special offers.</p><label class="jjb-footer__email"><svg class="jjb-icon"><use href="#i-mail"/></svg><input placeholder="Enter your email" aria-label="Email"></label></div>
+          </div>
+          <div class="jjb-footer__legal">页脚链接、社媒账号以 brand-constants.md 为准</div>
+        </footer>
+      </div>
+    </section>
+
+    <!-- 15 ASSETS -->
+    <section class="pg-sec" id="assets">
+      <header><span class="num">16</span><h2 class="jjb-h2">素材清单</h2></header>
+      <p class="lead">所有素材都在仓库里，可直接引用。完整清单和来源见 <code>assets/README.md</code>。</p>
+      <table class="asset-table">
+        <tr><th>素材</th><th>路径</th><th>用途</th></tr>
+        <tr><td>Token / 组件样式</td><td><code>tokens.css</code> · <code>components.css</code></td><td>每个新页面必引</td></tr>
+        <tr><td>字体</td><td><code>assets/fonts/</code></td><td>Bebas Neue、Outfit 可变字体（OFL）</td></tr>
+        <tr><td>Logo</td><td><code>assets/logo/</code></td><td>字标 SVG（橙/白）、3D 字标、位图</td></tr>
+        <tr><td>图标</td><td><code>assets/icons/*.svg</code> · <code>sprite.svg</code></td><td>58 个线性图标</td></tr>
+        <tr><td>App icon / 贴纸规范</td><td><code>assets/app/</code></td><td>App icon 两版、贴纸规范图</td></tr>
+        <tr><td>品牌动效、App 动效</td><td><code>assets/motion/*.mp4</code></td><td>720p 预览版；上线用原片找设计团队</td></tr>
+        <tr><td>Figma</td><td>组件库 · 规范对外 · 独立站稿</td><td><a href="https://www.figma.com/design/pVvAxy9wIEWS6KONJ1KzoI/" target="_blank" rel="noopener">组件库</a> · <a href="https://www.figma.com/design/B5D8pHkGH2iqqUERI15XR3/" target="_blank" rel="noopener">规范对外</a> · <a href="https://www.figma.com/design/TmoUzW1mvnPQqFcuKjMnZl/?node-id=177-928" target="_blank" rel="noopener">独立站稿</a></td></tr>
+      </table>
+    </section>
+    <!-- 17 AI -->
+    <section class="pg-sec" id="ai">
+      <header><span class="num">17</span><h2 class="jjb-h2">给 AI 用</h2></header>
+      <p class="lead">把本规范装成 agent skill。装好后对 Claude Code 或 Codex 说“按 JuJuBit 设计规范做一个 xx 页面”，它会自动读取规则、token、组件和素材。skill 跟着本页自动更新，重新跑一次安装命令就能拿到最新版。</p>
+      <div class="pg-sub">1. 一键安装（Claude Code + Codex，macOS / Linux）</div>
+      <div class="ai-cmd"><code>curl -fsSL https://playverseai.com/design/install.sh | bash</code><button class="jjb-btn jjb-btn--secondary jjb-btn--s" data-copy="curl -fsSL https://playverseai.com/design/install.sh | bash" data-label="安装命令">复制</button></div>
+      <p class="note">装到 <code>~/.claude/skills/jujubit-design-system</code> 和 <code>~/.codex/skills/jujubit-design-system</code>。只装一个：命令末尾加 <code>-s claude</code> 或 <code>-s codex</code>。装完重启 agent。</p>
+      <div class="pg-sub">2. 手动下载</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="jjb-btn jjb-btn--primary jjb-btn--s" href="downloads/jujubit-design-system-skill.zip" download>下载 skill 包（zip）</a>
+        <a class="jjb-btn jjb-btn--outline jjb-btn--s" href="skill/jujubit-design-system/SKILL.md" target="_blank" rel="noopener">查看 SKILL.md</a>
+      </div>
+      <p class="note">解压后把 <code>jujubit-design-system</code> 文件夹放进 agent 的 skills 目录。包里带 tokens.css、components.css、字体、Logo 和图标，离线也能用。</p>
+      <div class="pg-sub">3. 不装 skill，直接给 agent 这段话</div>
+      <div class="ai-cmd"><code>按 JuJuBit 设计规范做这个页面。先读 https://playverseai.com/design/skill/jujubit-design-system/SKILL.md ，页面引用 https://playverseai.com/design/tokens.css 和 https://playverseai.com/design/components.css ，组件 markup 从 https://playverseai.com/design/ 复制，不要新增色值、字号、圆角。</code><button class="jjb-btn jjb-btn--secondary jjb-btn--s" data-copy="按 JuJuBit 设计规范做这个页面。先读 https://playverseai.com/design/skill/jujubit-design-system/SKILL.md ，页面引用 https://playverseai.com/design/tokens.css 和 https://playverseai.com/design/components.css ，组件 markup 从 https://playverseai.com/design/ 复制，不要新增色值、字号、圆角。" data-label="提示词">复制</button></div>
+      <div class="pg-sub">修改规范</div>
+      <p class="note">源文件在 <a href="https://github.com/YishanCoding/jujubit-design-system" target="_blank" rel="noopener">github.com/YishanCoding/jujubit-design-system</a>。改动 push 到 main 后自动构建，约 5 分钟后本页和 skill 包更新。</p>
+    </section>
+  </main>
+</div>
+<div class="jjb-toast copied" id="copied">已复制</div>
+
+<script>
+const ICONS = ["add", "add_square", "album", "back", "box", "camera_filled", "camera_outline", "cart", "cart_outline", "chat", "check", "check_small", "chevron_down", "chevron_left", "chevron_right", "close", "close_alert", "close_circle", "compass", "copy", "delete", "dislike", "edit", "edit_refine", "edit_square", "favorite", "heart", "inspire", "language", "like", "loading", "magic", "magic_pencil", "magic_pencil_sparkles", "magic_wand", "mail", "menu", "minus", "more_horizontal", "my", "notification", "payment", "redo", "search", "send", "setting", "share", "shield", "size", "sparkle", "sparkles", "templet", "texture", "truck", "undo", "user", "view_2d", "view_3d"];
+const $ = (s, r = document) => r.querySelector(s);
+const toastEl = $('#copied');
+function copy(text, label) {
+  (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).catch(() => {});
+  toastEl.textContent = '已复制 ' + (label || text);
+  toastEl.classList.add('show'); clearTimeout(copy.t); copy.t = setTimeout(() => toastEl.classList.remove('show'), 1400);
+}
+
+const SW = {
+  brand: [['--jjb-brand-500','#FF5A11','主按钮、选中态'],['--jjb-brand-400','#FF7B41','主按钮 hover'],['--jjb-brand-600','#E54913','主按钮 pressed'],
+    ['--jjb-brand-300','#FF9C70','App 主按钮 disabled'],['--jjb-brand-100','#FFF7F3','浅橙填充'],['--jjb-brand-light-bg','#FFF1E0','品牌浅底'],['--jjb-dark-grey','#141614','品牌深灰底']],
+  neutral: [['--jjb-neutral-100','#FFFFFF','白'],['--jjb-neutral-200','#F9F9F9','下沉底'],['--jjb-neutral-300','#F0F0F0','边框/分隔线'],
+    ['--jjb-neutral-400','#DCDCDC',''],['--jjb-neutral-500','#CCCCCC','Web 按钮 disabled'],['--jjb-neutral-800','#444444','黑按钮 hover'],['--jjb-neutral-1000','#000000','黑']],
+  text: [['--jjb-text-primary','#000000','正文/标题'],['--jjb-text-secondary','rgba(0,0,0,.7)','次要文字'],['--jjb-text-tertiary','rgba(0,0,0,.6)','说明、品牌副标'],
+    ['--jjb-text-quartus','rgba(0,0,0,.4)','占位、禁用'],['--jjb-text-on-dark-secondary','rgba(255,255,255,.8)','深底次要','dark'],['--jjb-text-on-dark-tertiary','rgba(255,255,255,.6)','深底说明','dark']],
+  surface: [['--jjb-surface-media','#F5F5F5','商品图片区底'],['--jjb-surface-sunken','#F9F9F9','下沉区块'],['--jjb-surface-inverse','#000000','页脚、公告栏'],
+    ['--jjb-mask','rgba(0,0,0,.2)','深色导航底 + blur'],['--jjb-mask-light','rgba(0,0,0,.1)','浅遮罩'],['--jjb-border','#F0F0F0','默认边框']],
+  func: [['--jjb-sale','#DA3217','折扣价、Sale 标签'],['--jjb-error','#F03742','表单错误'],['--jjb-focus','#4A9AFC','键盘焦点环'],['--jjb-stock-ok','#54C63A','有货'],['--jjb-stock-low','#F4AF29','库存紧张']],
+  accent: [['--jjb-accent-purple','#E7B8FF',''],['--jjb-accent-blue','#98D4FF',''],['--jjb-accent-yellow','#FFCD6D',''],['--jjb-accent-orange','#F89719',''],['--jjb-accent-red','#FF5353','']],
+  gradient: [['--jjb-gradient-promo','促销条','App 促销条'],['--jjb-gradient-header-scrim','首图顶部遮罩','叠在照片上','photo'],['--jjb-gradient-logo-dark','Logo 深色底','']]
+};
+document.querySelectorAll('[data-swatches]').forEach(grid => {
+  grid.innerHTML = SW[grid.dataset.swatches].map(([v, val, use, mode]) => {
+    const bg = mode === 'dark' ? `background:#000;` : mode === 'photo' ? `background:#888;` : '';
+    const chip = mode === 'dark' ? `<div class="sw__chip" style="${bg}display:grid;place-items:center"><span style="color:var(${v});font-weight:600">Aa</span></div>`
+      : `<div class="sw__chip ${/rgba/.test(val) ? 'checker' : ''}" style="${bg}"><div style="height:100%;background:var(${v})"></div></div>`;
+    return `<button class="sw" data-copy="var(${v})">${chip}<div class="sw__body"><span class="sw__name mono">${v.replace('--jjb-','')}</span><span class="sw__val">${val}</span>${use ? `<span class="sw__use">${use}</span>` : ''}</div></button>`;
+  }).join('');
+});
+
+const TW = [['Headline L','--jjb-type-headline-l','56 / 32','Bebas 400 · 1.2','display','Make it yours'],['Headline M','--jjb-type-headline-m','30 / 24','Bebas 400 · 1.2','display','Shop by style'],
+  ['Headline S','--jjb-type-headline-s','22 / 18','Bebas 400 · 导航、tab','display','Customize'],['Eyebrow','--jjb-type-body-s','14 · 0.2em · 大写','Outfit 400','eyebrow','Top picks'],
+  ['Body L','--jjb-type-body-l','18','Outfit 400 · 1.6 · 商品标题','body','Turn your favorite photo into a hand-finished figurine.'],
+  ['Body M','--jjb-type-body-m','16','Outfit 400/600 · 默认正文','body','Each piece is printed and painted after you approve the preview.'],
+  ['Body S','--jjb-type-body-s','14','Outfit 400 · 辅助说明','body','Preview images are AI generated and may differ slightly from the final piece.'],
+  ['Foot','--jjb-type-foot','12','Outfit 400 · 注释','body','Prices shown in USD.'],['Mini','--jjb-type-mini','12 · 大写','Outfit · 标签','mini','Limited edition']];
+$('#type-web').innerHTML = TW.map(([n, v, size, spec, kind, txt]) => {
+  const style = kind === 'display' ? `font-family:var(--jjb-font-display);font-size:var(${v});line-height:1.2;text-transform:uppercase`
+    : kind === 'eyebrow' ? `font-size:14px;letter-spacing:.2em;text-transform:uppercase` : kind === 'mini' ? `font-size:12px;text-transform:uppercase;letter-spacing:.08em;font-weight:700`
+    : `font-size:var(${v});line-height:1.6`;
+  return `<div class="type-row"><div class="spec copyable" data-copy="var(${v})"><b>${n}</b><br>${size}px<br>${spec}<br><code>${v}</code></div><div style="${style}">${txt}</div></div>`;
+}).join('');
+const TA = [['Headline L','24','700'],['Headline M','22','700'],['Headline S','16','700'],['Body M','14','400 / 600'],['Body S','12','400'],['Foot','10','400'],['Button L / M / S','16 / 14 / 12','600']];
+$('#type-app').innerHTML = TA.map(([n, s, w]) => `<div class="type-row"><div class="spec"><b>${n}</b><br>${s}px · Outfit ${w}</div><div style="font-size:${s.split(' ')[0]}px;font-weight:${w.split(' ')[0]}">Create your own collectible</div></div>`).join('');
+
+$('#space-scale').innerHTML = [4,8,12,16,20,24,30,40,64,100].map((px, i) =>
+  `<div class="space-row copyable" data-copy="var(--jjb-space-${i+1})"><code>--jjb-space-${i+1}</code><div class="bar" style="width:${px*2}px"></div><span>${px}px</span></div>`).join('');
+$('#radius-grid').innerHTML = [['xs','4px','输入框'],['sm','8px','提示条'],['md','12px','toast、徽章'],['lg','16px','作品卡、半屏'],['xl','20px','弹窗、大卡片'],['pill','100px','按钮、胶囊'],['full','50%','圆钮、头像']]
+  .map(([k, v, u]) => `<div class="radius-item copyable" data-copy="var(--jjb-radius-${k})"><div style="border-radius:var(--jjb-radius-${k})${k==='full'?';width:80px':''}"></div><span><code>radius-${k}</code> ${v}<br>${u}</span></div>`).join('');
+$('#shadow-grid').innerHTML = [['float','悬浮圆钮'],['sheet','底部抽屉'],['soft','小浮层按钮'],['toast','toast']]
+  .map(([k, u]) => `<div class="shadow-item copyable" data-copy="var(--jjb-shadow-${k})"><div style="box-shadow:var(--jjb-shadow-${k})"></div><span><code>shadow-${k}</code><br>${u}</span></div>`).join('');
+
+const DUR = [['micro',200],['base',300],['entrance',500],['hero',800]];
+$('#ease-demo').innerHTML = DUR.map(([k, ms]) => `<div class="track" data-ms="${ms}"><div class="dot" style="transition:left var(--jjb-dur-${k}) var(--jjb-ease)"></div><span>--jjb-dur-${k} · ${ms}ms</span></div>`).join('');
+$('#play-ease').onclick = () => document.querySelectorAll('.track').forEach(t => t.classList.toggle('go'));
+function playReveal() {
+  const items = [...document.querySelectorAll('#reveal-box .jjb-reveal')];
+  items.forEach(el => el.classList.remove('is-in'));
+  requestAnimationFrame(() => requestAnimationFrame(() => items.forEach((el, i) => { el.style.transitionDelay = Math.min(i * 60, 600) + 'ms'; el.classList.add('is-in'); })));
+}
+$('#play-reveal').onclick = playReveal;
+new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { playReveal(); o.disconnect(); } }), { threshold: .4 }).observe($('#reveal-box'));
+
+const RAW = 'assets/motion/';
+const VIDS = [['品牌动效 横版 1920×1080','brand-landscape.mp4'],['品牌动效 独立站方版 1200×1200','brand-square.mp4'],['品牌动效 独立站竖版 1080×1920','brand-portrait.mp4'],
+  ['App 登录页 方版 快','app-login-fast.mp4'],['App 登录页 方版 慢','app-login-slow.mp4'],['App 开屏 1080×1920','app-splash.mp4'],['App 下滑刷新','app-pull-refresh.mp4'],
+  ['骨架屏加载','skeleton.mp4'],['列表点赞','like-list.mp4'],['详情页点赞','like-detail.mp4'],['换头像','avatar-change.mp4'],
+  ['灵感饼干按钮','inspire-cookie.mp4'],['创作按钮弥散光效','create-glow.mp4'],['内容流上滑新手引导','feed-swipe-guide.mp4'],['撒花','confetti.mp4']];
+$('#video-grid').innerHTML = VIDS.map(([n, f]) => `<figure><video src="${RAW}${f}" muted loop playsinline preload="metadata" controls></video><figcaption><b>${n}</b>${f}</figcaption></figure>`).join('');
+
+function renderIcons() {
+  const q = $('#icon-q').value.trim().toLowerCase();
+  $('#icon-grid').innerHTML = ICONS.filter(n => n.includes(q)).map(n =>
+    `<button class="icon-cell" data-copy='<svg class="jjb-icon" aria-hidden="true"><use href="#i-${n}"/></svg>' data-label="${n}"><svg><use href="#i-${n}"/></svg>${n}</button>`).join('');
+}
+$('#icon-q').oninput = renderIcons; renderIcons();
+document.querySelectorAll('[data-icon-bg]').forEach(b => b.onclick = () => {
+  document.querySelectorAll('[data-icon-bg]').forEach(x => x.setAttribute('aria-pressed', x === b));
+  $('#icon-grid').classList.toggle('dark', b.dataset.iconBg === 'dark');
+});
+document.querySelector('[data-icon-color]').onclick = e => {
+  const on = e.currentTarget.getAttribute('aria-pressed') !== 'true';
+  e.currentTarget.setAttribute('aria-pressed', on);
+  $('#icon-grid').style.setProperty('--icon-color', on ? 'var(--jjb-brand-500)' : '#000');
+};
+
+const CDN = 'https://cdn.shopify.com/s/files/1/0954/0884/9267/files/';
+const SHOP = 'https://jujubit.ai/cdn/shop/';
+const PRODUCTS = [['crimson-monarch-detailed-sculpt-miniature-for-rpg-display-collection-0%.png?v=1784021187','Crimson Monarch-Detailed Sculpt Miniature for RPG, Display & Collection','$24.99','',''],
+  ['shadow-knight-detailed-sculpt-miniature-for-rpg-display-collection-0%.png?v=1784021429','Shadow Knight-Detailed Sculpt Miniature for RPG, Display & Collection','$24.99','',''],
+  ['dark-lords-detailed-sculpt-miniature-for-rpg-display-collection-0%.png?v=1784024433','Dark Lords-Detailed Sculpt Miniature for RPG, Display & Collection','$19.99','$24.99','Sale'],
+  ['azure-sentinel-detailed-sculpt-miniature-for-rpg-display-collection-0%.png?v=1784027198','Azure Sentinel-Detailed Sculpt Miniature for RPG, Display & Collection','$24.99','','New']];
+const card = ([img, t, p, c, tag]) => `<a class="jjb-card" href="#commerce"><span class="jjb-card__media"><img src="${SHOP}files/${img.replace('%','1')}&width=800" alt="${t}" loading="lazy" width="800" height="800"><img src="${SHOP}files/${img.replace('%','2')}&width=800" alt="" loading="lazy" width="800" height="800">${tag ? `<span class="jjb-tag ${tag === 'Sale' ? 'jjb-tag--sale' : 'jjb-tag--brand'}">${tag}</span>` : ''}</span><span class="jjb-card__title">${t}</span><span class="jjb-card__price">${c ? `<span class="is-sale">${p}</span><s>${c}</s>` : p}</span></a>`;
+$('#product-grid').innerHTML = PRODUCTS.map(card).join('');
+$('#product-grid-2').innerHTML = PRODUCTS.map(card).join('');
+$('#tpl-track').innerHTML = [['TRPG Miniature','Dnd_character.png?v=1784126008'],['Couple Series','stylized_couple.png?v=1784278407'],['Mini Pop','MINI_Pop.png?v=1784125757'],['Cinematic Style','f2d038e59cb6b96971ca0bea0afccb22.png?v=1784278407'],['Realistic Style','stylized_couple-1.png?v=1784278407']]
+  .map(([n, f]) => `<a class="jjb-tpl-card" href="#blocks"><img src="${SHOP}files/${f}&width=720" alt="${n}" loading="lazy"><span class="jjb-tpl-card__footer"><span class="jjb-tpl-card__name">${n}</span><span class="jjb-btn jjb-btn--white jjb-btn--pill">Create Now</span></span></a>`).join('');
+$('#cat-grid').innerHTML = [['TRPG','Figurines.jpg?v=1784280214','SHOP'],['FDM Lamp','FDM_Decor.jpg?v=1784280517','EXPLORE'],['Keycaps','Keycaps_ac0280d1-97e4-4223-89b6-f58a7e9a808a.jpg?v=1784280534','SHOP'],['Ring Holders','75c4ccb8-ae13-4c86-8c73-a04aeb06b669.png?v=1791826769','Customize'],['Keychains','e16963b2-494a-4fac-9b90-2caa7cf20966.png?v=1791826766','Customize']]
+  .map(([n, f, b]) => `<a class="jjb-cat-card" href="#blocks"><span class="jjb-cat-card__img"><img src="${SHOP}collections/${f}&width=526" alt="" loading="lazy"></span><span class="jjb-cat-card__title">${n}</span><span class="jjb-btn jjb-btn--outline jjb-btn--pill">${b}</span></a>`).join('');
+$('#trust').innerHTML = [['4a945a3808ddde45e855ac7d14575596','Quality You Can Trust.'],['720efd548f7576977dc6f6561cdd317c','Made to Order, Just For You.'],['fadbbc13b8eba876429651ce612741d0','Verified Buyer Reviews.'],['026fb14113621f62c25008ad230a47ca','Worldwide Shipping with Tracking.'],['e4f6a130d16c073430d1dbe0b71b03f6','Safe & Secure Payment.']]
+  .map(([f, t]) => `<div class="jjb-trust__card"><img src="${SHOP}files/${f}.png?v=1784107313&width=96" alt=""><p>${t}</p></div>`).join('');
+const RCDN = 'https://cdn.shopify.com/s/files/1/0954/0884/9267/files/';
+$('#reviews').innerHTML = [['154-1782441000__1782440995349-2105__original.jpg','studio-bfd9025e.png?v=1784188341',4],['152-1783019752__1783019745699-3196__original.jpg','6_6a1c67a8-5fc0-4653-b1d5-e15ffef93b15.png?v=1784172563',5],['150-1783374837__1783374831416-img_4900__original.jpg','user13_b0d632e0-808f-4ff7-bf71-b1d42419d967.png?v=1784173143',5],['148-1783917013__6eef4e07-718a-4f2b-90eb-3b549b298f8e__original.jpg','19_1079d30e-8b84-407d-961b-b08d5ebc8481.png?v=1784172563',5]]
+  .map(([img, av, n], i) => `<article class="jjb-review"><div class="jjb-review__img"><img src="${RCDN}${img}?v=1784202163&width=600" alt="Customer photo" loading="lazy"></div><div class="jjb-review__stars" aria-label="${n} stars">${'★'.repeat(n)}<span style="color:#ddd">${'★'.repeat(5 - n)}</span></div><p class="jjb-review__text">示例评价文案，最多显示三行。真实评价以 Judge.me 数据为准，不要手写评分。</p><div class="jjb-review__author"><img src="${SHOP}files/${av}&width=48" alt="">Customer ${i + 1}</div><a class="jjb-review__more" href="#blocks">More Workflow</a></article>`).join('');
+document.querySelectorAll('#steps .jjb-step').forEach(st => st.onclick = () => document.querySelectorAll('#steps .jjb-step').forEach(x => x.setAttribute('aria-current', x === st)));
+document.querySelectorAll('.jjb-tabs[role=tablist]').forEach(tl => tl.querySelectorAll('.jjb-chip').forEach(b => b.onclick = () => tl.querySelectorAll('.jjb-chip').forEach(x => x.setAttribute('aria-selected', x === b))));
+document.querySelectorAll('.jjb-faq__cats button').forEach(b => b.onclick = () => document.querySelectorAll('.jjb-faq__cats button').forEach(x => x.setAttribute('aria-current', x === b)));
+document.querySelectorAll('.jjb-dots').forEach(d => d.querySelectorAll('button').forEach(b => b.onclick = () => d.querySelectorAll('button').forEach(x => x.setAttribute('aria-current', x === b))));
+
+$('#tpl-grid').innerHTML = [['Dnd Character','#EF507D','rgba(128,16,48,.4)'],['Dnd Creature','#F2A8DC','rgba(150,39,117,.4)'],['Mini Pop','#7CE1AC','rgba(36,162,96,.4)'],
+  ['Stylized Couple','#D776FC','rgba(104,21,136,.4)'],['Stylized Couple','#FDCC46','rgba(135,108,34,.4)'],['Pixar','#3571E6','rgba(20,50,130,.4)']]
+  .map(([n, c, g]) => `<div class="tpl copyable" data-copy="${c}" style="background:${c};--g:${g}"><span>${n}<br><small style="font-weight:400;opacity:.8">${c}</small></span></div>`).join('');
+
+document.querySelectorAll('.stage .jjb-option').forEach(o => o.onclick = () => o.parentElement.querySelectorAll('.jjb-option').forEach(x => x.setAttribute('aria-pressed', x === o)));
+$('#show-toast').onclick = () => copy('', '— toast 示例');
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-copy]');
+  if (el) copy(el.dataset.copy, el.dataset.label || el.dataset.copy);
+});
+</script>
+</body>
+</html>

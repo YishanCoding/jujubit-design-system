@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JuJuBit Design Playground</title>
+<!-- 由 build.py 从 playground.src.html 生成，改源文件不要改产物。仓库：github.com/YishanCoding/jujubit-design-system -->
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="components.css">
+<style>
+  body { margin: 0; background: var(--jjb-surface); }
+  .pg { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
+  .pg-side { position: sticky; top: 0; height: 100vh; overflow: auto; padding: 28px 20px; border-right: 1px solid var(--jjb-border);
+    background: #fff; }
+  .pg-side .jjb-wordmark { width: 100px; height: auto; color: var(--jjb-brand-500); }
+  .pg-side nav { display: grid; gap: 2px; margin-top: 28px; }
+  .pg-side a { color: var(--jjb-text-secondary); text-decoration: none; font-size: 14px; padding: 7px 10px; border-radius: 8px;
+    transition: background-color var(--jjb-dur-micro) var(--jjb-ease), color var(--jjb-dur-micro) var(--jjb-ease); }
+  .pg-side a:hover { background: var(--jjb-neutral-200); color: #000; }
+  .pg-side .meta { margin-top: 28px; font-size: 12px; color: var(--jjb-text-tertiary); line-height: 1.6; }
+  .pg-main { min-width: 0; padding: 0 48px 120px; }
+  .pg-hero { padding: 64px 0 40px; border-bottom: 1px solid var(--jjb-border); position: relative; overflow: hidden; }
+  .pg-hero .jjb-display { position: absolute; right: -10px; top: 0; }
+  .pg-hero p { max-width: 720px; color: var(--jjb-text-secondary); }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .src { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 100px; font-size: 11px;
+    font-weight: 600; letter-spacing: .04em; white-space: nowrap; }
+  .src--f { background: var(--jjb-brand-100); color: var(--jjb-brand-600); }
+  .src--fs { background: #EEF6FF; color: #1D6FD1; }
+  .src--live { background: #FFF6E0; color: #9A6200; }
+  .src--app { background: #F3EBFF; color: #7A3FC4; }
+  .src--new { background: #E8F8EE; color: #17803D; }
+  .note { margin: 12px 0 0; font-size: 13px; color: var(--jjb-text-tertiary); }
+  .hiw-demo { background: #000; display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; padding: 40px; color: #fff; }
+  .hiw-demo > img { width: 100%; max-width: 420px; }
+  .cat-grid { grid-template-columns: repeat(5, 1fr); }
+  .pg-sec { padding-top: 72px; scroll-margin-top: 8px; }
+  .pg-sec > header { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+  .pg-sec > header .num { font: 400 22px/1 var(--jjb-font-display); color: var(--jjb-brand-500); }
+  .pg-sec > p.lead { color: var(--jjb-text-secondary); max-width: 760px; margin: 0 0 28px; }
+  .pg-sub { font: 600 13px/1.2 var(--jjb-font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--jjb-text-tertiary);
+    margin: 36px 0 14px; display: flex; gap: 10px; align-items: center; }
+  .rules { margin: 16px 0 0; padding: 16px 20px; border-radius: 12px; background: var(--jjb-neutral-200); font-size: 14px; }
+  .rules li { margin: 4px 0; }
+  .rules b { color: #000; }
+  code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+  .copyable { cursor: copy; }
+  /* swatches */
+  .sw-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .sw { display: flex; flex-direction: column; border-radius: 12px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--jjb-border); background: #fff; text-align: left;
+    border: 0; padding: 0; font: inherit; cursor: copy; transition: transform var(--jjb-dur-micro) var(--jjb-ease); }
+  .sw:hover { transform: translateY(-2px); }
+  .sw__chip { height: 72px; box-shadow: inset 0 -1px 0 var(--jjb-border); }
+  .sw__body { padding: 10px 12px 12px; display: grid; gap: 2px; }
+  .sw__name { font-size: 13px; font-weight: 600; }
+  .sw__val, .sw__use { font-size: 11px; color: var(--jjb-text-tertiary); }
+  .checker { background-image: linear-gradient(45deg,#eee 25%,transparent 25%),linear-gradient(-45deg,#eee 25%,transparent 25%),
+    linear-gradient(45deg,transparent 75%,#eee 75%),linear-gradient(-45deg,transparent 75%,#eee 75%);
+    background-size: 12px 12px; background-position: 0 0,0 6px,6px -6px,-6px 0; }
+  /* type */
+  .type-row { display: grid; grid-template-columns: 220px 1fr; gap: 24px; align-items: baseline; padding: 14px 0;
+    border-bottom: 1px solid var(--jjb-border); }
+  .type-row .spec { font-size: 12px; color: var(--jjb-text-tertiary); line-height: 1.5; }
+  .type-row .spec b { color: #000; font-size: 13px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .font-card { padding: 24px; border-radius: 20px; background: var(--jjb-neutral-200); }
+  .font-card .big { font-size: 64px; line-height: 1; }
+  /* scale */
+  .space-row { display: flex; align-items: center; gap: 16px; padding: 6px 0; font-size: 13px; }
+  .space-row .bar { height: 14px; background: var(--jjb-brand-500); border-radius: 3px; }
+  .space-row code { width: 120px; }
+  .radius-grid, .shadow-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+  .radius-item, .shadow-item { display: grid; gap: 10px; justify-items: start; font-size: 12px; color: var(--jjb-text-tertiary); }
+  .radius-item div { width: 110px; height: 80px; background: var(--jjb-brand-100); box-shadow: inset 0 0 0 1.5px var(--jjb-brand-500); }
+  .shadow-item div { width: 120px; height: 80px; background: #fff; border-radius: 12px; }
+  .shadow-stage { padding: 28px; border-radius: 20px; background: var(--jjb-neutral-200); }
+  /* motion */
+  .ease-demo { display: grid; gap: 12px; }
+  .track { position: relative; height: 44px; border-radius: 100px; background: var(--jjb-neutral-200); }
+  .dot { position: absolute; top: 6px; left: 6px; width: 32px; height: 32px; border-radius: 50%; background: var(--jjb-brand-500); }
+  .track.go .dot { left: calc(100% - 38px); }
+  .track span { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 12px; color: var(--jjb-text-tertiary); }
+  .reveal-box { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+  .reveal-box div { height: 70px; border-radius: 12px; background: var(--jjb-brand-100); box-shadow: inset 0 0 0 1px var(--jjb-brand-500); }
+  .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+  .video-grid figure { margin: 0; display: grid; gap: 6px; min-width: 0; overflow: hidden; grid-template-columns: minmax(0,1fr); font-size: 12px; color: var(--jjb-text-tertiary); }
+  .video-grid video { display: block; width: 100%; max-width: 100%; height: auto; min-width: 0; aspect-ratio: 1; object-fit: contain; background: var(--jjb-dark-grey); border-radius: 12px; }
+  .video-grid figcaption { overflow-wrap: anywhere; word-break: break-all; line-height: 1.4; }
+  .video-grid figcaption b { word-break: normal; color: #000; font-weight: 600; display: block; }
+  /* icons */
+  .icon-tools { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
+  .icon-tools input { width: 220px; }
+  .icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 8px; }
+  .icon-cell { display: grid; justify-items: center; gap: 8px; padding: 16px 6px 10px; border-radius: 12px; border: 0; background: #fff;
+    box-shadow: inset 0 0 0 1px var(--jjb-border); font: 11px/1.2 var(--jjb-font-body); color: var(--jjb-text-tertiary); cursor: copy;
+    transition: box-shadow var(--jjb-dur-micro) var(--jjb-ease), color var(--jjb-dur-micro) var(--jjb-ease); }
+  .icon-cell:hover { box-shadow: inset 0 0 0 1px #000; color: #000; }
+  .icon-cell svg { width: 28px; height: 28px; color: var(--icon-color, #000); }
+  .icon-grid.dark { background: var(--jjb-dark-grey); padding: 8px; border-radius: 16px; }
+  .icon-grid.dark .icon-cell { background: transparent; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); color: rgba(255,255,255,.6); }
+  .icon-grid.dark .icon-cell svg { color: #fff; }
+  /* logo */
+  .logo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .logo-tile { border-radius: 20px; height: 180px; display: grid; place-items: center; padding: 24px; box-shadow: inset 0 0 0 1px var(--jjb-border); }
+  .logo-tile img, .logo-tile svg { max-width: 100%; max-height: 100%; }
+  .logo-tile .jjb-wordmark { width: 170px; height: auto; }
+  .logo-cap { font-size: 12px; color: var(--jjb-text-tertiary); margin-top: 8px; }
+  .logo-cap code { color: #000; }
+  /* demo frames */
+  .stage { border-radius: 20px; box-shadow: inset 0 0 0 1px var(--jjb-border); padding: 28px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .stage--sunken { background: var(--jjb-neutral-200); box-shadow: none; }
+  .stage--dark { background: var(--jjb-dark-grey); box-shadow: none; }
+  .state-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .state-table th { text-align: left; font-weight: 600; color: var(--jjb-text-tertiary); padding: 8px 10px; }
+  .state-table td { padding: 10px; border-top: 1px solid var(--jjb-border); vertical-align: middle; }
+  .is-hover.jjb-btn--primary { background: var(--jjb-brand-400); }
+  .is-active.jjb-btn--primary { background: var(--jjb-brand-600); }
+  .is-hover.jjb-btn--secondary { background: var(--jjb-neutral-800); }
+  .is-hover.jjb-btn--outline { background: var(--jjb-neutral-200); }
+  .is-active.jjb-app-btn--primary { background: var(--jjb-brand-600); }
+  .is-active.jjb-app-btn--secondary { background: var(--jjb-neutral-200); }
+  .nav-frame { border-radius: 16px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--jjb-border); }
+  .nav-frame--photo { background: url("https://cdn.shopify.com/s/files/1/0954/0884/9267/collections/Figurines.jpg?width=1600") center/cover, var(--jjb-dark-grey); }
+  .nav-frame--photo .spacer { height: 120px; }
+  .phone { width: 375px; max-width: 100%; border-radius: 28px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--jjb-border); background: #fff; }
+  .snippet { margin-top: 12px; }
+  .ai-cmd { display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 12px; background: #141614; color: #E8E8E8; }
+  .ai-cmd code { flex: 1; min-width: 0; overflow-wrap: anywhere; font-size: 13px; background: none; color: inherit; }
+  .snippet summary { cursor: pointer; font-size: 13px; color: var(--jjb-text-secondary); }
+  .snippet pre { margin: 8px 0 0; padding: 14px 16px; border-radius: 12px; background: #141614; color: #E8E8E8; overflow: auto;
+    font: 12px/1.6 ui-monospace, Menlo, monospace; }
+  .tpl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .tpl { position: relative; aspect-ratio: 3/4; border-radius: 16px; overflow: hidden; color: #fff; display: flex; align-items: flex-end; padding: 14px;
+    font: 700 16px/1.2 var(--jjb-font-body); }
+  .tpl::after { content: ""; position: absolute; inset: 60% 0 0; background: linear-gradient(180deg, transparent, var(--g)); }
+  .tpl span { position: relative; z-index: 1; }
+  .asset-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .asset-table th, .asset-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--jjb-border); vertical-align: top; }
+  .asset-table th { font-size: 12px; color: var(--jjb-text-tertiary); font-weight: 600; }
+  .copied { position: fixed; left: 50%; bottom: 32px; transform: translate(-50%, 20px); opacity: 0; pointer-events: none;
+    transition: opacity var(--jjb-dur-micro) var(--jjb-ease), transform var(--jjb-dur-micro) var(--jjb-ease); z-index: 10; }
+  .copied.show { opacity: 1; transform: translate(-50%, 0); }
+  @media (max-width: 960px) {
+    .pg { grid-template-columns: 1fr; }
+    .pg-side { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--jjb-border); }
+    .pg-side nav { grid-template-columns: repeat(3, 1fr); }
+    .pg-main { padding: 0 16px 80px; }
+    .two, .type-row { grid-template-columns: 1fr; }
+    .reveal-box { grid-template-columns: repeat(3, 1fr); }
+    .pg-hero .jjb-display { display: none; }
+    .space-row .bar { max-width: 40vw; }
+    .space-row code { width: 110px; flex: none; }
+    .state-table, .asset-table { display: block; overflow-x: auto; }
+    .stage { padding: 16px; }
+    .hiw-demo { grid-template-columns: 1fr; padding: 24px; }
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+    .jjb-trust { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body class="jjb">
+{{SPRITE}}
+<div class="pg">
+  <aside class="pg-side">
+    {{WORDMARK}}
+    <nav>
+      <a href="#brand">01 品牌与 Logo</a>
+      <a href="#color">02 色彩</a>
+      <a href="#type">03 字体</a>
+      <a href="#layout">04 间距与布局</a>
+      <a href="#shape">05 圆角与阴影</a>
+      <a href="#motion">06 动效</a>
+      <a href="#icons">07 图标</a>
+      <a href="#buttons">08 按钮</a>
+      <a href="#nav">09 导航</a>
+      <a href="#commerce">10 区块标题与商品卡</a>
+      <a href="#blocks">11 首页区块</a>
+      <a href="#forms">12 表单与 FAQ</a>
+      <a href="#feedback">13 反馈浮层</a>
+      <a href="#app">14 App 专属</a>
+      <a href="#page">15 页面拼装示例</a>
+      <a href="#assets">16 素材清单</a>
+      <a href="#ai">17 给 AI 用</a>
+    </nav>
+    <div class="meta">v2 · 2026-10-14<br>真源：网页外观=线上新版，色值/字体/App=Figma<br>引用：<code>tokens.css</code> + <code>components.css</code><br>点击色块/图标/代码即复制</div>
+  </aside>
+
+  <main class="pg-main">
+    <section class="pg-hero">
+      <div class="jjb-display" aria-hidden="true">JUJUBIT</div>
+      <div class="jjb-eyebrow">Design System v2</div>
+      <h1 class="jjb-h1" style="margin-top:12px">JuJuBit Design Playground</h1>
+      <p>新页面（独立站 + App）的视觉规范和可复用组件。网页区块和组件外观以 2026-10 上线的新版首页为准（标 <code>[新版]</code>）；色值、字体和 App 规范以设计团队 Figma 为准；两边都没定义的项沿用线上实测值并标出来源，等设计确认。agent 做新页面时先引 <code>tokens.css</code> 和 <code>components.css</code>，再从本页复制组件 markup。</p>
+      <div class="legend">
+        <span class="src src--f">F · Figma token</span>
+        <span class="src src--fs">F稿 · Figma 设计稿实测</span>
+        <span class="src src--live">线上 · v1.1 实测，待设计确认</span>
+        <span class="src src--app">App · 仅 App 页面用</span>
+      </div>
+    </section>
+
+    <!-- 01 BRAND -->
+    <section class="pg-sec" id="brand">
+      <header><span class="num">01</span><h2 class="jjb-h2">品牌与 Logo</h2><span class="src src--f">F</span></header>
+      <p class="lead">两套标识：横版字标 <b>JuJuBit</b>（网站页头、页脚、邮件）和 3D 字标 <b>JuJu</b>（App icon、头像、社媒方图）。深底用浅色标，浅底用深色或橙色标。</p>
+      <div class="logo-grid">
+        <div><div class="logo-tile" style="background:#fff;color:var(--jjb-brand-500)">{{WORDMARK}}</div>
+          <div class="logo-cap">橙色字标 · <code>assets/logo/wordmark-orange.svg</code></div></div>
+        <div><div class="logo-tile" style="background:var(--jjb-brand-500)"><img src="assets/logo/wordmark-white.svg" alt="JuJuBit"></div>
+          <div class="logo-cap">白色字标（橙/深底） · <code>assets/logo/wordmark-white.svg</code></div></div>
+        <div><div class="logo-tile" style="background:var(--jjb-gradient-logo-dark)"><img src="assets/logo/wordmark-white.svg" alt="JuJuBit"></div>
+          <div class="logo-cap">深色底 <code>--jjb-gradient-logo-dark</code></div></div>
+        <div><div class="logo-tile" style="background:var(--jjb-brand-light-bg)"><img src="assets/logo/juju-mark.svg" alt="JuJu"></div>
+          <div class="logo-cap">3D 字标 · <code>assets/logo/juju-mark.svg</code>（1.1MB，印刷/大图用；网页用 PNG）</div></div>
+        <div><div class="logo-tile" style="background:#fff"><img src="assets/app/app-icon-juju-rounded-824.png" alt="JuJuBit App icon" style="width:130px"></div>
+          <div class="logo-cap">App icon 圆角 · <code>assets/app/app-icon-juju-rounded-824.png</code></div></div>
+        <div><div class="logo-tile" style="background:var(--jjb-neutral-200)"><img src="assets/app/app-icon-juju-square-1025.png" alt="JuJuBit App icon square" style="width:130px"></div>
+          <div class="logo-cap">App icon 方形 · <code>assets/app/app-icon-juju-square-1025.png</code></div></div>
+      </div>
+      <ul class="rules">
+        <li><b>可以：</b>深底配浅色标、浅底配深色/橙色标；横版字标最小高度 22px（页头 25px）。</li>
+        <li><b>不可以：</b>加描边、变形缩放、加阴影、改颜色、放在低对比底色上、改透视、改字母间距（对外规范 1.7）。</li>
+      </ul>
+    </section>
+
+    <!-- 02 COLOR -->
+    <section class="pg-sec" id="color">
+      <header><span class="num">02</span><h2 class="jjb-h2">色彩</h2></header>
+      <p class="lead">一个主色：JuJu Orange <code>#FF5A11</code>，只用在主按钮、选中态和关键强调。大面积底色用白、浅灰和品牌浅底。文字不用实色灰，用黑色透明度分四级。点击色块复制 CSS 变量。</p>
+      <div class="pg-sub">品牌色 <span class="src src--f">F</span></div>
+      <div class="sw-grid" data-swatches="brand"></div>
+      <div class="pg-sub">中性色 <span class="src src--f">F</span></div>
+      <div class="sw-grid" data-swatches="neutral"></div>
+      <div class="pg-sub">文字（透明度） <span class="src src--f">F</span></div>
+      <div class="sw-grid" data-swatches="text"></div>
+      <div class="pg-sub">面与遮罩 <span class="src src--fs">F稿</span></div>
+      <div class="sw-grid" data-swatches="surface"></div>
+      <div class="pg-sub">功能色 <span class="src src--live">线上</span></div>
+      <div class="sw-grid" data-swatches="func"></div>
+      <div class="pg-sub">辅助色 <span class="src src--f">F</span> 仅插画、营销图形、标签底</div>
+      <div class="sw-grid" data-swatches="accent"></div>
+      <ul class="rules">
+        <li><b>主按钮 hover 变浅</b>（<code>#FF7B41</code>），按下变深（<code>#E54913</code>），禁用换灰 <code>#CCCCCC</code>，不用 opacity。</li>
+        <li>辅助色不能用在按钮、链接、价格上；页面上同屏辅助色不超过 2 个。</li>
+        <li>Judge.me 评价星色 <code>#108474</code> 归第三方，不改也不借用。</li>
+      </ul>
+    </section>
+
+    <!-- 03 TYPE -->
+    <section class="pg-sec" id="type">
+      <header><span class="num">03</span><h2 class="jjb-h2">字体</h2><span class="src src--f">F</span></header>
+      <p class="lead">两个字族，各管一件事。Bebas Neue 只有大写字形，只用于标题、导航和 tab；正文、按钮、表单全部用 Outfit。不引入第三个字族。</p>
+      <div class="two">
+        <div class="font-card"><div class="jjb-mini jjb-muted">Display · <code>assets/fonts/BebasNeue-Regular.ttf</code></div>
+          <div class="big" style="font-family:var(--jjb-font-display);margin-top:12px">BEBAS NEUE 400</div>
+          <div class="jjb-body-s jjb-muted" style="margin-top:12px">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</div></div>
+        <div class="font-card"><div class="jjb-mini jjb-muted">Body · <code>assets/fonts/Outfit-VariableFont_wght.ttf</code></div>
+          <div class="big" style="font-family:var(--jjb-font-body);font-size:48px;font-weight:600;margin-top:16px">Outfit 400–700</div>
+          <div class="jjb-body-s jjb-muted" style="margin-top:12px">Aa Bb Cc — <span style="font-weight:400">400</span> <span style="font-weight:500">500</span> <span style="font-weight:600">600</span> <span style="font-weight:700">700</span></div></div>
+      </div>
+      <div class="pg-sub">Web 字号阶梯（桌面 / 手机）</div>
+      <div id="type-web"></div>
+      <div class="pg-sub">App 字号阶梯 <span class="src src--app">App</span></div>
+      <div id="type-app"></div>
+      <ul class="rules">
+        <li>标题行高 1.2，正文行高 1.6；字距一律用 <code>em</code>（站点有 /ja /ko，px 字距会撑坏非拉丁字形）。</li>
+        <li>大写小标两种：区块上标 14px / <code>0.2em</code>；商品品牌副标 14px / <code>0.15em</code>，颜色 tertiary。</li>
+        <li>手机端 Web 标题字号 Figma 未定义，取线上实测值（标 <span class="src src--live">线上</span>）。</li>
+      </ul>
+    </section>
+
+    <!-- 04 LAYOUT -->
+    <section class="pg-sec" id="layout">
+      <header><span class="num">04</span><h2 class="jjb-h2">间距与布局</h2><span class="src src--new">新版</span></header>
+      <p class="lead">首页区块全宽铺满，左右留 30px（手机 20px）。文章、政策、表单等窄内容页用 1220px 居中容器。卡片网格间距统一 12px（Figma 稿是 30，线上已改）。商品桌面 4 列、手机 2 列。</p>
+      <div class="two">
+        <div id="space-scale"></div>
+        <table class="state-table">
+          <tr><th>Token</th><th>值</th><th>用途</th></tr>
+          <tr><td><code>.jjb-container--wide</code></td><td>全宽 − 2×30px</td><td>首页区块 <span class="src src--new">新版</span></td></tr>
+          <tr><td><code>--jjb-container</code></td><td>1220px</td><td>窄内容页（文章 / 政策 / 表单）</td></tr>
+          <tr><td><code>--jjb-section-gap</code></td><td>100 / 64px</td><td>区块纵向间距 桌面 / 手机</td></tr>
+          <tr><td><code>--jjb-grid-gap</code></td><td>12px</td><td>商品 / 分类 / 信任卡网格 <span class="src src--new">新版</span></td></tr>
+          <tr><td><code>--jjb-gutter</code></td><td>20px</td><td>手机左右边距</td></tr>
+          <tr><td><code>--jjb-header-h</code></td><td>78 / 56px</td><td>页头 桌面 / 手机 <span class="src src--new">新版</span></td></tr>
+          <tr><td><code>--jjb-announce-h</code></td><td>48px</td><td>公告栏 <span class="src src--new">新版</span></td></tr>
+          <tr><td>区块标题 → 内容</td><td>40px</td><td>手机 20px <span class="src src--new">新版</span></td></tr>
+          <tr><td><code>--jjb-bp-md</code></td><td>768px</td><td>唯一断点 <span class="src src--live">线上</span></td></tr>
+          <tr><td><code>--jjb-touch-min</code></td><td>44px</td><td>手机最小触控区 <span class="src src--live">线上</span></td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- 05 SHAPE -->
+    <section class="pg-sec" id="shape">
+      <header><span class="num">05</span><h2 class="jjb-h2">圆角与阴影</h2><span class="src src--fs">F稿</span></header>
+      <p class="lead">按钮、胶囊、tab 一律全圆角。弹窗和大卡片 20px，半屏面板 16px，toast 和徽章 12px，提示条 8px。阴影只有 4 种，只给浮起来的东西用；商品卡和 logo 不加阴影，层次靠边框和底色。</p>
+      <div class="radius-grid" id="radius-grid"></div>
+      <div class="pg-sub">阴影（只允许这 4 种）</div>
+      <div class="shadow-stage"><div class="shadow-grid" id="shadow-grid"></div></div>
+      <div class="pg-sub">渐变 / 毛玻璃</div>
+      <div class="sw-grid" data-swatches="gradient"></div>
+    </section>
+
+    <!-- 06 MOTION -->
+    <section class="pg-sec" id="motion">
+      <header><span class="num">06</span><h2 class="jjb-h2">动效</h2><span class="src src--live">线上</span></header>
+      <p class="lead">Web 动效：一条缓动曲线 <code>cubic-bezier(.165,.84,.44,1)</code>，四档时长。Figma 没有 motion token，这部分沿用线上实测值；App 动效以设计团队交付的视频为准（下方）。用户开启“减少动态效果”时全部关掉。</p>
+      <div class="ease-demo" id="ease-demo"></div>
+      <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
+        <button class="jjb-btn jjb-btn--secondary jjb-btn--s" id="play-ease">播放时长对比</button>
+        <button class="jjb-btn jjb-btn--outline jjb-btn--s" id="play-reveal">播放入场（错峰 60ms）</button>
+      </div>
+      <div class="pg-sub">入场：translateY(20px) → 0，只触发一次</div>
+      <div class="reveal-box" id="reveal-box"><div class="jjb-reveal"></div><div class="jjb-reveal"></div><div class="jjb-reveal"></div><div class="jjb-reveal"></div><div class="jjb-reveal"></div><div class="jjb-reveal"></div></div>
+      <div class="pg-sub">骨架屏：#F0F0F0 ↔ #EEEEEE，1 秒循环 <span class="src src--fs">F稿</span></div>
+      <div style="display:grid;grid-template-columns:120px 1fr;gap:16px;max-width:520px">
+        <div class="jjb-skeleton" style="aspect-ratio:1"></div>
+        <div style="display:grid;gap:10px;align-content:center"><div class="jjb-skeleton" style="height:14px;width:60%"></div><div class="jjb-skeleton" style="height:18px"></div><div class="jjb-skeleton" style="height:18px;width:40%"></div></div>
+      </div>
+      <div class="pg-sub">品牌与 App 动效交付视频 <span class="src src--app">App</span> 压缩预览版（720p），原片找设计团队</div>
+      <div class="video-grid" id="video-grid"></div>
+      <ul class="rules">
+        <li>hover / 按下 / 颜色变化 200ms；展开、抽屉、tab 切换 300ms；滚动入场 500ms；首屏 800ms。</li>
+        <li>不用 <code>ease</code> / <code>ease-in-out</code>；只有循环内容（跑马灯、加载转圈）用 <code>linear</code>。</li>
+        <li>不只靠 opacity 做 hover，要同时改底色、描边或位移。</li>
+      </ul>
+    </section>
+
+    <!-- 07 ICONS -->
+    <section class="pg-sec" id="icons">
+      <header><span class="num">07</span><h2 class="jjb-h2">图标</h2><span class="src src--f">F</span></header>
+      <p class="lead">设计团队组件库的 58 个线性图标（48 画板、3.6 线宽），颜色跟随 <code>currentColor</code>。点击图标复制引用代码。</p>
+      <div class="icon-tools">
+        <input class="jjb-input" id="icon-q" placeholder="搜索图标，如 cart">
+        <button class="jjb-option" aria-pressed="true" data-icon-bg="light">浅底</button>
+        <button class="jjb-option" aria-pressed="false" data-icon-bg="dark">深底</button>
+        <button class="jjb-option" aria-pressed="false" data-icon-color="var(--jjb-brand-500)">橙色</button>
+      </div>
+      <div class="icon-grid" id="icon-grid"></div>
+      <details class="snippet"><summary>引用方式</summary><pre>&lt;!-- 页面里先内联一次 assets/icons/sprite.svg，然后： --&gt;
+&lt;svg class="jjb-icon" aria-hidden="true"&gt;&lt;use href="#i-cart"/&gt;&lt;/svg&gt;
+&lt;!-- 或直接引单文件（颜色不可改）： --&gt;
+&lt;img src="assets/icons/cart.svg" width="24" height="24" alt=""&gt;</pre></details>
+    </section>
+
+    <!-- 08 BUTTONS -->
+    <section class="pg-sec" id="buttons">
+      <header><span class="num">08</span><h2 class="jjb-h2">按钮</h2><span class="src src--f">F</span></header>
+      <p class="lead">Web 三档高度 44 / 50 / 54，字体 Outfit 600（小号 500），全圆角，宽度随内容。主按钮橙色，次按钮黑色，描边按钮用于第三层级。每个页面主按钮只放一个。</p>
+      <table class="state-table">
+        <tr><th>Web</th><th>Default</th><th>Hover</th><th>Pressed</th><th>Disabled</th></tr>
+        <tr><td>Primary</td><td><button class="jjb-btn jjb-btn--primary">Create Yours</button></td><td><button class="jjb-btn jjb-btn--primary is-hover">Create Yours</button></td><td><button class="jjb-btn jjb-btn--primary is-active">Create Yours</button></td><td><button class="jjb-btn jjb-btn--primary" disabled>Create Yours</button></td></tr>
+        <tr><td>Secondary</td><td><button class="jjb-btn jjb-btn--secondary">Shop Now</button></td><td><button class="jjb-btn jjb-btn--secondary is-hover">Shop Now</button></td><td><button class="jjb-btn jjb-btn--secondary">Shop Now</button></td><td><button class="jjb-btn jjb-btn--secondary" disabled>Shop Now</button></td></tr>
+        <tr><td>Outline <span class="src src--fs">F稿</span></td><td><button class="jjb-btn jjb-btn--outline">Learn More</button></td><td><button class="jjb-btn jjb-btn--outline is-hover">Learn More</button></td><td><button class="jjb-btn jjb-btn--outline">Learn More</button></td><td><button class="jjb-btn jjb-btn--outline" disabled>Learn More</button></td></tr>
+        <tr><td>Text <span class="src src--live">线上</span></td><td><button class="jjb-btn jjb-btn--text">View all</button></td><td></td><td></td><td><button class="jjb-btn jjb-btn--text" disabled>View all</button></td></tr>
+      </table>
+      <div class="pg-sub">尺寸与图标位</div>
+      <div class="stage">
+        <button class="jjb-btn jjb-btn--primary jjb-btn--l"><svg class="jjb-icon"><use href="#i-magic_wand"/></svg>Large 54</button>
+        <button class="jjb-btn jjb-btn--primary">Medium 50</button>
+        <button class="jjb-btn jjb-btn--primary jjb-btn--s">Small 44</button>
+        <button class="jjb-btn jjb-btn--secondary jjb-btn--s"><svg class="jjb-icon jjb-icon--20"><use href="#i-cart"/></svg>Add to cart</button>
+        <button class="jjb-icon-btn" aria-label="Next"><svg class="jjb-icon"><use href="#i-chevron_right"/></svg></button>
+      </div>
+      <div class="pg-sub">线上新版用法 <span class="src src--new">新版</span></div>
+      <div class="stage">
+        <a class="jjb-btn jjb-btn--primary jjb-btn--hero" href="#buttons">Create Your Own</a>
+        <a class="jjb-btn jjb-btn--primary" href="#buttons"><svg class="jjb-icon jjb-icon--20"><use href="#i-sparkle"/></svg>CREATE</a>
+        <a class="jjb-btn jjb-btn--outline jjb-btn--pill" href="#buttons">SHOP</a>
+        <a class="jjb-btn jjb-btn--outline jjb-btn--pill" href="#buttons">Customize</a>
+      </div>
+      <div class="stage stage--dark" style="margin-top:12px"><a class="jjb-btn jjb-btn--white jjb-btn--pill" href="#buttons">Create Now</a></div>
+      <p class="note">首屏 CTA 50 / 18px 500（手机 36 / 14）；How it works 的 CREATE 50 / 16px 600 带 sparkle 图标；卡片内胶囊 38 / 14px 500。</p>
+      <details class="snippet"><summary>Markup</summary><pre>&lt;button class="jjb-btn jjb-btn--primary jjb-btn--l"&gt;Create Yours&lt;/button&gt;
+&lt;button class="jjb-btn jjb-btn--secondary"&gt;Shop Now&lt;/button&gt;
+&lt;button class="jjb-btn jjb-btn--outline jjb-btn--s"&gt;Learn More&lt;/button&gt;
+&lt;a class="jjb-btn jjb-btn--text" href="/collections/all"&gt;View all&lt;/a&gt;
+&lt;a class="jjb-btn jjb-btn--primary jjb-btn--hero" href="/products/customize-your-own"&gt;Create Your Own&lt;/a&gt;
+&lt;a class="jjb-btn jjb-btn--outline jjb-btn--pill" href="/collections/trpg"&gt;SHOP&lt;/a&gt;
+&lt;a class="jjb-btn jjb-btn--white jjb-btn--pill" href="…"&gt;Create Now&lt;/a&gt;</pre></details>
+    </section>
+
+    <!-- 09 NAV -->
+    <section class="pg-sec" id="nav">
+      <header><span class="num">09</span><h2 class="jjb-h2">公告栏与导航</h2><span class="src src--new">新版</span></header>
+      <p class="lead">公告栏 48px 橙色渐变，左右箭头切换文案。页头 78px（手机 56px）：压在首屏图上时是半透明毛玻璃（<code>--jjb-header-glass</code> + saturate 1.8 blur 20），滚动后切白底加 <code>--jjb-shadow-header</code>。菜单居中，Bebas 20；右侧依次是 Log In 胶囊、搜索/账户/购物车 20px 图标、橙色 CREATE 36px。</p>
+      <div class="nav-frame">
+        <div class="jjb-announce"><button aria-label="Previous"><svg class="jjb-icon jjb-icon--20"><use href="#i-chevron_left"/></svg></button><span>Create Your Own Design — Get 15% OFF</span><button aria-label="Next"><svg class="jjb-icon jjb-icon--20"><use href="#i-chevron_right"/></svg></button></div>
+        <header class="jjb-nav">
+          <svg class="jjb-nav__logo" viewBox="0 0 89 22"><use href="#logo-wordmark"/></svg>
+          <nav class="jjb-nav__menu"><a class="jjb-nav__link" href="#nav">Create</a><a class="jjb-nav__link" href="#nav">Templates</a><a class="jjb-nav__link" href="#nav">Categories</a><a class="jjb-nav__link" href="#nav">How it works</a><a class="jjb-nav__link" href="#nav">About us</a></nav>
+          <div class="jjb-nav__actions">
+            <button class="jjb-nav__login" type="button">Log In</button>
+            <button class="jjb-nav__icon" aria-label="Search"><svg><use href="#i-search"/></svg></button>
+            <button class="jjb-nav__icon" aria-label="Account"><svg><use href="#i-user"/></svg></button>
+            <button class="jjb-nav__icon" aria-label="Cart"><svg><use href="#i-cart_outline"/></svg><span class="jjb-badge-count">2</span></button>
+            <a class="jjb-btn jjb-btn--primary jjb-nav__create" href="#nav"><svg class="jjb-icon jjb-icon--20"><use href="#i-sparkle"/></svg>Create</a>
+          </div>
+        </header>
+      </div>
+      <div class="nav-frame nav-frame--photo" style="margin-top:16px">
+        <header class="jjb-nav jjb-nav--glass">
+          <svg class="jjb-nav__logo" viewBox="0 0 89 22"><use href="#logo-wordmark"/></svg>
+          <nav class="jjb-nav__menu"><a class="jjb-nav__link" href="#nav">Create</a><a class="jjb-nav__link" href="#nav">Templates</a><a class="jjb-nav__link" href="#nav">Categories</a><a class="jjb-nav__link" href="#nav">How it works</a><a class="jjb-nav__link" href="#nav">About us</a></nav>
+          <div class="jjb-nav__actions">
+            <button class="jjb-nav__login" type="button">Log In</button>
+            <button class="jjb-nav__icon" aria-label="Search"><svg><use href="#i-search"/></svg></button>
+            <button class="jjb-nav__icon" aria-label="Account"><svg><use href="#i-user"/></svg></button>
+            <button class="jjb-nav__icon" aria-label="Cart"><svg><use href="#i-cart_outline"/></svg><span class="jjb-badge-count">2</span></button>
+            <a class="jjb-btn jjb-btn--primary jjb-nav__create" href="#nav"><svg class="jjb-icon jjb-icon--20"><use href="#i-sparkle"/></svg>Create</a>
+          </div>
+        </header>
+        <div class="spacer"></div>
+      </div>
+      <details class="snippet"><summary>Markup</summary><pre>&lt;header class="jjb-nav jjb-nav--glass"&gt;  &lt;!-- 滚动后移除 --glass --&gt;
+  &lt;svg class="jjb-nav__logo" viewBox="0 0 89 22"&gt;&lt;use href="#logo-wordmark"/&gt;&lt;/svg&gt;
+  &lt;nav class="jjb-nav__menu"&gt;&lt;a class="jjb-nav__link" href="…"&gt;Create&lt;/a&gt;…&lt;/nav&gt;
+  &lt;div class="jjb-nav__actions"&gt;
+    &lt;button class="jjb-nav__login"&gt;Log In&lt;/button&gt;
+    &lt;button class="jjb-nav__icon" aria-label="Search"&gt;&lt;svg&gt;&lt;use href="#i-search"/&gt;&lt;/svg&gt;&lt;/button&gt;
+    &lt;a class="jjb-btn jjb-btn--primary jjb-nav__create" href="…"&gt;&lt;svg class="jjb-icon jjb-icon--20"&gt;&lt;use href="#i-sparkle"/&gt;&lt;/svg&gt;Create&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/header&gt;</pre></details>
+    </section>
+
+    <!-- 10 COMMERCE -->
+    <section class="pg-sec" id="commerce">
+      <header><span class="num">10</span><h2 class="jjb-h2">区块标题、商品卡与标签</h2><span class="src src--new">新版</span></header>
+      <p class="lead">区块标题居中，Bebas 64（手机 28）；右侧 View All 18px 500。筛选用黑白胶囊（42px），不再用下划线 tab。商品卡 4 列，间距 12px。卡片没有品牌副标，也没有 Quick view。标题 16px 500，最多两行；价格 16px 500。鼠标悬停时淡入第二张商品图（220ms）。价格为示例。</p>
+      <div class="jjb-section-head"><h3 class="jjb-section-head__title">Trending Products</h3><a class="jjb-section-head__more" href="#commerce">View All</a></div>
+      <div class="jjb-tabs" role="tablist" style="margin-bottom:32px"><button class="jjb-chip" role="tab" aria-selected="true">Custom Figurines</button><button class="jjb-chip" role="tab" aria-selected="false">Art Toy</button></div>
+      <div class="jjb-grid" id="product-grid"></div>
+      <div class="pg-sub">轮播指示点</div>
+      <div class="stage"><div class="jjb-dots"><button aria-label="1"></button><button aria-label="2" aria-current="true"></button><button aria-label="3"></button><button aria-label="4"></button></div></div>
+      <div class="pg-sub">标签与提示条</div>
+      <div class="stage">
+        <span class="jjb-tag jjb-tag--brand">New</span>
+        <span class="jjb-tag jjb-tag--sale">-20%</span>
+        <span class="jjb-tag jjb-tag--soft">Customizable</span>
+        <span class="jjb-tag jjb-tag--neutral">Pre-order</span>
+        <div class="jjb-tip"><svg class="jjb-icon jjb-icon--20"><use href="#i-sparkle"/></svg>3 free generations left today</div>
+      </div>
+      <div class="pg-sub">胶囊选项（App / 生成工具里的风格选择）<span class="src src--f">F</span></div>
+      <div class="stage">
+        <button class="jjb-option" aria-pressed="true">All</button><button class="jjb-option" aria-pressed="false">Chibi</button><button class="jjb-option" aria-pressed="false">Anime</button><button class="jjb-option" aria-pressed="false">Pet</button>
+      </div>
+      <details class="snippet"><summary>Markup</summary><pre>&lt;div class="jjb-section-head"&gt;
+  &lt;h2 class="jjb-section-head__title"&gt;Trending Products&lt;/h2&gt;
+  &lt;a class="jjb-section-head__more" href="/collections/all"&gt;View All&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="jjb-tabs" role="tablist"&gt;&lt;button class="jjb-chip" role="tab" aria-selected="true"&gt;Custom Figurines&lt;/button&gt;…&lt;/div&gt;
+
+&lt;a class="jjb-card" href="/products/handle"&gt;
+  &lt;span class="jjb-card__media"&gt;
+    &lt;img src="…-01.png?width=800" alt="…" loading="lazy" width="800" height="800"&gt;
+    &lt;img src="…-02.png?width=800" alt="" loading="lazy" width="800" height="800"&gt;  &lt;!-- 可选：hover 第二张 --&gt;
+  &lt;/span&gt;
+  &lt;span class="jjb-card__title"&gt;Product title&lt;/span&gt;
+  &lt;span class="jjb-card__price"&gt;$24.99&lt;/span&gt;
+&lt;/a&gt;</pre></details>
+    </section>
+
+    <!-- 11 HOME BLOCKS -->
+    <section class="pg-sec" id="blocks">
+      <header><span class="num">11</span><h2 class="jjb-h2">首页区块</h2><span class="src src--new">新版</span></header>
+      <p class="lead">2026-10 上线首页的区块。模板卡、分类卡、信任卡和买家秀图统一 12px 圆角（手机 8px），卡片间距 12px。图片取自线上，只作示例。</p>
+
+      <div class="pg-sub">模板入口（横向轮播；模板色已做进图片里）</div>
+      <div class="jjb-track" id="tpl-track"></div>
+
+      <div class="pg-sub">How it works（黑底步骤，点击切换）</div>
+      <div class="stage stage--dark hiw-demo">
+        <img src="https://jujubit.ai/cdn/shop/files/img01.png?v=1783938670&width=800" alt="">
+        <div>
+          <div class="jjb-steps" id="steps">
+            <div class="jjb-step" aria-current="true"><span class="jjb-step__num">01</span><h4 class="jjb-step__title">Pick your style</h4><p class="jjb-step__body">Pop, anime, realistic and more. New styles dropping all the time.</p></div>
+            <div class="jjb-step"><span class="jjb-step__num">02</span><h4 class="jjb-step__title">Upload your image</h4><p class="jjb-step__body">示例文案。</p></div>
+            <div class="jjb-step"><span class="jjb-step__num">03</span><h4 class="jjb-step__title">Preview in 3D</h4><p class="jjb-step__body">示例文案。</p></div>
+            <div class="jjb-step"><span class="jjb-step__num">04</span><h4 class="jjb-step__title">We make &amp; ship it</h4><p class="jjb-step__body">示例文案。</p></div>
+          </div>
+          <a class="jjb-btn jjb-btn--primary" href="#blocks" style="font-size:16px"><svg class="jjb-icon jjb-icon--20"><use href="#i-sparkle"/></svg>CREATE</a>
+        </div>
+      </div>
+
+      <div class="pg-sub">分类卡</div>
+      <div class="jjb-grid cat-grid" id="cat-grid"></div>
+
+      <div class="pg-sub">信任卡（灰底区块）</div>
+      <div class="jjb-section--soft" style="padding:30px;border-radius:12px"><div class="jjb-trust" id="trust"></div></div>
+
+      <div class="pg-sub">评价卡</div>
+      <div class="jjb-grid" id="reviews"></div>
+
+      <div class="pg-sub">社媒竖版视频（深灰底，居中一张放大）</div>
+      <div class="jjb-social" style="padding:40px 0;border-radius:12px">
+        <div class="jjb-social__row"><div class="jjb-social__item"></div><div class="jjb-social__item"></div><div class="jjb-social__item" aria-current="true"></div><div class="jjb-social__item"></div><div class="jjb-social__item"></div></div>
+      </div>
+      <details class="snippet"><summary>Markup</summary><pre>&lt;a class="jjb-tpl-card" href="…"&gt;&lt;img src="…" alt="Mini Pop"&gt;
+  &lt;span class="jjb-tpl-card__footer"&gt;&lt;span class="jjb-tpl-card__name"&gt;Mini Pop&lt;/span&gt;&lt;span class="jjb-btn jjb-btn--white jjb-btn--pill"&gt;Create Now&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;
+
+&lt;div class="jjb-step" aria-current="true"&gt;&lt;span class="jjb-step__num"&gt;01&lt;/span&gt;&lt;h3 class="jjb-step__title"&gt;Pick your style&lt;/h3&gt;&lt;p class="jjb-step__body"&gt;…&lt;/p&gt;&lt;/div&gt;
+
+&lt;a class="jjb-cat-card" href="/collections/trpg"&gt;&lt;span class="jjb-cat-card__img"&gt;&lt;img src="…" alt=""&gt;&lt;/span&gt;
+  &lt;span class="jjb-cat-card__title"&gt;TRPG&lt;/span&gt;&lt;span class="jjb-btn jjb-btn--outline jjb-btn--pill"&gt;SHOP&lt;/span&gt;&lt;/a&gt;
+
+&lt;div class="jjb-trust__card"&gt;&lt;img src="…" alt=""&gt;&lt;p&gt;Quality You Can Trust.&lt;/p&gt;&lt;/div&gt;
+
+&lt;article class="jjb-review"&gt;&lt;div class="jjb-review__img"&gt;&lt;img src="…" alt="Customer photo"&gt;&lt;/div&gt;
+  &lt;div class="jjb-review__stars" aria-label="5 stars"&gt;★★★★★&lt;/div&gt;&lt;p class="jjb-review__text"&gt;…&lt;/p&gt;
+  &lt;div class="jjb-review__author"&gt;&lt;img src="…" alt=""&gt;Name&lt;/div&gt;&lt;a class="jjb-review__more" href="…"&gt;More Workflow&lt;/a&gt;&lt;/article&gt;</pre></details>
+    </section>
+
+    <!-- 12 FORMS -->
+    <section class="pg-sec" id="forms">
+      <header><span class="num">12</span><h2 class="jjb-h2">表单与 FAQ</h2><span class="src src--live">线上</span></header>
+      <p class="lead">Figma 组件库的表单区还是空的，这里沿用线上规则：44px 高、4px 圆角、1px 描边，聚焦时黑描边加蓝色焦点环，错误用红色描边和说明文字。FAQ 是新版样式：左侧分类，右侧 Bebas 问题，用 +/– 图标，答案灰色 14px。</p>
+      <div class="two">
+        <div style="display:grid;gap:16px">
+          <div class="jjb-field"><label for="f1">Email</label><input class="jjb-input" id="f1" placeholder="you@example.com"><div class="jjb-field__msg">We'll send your order updates here.</div></div>
+          <div class="jjb-field is-error"><label for="f2">Order number</label><input class="jjb-input" id="f2" value="JJB-12"><div class="jjb-field__msg">Order number should look like JJB-123456.</div></div>
+          <button class="jjb-btn jjb-btn--primary" style="justify-self:start">Track order</button>
+        </div>
+      </div>
+      <div class="pg-sub">FAQ <span class="src src--new">新版</span></div>
+      <div class="jjb-faq">
+        <ul class="jjb-faq__cats"><li><button aria-current="true">All</button></li><li><button>Sizing</button></li><li><button>Shipping</button></li><li><button>Customization</button></li><li><button>Pricing</button></li></ul>
+        <div>
+          <details open><summary>How big is my miniature?</summary><div>示例回答。尺寸、时效等硬事实以 brand-constants.md 为准，不在这里写死。</div></details>
+          <details><summary>How long does it take? Can I track my order?</summary><div>示例回答。</div></details>
+          <details><summary>Will my figurine actually look like my photo?</summary><div>示例回答。</div></details>
+        </div>
+      </div>
+      <details class="snippet"><summary>FAQ Markup</summary><pre>&lt;div class="jjb-faq"&gt;
+  &lt;ul class="jjb-faq__cats"&gt;&lt;li&gt;&lt;button aria-current="true"&gt;All&lt;/button&gt;&lt;/li&gt;…&lt;/ul&gt;
+  &lt;div&gt;&lt;details open&gt;&lt;summary&gt;Question?&lt;/summary&gt;&lt;div&gt;Answer.&lt;/div&gt;&lt;/details&gt;…&lt;/div&gt;
+&lt;/div&gt;</pre></details>
+    </section>
+
+    <!-- 12 FEEDBACK -->
+    <section class="pg-sec" id="feedback">
+      <header><span class="num">13</span><h2 class="jjb-h2">反馈与浮层</h2><span class="src src--f">F</span></header>
+      <p class="lead">toast：80% 黑底、12px 圆角，带淡蓝光晕阴影。弹窗：白底、20px 圆角、宽 300，右上角 35px 关闭钮。底部抽屉：顶部两角 20px，向上的柔和阴影。</p>
+      <div class="stage stage--sunken" style="align-items:flex-start">
+        <div class="jjb-toast"><svg class="jjb-icon jjb-icon--20"><use href="#i-check"/></svg>Added to cart</div>
+        <div class="jjb-dialog">
+          <button class="jjb-dialog__close" aria-label="Close"><svg class="jjb-icon jjb-icon--20"><use href="#i-close"/></svg></button>
+          <div class="jjb-h3" style="margin-top:8px">Delete this model?</div>
+          <p class="jjb-body-s jjb-muted">This model hasn't been ordered yet. Deleting it can't be undone.</p>
+          <div style="display:grid;gap:10px"><button class="jjb-btn jjb-btn--primary jjb-btn--s">Delete</button><button class="jjb-btn jjb-btn--outline jjb-btn--s">Keep it</button></div>
+        </div>
+        <div class="jjb-sheet" style="width:300px;padding:20px">
+          <div style="width:36px;height:4px;border-radius:4px;background:var(--jjb-neutral-400);margin:0 auto 16px"></div>
+          <div class="jjb-h3" style="font-family:var(--jjb-font-body);font-weight:700;text-transform:none;font-size:16px">Choose size</div>
+          <div style="display:flex;gap:6px;margin-top:12px"><button class="jjb-option" aria-pressed="true">6 cm</button><button class="jjb-option" aria-pressed="false">10 cm</button><button class="jjb-option" aria-pressed="false">15 cm</button></div>
+        </div>
+      </div>
+      <div style="margin-top:14px"><button class="jjb-btn jjb-btn--secondary jjb-btn--s" id="show-toast">触发 toast</button></div>
+    </section>
+
+    <!-- 13 APP -->
+    <section class="pg-sec" id="app">
+      <header><span class="num">14</span><h2 class="jjb-h2">App 专属</h2><span class="src src--app">App</span></header>
+      <p class="lead">App 按钮三档 36 / 44 / 54，没有 hover 态；次按钮白底。风格模板卡用各自的模板色做底，底部叠同色相深色渐变。独立站的模板入口直接用带模板色的图片（见 11 首页区块），不在 CSS 里另写模板色。</p>
+      <div class="stage stage--sunken">
+        <button class="jjb-app-btn jjb-app-btn--primary jjb-app-btn--l">Generate</button>
+        <button class="jjb-app-btn jjb-app-btn--primary">Generate</button>
+        <button class="jjb-app-btn jjb-app-btn--primary is-active">Pressed</button>
+        <button class="jjb-app-btn jjb-app-btn--primary" disabled>Disabled</button>
+        <button class="jjb-app-btn jjb-app-btn--secondary">Remix</button>
+        <button class="jjb-app-btn jjb-app-btn--secondary jjb-app-btn--s">Small 36</button>
+        <button class="jjb-app-btn jjb-app-btn--ghost"><svg class="jjb-icon jjb-icon--20" style="width:16px;height:16px"><use href="#i-share"/></svg>Share</button>
+      </div>
+      <div class="pg-sub">风格模板色</div>
+      <div class="tpl-grid" id="tpl-grid"></div>
+      <div class="pg-sub">贴纸素材规范</div>
+      <img src="assets/app/sticker-pack-spec.png" alt="贴纸素材规范：封面图和素材图均 500×500 png，素材图四周 30px，白色外描边 10px" style="width:100%;border-radius:16px">
+      <p class="jjb-body-s jjb-muted">封面图 500×500 png；素材图 500×500 png，四周留 30px，白色外描边 10px。</p>
+    </section>
+
+    <!-- 14 PAGE -->
+    <section class="pg-sec" id="page">
+      <header><span class="num">15</span><h2 class="jjb-h2">页面拼装示例</h2></header>
+      <p class="lead">一个新落地页的最小骨架：公告栏 → 毛玻璃页头压首图 → 区块（居中标题 + View All + 网格）→ 黑底页脚。区块上下各 50px（手机 32px），首页区块全宽，左右只留 30px（手机 20px）。新页面从这里复制结构，再替换内容。</p>
+      <div class="nav-frame">
+        <div class="jjb-announce"><span>示例公告</span></div>
+        <div style="position:relative;height:420px;background:url('https://jujubit.ai/cdn/shop/collections/Figurines.jpg?width=1600') center/cover, var(--jjb-dark-grey);display:grid;align-content:end;padding:40px 57px 60px;color:#fff">
+          <header class="jjb-nav jjb-nav--glass" style="position:absolute;inset:0 0 auto">
+            <svg class="jjb-nav__logo" viewBox="0 0 89 22"><use href="#logo-wordmark"/></svg>
+            <nav class="jjb-nav__menu"><a class="jjb-nav__link" href="#nav">Create</a><a class="jjb-nav__link" href="#nav">Templates</a><a class="jjb-nav__link" href="#nav">Categories</a><a class="jjb-nav__link" href="#nav">How it works</a><a class="jjb-nav__link" href="#nav">About us</a></nav>
+            <div class="jjb-nav__actions">
+            <button class="jjb-nav__login" type="button">Log In</button>
+            <button class="jjb-nav__icon" aria-label="Search"><svg><use href="#i-search"/></svg></button>
+            <button class="jjb-nav__icon" aria-label="Account"><svg><use href="#i-user"/></svg></button>
+            <button class="jjb-nav__icon" aria-label="Cart"><svg><use href="#i-cart_outline"/></svg><span class="jjb-badge-count">2</span></button>
+            <a class="jjb-btn jjb-btn--primary jjb-nav__create" href="#nav"><svg class="jjb-icon jjb-icon--20"><use href="#i-sparkle"/></svg>Create</a>
+          </div>
+          </header>
+          <div style="position:relative">
+            <p style="margin:0 0 20px;font-size:26px;line-height:1.5;max-width:540px;font-weight:600">Turn your photo into a custom figurine</p>
+            <a class="jjb-btn jjb-btn--primary jjb-btn--hero" href="#page">Create Your Own</a>
+          </div>
+        </div>
+        <div class="jjb-section" style="padding-inline:30px;background:#fff">
+          <div class="jjb-section-head"><h3 class="jjb-section-head__title">Trending Products</h3><a class="jjb-section-head__more" href="#page">View All</a></div>
+          <div class="jjb-grid" id="product-grid-2"></div>
+        </div>
+        <footer class="jjb-footer">
+          <div class="jjb-footer__grid">
+            <div><svg viewBox="0 0 89 22" style="height:30px;color:var(--jjb-brand-500)"><use href="#logo-wordmark"/></svg></div>
+            <div><h4 class="jjb-footer__head">Company</h4><ul class="jjb-footer__links"><li><a href="#page">Products</a></li><li><a href="#page">About Us</a></li><li><a href="#page">Contact Us</a></li></ul></div>
+            <div><h4 class="jjb-footer__head">Policies</h4><ul class="jjb-footer__links"><li><a href="#page">Shipping Policy</a></li><li><a href="#page">Refund &amp; Exchange</a></li></ul></div>
+            <div><h4 class="jjb-footer__head">Support</h4><ul class="jjb-footer__links"><li><a href="#page">Tracking My Order</a></li><li><a href="#page">FAQs</a></li></ul></div>
+            <div><p style="margin:0 0 16px">Subscribe to get special offers.</p><label class="jjb-footer__email"><svg class="jjb-icon"><use href="#i-mail"/></svg><input placeholder="Enter your email" aria-label="Email"></label></div>
+          </div>
+          <div class="jjb-footer__legal">页脚链接、社媒账号以 brand-constants.md 为准</div>
+        </footer>
+      </div>
+    </section>
+
+    <!-- 15 ASSETS -->
+    <section class="pg-sec" id="assets">
+      <header><span class="num">16</span><h2 class="jjb-h2">素材清单</h2></header>
+      <p class="lead">所有素材都在仓库里，可直接引用。完整清单和来源见 <code>assets/README.md</code>。</p>
+      <table class="asset-table">
+        <tr><th>素材</th><th>路径</th><th>用途</th></tr>
+        <tr><td>Token / 组件样式</td><td><code>tokens.css</code> · <code>components.css</code></td><td>每个新页面必引</td></tr>
+        <tr><td>字体</td><td><code>assets/fonts/</code></td><td>Bebas Neue、Outfit 可变字体（OFL）</td></tr>
+        <tr><td>Logo</td><td><code>assets/logo/</code></td><td>字标 SVG（橙/白）、3D 字标、位图</td></tr>
+        <tr><td>图标</td><td><code>assets/icons/*.svg</code> · <code>sprite.svg</code></td><td>58 个线性图标</td></tr>
+        <tr><td>App icon / 贴纸规范</td><td><code>assets/app/</code></td><td>App icon 两版、贴纸规范图</td></tr>
+        <tr><td>品牌动效、App 动效</td><td><code>assets/motion/*.mp4</code></td><td>720p 预览版；上线用原片找设计团队</td></tr>
+        <tr><td>Figma</td><td>组件库 · 规范对外 · 独立站稿</td><td><a href="https://www.figma.com/design/pVvAxy9wIEWS6KONJ1KzoI/" target="_blank" rel="noopener">组件库</a> · <a href="https://www.figma.com/design/B5D8pHkGH2iqqUERI15XR3/" target="_blank" rel="noopener">规范对外</a> · <a href="https://www.figma.com/design/TmoUzW1mvnPQqFcuKjMnZl/?node-id=177-928" target="_blank" rel="noopener">独立站稿</a></td></tr>
+      </table>
+    </section>
+    <!-- 17 AI -->
+    <section class="pg-sec" id="ai">
+      <header><span class="num">17</span><h2 class="jjb-h2">给 AI 用</h2></header>
+      <p class="lead">把本规范装成 agent skill。装好后对 Claude Code 或 Codex 说“按 JuJuBit 设计规范做一个 xx 页面”，它会自动读取规则、token、组件和素材。skill 跟着本页自动更新，重新跑一次安装命令就能拿到最新版。</p>
+      <div class="pg-sub">1. 一键安装（Claude Code + Codex，macOS / Linux）</div>
+      <div class="ai-cmd"><code>curl -fsSL https://playverseai.com/design/install.sh | bash</code><button class="jjb-btn jjb-btn--secondary jjb-btn--s" data-copy="curl -fsSL https://playverseai.com/design/install.sh | bash" data-label="安装命令">复制</button></div>
+      <p class="note">装到 <code>~/.claude/skills/jujubit-design-system</code> 和 <code>~/.codex/skills/jujubit-design-system</code>。只装一个：命令末尾加 <code>-s claude</code> 或 <code>-s codex</code>。装完重启 agent。</p>
+      <div class="pg-sub">2. 手动下载</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="jjb-btn jjb-btn--primary jjb-btn--s" href="downloads/jujubit-design-system-skill.zip" download>下载 skill 包（zip）</a>
+        <a class="jjb-btn jjb-btn--outline jjb-btn--s" href="skill/jujubit-design-system/SKILL.md" target="_blank" rel="noopener">查看 SKILL.md</a>
+      </div>
+      <p class="note">解压后把 <code>jujubit-design-system</code> 文件夹放进 agent 的 skills 目录。包里带 tokens.css、components.css、字体、Logo 和图标，离线也能用。</p>
+      <div class="pg-sub">3. 不装 skill，直接给 agent 这段话</div>
+      <div class="ai-cmd"><code>按 JuJuBit 设计规范做这个页面。先读 https://playverseai.com/design/skill/jujubit-design-system/SKILL.md ，页面引用 https://playverseai.com/design/tokens.css 和 https://playverseai.com/design/components.css ，组件 markup 从 https://playverseai.com/design/ 复制，不要新增色值、字号、圆角。</code><button class="jjb-btn jjb-btn--secondary jjb-btn--s" data-copy="按 JuJuBit 设计规范做这个页面。先读 https://playverseai.com/design/skill/jujubit-design-system/SKILL.md ，页面引用 https://playverseai.com/design/tokens.css 和 https://playverseai.com/design/components.css ，组件 markup 从 https://playverseai.com/design/ 复制，不要新增色值、字号、圆角。" data-label="提示词">复制</button></div>
+      <div class="pg-sub">修改规范</div>
+      <p class="note">源文件在 <a href="https://github.com/YishanCoding/jujubit-design-system" target="_blank" rel="noopener">github.com/YishanCoding/jujubit-design-system</a>。改动 push 到 main 后自动构建，约 5 分钟后本页和 skill 包更新。</p>
+    </section>
+  </main>
+</div>
+<div class="jjb-toast copied" id="copied">已复制</div>
+
+<script>
+const ICONS = {{ICONS}};
+const $ = (s, r = document) => r.querySelector(s);
+const toastEl = $('#copied');
+function copy(text, label) {
+  (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).catch(() => {});
+  toastEl.textContent = '已复制 ' + (label || text);
+  toastEl.classList.add('show'); clearTimeout(copy.t); copy.t = setTimeout(() => toastEl.classList.remove('show'), 1400);
+}
+
+const SW = {
+  brand: [['--jjb-brand-500','#FF5A11','主按钮、选中态'],['--jjb-brand-400','#FF7B41','主按钮 hover'],['--jjb-brand-600','#E54913','主按钮 pressed'],
+    ['--jjb-brand-300','#FF9C70','App 主按钮 disabled'],['--jjb-brand-100','#FFF7F3','浅橙填充'],['--jjb-brand-light-bg','#FFF1E0','品牌浅底'],['--jjb-dark-grey','#141614','品牌深灰底']],
+  neutral: [['--jjb-neutral-100','#FFFFFF','白'],['--jjb-neutral-200','#F9F9F9','下沉底'],['--jjb-neutral-300','#F0F0F0','边框/分隔线'],
+    ['--jjb-neutral-400','#DCDCDC',''],['--jjb-neutral-500','#CCCCCC','Web 按钮 disabled'],['--jjb-neutral-800','#444444','黑按钮 hover'],['--jjb-neutral-1000','#000000','黑']],
+  text: [['--jjb-text-primary','#000000','正文/标题'],['--jjb-text-secondary','rgba(0,0,0,.7)','次要文字'],['--jjb-text-tertiary','rgba(0,0,0,.6)','说明、品牌副标'],
+    ['--jjb-text-quartus','rgba(0,0,0,.4)','占位、禁用'],['--jjb-text-on-dark-secondary','rgba(255,255,255,.8)','深底次要','dark'],['--jjb-text-on-dark-tertiary','rgba(255,255,255,.6)','深底说明','dark']],
+  surface: [['--jjb-surface-media','#F5F5F5','商品图片区底'],['--jjb-surface-sunken','#F9F9F9','下沉区块'],['--jjb-surface-inverse','#000000','页脚、公告栏'],
+    ['--jjb-mask','rgba(0,0,0,.2)','深色导航底 + blur'],['--jjb-mask-light','rgba(0,0,0,.1)','浅遮罩'],['--jjb-border','#F0F0F0','默认边框']],
+  func: [['--jjb-sale','#DA3217','折扣价、Sale 标签'],['--jjb-error','#F03742','表单错误'],['--jjb-focus','#4A9AFC','键盘焦点环'],['--jjb-stock-ok','#54C63A','有货'],['--jjb-stock-low','#F4AF29','库存紧张']],
+  accent: [['--jjb-accent-purple','#E7B8FF',''],['--jjb-accent-blue','#98D4FF',''],['--jjb-accent-yellow','#FFCD6D',''],['--jjb-accent-orange','#F89719',''],['--jjb-accent-red','#FF5353','']],
+  gradient: [['--jjb-gradient-promo','促销条','App 促销条'],['--jjb-gradient-header-scrim','首图顶部遮罩','叠在照片上','photo'],['--jjb-gradient-logo-dark','Logo 深色底','']]
+};
+document.querySelectorAll('[data-swatches]').forEach(grid => {
+  grid.innerHTML = SW[grid.dataset.swatches].map(([v, val, use, mode]) => {
+    const bg = mode === 'dark' ? `background:#000;` : mode === 'photo' ? `background:#888;` : '';
+    const chip = mode === 'dark' ? `<div class="sw__chip" style="${bg}display:grid;place-items:center"><span style="color:var(${v});font-weight:600">Aa</span></div>`
+      : `<div class="sw__chip ${/rgba/.test(val) ? 'checker' : ''}" style="${bg}"><div style="height:100%;background:var(${v})"></div></div>`;
+    return `<button class="sw" data-copy="var(${v})">${chip}<div class="sw__body"><span class="sw__name mono">${v.replace('--jjb-','')}</span><span class="sw__val">${val}</span>${use ? `<span class="sw__use">${use}</span>` : ''}</div></button>`;
+  }).join('');
+});
+
+const TW = [['Headline L','--jjb-type-headline-l','56 / 32','Bebas 400 · 1.2','display','Make it yours'],['Headline M','--jjb-type-headline-m','30 / 24','Bebas 400 · 1.2','display','Shop by style'],
+  ['Headline S','--jjb-type-headline-s','22 / 18','Bebas 400 · 导航、tab','display','Customize'],['Eyebrow','--jjb-type-body-s','14 · 0.2em · 大写','Outfit 400','eyebrow','Top picks'],
+  ['Body L','--jjb-type-body-l','18','Outfit 400 · 1.6 · 商品标题','body','Turn your favorite photo into a hand-finished figurine.'],
+  ['Body M','--jjb-type-body-m','16','Outfit 400/600 · 默认正文','body','Each piece is printed and painted after you approve the preview.'],
+  ['Body S','--jjb-type-body-s','14','Outfit 400 · 辅助说明','body','Preview images are AI generated and may differ slightly from the final piece.'],
+  ['Foot','--jjb-type-foot','12','Outfit 400 · 注释','body','Prices shown in USD.'],['Mini','--jjb-type-mini','12 · 大写','Outfit · 标签','mini','Limited edition']];
+$('#type-web').innerHTML = TW.map(([n, v, size, spec, kind, txt]) => {
+  const style = kind === 'display' ? `font-family:var(--jjb-font-display);font-size:var(${v});line-height:1.2;text-transform:uppercase`
+    : kind === 'eyebrow' ? `font-size:14px;letter-spacing:.2em;text-transform:uppercase` : kind === 'mini' ? `font-size:12px;text-transform:uppercase;letter-spacing:.08em;font-weight:700`
+    : `font-size:var(${v});line-height:1.6`;
+  return `<div class="type-row"><div class="spec copyable" data-copy="var(${v})"><b>${n}</b><br>${size}px<br>${spec}<br><code>${v}</code></div><div style="${style}">${txt}</div></div>`;
+}).join('');
+const TA = [['Headline L','24','700'],['Headline M','22','700'],['Headline S','16','700'],['Body M','14','400 / 600'],['Body S','12','400'],['Foot','10','400'],['Button L / M / S','16 / 14 / 12','600']];
+$('#type-app').innerHTML = TA.map(([n, s, w]) => `<div class="type-row"><div class="spec"><b>${n}</b><br>${s}px · Outfit ${w}</div><div style="font-size:${s.split(' ')[0]}px;font-weight:${w.split(' ')[0]}">Create your own collectible</div></div>`).join('');
+
+$('#space-scale').innerHTML = [4,8,12,16,20,24,30,40,64,100].map((px, i) =>
+  `<div class="space-row copyable" data-copy="var(--jjb-space-${i+1})"><code>--jjb-space-${i+1}</code><div class="bar" style="width:${px*2}px"></div><span>${px}px</span></div>`).join('');
+$('#radius-grid').innerHTML = [['xs','4px','输入框'],['sm','8px','提示条'],['md','12px','toast、徽章'],['lg','16px','作品卡、半屏'],['xl','20px','弹窗、大卡片'],['pill','100px','按钮、胶囊'],['full','50%','圆钮、头像']]
+  .map(([k, v, u]) => `<div class="radius-item copyable" data-copy="var(--jjb-radius-${k})"><div style="border-radius:var(--jjb-radius-${k})${k==='full'?';width:80px':''}"></div><span><code>radius-${k}</code> ${v}<br>${u}</span></div>`).join('');
+$('#shadow-grid').innerHTML = [['float','悬浮圆钮'],['sheet','底部抽屉'],['soft','小浮层按钮'],['toast','toast']]
+  .map(([k, u]) => `<div class="shadow-item copyable" data-copy="var(--jjb-shadow-${k})"><div style="box-shadow:var(--jjb-shadow-${k})"></div><span><code>shadow-${k}</code><br>${u}</span></div>`).join('');
+
+const DUR = [['micro',200],['base',300],['entrance',500],['hero',800]];
+$('#ease-demo').innerHTML = DUR.map(([k, ms]) => `<div class="track" data-ms="${ms}"><div class="dot" style="transition:left var(--jjb-dur-${k}) var(--jjb-ease)"></div><span>--jjb-dur-${k} · ${ms}ms</span></div>`).join('');
+$('#play-ease').onclick = () => document.querySelectorAll('.track').forEach(t => t.classList.toggle('go'));
+function playReveal() {
+  const items = [...document.querySelectorAll('#reveal-box .jjb-reveal')];
+  items.forEach(el => el.classList.remove('is-in'));
+  requestAnimationFrame(() => requestAnimationFrame(() => items.forEach((el, i) => { el.style.transitionDelay = Math.min(i * 60, 600) + 'ms'; el.classList.add('is-in'); })));
+}
+$('#play-reveal').onclick = playReveal;
+new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { playReveal(); o.disconnect(); } }), { threshold: .4 }).observe($('#reveal-box'));
+
+const RAW = 'assets/motion/';
+const VIDS = [['品牌动效 横版 1920×1080','brand-landscape.mp4'],['品牌动效 独立站方版 1200×1200','brand-square.mp4'],['品牌动效 独立站竖版 1080×1920','brand-portrait.mp4'],
+  ['App 登录页 方版 快','app-login-fast.mp4'],['App 登录页 方版 慢','app-login-slow.mp4'],['App 开屏 1080×1920','app-splash.mp4'],['App 下滑刷新','app-pull-refresh.mp4'],
+  ['骨架屏加载','skeleton.mp4'],['列表点赞','like-list.mp4'],['详情页点赞','like-detail.mp4'],['换头像','avatar-change.mp4'],
+  ['灵感饼干按钮','inspire-cookie.mp4'],['创作按钮弥散光效','create-glow.mp4'],['内容流上滑新手引导','feed-swipe-guide.mp4'],['撒花','confetti.mp4']];
+$('#video-grid').innerHTML = VIDS.map(([n, f]) => `<figure><video src="${RAW}${f}" muted loop playsinline preload="metadata" controls></video><figcaption><b>${n}</b>${f}</figcaption></figure>`).join('');
+
+function renderIcons() {
+  const q = $('#icon-q').value.trim().toLowerCase();
+  $('#icon-grid').innerHTML = ICONS.filter(n => n.includes(q)).map(n =>
+    `<button class="icon-cell" data-copy='<svg class="jjb-icon" aria-hidden="true"><use href="#i-${n}"/></svg>' data-label="${n}"><svg><use href="#i-${n}"/></svg>${n}</button>`).join('');
+}
+$('#icon-q').oninput = renderIcons; renderIcons();
+document.querySelectorAll('[data-icon-bg]').forEach(b => b.onclick = () => {
+  document.querySelectorAll('[data-icon-bg]').forEach(x => x.setAttribute('aria-pressed', x === b));
+  $('#icon-grid').classList.toggle('dark', b.dataset.iconBg === 'dark');
+});
+document.querySelector('[data-icon-color]').onclick = e => {
+  const on = e.currentTarget.getAttribute('aria-pressed') !== 'true';
+  e.currentTarget.setAttribute('aria-pressed', on);
+  $('#icon-grid').style.setProperty('--icon-color', on ? 'var(--jjb-brand-500)' : '#000');
+};
+
+const CDN = 'https://cdn.shopify.com/s/files/1/0954/0884/9267/files/';
+const SHOP = 'https://jujubit.ai/cdn/shop/';
+const PRODUCTS = [['crimson-monarch-detailed-sculpt-miniature-for-rpg-display-collection-0%.png?v=1784021187','Crimson Monarch-Detailed Sculpt Miniature for RPG, Display & Collection','$24.99','',''],
+  ['shadow-knight-detailed-sculpt-miniature-for-rpg-display-collection-0%.png?v=1784021429','Shadow Knight-Detailed Sculpt Miniature for RPG, Display & Collection','$24.99','',''],
+  ['dark-lords-detailed-sculpt-miniature-for-rpg-display-collection-0%.png?v=1784024433','Dark Lords-Detailed Sculpt Miniature for RPG, Display & Collection','$19.99','$24.99','Sale'],
+  ['azure-sentinel-detailed-sculpt-miniature-for-rpg-display-collection-0%.png?v=1784027198','Azure Sentinel-Detailed Sculpt Miniature for RPG, Display & Collection','$24.99','','New']];
+const card = ([img, t, p, c, tag]) => `<a class="jjb-card" href="#commerce"><span class="jjb-card__media"><img src="${SHOP}files/${img.replace('%','1')}&width=800" alt="${t}" loading="lazy" width="800" height="800"><img src="${SHOP}files/${img.replace('%','2')}&width=800" alt="" loading="lazy" width="800" height="800">${tag ? `<span class="jjb-tag ${tag === 'Sale' ? 'jjb-tag--sale' : 'jjb-tag--brand'}">${tag}</span>` : ''}</span><span class="jjb-card__title">${t}</span><span class="jjb-card__price">${c ? `<span class="is-sale">${p}</span><s>${c}</s>` : p}</span></a>`;
+$('#product-grid').innerHTML = PRODUCTS.map(card).join('');
+$('#product-grid-2').innerHTML = PRODUCTS.map(card).join('');
+$('#tpl-track').innerHTML = [['TRPG Miniature','Dnd_character.png?v=1784126008'],['Couple Series','stylized_couple.png?v=1784278407'],['Mini Pop','MINI_Pop.png?v=1784125757'],['Cinematic Style','f2d038e59cb6b96971ca0bea0afccb22.png?v=1784278407'],['Realistic Style','stylized_couple-1.png?v=1784278407']]
+  .map(([n, f]) => `<a class="jjb-tpl-card" href="#blocks"><img src="${SHOP}files/${f}&width=720" alt="${n}" loading="lazy"><span class="jjb-tpl-card__footer"><span class="jjb-tpl-card__name">${n}</span><span class="jjb-btn jjb-btn--white jjb-btn--pill">Create Now</span></span></a>`).join('');
+$('#cat-grid').innerHTML = [['TRPG','Figurines.jpg?v=1784280214','SHOP'],['FDM Lamp','FDM_Decor.jpg?v=1784280517','EXPLORE'],['Keycaps','Keycaps_ac0280d1-97e4-4223-89b6-f58a7e9a808a.jpg?v=1784280534','SHOP'],['Ring Holders','75c4ccb8-ae13-4c86-8c73-a04aeb06b669.png?v=1791826769','Customize'],['Keychains','e16963b2-494a-4fac-9b90-2caa7cf20966.png?v=1791826766','Customize']]
+  .map(([n, f, b]) => `<a class="jjb-cat-card" href="#blocks"><span class="jjb-cat-card__img"><img src="${SHOP}collections/${f}&width=526" alt="" loading="lazy"></span><span class="jjb-cat-card__title">${n}</span><span class="jjb-btn jjb-btn--outline jjb-btn--pill">${b}</span></a>`).join('');
+$('#trust').innerHTML = [['4a945a3808ddde45e855ac7d14575596','Quality You Can Trust.'],['720efd548f7576977dc6f6561cdd317c','Made to Order, Just For You.'],['fadbbc13b8eba876429651ce612741d0','Verified Buyer Reviews.'],['026fb14113621f62c25008ad230a47ca','Worldwide Shipping with Tracking.'],['e4f6a130d16c073430d1dbe0b71b03f6','Safe & Secure Payment.']]
+  .map(([f, t]) => `<div class="jjb-trust__card"><img src="${SHOP}files/${f}.png?v=1784107313&width=96" alt=""><p>${t}</p></div>`).join('');
+const RCDN = 'https://cdn.shopify.com/s/files/1/0954/0884/9267/files/';
+$('#reviews').innerHTML = [['154-1782441000__1782440995349-2105__original.jpg','studio-bfd9025e.png?v=1784188341',4],['152-1783019752__1783019745699-3196__original.jpg','6_6a1c67a8-5fc0-4653-b1d5-e15ffef93b15.png?v=1784172563',5],['150-1783374837__1783374831416-img_4900__original.jpg','user13_b0d632e0-808f-4ff7-bf71-b1d42419d967.png?v=1784173143',5],['148-1783917013__6eef4e07-718a-4f2b-90eb-3b549b298f8e__original.jpg','19_1079d30e-8b84-407d-961b-b08d5ebc8481.png?v=1784172563',5]]
+  .map(([img, av, n], i) => `<article class="jjb-review"><div class="jjb-review__img"><img src="${RCDN}${img}?v=1784202163&width=600" alt="Customer photo" loading="lazy"></div><div class="jjb-review__stars" aria-label="${n} stars">${'★'.repeat(n)}<span style="color:#ddd">${'★'.repeat(5 - n)}</span></div><p class="jjb-review__text">示例评价文案，最多显示三行。真实评价以 Judge.me 数据为准，不要手写评分。</p><div class="jjb-review__author"><img src="${SHOP}files/${av}&width=48" alt="">Customer ${i + 1}</div><a class="jjb-review__more" href="#blocks">More Workflow</a></article>`).join('');
+document.querySelectorAll('#steps .jjb-step').forEach(st => st.onclick = () => document.querySelectorAll('#steps .jjb-step').forEach(x => x.setAttribute('aria-current', x === st)));
+document.querySelectorAll('.jjb-tabs[role=tablist]').forEach(tl => tl.querySelectorAll('.jjb-chip').forEach(b => b.onclick = () => tl.querySelectorAll('.jjb-chip').forEach(x => x.setAttribute('aria-selected', x === b))));
+document.querySelectorAll('.jjb-faq__cats button').forEach(b => b.onclick = () => document.querySelectorAll('.jjb-faq__cats button').forEach(x => x.setAttribute('aria-current', x === b)));
+document.querySelectorAll('.jjb-dots').forEach(d => d.querySelectorAll('button').forEach(b => b.onclick = () => d.querySelectorAll('button').forEach(x => x.setAttribute('aria-current', x === b))));
+
+$('#tpl-grid').innerHTML = [['Dnd Character','#EF507D','rgba(128,16,48,.4)'],['Dnd Creature','#F2A8DC','rgba(150,39,117,.4)'],['Mini Pop','#7CE1AC','rgba(36,162,96,.4)'],
+  ['Stylized Couple','#D776FC','rgba(104,21,136,.4)'],['Stylized Couple','#FDCC46','rgba(135,108,34,.4)'],['Pixar','#3571E6','rgba(20,50,130,.4)']]
+  .map(([n, c, g]) => `<div class="tpl copyable" data-copy="${c}" style="background:${c};--g:${g}"><span>${n}<br><small style="font-weight:400;opacity:.8">${c}</small></span></div>`).join('');
+
+document.querySelectorAll('.stage .jjb-option').forEach(o => o.onclick = () => o.parentElement.querySelectorAll('.jjb-option').forEach(x => x.setAttribute('aria-pressed', x === o)));
+$('#show-toast').onclick = () => copy('', '— toast 示例');
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-copy]');
+  if (el) copy(el.dataset.copy, el.dataset.label || el.dataset.copy);
+});
+</script>
+</body>
+</html>

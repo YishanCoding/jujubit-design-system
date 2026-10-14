@@ -1,0 +1,340 @@
+/*
+ * JuJuBit Components v2 — 依赖 tokens.css，先引 tokens.css 再引本文件
+ * JuJuBit 设计规范 v2 | 2026-10-14 | 源：github.com/YishanCoding/jujubit-design-system
+ * 2026-10-14 复核：Web 区块组件（导航、区块标题、筛选胶囊、商品卡、模板卡、步骤、分类卡、信任卡、评价卡、社媒视频、FAQ、页脚）
+ * 以 2026-10 上线的 jjb_* 新主题为准，注 [新版]。按钮基础态、App 组件、toast/弹窗仍以 Figma 组件库为准
+ * （button-shopify 90:474 / Button-app 87:1896 / option 187:860 / toast 95:2443 / 弹窗 95:2447）。表单沿用 v1.1 [线上]。
+ * 用法示例全部在 playground.html，复制 markup 即可。
+ */
+
+/* ---------- 基础 ---------- */
+.jjb { font-family: var(--jjb-font-body); font-size: var(--jjb-type-body-m); line-height: var(--jjb-lh-body);
+  letter-spacing: var(--jjb-ls-body); color: var(--jjb-text-primary); background: var(--jjb-surface);
+  -webkit-font-smoothing: antialiased; }
+.jjb *, .jjb *::before, .jjb *::after { box-sizing: border-box; }
+.jjb-container { max-width: calc(var(--jjb-container) + 2 * var(--jjb-gutter-desktop)); margin-inline: auto;
+  padding-inline: var(--jjb-gutter-desktop); }
+.jjb-container--wide { max-width: none; } /* [新版] 首页区块全宽 + gutter */
+.jjb-section { padding-block: calc(var(--jjb-section-gap) / 2); }
+.jjb-section--dark { background: var(--jjb-surface-inverse); color: #fff; }
+.jjb-section--soft { background: var(--jjb-surface-card); }
+@media (max-width: 767px) {
+  .jjb-container { padding-inline: var(--jjb-gutter); }
+  .jjb-section { padding-block: calc(var(--jjb-section-gap-m) / 2); }
+}
+
+/* ---------- 文字 ---------- */
+.jjb-display, .jjb-h1, .jjb-h2, .jjb-h3 { font-family: var(--jjb-font-display); font-weight: 400;
+  line-height: var(--jjb-lh-heading); letter-spacing: 0; text-transform: uppercase; margin: 0; }
+.jjb-h1 { font-size: var(--jjb-type-headline-l); }
+.jjb-h2 { font-size: var(--jjb-type-headline-m); }
+.jjb-h3 { font-size: var(--jjb-type-headline-s); }
+.jjb-display { font-size: 200px; line-height: 1; color: #FAFAFA; pointer-events: none; } /* 超大装饰背景字 */
+.jjb-eyebrow { font-size: var(--jjb-type-body-s); letter-spacing: var(--jjb-ls-eyebrow); text-transform: uppercase;
+  color: var(--jjb-text-primary); }
+.jjb-mini { font-size: var(--jjb-type-mini); text-transform: uppercase; letter-spacing: .08em; }
+.jjb-body-l { font-size: var(--jjb-type-body-l); }
+.jjb-body-s { font-size: var(--jjb-type-body-s); }
+.jjb-foot { font-size: var(--jjb-type-foot); color: var(--jjb-text-tertiary); }
+.jjb-muted { color: var(--jjb-text-tertiary); }
+@media (max-width: 767px) {
+  .jjb-h1 { font-size: var(--jjb-type-headline-l-m); }
+  .jjb-h2 { font-size: var(--jjb-type-headline-m-m); }
+  .jjb-h3 { font-size: var(--jjb-type-headline-s-m); }
+  .jjb-display { font-size: 100px; }
+}
+
+/* ---------- 按钮（Web：button-shopify） ---------- */
+.jjb-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: var(--jjb-btn-h-m); padding: 0 20px; border: 0; border-radius: var(--jjb-radius-pill);
+  font: 600 var(--jjb-type-btn-m)/1.2 var(--jjb-font-body); letter-spacing: var(--jjb-ls-body);
+  text-decoration: none; cursor: pointer; white-space: nowrap;
+  transition: background-color var(--jjb-dur-micro) var(--jjb-ease), color var(--jjb-dur-micro) var(--jjb-ease),
+    box-shadow var(--jjb-dur-micro) var(--jjb-ease), transform var(--jjb-dur-micro) var(--jjb-ease); }
+.jjb-btn svg { width: 20px; height: 20px; }
+.jjb-btn--l { height: var(--jjb-btn-h-l); font-size: var(--jjb-type-btn-l); }
+.jjb-btn--s { height: var(--jjb-btn-h-s); font-size: var(--jjb-type-btn-s); font-weight: 500; }
+.jjb-btn--primary { background: var(--jjb-brand-500); color: #fff; }
+.jjb-btn--primary:hover { background: var(--jjb-brand-400); }
+.jjb-btn--primary:active { background: var(--jjb-brand-600); }
+.jjb-btn--secondary { background: var(--jjb-neutral-1000); color: #fff; }
+.jjb-btn--secondary:hover { background: var(--jjb-neutral-800); }
+.jjb-btn--secondary:active { background: var(--jjb-neutral-1000); }
+.jjb-btn--outline { background: #fff; color: #000; box-shadow: inset 0 0 0 1px var(--jjb-border-strong); } /* [F稿] btn1 */
+.jjb-btn--outline:hover { background: var(--jjb-neutral-200); }
+.jjb-btn--pill { height: var(--jjb-pill-h); padding: 0 14px; font-weight: 500; font-size: var(--jjb-type-body-s);
+  letter-spacing: -.02em; } /* [新版] 卡片内胶囊：配 --outline（分类卡 SHOP）或 --white（模板卡 Create Now） */
+.jjb-btn--white { background: #fff; color: #000; }
+.jjb-btn--white:hover { background: var(--jjb-neutral-200); }
+.jjb-btn--hero { height: var(--jjb-btn-h-m); font-size: var(--jjb-type-body-l); font-weight: 500; } /* [新版] 首屏 CTA 50 / 18 */
+@media (max-width: 767px) { .jjb-btn--hero { height: var(--jjb-header-btn-h); font-size: var(--jjb-type-body-s); } }
+.jjb-btn--text { height: auto; padding: 0; background: none; color: inherit; text-decoration: underline;
+  text-underline-offset: 3px; } /* [线上] */
+.jjb-btn--text:hover { color: var(--jjb-brand-500); }
+.jjb-btn:disabled, .jjb-btn[aria-disabled="true"] { background: var(--jjb-neutral-500); color: #fff;
+  box-shadow: none; cursor: not-allowed; }
+.jjb-btn--text:disabled { background: none; color: var(--jjb-text-quartus); }
+:where(.jjb) :focus-visible { outline: 2px solid var(--jjb-focus); outline-offset: 2px; } /* [线上] */
+
+/* 按钮（App：Button-app） */
+.jjb-app-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  height: var(--jjb-app-btn-h-m); padding: 0 20px; border: 0; border-radius: var(--jjb-radius-pill);
+  font: 600 var(--jjb-app-btn-m)/1.2 var(--jjb-font-body); cursor: pointer;
+  transition: background-color var(--jjb-dur-micro) var(--jjb-ease); }
+.jjb-app-btn--l { height: var(--jjb-app-btn-h-l); font-size: var(--jjb-app-btn-l); padding: 0 20px; }
+.jjb-app-btn--s { height: var(--jjb-app-btn-h-s); font-size: var(--jjb-app-btn-s); padding: 0 20px; }
+.jjb-app-btn--primary { background: var(--jjb-brand-500); color: #fff; }
+.jjb-app-btn--primary:active { background: var(--jjb-brand-600); }
+.jjb-app-btn--primary:disabled { background: var(--jjb-brand-300); }
+.jjb-app-btn--secondary { background: var(--jjb-neutral-100); color: #000; }
+.jjb-app-btn--secondary:active { background: var(--jjb-neutral-200); }
+.jjb-app-btn--secondary:disabled { color: var(--jjb-text-quartus); }
+.jjb-app-btn--ghost { height: 32px; padding: 0 14px; background: var(--jjb-mask-light); color: #000;
+  font-size: var(--jjb-app-btn-s); } /* App 通用带 slot 小按钮 101:4861 */
+
+/* ---------- 图标 ---------- */
+.jjb-icon { width: 24px; height: 24px; display: inline-block; color: currentColor; flex: none; }
+.jjb-icon--20 { width: 20px; height: 20px; }
+.jjb-icon-btn { width: 40px; height: 40px; border-radius: var(--jjb-radius-full); border: 0; background: #fff;
+  display: inline-grid; place-items: center; box-shadow: var(--jjb-shadow-float); cursor: pointer; color: #000;
+  transition: transform var(--jjb-dur-micro) var(--jjb-ease); }
+.jjb-icon-btn:hover { transform: scale(1.05); }
+.jjb-icon-btn:active { transform: scale(.96); }
+
+/* ---------- 公告栏 + 导航 [新版] ---------- */
+.jjb-announce { height: var(--jjb-announce-h); background: var(--jjb-gradient-announce); color: #fff;
+  display: flex; align-items: center; justify-content: center; gap: 220px; font-size: var(--jjb-type-body-m); }
+.jjb-announce button { width: 32px; height: 32px; border: 0; background: none; color: inherit; display: grid;
+  place-items: center; cursor: pointer; }
+.jjb-nav { height: var(--jjb-header-h); display: flex; align-items: center; gap: 8px; padding-inline: var(--jjb-gutter-desktop);
+  background: #fff; color: #000; box-shadow: var(--jjb-shadow-header);
+  transition: background-color 180ms, backdrop-filter 180ms, color 180ms; }
+.jjb-nav--glass { background: var(--jjb-header-glass); color: #fff; box-shadow: none;
+  backdrop-filter: var(--jjb-blur-header); -webkit-backdrop-filter: var(--jjb-blur-header); } /* 首屏图上，滚动后切回白底 */
+.jjb-nav__logo { height: 25px; width: auto; color: var(--jjb-brand-500); }
+.jjb-nav--glass .jjb-nav__logo { color: #fff; }
+.jjb-nav__menu { flex: 1; display: flex; justify-content: center; gap: 28px; }
+.jjb-nav__link { font: 400 var(--jjb-type-nav)/1 var(--jjb-font-display); color: inherit; text-decoration: none;
+  transition: color var(--jjb-dur-micro) var(--jjb-ease); }
+.jjb-nav__link:hover { color: var(--jjb-brand-500); }
+.jjb-nav__actions { display: flex; align-items: center; gap: 4px; }
+.jjb-nav__actions .jjb-nav__icon { width: 30px; height: 44px; border: 0; background: none; color: inherit;
+  display: grid; place-items: center; cursor: pointer; position: relative; }
+.jjb-nav__actions .jjb-nav__icon svg { width: 20px; height: 20px; }
+.jjb-nav__login { height: 32px; padding: 0 22px; margin-right: 8px; border: 0; border-radius: var(--jjb-radius-pill);
+  background: var(--jjb-surface-login); color: #000; font: 500 var(--jjb-type-foot)/1 var(--jjb-font-body); cursor: pointer; }
+.jjb-nav--glass .jjb-nav__login { background: #fff; }
+.jjb-nav__create { height: var(--jjb-header-btn-h); padding: 0 18px 0 14px; margin-left: 20px; gap: 4px;
+  font-size: var(--jjb-type-btn-m); text-transform: uppercase; }
+.jjb-badge-count { position: absolute; top: 6px; right: 0; min-width: 16px; height: 16px; padding: 0 4px;
+  border-radius: var(--jjb-radius-pill); background: var(--jjb-brand-500); color: #fff; font-size: 10px;
+  line-height: 16px; text-align: center; }
+@media (max-width: 960px) {
+  .jjb-announce { gap: 12px; font-size: var(--jjb-type-body-s); }
+  .jjb-nav { height: var(--jjb-header-h-m); padding-inline: var(--jjb-gutter); }
+  .jjb-nav__menu, .jjb-nav__login { display: none; }
+  .jjb-nav__actions { margin-left: auto; }
+  .jjb-nav__create { margin-left: 8px; }
+}
+
+/* ---------- 区块标题 [新版]：居中 Bebas 64，右侧 View All ---------- */
+.jjb-section-head { position: relative; text-align: center; margin-bottom: 40px; }
+.jjb-section-head__title { margin: 0; font: 400 var(--jjb-type-section)/1 var(--jjb-font-display);
+  letter-spacing: var(--jjb-ls-section); text-transform: uppercase; }
+.jjb-section-head__more { position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+  font: 500 var(--jjb-type-body-l)/1.6 var(--jjb-font-body); color: inherit; text-decoration: none; }
+.jjb-section-head__more:hover { color: var(--jjb-brand-500); }
+.jjb-section-head__sub { margin-top: 16px; font-size: var(--jjb-type-body-m); font-weight: 500; }
+@media (max-width: 767px) {
+  .jjb-section-head { margin-bottom: 20px; }
+  .jjb-section-head__title { font-size: var(--jjb-type-section-m); line-height: 40px; }
+  .jjb-section-head__more { font-size: var(--jjb-type-body-s); }
+}
+
+/* ---------- 筛选胶囊 [新版]（替代旧版 Bebas 下划线 tab） ---------- */
+.jjb-tabs { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; }
+.jjb-chip { height: var(--jjb-chip-h); padding: 0 21px; border-radius: var(--jjb-radius-pill);
+  border: 1px solid var(--jjb-border-chip); background: #fff; color: rgba(0,0,0,.81);
+  font: 500 var(--jjb-type-foot)/1 var(--jjb-font-body); letter-spacing: .025em; cursor: pointer;
+  transition: background-color var(--jjb-dur-micro) var(--jjb-ease), color var(--jjb-dur-micro) var(--jjb-ease); }
+.jjb-chip:hover { border-color: #000; color: #000; }
+.jjb-chip[aria-selected="true"], .jjb-chip[aria-pressed="true"] { background: #000; border-color: #000; color: #fff; }
+
+/* ---------- 轮播指示点 [新版] ---------- */
+.jjb-dots { display: flex; justify-content: center; gap: 8px; }
+.jjb-dots button { width: 9px; height: 9px; padding: 0; border: 0; border-radius: var(--jjb-radius-pill);
+  background: var(--jjb-dot); cursor: pointer; transition: width var(--jjb-dur-base), background-color var(--jjb-dur-base); }
+.jjb-dots button[aria-current="true"] { width: 30px; background: #000; }
+.jjb-dots--light button { background: rgba(255,255,255,.5); }
+.jjb-dots--light button[aria-current="true"] { background: #fff; }
+
+/* ---------- 胶囊选项 option 187:860 ---------- */
+.jjb-option { display: inline-flex; align-items: center; min-height: 36px; padding: 9px 14px;
+  border-radius: var(--jjb-radius-pill); border: 0; background: transparent; color: var(--jjb-text-secondary);
+  font: 500 var(--jjb-type-body-s)/1.2 var(--jjb-font-body); cursor: pointer;
+  transition: background-color var(--jjb-dur-micro) var(--jjb-ease), color var(--jjb-dur-micro) var(--jjb-ease); }
+.jjb-option:hover { color: #000; }
+.jjb-option[aria-pressed="true"] { background: rgba(11,11,11,.1); color: #000; }
+.jjb-option--dark { color: var(--jjb-text-on-dark-secondary); }
+.jjb-option--dark[aria-pressed="true"] { background: rgba(255,255,255,.1); color: #fff; }
+
+/* ---------- 商品卡 [新版]：无品牌副标、无 Quick view；hover 淡入第二张图 ---------- */
+.jjb-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--jjb-grid-gap); }
+@media (max-width: 1023px) { .jjb-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 767px) { .jjb-grid { grid-template-columns: repeat(2, 1fr); } }
+.jjb-card { display: block; color: inherit; text-decoration: none; }
+.jjb-card__media { position: relative; display: block; aspect-ratio: 1; background: var(--jjb-surface-media); overflow: hidden; }
+.jjb-card__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 220ms; }
+.jjb-card__media img + img { opacity: 0; }
+.jjb-card:hover .jjb-card__media img + img, .jjb-card:focus-visible .jjb-card__media img + img { opacity: 1; }
+.jjb-card__media .jjb-tag { position: absolute; left: 12px; top: 12px; }
+.jjb-card__title { margin-top: 14px; font-size: var(--jjb-type-body-m); font-weight: 500; line-height: 20px;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.jjb-card__price { margin-top: 14px; font-size: var(--jjb-type-body-m); font-weight: 500; line-height: 20px;
+  display: flex; gap: 8px; align-items: baseline; }
+.jjb-card__price s { font-size: var(--jjb-type-body-s); font-weight: 400; color: var(--jjb-text-quartus); }
+.jjb-card__price .is-sale { color: var(--jjb-sale); }
+@media (max-width: 767px) { .jjb-card__title { font-size: var(--jjb-type-body-s); line-height: 16px; } }
+
+/* ---------- 模板卡 [新版]：模板色底图 + 底部名称 + 白胶囊 ---------- */
+.jjb-tpl-card { position: relative; display: block; aspect-ratio: 352 / 205; border-radius: var(--jjb-radius-card);
+  overflow: hidden; color: #fff; text-decoration: none; }
+.jjb-tpl-card img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--jjb-dur-entrance) var(--jjb-ease); }
+.jjb-tpl-card:hover img { transform: scale(1.04); }
+.jjb-tpl-card__footer { position: absolute; inset: auto 0 0; height: 62px; padding: 0 20px; display: flex;
+  align-items: center; justify-content: space-between; background: linear-gradient(180deg, transparent, rgba(0,0,0,.25)); }
+.jjb-tpl-card__name { font: 400 var(--jjb-type-headline-s)/1 var(--jjb-font-display); letter-spacing: .025em; }
+.jjb-track { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 30px) / 4); gap: 10px;
+  overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.jjb-track > * { scroll-snap-align: start; }
+@media (max-width: 767px) { .jjb-track { grid-auto-columns: 78%; } }
+
+/* ---------- 步骤 How it works [新版]：黑底，当前步白、其余半透明 ---------- */
+.jjb-steps { display: grid; gap: 0; }
+.jjb-step { display: grid; grid-template-columns: 58px 1fr; column-gap: 0; padding-bottom: 20px; margin-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,.3); opacity: .5; cursor: pointer; transition: opacity var(--jjb-dur-base); }
+.jjb-step[aria-current="true"] { opacity: 1; border-bottom-color: #fff; }
+.jjb-step__num { font: 500 24px/48px var(--jjb-font-display); }
+.jjb-step__title { margin: 0; font: 400 var(--jjb-type-step)/48px var(--jjb-font-display); text-transform: uppercase; }
+.jjb-step__body { grid-column: 2; margin: 16px 0 0; max-width: 520px; display: none; }
+.jjb-step[aria-current="true"] .jjb-step__body { display: block; }
+@media (max-width: 767px) { .jjb-step__title { font-size: 28px; line-height: 36px; } .jjb-step__num { line-height: 36px; } }
+
+/* ---------- 分类卡 [新版] ---------- */
+.jjb-cat-card { display: grid; gap: 12px; justify-items: center; padding-bottom: 20px; background: var(--jjb-surface-card);
+  border-radius: var(--jjb-radius-card); overflow: hidden; color: inherit; text-decoration: none; }
+.jjb-cat-card__img { width: 100%; aspect-ratio: 1; overflow: hidden; }
+.jjb-cat-card__img img { width: 100%; height: 100%; object-fit: cover; transition: transform 260ms; }
+.jjb-cat-card:hover .jjb-cat-card__img img { transform: scale(1.05); }
+.jjb-cat-card__title { padding: 12px 16px 0; font: 400 var(--jjb-type-card-title)/44px var(--jjb-font-display);
+  letter-spacing: -1px; text-transform: uppercase; }
+.jjb-cat-card .jjb-btn { min-width: 103px; }
+@media (max-width: 767px) {
+  .jjb-cat-card { border-radius: var(--jjb-radius-card-m); }
+  .jjb-cat-card__title { font-size: var(--jjb-type-card-title-m); line-height: 20px; }
+}
+
+/* ---------- 信任卡 [新版]：灰底区块里的白卡 ---------- */
+.jjb-trust { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--jjb-grid-gap); }
+.jjb-trust__card { padding: 20px 30px; min-height: 160px; background: #fff; border-radius: var(--jjb-radius-card);
+  display: grid; align-content: start; gap: 12px; }
+.jjb-trust__card svg, .jjb-trust__card img { width: 48px; height: 48px; }
+.jjb-trust__card p { margin: 0; font-size: 20px; line-height: 28px; color: var(--jjb-text-card); }
+@media (max-width: 1023px) { .jjb-trust { grid-template-columns: repeat(2, 1fr); } }
+
+/* ---------- 评价卡 [新版]（星色取 Judge.me 黄，第三方） ---------- */
+.jjb-review { display: grid; gap: 14px; align-content: start; }
+.jjb-review__img { aspect-ratio: 1; border-radius: var(--jjb-radius-sm); overflow: hidden; }
+.jjb-review__img img { width: 100%; height: 100%; object-fit: cover; }
+.jjb-review__stars { color: #FFC21A; letter-spacing: 4px; font-size: 18px; line-height: 1; } /* [新版] 第三方组件色，不进 token */
+.jjb-review__text { margin: 0; font-weight: 500; line-height: 20px; letter-spacing: -.01em;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.jjb-review__author { display: flex; align-items: center; gap: 8px; font-size: var(--jjb-type-body-s); font-weight: 500; }
+.jjb-review__author img { width: 24px; height: 24px; border-radius: 50%; }
+.jjb-review__more { font-size: var(--jjb-type-body-s); font-weight: 500; color: inherit; text-decoration: underline;
+  text-underline-offset: 3px; }
+
+/* ---------- 社媒竖版视频 [新版]：深灰底，居中一张放大 ---------- */
+.jjb-social { background: var(--jjb-surface-dark); color: #fff; }
+.jjb-social__row { display: flex; align-items: center; justify-content: center; gap: 20px; overflow: hidden; }
+.jjb-social__item { flex: none; width: 230px; aspect-ratio: 230 / 410; border-radius: var(--jjb-radius-video);
+  overflow: hidden; background: #333; opacity: .6; transition: width 280ms, opacity 280ms; }
+.jjb-social__item[aria-current="true"] { width: 286px; opacity: 1; box-shadow: 0 0 0 3px rgba(255,255,255,.15); }
+.jjb-social__item video, .jjb-social__item img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- 标签 ---------- */
+.jjb-tag { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: var(--jjb-radius-pill);
+  font: 700 var(--jjb-type-mini)/1 var(--jjb-font-body); text-transform: uppercase; letter-spacing: .06em; }
+.jjb-tag--brand { background: var(--jjb-brand-500); color: #fff; }
+.jjb-tag--sale { background: var(--jjb-sale); color: #fff; }
+.jjb-tag--soft { background: var(--jjb-brand-100); color: var(--jjb-brand-600); }
+.jjb-tag--neutral { background: var(--jjb-neutral-200); color: #000; box-shadow: inset 0 0 0 1px var(--jjb-border); }
+.jjb-tip { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: var(--jjb-radius-sm);
+  background: #FFF8E5; color: #E76108; font-size: var(--jjb-type-body-s); } /* [F稿] App 促销提示条 327:717 */
+
+/* ---------- 表单 [线上] ---------- */
+.jjb-field { display: grid; gap: 6px; }
+.jjb-field label { font-size: var(--jjb-type-body-s); font-weight: 500; }
+.jjb-input { height: 44px; padding: 0 14px; border: 0; border-radius: var(--jjb-radius-xs); background: #fff;
+  box-shadow: inset 0 0 0 1px var(--jjb-border); font: inherit; color: inherit;
+  transition: box-shadow var(--jjb-dur-micro) var(--jjb-ease); }
+.jjb-input::placeholder { color: var(--jjb-text-quartus); }
+.jjb-input:hover { box-shadow: inset 0 0 0 1px var(--jjb-neutral-500); }
+.jjb-input:focus { outline: none; box-shadow: inset 0 0 0 1px #000, 0 0 0 3px rgba(74,154,252,.35); }
+.jjb-field.is-error .jjb-input { box-shadow: inset 0 0 0 1px var(--jjb-error); }
+.jjb-field__msg { font-size: var(--jjb-type-foot); color: var(--jjb-text-tertiary); }
+.jjb-field.is-error .jjb-field__msg { color: var(--jjb-error); }
+
+/* ---------- FAQ [新版]：左分类 + 右问答，Bebas 问题，+/- 图标 ---------- */
+.jjb-faq { display: grid; grid-template-columns: 300px 1fr; gap: 65px; }
+.jjb-faq__cats { display: grid; gap: 20px; align-content: start; margin: 0; padding: 0; list-style: none; }
+.jjb-faq__cats button { display: flex; align-items: center; gap: 12px; padding: 0 0 0 12px; border: 0; background: none;
+  font: 400 var(--jjb-type-body-m)/22px var(--jjb-font-body); color: var(--jjb-text-answer); cursor: pointer; }
+.jjb-faq__cats button[aria-current="true"] { padding-left: 0; color: #000; font-weight: 700; }
+.jjb-faq__cats button[aria-current="true"]::before { content: ""; width: 20px; height: 2px; background: #000; }
+.jjb-faq details { padding: 16px 0; }
+.jjb-faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+  gap: 16px; font: 500 20px/22px var(--jjb-font-display); text-transform: uppercase; }
+.jjb-faq summary::-webkit-details-marker { display: none; }
+.jjb-faq summary::after { content: "+"; font: 400 20px/1 var(--jjb-font-body); flex: none; }
+.jjb-faq details[open] summary::after { content: "–"; }
+.jjb-faq details > div { padding-top: 16px; font-size: var(--jjb-type-body-s); line-height: 26px; letter-spacing: .025em;
+  color: var(--jjb-text-answer); }
+@media (max-width: 767px) {
+  .jjb-faq { grid-template-columns: 1fr; gap: 20px; }
+  .jjb-faq__cats { grid-auto-flow: column; overflow-x: auto; }
+  .jjb-faq summary { font-size: 18px; }
+}
+
+/* ---------- 页脚 [新版] ---------- */
+.jjb-footer { background: #000; color: #fff; padding: 80px var(--jjb-gutter-desktop) 40px; }
+.jjb-footer__grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr 1.6fr; gap: 30px; align-items: start; }
+.jjb-footer__head { margin: 0 0 24px; font: 400 12.6px/1.2 var(--jjb-font-display); letter-spacing: .2em; text-transform: uppercase; }
+.jjb-footer a { color: inherit; text-decoration: none; }
+.jjb-footer__links { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; font-size: 15px; }
+.jjb-footer__links a { display: block; padding: 4px 0; }
+.jjb-footer__links a:hover { color: var(--jjb-brand-500); }
+.jjb-footer__social { display: flex; gap: 14px; margin-top: 24px; }
+.jjb-footer__social svg { width: 26px; height: 26px; }
+.jjb-footer__email { display: flex; align-items: center; gap: 10px; height: 42px; padding: 0 10px; border: 1px solid rgba(255,255,255,.12); }
+.jjb-footer__email input { flex: 1; min-width: 0; border: 0; background: none; color: #fff; font: inherit; font-size: 15px; outline: none; }
+.jjb-footer__legal { margin-top: 60px; text-align: center; font-size: var(--jjb-type-foot); color: var(--jjb-text-on-dark-secondary); }
+@media (max-width: 960px) { .jjb-footer { padding-inline: var(--jjb-gutter); } .jjb-footer__grid { grid-template-columns: 1fr 1fr; } }
+
+/* ---------- 反馈：toast / dialog / skeleton ---------- */
+.jjb-toast { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: var(--jjb-radius-md);
+  background: rgba(0,0,0,.8); color: #fff; font-size: var(--jjb-type-body-s); box-shadow: var(--jjb-shadow-toast); }
+.jjb-dialog { width: min(300px, 100%); padding: 24px; border-radius: var(--jjb-radius-xl); background: #fff;
+  text-align: center; position: relative; }
+.jjb-dialog__close { position: absolute; top: 8px; right: 8px; width: 35px; height: 35px; border: 0; background: none;
+  display: grid; place-items: center; cursor: pointer; }
+.jjb-scrim { position: fixed; inset: 0; background: rgba(0,0,0,.5); display: grid; place-items: center; padding: 20px; }
+.jjb-sheet { border-radius: var(--jjb-radius-xl) var(--jjb-radius-xl) 0 0; background: #fff; box-shadow: var(--jjb-shadow-sheet); }
+.jjb-skeleton { background: #F0F0F0; border-radius: var(--jjb-radius-sm);
+  animation: jjb-skeleton var(--jjb-dur-skeleton) linear infinite alternate; }
+@keyframes jjb-skeleton { to { background: #EEEEEE; } }
+
+/* ---------- 入场动效 ---------- */
+.jjb-reveal { opacity: 0; transform: translateY(20px);
+  transition: opacity var(--jjb-dur-entrance) var(--jjb-ease), transform var(--jjb-dur-entrance) var(--jjb-ease); }
+.jjb-reveal.is-in { opacity: 1; transform: none; }

@@ -1,0 +1,10 @@
+# 只有仓库所有者部署（改路由/改 worker 才需要；改规范内容不需要部署）
+name = "jujubit-design-system"
+main = "worker.js"
+compatibility_date = "2024-09-23"
+account_id = "9208ec43eec425bdc78e507bb3819360"
+workers_dev = false
+routes = [
+  { pattern = "playverseai.com/design", zone_name = "playverseai.com" },
+  { pattern = "playverseai.com/design/*", zone_name = "playverseai.com" },
+]
