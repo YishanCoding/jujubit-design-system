@@ -142,7 +142,7 @@
     },
     {
      "key": "color.rules#2",
-     "source": "辅助色不能用在按钮、链接、价格上；页面上同屏辅助色不超过 2 个。（验收测试）"
+     "source": "辅助色不能用在按钮、链接、价格上；页面上同屏辅助色不超过 2 个。"
     },
     {
      "key": "color.rules#3",
@@ -162,7 +162,7 @@
     },
     {
      "key": "type#2",
-     "source": "两个字族，各管一件事。Bebas Neue 只有大写字形，只用于标题、导航和 tab；正文、按钮、表单全部用 Outfit。不引入第三个字族。（验收测试）"
+     "source": "两个字族，各管一件事。Bebas Neue 只有大写字形，只用于标题、导航和 tab；正文、按钮、表单全部用 Outfit。不引入第三个字族。"
     }
    ]
   },
@@ -263,13 +263,13 @@
   },
   {
    "id": "shape.shadows",
-   "title": "阴影（只允许这 4 种）（验收测试）",
+   "title": "阴影（只允许这 4 种）",
    "file": "playground.src.html",
    "line": 300,
    "edits": [
     {
      "key": "shape.shadows#1",
-     "source": "阴影（只允许这 4 种）（验收测试）"
+     "source": "阴影（只允许这 4 种）"
     }
    ]
   },
@@ -465,13 +465,13 @@
   },
   {
    "id": "commerce",
-   "title": "区块标题、商品卡与标签（验收测试）",
+   "title": "区块标题、商品卡与标签",
    "file": "playground.src.html",
    "line": 429,
    "edits": [
     {
      "key": "commerce#1",
-     "source": "区块标题、商品卡与标签（验收测试）"
+     "source": "区块标题、商品卡与标签"
     },
     {
      "key": "commerce#2",
