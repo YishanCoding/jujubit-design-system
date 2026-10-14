@@ -465,13 +465,13 @@
   },
   {
    "id": "commerce",
-   "title": "区块标题、商品卡与标签",
+   "title": "区块标题、商品卡与标签（验收测试）",
    "file": "playground.src.html",
    "line": 429,
    "edits": [
     {
      "key": "commerce#1",
-     "source": "区块标题、商品卡与标签"
+     "source": "区块标题、商品卡与标签（验收测试）"
     },
     {
      "key": "commerce#2",
