@@ -77,3 +77,25 @@ Logo 源文件 `.ai`不进仓库。需要时找设计团队要。
 
 - 商品图：用 Shopify CDN 上的商品原图。playground 只用了 4 张做示例，价格也是示例。
 - UI 截图包 、包装图、Onboarding `.mov`：在设计团队的素材归档里，还没有整理成规范。
+
+## 品牌背景 `backgrounds/`
+
+| 文件 | 用途 | 来源 |
+|---|---|---|
+| `make_backgrounds.py` | 生成器。颜色取自 `tokens.css`，`&` `!` 取自 Outfit 字体，其余图形手绘 | 按 GP feature graphic、礼盒侧面、感谢卡重绘（2026-10-15） |
+| `<变体>--<尺寸>.svg` | 4 种变体 × 6 种尺寸，可直接放进设计稿 | 同上 |
+| `previews/*.png` | 设计页预览图 | 同上 |
+| `glyphs.svg` | 底纹图形一览 | 同上 |
+
+全尺寸 PNG：`python3 assets/backgrounds/make_backgrounds.py --png`，输出到 `backgrounds/out/`（已 gitignore）。设计源文件到位后替换脚本里的 `GLYPHS`。用法见设计页第 01 节「品牌背景」。
+
+## 品牌包装 `packaging/`
+
+| 文件 | 用途 | 来源 |
+|---|---|---|
+| `flip-box.jpg` | 14×14×14cm 磁吸翻盖礼盒正反面（5–10cm 小人） | 飞书「JuJuBit 设计素材归档 · 品牌包装」 |
+| `double-door-box.jpg` | 14×14×9cm 双开门硬盒正反面（5cm 以下） | 同上 |
+| `flip-box-structure.jpg` | 翻盖盒结构、海绵内衬、感谢卡尺寸 | 同上 |
+| `thank-you-cards.jpg` | 10.8×8cm 感谢卡三版 | 同上 |
+
+压缩预览版。刀版、印刷文件找设计团队。AI 出图里出现盒子时，把 `flip-box.jpg` 作为参考图传入。

@@ -339,6 +339,40 @@
         <li data-edit="brand.rules#1"><b>可以：</b>深底配浅色标、浅底配深色/橙色标；横版字标最小高度 22px（页头 25px）。</li>
         <li data-edit="brand.rules#2"><b>不可以：</b>加描边、变形缩放、加阴影、改颜色、放在低对比底色上、改透视、改字母间距（对外规范 1.7）。</li>
       </ul>
+      <div class="pg-mod" data-mod="brand.backgrounds"><div class="pg-sub" style="margin-top:24px">品牌背景 <span class="src src--new">新版</span></div>
+      <p>品牌底纹来自线上 Google Play feature graphic、礼盒侧面和感谢卡：品牌橙底上，零散放几个大号粗圆图形（星芒、爱心、&amp;、!、圆环、爪印、箭头、五角星），颜色比底色深一档。图形要大、要稀，不做密铺花纹。<b>当前图形是按线上素材重绘的，设计源文件到位后替换。</b></p>
+      <img src="assets/backgrounds/glyphs.svg" alt="品牌底纹图形" style="width:100%;max-width:960px;display:block;margin:12px 0" loading="lazy">
+      <div class="people-styles">
+        <img src="assets/backgrounds/previews/orange-pattern--gp-feature-1024x500.png" alt="orange-pattern：满版橙底纹" loading="lazy">
+        <img src="assets/backgrounds/previews/orange-swoosh--gp-feature-1024x500.png" alt="orange-swoosh：橙底纹加白色弧面，人物放在白面上" loading="lazy">
+        <img src="assets/backgrounds/previews/light-pattern--gp-feature-1024x500.png" alt="light-pattern：浅底淡纹" loading="lazy">
+        <img src="assets/backgrounds/previews/orange-plain--gp-feature-1024x500.png" alt="orange-plain：纯橙渐变" loading="lazy">
+      </div>
+      <table class="asset-table" style="margin-top:12px">
+        <tr><th>变体</th><th>用在哪里</th></tr>
+        <tr><td><code>orange-pattern</code></td><td>高能量档：商店头图、广告首屏、海报、包装内卡</td></tr>
+        <tr><td><code>orange-swoosh</code></td><td>高能量档 + 人物：人物放在右侧白色弧面上（线上 feature graphic 的构图）</td></tr>
+        <tr><td><code>light-pattern</code></td><td>生活感档、教程、截图底、信息多的版面</td></tr>
+        <tr><td><code>orange-plain</code></td><td>要放大段文字时（如感谢卡正文区）</td></tr>
+      </table>
+      <p style="margin-top:12px">每种变体都有 6 个尺寸：<code>gp-feature-1024x500</code>、<code>ios-header-3840x1646</code>、<code>landscape-1920x1080</code>、<code>square-1080</code>、<code>portrait-1080x1350</code>、<code>story-1080x1920</code>。SVG 在 <code>assets/backgrounds/</code>，可直接放进设计稿；要全尺寸 PNG 时跑 <code>python3 assets/backgrounds/make_backgrounds.py --png</code>（输出到 <code>assets/backgrounds/out/</code>，不进仓库）。新尺寸加在脚本的 <code>SIZES</code> 里。</p>
+      </div>
+      <ul class="rules" data-mod="brand.backgrounds-rules">
+        <li data-edit="brand.backgrounds-rules#1"><b>可以：</b>人物、产品、文字压在底纹上；图形被画面边缘裁掉一半；AI 出图时把背景 PNG 作为参考图一起传入，或者先出透明底人物再合成。</li>
+        <li data-edit="brand.backgrounds-rules#2"><b>不可以：</b>改底纹颜色（只用 <code>tokens.css</code> 的品牌橙）；把图形做小做密成壁纸；在底纹上加其他品牌的图形或 emoji；文字区域下面放图形（文字下面用 <code>orange-plain</code> 或加纯色底）。</li>
+      </ul>
+      <div class="pg-mod" data-mod="brand.packaging"><div class="pg-sub" style="margin-top:24px">品牌包装 <span class="src src--live">线上</span></div>
+      <p>出货包装按小人高度选盒：5–10cm 用 14×14×14cm 磁吸翻盖礼盒，5cm 以下用 14×14×9cm 双开门硬盒。盒色品牌橙 <code>#FF5A11</code> 配白色：正面白色 JuJuBit 字标，侧面一排白色底纹图形，背面 App Store 标和合规信息（Holymolly Limited、CE、Powered by Tripo）。内部海绵内衬（10×10×10cm 坑位），小人套 JUJUBIT 塑料袋，附 10.8×8cm 品牌感谢卡。来源：飞书「JuJuBit 设计素材归档 · 品牌包装」和「Shop 包装盒升级」（徐莹睿）。</p>
+      <div class="people-styles">
+        <img src="assets/packaging/flip-box.jpg" alt="磁吸翻盖礼盒 正面和背面" loading="lazy">
+        <img src="assets/packaging/double-door-box.jpg" alt="双开门硬盒 正面和背面" loading="lazy">
+        <img src="assets/packaging/flip-box-structure.jpg" alt="翻盖礼盒结构、海绵内衬尺寸、感谢卡" loading="lazy">
+        <img src="assets/packaging/thank-you-cards.jpg" alt="品牌感谢卡三版" loading="lazy">
+      </div></div>
+      <ul class="rules" data-mod="brand.packaging-rules">
+        <li data-edit="brand.packaging-rules#1"><b>可以：</b>广告、人物图、开箱图里出现盒子时，按上面的真实盒子画：橙色方盒、白色字标、侧面图形排；AI 出图时把 <code>assets/packaging/flip-box.jpg</code> 作为参考图传入。</li>
+        <li data-edit="brand.packaging-rules#2"><b>不可以：</b>让 AI 自己编盒子（换颜色、加缎带、加别的字、改成牛皮纸盒）；把盒子画得比小人小；把白色素胚放进盒子里当成交付品。</li>
+      </ul>
     </section>
 
     <!-- 02 PEOPLE -->

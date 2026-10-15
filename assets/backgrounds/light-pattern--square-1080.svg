@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+<defs><radialGradient id="bg" cx=".5" cy=".45" r=".85"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#FFF1E0"/></radialGradient><symbol id="g-sparkle" viewBox="0 0 100 100" overflow="visible"><g fill="currentColor"><path d="M50 4C54 30 70 46 96 50C70 54 54 70 50 96C46 70 30 54 4 50C30 46 46 30 50 4Z"/></g></symbol><symbol id="g-heart" viewBox="0 0 100 100" overflow="visible"><g fill="currentColor"><path d="M50 90C40 82 6 62 6 34C6 14 22 6 34 6C42 6 47 11 50 17C53 11 58 6 66 6C78 6 94 14 94 34C94 62 60 82 50 90Z"/></g></symbol><symbol id="g-ring" viewBox="0 0 100 100" overflow="visible"><g fill="currentColor"><path fill-rule="evenodd" d="M50 6a44 44 0 1 1 0 88a44 44 0 1 1 0-88Zm0 24a20 20 0 1 0 0 40a20 20 0 1 0 0-40Z"/></g></symbol><symbol id="g-paw" viewBox="0 0 100 100" overflow="visible"><g fill="currentColor"><ellipse cx="50" cy="66" rx="26" ry="22"/><ellipse cx="20" cy="40" rx="11" ry="14"/><ellipse cx="38" cy="20" rx="11" ry="15"/><ellipse cx="62" cy="20" rx="11" ry="15"/><ellipse cx="80" cy="40" rx="11" ry="14"/></g></symbol><symbol id="g-arrow" viewBox="0 0 100 100" overflow="visible"><g fill="currentColor"><path d="M6 34H50V10L96 50L50 90V66H6Z"/></g></symbol><symbol id="g-star" viewBox="0 0 100 100" overflow="visible"><g fill="currentColor"><path d="M50 6L62 36L94 38L69 58L77 92L50 73L23 92L31 58L6 38L38 36Z"/></g></symbol><symbol id="g-amp" viewBox="0 0 100 100" overflow="visible"><g fill="currentColor"><path transform="translate(-0.5 98.4) scale(0.1359 -0.1359)" d="M490 0 174 349Q136 392 120.5 430.0Q105 468 105 513Q105 568 133.5 616.0Q162 664 212.5 694.0Q263 724 330 724Q384 724 424.5 709.5Q465 695 493.0 673.5Q521 652 534 631L409 506Q391 531 373.0 539.5Q355 548 335 548Q313 548 299.5 535.5Q286 523 286 506Q286 495 291.5 483.0Q297 471 308 458L716 0ZM266 -12Q194 -12 140.5 17.5Q87 47 57.5 97.0Q28 147 28 208Q28 276 63.0 329.5Q98 383 171 416L251 284Q228 277 217.5 260.0Q207 243 207 224Q207 209 214.0 195.0Q221 181 235.0 172.0Q249 163 269 163Q286 163 302.0 171.5Q318 180 334 203L469 74Q455 56 425.5 36.0Q396 16 355.0 2.0Q314 -12 266 -12Z"/></g></symbol><symbol id="g-bang" viewBox="0 0 100 100" overflow="visible"><g fill="currentColor"><path transform="translate(29.2 98.4) scale(0.1344 -0.1344)" d="M82 283 47 732H262L227 283ZM155 -12Q108 -12 77.0 20.0Q46 52 46 98Q46 145 77.0 177.0Q108 209 155 209Q202 209 232.5 177.0Q263 145 263 98Q263 52 232.5 20.0Q202 -12 155 -12Z"/></g></symbol></defs>
+<rect width="1080" height="1080" fill="url(#bg)"/>
+<g color="#FF9C70" opacity="0.22">
+<use href="#g-bang" width="229" height="229" transform="translate(-115 -113) rotate(23 115 115)"/>
+<use href="#g-amp" width="202" height="202" transform="translate(135 -151) rotate(4 101 101)"/>
+<use href="#g-heart" width="205" height="205" transform="translate(414 -133) rotate(13 102 102)"/>
+<use href="#g-sparkle" width="199" height="199" transform="translate(705 -41) rotate(1 100 100)"/>
+<use href="#g-amp" width="235" height="235" transform="translate(940 -94) rotate(23 117 117)"/>
+<use href="#g-heart" width="230" height="230" transform="translate(-23 166) rotate(-20 115 115)"/>
+<use href="#g-arrow" width="251" height="251" transform="translate(284 105) rotate(6 126 126)"/>
+<use href="#g-bang" width="200" height="200" transform="translate(566 169) rotate(-19 100 100)"/>
+<use href="#g-ring" width="224" height="224" transform="translate(822 158) rotate(-3 112 112)"/>
+<use href="#g-amp" width="229" height="229" transform="translate(1087 181) rotate(8 114 114)"/>
+<use href="#g-ring" width="198" height="198" transform="translate(-104 403) rotate(23 99 99)"/>
+<use href="#g-bang" width="192" height="192" transform="translate(226 461) rotate(-1 96 96)"/>
+<use href="#g-star" width="189" height="189" transform="translate(442 412) rotate(10 95 95)"/>
+<use href="#g-heart" width="214" height="214" transform="translate(715 434) rotate(-2 107 107)"/>
+<use href="#g-amp" width="222" height="222" transform="translate(1024 468) rotate(-7 111 111)"/>
+<use href="#g-star" width="234" height="234" transform="translate(31 655) rotate(-3 117 117)"/>
+<use href="#g-amp" width="261" height="261" transform="translate(302 631) rotate(-5 130 130)"/>
+<use href="#g-arrow" width="226" height="226" transform="translate(508 651) rotate(6 113 113)"/>
+<use href="#g-bang" width="239" height="239" transform="translate(840 647) rotate(-12 120 120)"/>
+<use href="#g-heart" width="222" height="222" transform="translate(1083 718) rotate(17 111 111)"/>
+<use href="#g-arrow" width="224" height="224" transform="translate(-75 981) rotate(-15 112 112)"/>
+<use href="#g-ring" width="207" height="207" transform="translate(135 955) rotate(-17 104 104)"/>
+<use href="#g-sparkle" width="192" height="192" transform="translate(440 1038) rotate(8 96 96)"/>
+<use href="#g-bang" width="229" height="229" transform="translate(719 951) rotate(-15 115 115)"/>
+<use href="#g-ring" width="217" height="217" transform="translate(964 1015) rotate(11 108 108)"/>
+</g>
+</svg>
