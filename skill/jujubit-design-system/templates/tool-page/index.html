@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{h1_keyword}} | JuJuBit</title>
+<link rel="stylesheet" href="../../../../tokens.css">
+<link rel="stylesheet" href="../../../../components.css">
+<link rel="stylesheet" href="tool-page.css">
+</head>
+<body class="jjb jjb-tool-page" style="margin:0">
+<aside class="jjb-template-notice" lang="zh-CN" aria-label="模板说明">模板示例，替换所有 {{…}} 后使用。虚线框表示槽位；属性槽位见页尾清单。参数名待开发确认。</aside>
+<div class="jjb-announce">
+<p><span class="jjb-template-slot">{{announcement}}</span></p>
+</div>
+<header class="jjb-nav">
+<a href="/" aria-label="JuJuBit home" data-jjb-event="tool_breadcrumb_click" data-jjb-tool="{{tool_slug}}">
+<svg class="jjb-nav__logo" viewBox="0 0 89 22" aria-hidden="true">
+<use href="../../../../assets/icons/sprite.svg#logo-wordmark"/>
+</svg>
+</a>
+</header>
+<main>
+<div class="jjb-container">
+<nav class="jjb-breadcrumb" aria-label="Breadcrumb">
+<ol>
+<li>
+<a href="/" data-jjb-event="tool_breadcrumb_click" data-jjb-tool="{{tool_slug}}">Home</a>
+</li>
+<li class="jjb-breadcrumb__middle">
+<svg class="jjb-icon" aria-hidden="true">
+<use href="../../../../assets/icons/sprite.svg#i-chevron_right"/>
+</svg>
+<a href="{{tools_index_url}}" data-jjb-event="tool_breadcrumb_click" data-jjb-tool="{{tool_slug}}"><span class="jjb-template-slot">{{tools_index_label}}</span></a>
+</li>
+<li class="jjb-breadcrumb__ellipsis" aria-hidden="true">…</li>
+<li>
+<svg class="jjb-icon" aria-hidden="true">
+<use href="../../../../assets/icons/sprite.svg#i-chevron_right"/>
+</svg>
+<span aria-current="page"><span class="jjb-template-slot">{{breadcrumb_current}}</span></span>
+</li>
+</ol>
+</nav>
+<section class="jjb-tool-hero">
+<div class="jjb-tool-hero__body">
+<span class="jjb-eyebrow"><span class="jjb-template-slot">{{eyebrow}}</span></span>
+<h1><span class="jjb-template-slot">{{h1_keyword}}</span></h1>
+<p><span class="jjb-template-slot">{{hero_subtitle}}</span></p>
+<form id="tool-form" class="jjb-tool-hero__form" method="get" action="/products/customize-your-own" data-jjb-event="tool_cta_submit" data-jjb-tool="{{tool_slug}}">
+<fieldset class="jjb-tool-picker">
+<legend>Choose a style</legend>
+<div class="jjb-tool-picker__options">
+<label class="jjb-tool-picker__option">
+<input type="radio" name="style" value="{{style_value_1}}" checked data-jjb-event="tool_style_select" data-jjb-tool="{{tool_slug}}">
+<span class="jjb-tool-picker__card">
+<img src="../../../../assets/icons/sparkle.svg" width="48" height="48" alt="Style placeholder symbol" loading="lazy">
+<span><span class="jjb-template-slot">{{style_name_1}}</span></span>
+</span>
+</label>
+<label class="jjb-tool-picker__option">
+<input type="radio" name="style" value="{{style_value_2}}" data-jjb-event="tool_style_select" data-jjb-tool="{{tool_slug}}">
+<span class="jjb-tool-picker__card">
+<img src="../../../../assets/icons/magic.svg" width="48" height="48" alt="Style placeholder symbol" loading="lazy">
+<span><span class="jjb-template-slot">{{style_name_2}}</span></span>
+</span>
+</label>
+<label class="jjb-tool-picker__option">
+<input type="radio" name="style" value="{{style_value_3}}" data-jjb-event="tool_style_select" data-jjb-tool="{{tool_slug}}">
+<span class="jjb-tool-picker__card">
+<img src="../../../../assets/icons/templet.svg" width="48" height="48" alt="Style placeholder symbol" loading="lazy">
+<span><span class="jjb-template-slot">{{style_name_3}}</span></span>
+</span>
+</label>
+<label class="jjb-tool-picker__option">
+<input type="radio" name="style" value="{{style_value_4}}" disabled data-jjb-event="tool_style_select" data-jjb-tool="{{tool_slug}}">
+<span class="jjb-tool-picker__card">
+<img src="../../../../assets/icons/box.svg" width="48" height="48" alt="Style placeholder symbol" loading="lazy">
+<span><span class="jjb-template-slot">{{style_name_4}}</span> — unavailable</span>
+</span>
+</label>
+</div>
+</fieldset>
+<input type="hidden" name="utm_source" value="tool">
+<input type="hidden" name="utm_content" value="{{tool_slug}}">
+<button class="jjb-btn jjb-btn--primary jjb-btn--l" type="submit" aria-describedby="tool-next" data-jjb-event="tool_cta_submit" data-jjb-tool="{{tool_slug}}">Upload your photo</button>
+<small id="tool-next" class="jjb-foot">Next: upload your photo.</small>
+</form>
+</div>
+<figure class="jjb-tool-hero__media">
+<img src="https://cdn.shopify.com/s/files/1/0954/0884/9267/files/MINI_Pop.png?v=1784125757&amp;width=900" width="900" height="525" alt="Sample image" loading="eager" fetchpriority="high">
+<figcaption>Sample image</figcaption>
+</figure>
+</section>
+</div>
+<section class="jjb-section">
+<div class="jjb-container">
+<div class="jjb-section-head">
+<h2 class="jjb-section-head__title"><span class="jjb-template-slot">{{evidence_heading}}</span></h2>
+</div>
+<p>Placeholder diagrams only. Replace with a matched, consented set. AI previews are not physical products.</p>
+<div class="jjb-proof-pair" role="group" aria-label="Original photo to AI preview to physical photo — placeholders">
+<figure class="">
+<img class="jjb-template-icon" src="../../../../assets/icons/camera_outline.svg" width="52" height="48" alt="Original photo placeholder diagram; no evidence image supplied" loading="lazy">
+<figcaption>
+<span class="jjb-tag jjb-tag--neutral">Original photo</span>
+<span>Placeholder only · <span class="jjb-template-slot">{{camera_outline_evidence_caption}}</span></span>
+</figcaption>
+</figure>
+<figure class="jjb-proof-pair__preview">
+<img class="jjb-template-icon" src="../../../../assets/icons/sparkle.svg" width="48" height="48" alt="AI preview placeholder diagram; no evidence image supplied" loading="lazy">
+<figcaption>
+<span class="jjb-tag jjb-tag--soft">AI preview</span>
+<span>Placeholder only · <span class="jjb-template-slot">{{sparkle_evidence_caption}}</span></span>
+</figcaption>
+</figure>
+<figure class="jjb-proof-pair__physical">
+<img class="jjb-template-icon" src="../../../../assets/icons/box.svg" width="48" height="48" alt="Physical photo placeholder diagram; no evidence image supplied" loading="lazy">
+<figcaption>
+<span class="jjb-tag jjb-tag--neutral">Physical photo</span>
+<span>Placeholder only · <span class="jjb-template-slot">{{box_evidence_caption}}</span></span>
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section class="jjb-section jjb-section--dark">
+<div class="jjb-container">
+<div class="jjb-section-head">
+<h2 class="jjb-section-head__title">How it works</h2>
+</div>
+<div class="jjb-steps">
+<div class="jjb-step">
+<span class="jjb-step__num">1</span>
+<h3 class="jjb-step__title">Upload your photo</h3>
+<p class="jjb-step__body">Continue to the next page to upload.</p>
+</div>
+<div class="jjb-step">
+<span class="jjb-step__num">2</span>
+<h3 class="jjb-step__title">Create an AI preview</h3>
+<p class="jjb-step__body"><span class="jjb-template-slot">{{step_preview_copy}}</span></p>
+</div>
+<div class="jjb-step">
+<span class="jjb-step__num">3</span>
+<h3 class="jjb-step__title">Place your order</h3>
+<p class="jjb-step__body"><span class="jjb-template-slot">{{step_order_copy}}</span></p>
+</div>
+</div>
+</div>
+</section>
+<section class="jjb-section">
+<div class="jjb-container">
+<div class="jjb-section-head">
+<h2 class="jjb-section-head__title"><span class="jjb-template-slot">{{examples_heading}}</span></h2>
+</div>
+<div class="jjb-tool-examples">
+<a href="https://cdn.shopify.com/s/files/1/0954/0884/9267/files/MINI_Pop.png?v=1784125757&amp;width=900" data-jjb-event="tool_example_click" data-jjb-tool="{{tool_slug}}">
+<img src="https://cdn.shopify.com/s/files/1/0954/0884/9267/files/MINI_Pop.png?v=1784125757&amp;width=900" width="900" height="525" alt="Sample image" loading="lazy">
+<span><span class="jjb-template-slot">{{example_title_1}}</span></span>
+<span class="jjb-foot">Sample image · open full image</span>
+</a>
+<a href="https://cdn.shopify.com/s/files/1/0954/0884/9267/files/MINI_Pop.png?v=1784125757&amp;width=900" data-jjb-event="tool_example_click" data-jjb-tool="{{tool_slug}}">
+<img src="https://cdn.shopify.com/s/files/1/0954/0884/9267/files/MINI_Pop.png?v=1784125757&amp;width=900" width="900" height="525" alt="Sample image" loading="lazy">
+<span><span class="jjb-template-slot">{{example_title_2}}</span></span>
+<span class="jjb-foot">Sample image · open full image</span>
+</a>
+<a href="https://cdn.shopify.com/s/files/1/0954/0884/9267/files/MINI_Pop.png?v=1784125757&amp;width=900" data-jjb-event="tool_example_click" data-jjb-tool="{{tool_slug}}">
+<img src="https://cdn.shopify.com/s/files/1/0954/0884/9267/files/MINI_Pop.png?v=1784125757&amp;width=900" width="900" height="525" alt="Sample image" loading="lazy">
+<span><span class="jjb-template-slot">{{example_title_3}}</span></span>
+<span class="jjb-foot">Sample image · open full image</span>
+</a>
+<a href="https://cdn.shopify.com/s/files/1/0954/0884/9267/files/MINI_Pop.png?v=1784125757&amp;width=900" data-jjb-event="tool_example_click" data-jjb-tool="{{tool_slug}}">
+<img src="https://cdn.shopify.com/s/files/1/0954/0884/9267/files/MINI_Pop.png?v=1784125757&amp;width=900" width="900" height="525" alt="Sample image" loading="lazy">
+<span><span class="jjb-template-slot">{{example_title_4}}</span></span>
+<span class="jjb-foot">Sample image · open full image</span>
+</a>
+</div>
+</div>
+</section>
+<section class="jjb-section">
+<div class="jjb-container">
+<div class="jjb-section-head">
+<h2 class="jjb-section-head__title"><span class="jjb-template-slot">{{trust_heading}}</span></h2>
+</div>
+<div class="jjb-trust">
+<div class="jjb-trust__card">
+<svg class="jjb-icon" aria-hidden="true">
+<use href="../../../../assets/icons/sprite.svg#i-check"/>
+</svg>
+<p><span class="jjb-template-slot">{{fact:rating}}</span></p>
+</div>
+<div class="jjb-trust__card">
+<svg class="jjb-icon" aria-hidden="true">
+<use href="../../../../assets/icons/sprite.svg#i-check"/>
+</svg>
+<p><span class="jjb-template-slot">{{fact:quality}}</span></p>
+</div>
+<div class="jjb-trust__card">
+<svg class="jjb-icon" aria-hidden="true">
+<use href="../../../../assets/icons/sprite.svg#i-check"/>
+</svg>
+<p><span class="jjb-template-slot">{{fact:delivery}}</span></p>
+</div>
+<div class="jjb-trust__card">
+<svg class="jjb-icon" aria-hidden="true">
+<use href="../../../../assets/icons/sprite.svg#i-check"/>
+</svg>
+<p><span class="jjb-template-slot">{{fact:payment}}</span></p>
+</div>
+<div class="jjb-trust__card">
+<svg class="jjb-icon" aria-hidden="true">
+<use href="../../../../assets/icons/sprite.svg#i-check"/>
+</svg>
+<p><span class="jjb-template-slot">{{fact:support}}</span></p>
+</div>
+</div>
+</div>
+</section>
+<section class="jjb-section">
+<div class="jjb-container">
+<div class="jjb-section-head">
+<h2 class="jjb-section-head__title"><span class="jjb-template-slot">{{reviews_heading}}</span></h2>
+</div>
+<article class="jjb-review">
+<p class="jjb-review__text"><span class="jjb-template-slot">{{fact:review_quote}}</span></p>
+<p class="jjb-review__author"><span class="jjb-template-slot">{{fact:review_author}}</span></p>
+<p class="jjb-foot"><span class="jjb-template-slot">{{fact:rating}}</span> · <span class="jjb-template-slot">{{fact:review_source}}</span></p>
+</article>
+</div>
+</section>
+<section class="jjb-section">
+<div class="jjb-container">
+<div class="jjb-section-head">
+<h2 class="jjb-section-head__title"><span class="jjb-template-slot">{{article_heading}}</span></h2>
+</div>
+<article class="jjb-prose">
+<h2><span class="jjb-template-slot">{{guide_heading}}</span></h2>
+<p><span class="jjb-template-slot">{{guide_intro}}</span></p>
+<h3><span class="jjb-template-slot">{{guide_subheading}}</span></h3>
+<p><span class="jjb-template-slot">{{guide_body}}</span> <a href="{{guide_link_url}}" data-jjb-event="tool_related_click" data-jjb-tool="{{tool_slug}}"><span class="jjb-template-slot">{{guide_link_text}}</span></a>
+</p>
+<ul>
+<li><span class="jjb-template-slot">{{guide_point}}</span></li>
+</ul>
+<ol>
+<li><span class="jjb-template-slot">{{guide_step}}</span></li>
+</ol>
+<blockquote><span class="jjb-template-slot">{{verified_quote}}</span></blockquote>
+<figure>
+<img src="../../../../assets/icons/camera_outline.svg" width="52" height="48" alt="Placeholder diagram for a guide illustration" loading="lazy">
+<figcaption><span class="jjb-template-slot">{{guide_caption}}</span> — placeholder illustration</figcaption>
+</figure>
+</article>
+</div>
+</section>
+<section class="jjb-section">
+<div class="jjb-container">
+<div class="jjb-section-head">
+<h2 class="jjb-section-head__title"><span class="jjb-template-slot">{{comparison_section_heading}}</span></h2>
+</div>
+<div class="jjb-table-scroll" tabindex="0" role="region" aria-label="Comparison table, scroll horizontally">
+<table class="jjb-table jjb-table--striped jjb-compare-table">
+<caption><span class="jjb-template-slot">{{comparison_heading}}</span></caption>
+<thead>
+<tr>
+<th scope="col">Feature</th>
+<th scope="col">JuJuBit</th>
+<th scope="col">Other options</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th scope="row"><span class="jjb-template-slot">{{comparison_feature}}</span></th>
+<td>
+<svg class="jjb-icon" aria-hidden="true">
+<use href="../../../../assets/icons/sprite.svg#i-check"/>
+</svg> <span class="jjb-template-slot">{{verified_supported_claim}}</span></td>
+<td>
+<svg class="jjb-icon" aria-hidden="true">
+<use href="../../../../assets/icons/sprite.svg#i-minus"/>
+</svg> <span class="jjb-template-slot">{{verified_alternative_claim}}</span></td>
+</tr>
+<tr>
+<th scope="row"><span class="jjb-template-slot">{{comparison_feature_alt}}</span></th>
+<td>
+<svg class="jjb-icon" aria-hidden="true">
+<use href="../../../../assets/icons/sprite.svg#i-check"/>
+</svg> <span class="jjb-template-slot">{{verified_supported_claim_alt}}</span></td>
+<td>
+<svg class="jjb-icon" aria-hidden="true">
+<use href="../../../../assets/icons/sprite.svg#i-minus"/>
+</svg> <span class="jjb-template-slot">{{verified_alternative_claim_alt}}</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="jjb-section">
+<div class="jjb-container">
+<div class="jjb-section-head">
+<h2 class="jjb-section-head__title"><span class="jjb-template-slot">{{faq_heading}}</span></h2>
+</div>
+<div class="jjb-faq">
+<p><span class="jjb-template-slot">{{faq_intro}}</span></p>
+<div>
+<details open>
+<summary data-jjb-event="tool_faq_toggle" data-jjb-tool="{{tool_slug}}"><span class="jjb-template-slot">{{faq_question_1}}</span></summary>
+<div><span class="jjb-template-slot">{{faq_answer_1}}</span></div>
+</details>
+<details>
+<summary data-jjb-event="tool_faq_toggle" data-jjb-tool="{{tool_slug}}"><span class="jjb-template-slot">{{faq_question_2}}</span></summary>
+<div><span class="jjb-template-slot">{{faq_answer_2}}</span></div>
+</details>
+</div>
+</div>
+</div>
+</section>
+<section class="jjb-section">
+<div class="jjb-container">
+<div class="jjb-section-head">
+<h2 class="jjb-section-head__title"><span class="jjb-template-slot">{{related_heading}}</span></h2>
+</div>
+<nav class="jjb-related" aria-label="Related tools and collections">
+<a class="jjb-cat-card" href="{{related_url_1}}" data-jjb-event="tool_related_click" data-jjb-tool="{{tool_slug}}">
+<span class="jjb-cat-card__img jjb-template-icon-frame">
+<img class="jjb-template-icon" src="../../../../assets/icons/sparkle.svg" width="48" height="48" alt="Related link placeholder illustration" loading="lazy">
+</span>
+<span class="jjb-cat-card__title"><span class="jjb-template-slot">{{related_title_1}}</span></span>
+</a>
+<a class="jjb-cat-card" href="{{related_url_2}}" data-jjb-event="tool_related_click" data-jjb-tool="{{tool_slug}}">
+<span class="jjb-cat-card__img jjb-template-icon-frame">
+<img class="jjb-template-icon" src="../../../../assets/icons/magic.svg" width="48" height="48" alt="Related link placeholder illustration" loading="lazy">
+</span>
+<span class="jjb-cat-card__title"><span class="jjb-template-slot">{{related_title_2}}</span></span>
+</a>
+<a class="jjb-cat-card" href="{{related_url_3}}" data-jjb-event="tool_related_click" data-jjb-tool="{{tool_slug}}">
+<span class="jjb-cat-card__img jjb-template-icon-frame">
+<img class="jjb-template-icon" src="../../../../assets/icons/templet.svg" width="48" height="48" alt="Related link placeholder illustration" loading="lazy">
+</span>
+<span class="jjb-cat-card__title"><span class="jjb-template-slot">{{related_title_3}}</span></span>
+</a>
+</nav>
+</div>
+</section>
+<section class="jjb-cta-band">
+<h2 class="jjb-h2"><span class="jjb-template-slot">{{closing_heading}}</span></h2>
+<p><span class="jjb-template-slot">{{closing_copy}}</span></p>
+<button type="submit" form="tool-form" class="jjb-btn jjb-btn--white jjb-btn--l" data-jjb-event="tool_cta_submit" data-jjb-tool="{{tool_slug}}">Upload your photo</button>
+<small>Next: upload your photo.</small>
+</section>
+</main>
+<footer class="jjb-footer">
+<h2 class="jjb-footer__head">JuJuBit</h2>
+<ul class="jjb-footer__links">
+<li>
+<a href="{{footer_policy_url}}" data-jjb-event="tool_related_click" data-jjb-tool="{{tool_slug}}"><span class="jjb-template-slot">{{footer_policy_label}}</span></a>
+</li>
+</ul>
+<p class="jjb-footer__legal"><span class="jjb-template-slot">{{footer_legal}}</span></p>
+</footer>
+
+<aside class="jjb-template-attributes" lang="zh-CN" aria-label="属性槽位清单">
+<p>属性槽位：替换源码中的链接、表单值和事件标识。此清单仅用于模板，使用时删除。</p>
+<ul>
+<li><span class="jjb-template-slot">{{footer_policy_url}}</span></li>
+<li><span class="jjb-template-slot">{{guide_link_url}}</span></li>
+<li><span class="jjb-template-slot">{{related_url_1}}</span></li>
+<li><span class="jjb-template-slot">{{related_url_2}}</span></li>
+<li><span class="jjb-template-slot">{{related_url_3}}</span></li>
+<li><span class="jjb-template-slot">{{style_value_1}}</span></li>
+<li><span class="jjb-template-slot">{{style_value_2}}</span></li>
+<li><span class="jjb-template-slot">{{style_value_3}}</span></li>
+<li><span class="jjb-template-slot">{{style_value_4}}</span></li>
+<li><span class="jjb-template-slot">{{tool_slug}}</span></li>
+<li><span class="jjb-template-slot">{{tools_index_url}}</span></li>
+</ul>
+</aside>
+</body>
+</html>

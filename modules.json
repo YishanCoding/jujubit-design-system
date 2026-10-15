@@ -5,14 +5,14 @@
    "id": "hero",
    "title": "hero",
    "file": "playground.src.html",
-   "line": 224,
+   "line": 218,
    "edits": []
   },
   {
    "id": "brand",
    "title": "品牌与 Logo",
    "file": "playground.src.html",
-   "line": 238,
+   "line": 232,
    "edits": [
     {
      "key": "brand#1",
@@ -24,7 +24,7 @@
    "id": "brand.logos",
    "title": "brand.logos",
    "file": "playground.src.html",
-   "line": 241,
+   "line": 235,
    "edits": [
     {
      "key": "brand.logos#1",
@@ -56,7 +56,7 @@
    "id": "brand.rules",
    "title": "brand.rules",
    "file": "playground.src.html",
-   "line": 255,
+   "line": 249,
    "edits": [
     {
      "key": "brand.rules#1",
@@ -72,14 +72,14 @@
    "id": "brand.symbols",
    "title": "品牌符号  ?来源：母本是礼盒侧面那排白色涂鸦（& 环、爪印、徽章、星光、灵感），按产品线扩成几组。广告推哪条线，底纹就用哪一组。\n画法（新符号逐条照做）：粗圆头线围合、线宽约为高度的 1/7、里面空心；前倾约 10°；边缘手作感；旁边两三个短划/圆点/小加号；单色；画物件，不画功能图标。\n每组一眼要认出：通用＝这是 JuJuBit；真人＝从照片做成小人（相机、照片、Maya 的蓬发、品牌盒）；宠物＝我的宠物（守宫是爬宠子位，确认在卖再用）；TRPG＝我的角色（二十面骰）。\n待设计师补：底座小人、两人、一家人三个符号还没画好；礼盒原图形的源矢量未到位，现版本是从包装效果图复原后描摹的。到位后替换 assets/brand-symbols/ 同名文件，重跑 make_backgrounds.py。",
    "file": "playground.src.html",
-   "line": 259,
+   "line": 253,
    "edits": []
   },
   {
    "id": "brand.symbols-rules",
    "title": "brand.symbols-rules",
    "file": "playground.src.html",
-   "line": 282,
+   "line": 276,
    "edits": [
     {
      "key": "brand.symbols-rules#1",
@@ -95,14 +95,14 @@
    "id": "brand.packaging",
    "title": "品牌包装  ?盒色品牌橙 #FF5A11 配白：正面白色 JuJuBit 字标，侧面一排白色品牌符号，背面 App Store 标和合规信息（Holymolly Limited、CE、Powered by Tripo）。内部海绵内衬（10×10×10cm 坑位），小人套 JUJUBIT 塑料袋，附 10.8×8cm 感谢卡。来源：飞书「JuJuBit 设计素材归档 · 品牌包装」「Shop 包装盒升级」（徐莹睿）。",
    "file": "playground.src.html",
-   "line": 286,
+   "line": 280,
    "edits": []
   },
   {
    "id": "brand.packaging-rules",
    "title": "brand.packaging-rules",
    "file": "playground.src.html",
-   "line": 294,
+   "line": 288,
    "edits": [
     {
      "key": "brand.packaging-rules#1",
@@ -118,7 +118,7 @@
    "id": "people",
    "title": "品牌人物",
    "file": "playground.src.html",
-   "line": 301,
+   "line": 295,
    "edits": [
     {
      "key": "people#1",
@@ -130,21 +130,21 @@
    "id": "people.cast",
    "title": "Maya · 主脸",
    "file": "playground.src.html",
-   "line": 304,
+   "line": 298,
    "edits": []
   },
   {
    "id": "people.bios",
    "title": "人物设定 ?两人关系：创作者社群里认识的朋友。Maya 出点子，Danny 较真把角色做对。可以同框互相展示作品，不设定为情侣或家人。和 JuJu：JuJu 不是他们的宠物或道具，同框时以贴纸、公仔或屏幕形象出现。更多背景：Maya 第一次用 JuJuBit 是把和闺蜜的大学合照做成生日礼物；Danny 跑了十几年 D&D，以前用 Hero Forge 总差点意思。",
    "file": "playground.src.html",
-   "line": 318,
+   "line": 312,
    "edits": []
   },
   {
    "id": "people.anchors",
    "title": "锚点要跨风格保留",
    "file": "playground.src.html",
-   "line": 326,
+   "line": 320,
    "edits": [
     {
      "key": "people.anchors#1",
@@ -156,14 +156,14 @@
    "id": "people.energy",
    "title": "两档情绪 ?高能量沿用线上 Google Play feature graphic 的构图，是用户第一眼看到的品牌印象：满版品牌橙，人物张手接住或高举小人，小人飞在空中，表情惊喜、大笑、欢呼。生活感用真实室内、暖光、会心一笑。两档人物锚点完全一样，不能换脸。",
    "file": "playground.src.html",
-   "line": 332,
+   "line": 326,
    "edits": []
   },
   {
    "id": "people.rules",
    "title": "people.rules",
    "file": "playground.src.html",
-   "line": 343,
+   "line": 337,
    "edits": [
     {
      "key": "people.rules#1",
@@ -187,14 +187,14 @@
    "id": "people.prompts",
    "title": "people.prompts",
    "file": "playground.src.html",
-   "line": 349,
+   "line": 343,
    "edits": []
   },
   {
    "id": "color",
    "title": "色彩",
    "file": "playground.src.html",
-   "line": 355,
+   "line": 349,
    "edits": [
     {
      "key": "color#1",
@@ -206,49 +206,49 @@
    "id": "color.brand",
    "title": "品牌色",
    "file": "playground.src.html",
-   "line": 358,
+   "line": 352,
    "edits": []
   },
   {
    "id": "color.neutral",
    "title": "中性色",
    "file": "playground.src.html",
-   "line": 360,
+   "line": 354,
    "edits": []
   },
   {
    "id": "color.text-alpha",
    "title": "文字（透明度）",
    "file": "playground.src.html",
-   "line": 362,
+   "line": 356,
    "edits": []
   },
   {
    "id": "color.surface",
    "title": "面与遮罩",
    "file": "playground.src.html",
-   "line": 364,
+   "line": 358,
    "edits": []
   },
   {
    "id": "color.functional",
    "title": "功能色",
    "file": "playground.src.html",
-   "line": 366,
+   "line": 360,
    "edits": []
   },
   {
    "id": "color.accent",
    "title": "辅助色  仅插画、营销图形、标签底",
    "file": "playground.src.html",
-   "line": 368,
+   "line": 362,
    "edits": []
   },
   {
    "id": "color.rules",
    "title": "color.rules",
    "file": "playground.src.html",
-   "line": 370,
+   "line": 364,
    "edits": [
     {
      "key": "color.rules#1",
@@ -268,7 +268,7 @@
    "id": "type",
    "title": "字体",
    "file": "playground.src.html",
-   "line": 378,
+   "line": 372,
    "edits": [
     {
      "key": "type#1",
@@ -280,14 +280,14 @@
    "id": "type.fonts",
    "title": "type.fonts",
    "file": "playground.src.html",
-   "line": 381,
+   "line": 375,
    "edits": []
   },
   {
    "id": "type.web",
    "title": "Web 字号阶梯（桌面 / 手机）",
    "file": "playground.src.html",
-   "line": 389,
+   "line": 383,
    "edits": [
     {
      "key": "type.web#1",
@@ -299,14 +299,14 @@
    "id": "type.app",
    "title": "App 字号阶梯",
    "file": "playground.src.html",
-   "line": 391,
+   "line": 385,
    "edits": []
   },
   {
    "id": "type.rules",
    "title": "type.rules",
    "file": "playground.src.html",
-   "line": 393,
+   "line": 387,
    "edits": [
     {
      "key": "type.rules#1",
@@ -322,7 +322,7 @@
    "id": "layout",
    "title": "间距与布局",
    "file": "playground.src.html",
-   "line": 401,
+   "line": 395,
    "edits": [
     {
      "key": "layout#1",
@@ -334,21 +334,21 @@
    "id": "layout.spacing",
    "title": "layout.spacing",
    "file": "playground.src.html",
-   "line": 405,
+   "line": 399,
    "edits": []
   },
   {
    "id": "layout.dimensions",
    "title": "layout.dimensions",
    "file": "playground.src.html",
-   "line": 406,
+   "line": 400,
    "edits": []
   },
   {
    "id": "shape",
    "title": "圆角与阴影",
    "file": "playground.src.html",
-   "line": 423,
+   "line": 417,
    "edits": [
     {
      "key": "shape#1",
@@ -360,14 +360,14 @@
    "id": "shape.radii",
    "title": "shape.radii",
    "file": "playground.src.html",
-   "line": 426,
+   "line": 420,
    "edits": []
   },
   {
    "id": "shape.shadows",
    "title": "阴影（只允许这 4 种）",
    "file": "playground.src.html",
-   "line": 427,
+   "line": 421,
    "edits": [
     {
      "key": "shape.shadows#1",
@@ -379,7 +379,7 @@
    "id": "shape.gradients",
    "title": "渐变 / 毛玻璃",
    "file": "playground.src.html",
-   "line": 429,
+   "line": 423,
    "edits": [
     {
      "key": "shape.gradients#1",
@@ -391,7 +391,7 @@
    "id": "motion",
    "title": "动效",
    "file": "playground.src.html",
-   "line": 434,
+   "line": 428,
    "edits": [
     {
      "key": "motion#1",
@@ -403,21 +403,21 @@
    "id": "motion.easing",
    "title": "motion.easing",
    "file": "playground.src.html",
-   "line": 437,
+   "line": 431,
    "edits": []
   },
   {
    "id": "motion.playback",
    "title": "motion.playback",
    "file": "playground.src.html",
-   "line": 438,
+   "line": 432,
    "edits": []
   },
   {
    "id": "motion.reveal",
    "title": "入场：translateY(20px) → 0，只触发一次",
    "file": "playground.src.html",
-   "line": 442,
+   "line": 436,
    "edits": [
     {
      "key": "motion.reveal#1",
@@ -429,21 +429,21 @@
    "id": "motion.skeleton",
    "title": "骨架屏：#F0F0F0 ↔ #EEEEEE，1 秒循环",
    "file": "playground.src.html",
-   "line": 444,
+   "line": 438,
    "edits": []
   },
   {
    "id": "motion.videos",
    "title": "品牌与 App 动效交付视频  压缩预览版（720p），原片找设计团队",
    "file": "playground.src.html",
-   "line": 449,
+   "line": 443,
    "edits": []
   },
   {
    "id": "motion.rules",
    "title": "motion.rules",
    "file": "playground.src.html",
-   "line": 451,
+   "line": 445,
    "edits": [
     {
      "key": "motion.rules#1",
@@ -463,7 +463,7 @@
    "id": "icons",
    "title": "图标",
    "file": "playground.src.html",
-   "line": 459,
+   "line": 453,
    "edits": [
     {
      "key": "icons#1",
@@ -475,21 +475,21 @@
    "id": "icons.controls",
    "title": "icons.controls",
    "file": "playground.src.html",
-   "line": 462,
+   "line": 456,
    "edits": []
   },
   {
    "id": "icons.library",
    "title": "icons.library",
    "file": "playground.src.html",
-   "line": 468,
+   "line": 462,
    "edits": []
   },
   {
    "id": "buttons",
    "title": "按钮",
    "file": "playground.src.html",
-   "line": 476,
+   "line": 470,
    "edits": [
     {
      "key": "buttons#1",
@@ -501,14 +501,14 @@
    "id": "buttons.states",
    "title": "buttons.states",
    "file": "playground.src.html",
-   "line": 479,
+   "line": 473,
    "edits": []
   },
   {
    "id": "buttons.sizes",
    "title": "尺寸与图标位",
    "file": "playground.src.html",
-   "line": 486,
+   "line": 480,
    "edits": [
     {
      "key": "buttons.sizes#1",
@@ -520,14 +520,14 @@
    "id": "buttons.live",
    "title": "线上新版用法",
    "file": "playground.src.html",
-   "line": 494,
+   "line": 488,
    "edits": []
   },
   {
    "id": "nav",
    "title": "公告栏与导航",
    "file": "playground.src.html",
-   "line": 513,
+   "line": 507,
    "edits": [
     {
      "key": "nav#1",
@@ -543,21 +543,21 @@
    "id": "nav.solid",
    "title": "nav.solid",
    "file": "playground.src.html",
-   "line": 516,
+   "line": 510,
    "edits": []
   },
   {
    "id": "nav.glass",
    "title": "nav.glass",
    "file": "playground.src.html",
-   "line": 530,
+   "line": 524,
    "edits": []
   },
   {
    "id": "commerce",
    "title": "区块标题、商品卡与标签",
    "file": "playground.src.html",
-   "line": 556,
+   "line": 550,
    "edits": [
     {
      "key": "commerce#1",
@@ -573,28 +573,28 @@
    "id": "commerce.section-title",
    "title": "Trending Products",
    "file": "playground.src.html",
-   "line": 559,
+   "line": 553,
    "edits": []
   },
   {
    "id": "commerce.filters",
    "title": "commerce.filters",
    "file": "playground.src.html",
-   "line": 560,
+   "line": 554,
    "edits": []
   },
   {
    "id": "commerce.product-card",
    "title": "commerce.product-card",
    "file": "playground.src.html",
-   "line": 561,
+   "line": 555,
    "edits": []
   },
   {
    "id": "commerce.dots",
    "title": "轮播指示点（演示：每 3 秒自动切换，可点击；系统开启「减少动态效果」时不自动播放）",
    "file": "playground.src.html",
-   "line": 562,
+   "line": 556,
    "edits": [
     {
      "key": "commerce.dots#1",
@@ -606,7 +606,7 @@
    "id": "commerce.tags",
    "title": "标签与提示条",
    "file": "playground.src.html",
-   "line": 564,
+   "line": 558,
    "edits": [
     {
      "key": "commerce.tags#1",
@@ -618,14 +618,14 @@
    "id": "commerce.options",
    "title": "胶囊选项（App / 生成工具里的风格选择）",
    "file": "playground.src.html",
-   "line": 572,
+   "line": 566,
    "edits": []
   },
   {
    "id": "blocks",
    "title": "首页区块",
    "file": "playground.src.html",
-   "line": 593,
+   "line": 587,
    "edits": [
     {
      "key": "blocks#1",
@@ -637,7 +637,7 @@
    "id": "blocks.templates",
    "title": "模板入口（横向轮播；模板色已做进图片里）",
    "file": "playground.src.html",
-   "line": 597,
+   "line": 591,
    "edits": [
     {
      "key": "blocks.templates#1",
@@ -649,7 +649,7 @@
    "id": "blocks.steps",
    "title": "How it works（黑底步骤，点击切换）",
    "file": "playground.src.html",
-   "line": 600,
+   "line": 594,
    "edits": [
     {
      "key": "blocks.steps#1",
@@ -661,14 +661,14 @@
    "id": "blocks.categories",
    "title": "分类卡",
    "file": "playground.src.html",
-   "line": 614,
+   "line": 608,
    "edits": []
   },
   {
    "id": "blocks.trust",
    "title": "信任卡（灰底区块）",
    "file": "playground.src.html",
-   "line": 617,
+   "line": 611,
    "edits": [
     {
      "key": "blocks.trust#1",
@@ -680,7 +680,7 @@
    "id": "blocks.reviews",
    "title": "评价卡",
    "file": "playground.src.html",
-   "line": 620,
+   "line": 614,
    "edits": [
     {
      "key": "blocks.reviews#1",
@@ -692,7 +692,7 @@
    "id": "blocks.social",
    "title": "社媒竖版视频（深灰底，居中一张放大）",
    "file": "playground.src.html",
-   "line": 623,
+   "line": 617,
    "edits": [
     {
      "key": "blocks.social#1",
@@ -704,7 +704,7 @@
    "id": "forms",
    "title": "表单与 FAQ",
    "file": "playground.src.html",
-   "line": 643,
+   "line": 637,
    "edits": [
     {
      "key": "forms#1",
@@ -716,21 +716,21 @@
    "id": "forms.fields",
    "title": "forms.fields",
    "file": "playground.src.html",
-   "line": 646,
+   "line": 640,
    "edits": []
   },
   {
    "id": "forms.faq",
    "title": "FAQ",
    "file": "playground.src.html",
-   "line": 653,
+   "line": 647,
    "edits": []
   },
   {
    "id": "feedback",
    "title": "反馈与浮层",
    "file": "playground.src.html",
-   "line": 669,
+   "line": 663,
    "edits": [
     {
      "key": "feedback#1",
@@ -746,35 +746,35 @@
    "id": "feedback.toast",
    "title": "feedback.toast",
    "file": "playground.src.html",
-   "line": 673,
+   "line": 667,
    "edits": []
   },
   {
    "id": "feedback.dialog",
    "title": "feedback.dialog",
    "file": "playground.src.html",
-   "line": 674,
+   "line": 668,
    "edits": []
   },
   {
    "id": "feedback.sheet",
    "title": "feedback.sheet",
    "file": "playground.src.html",
-   "line": 680,
+   "line": 674,
    "edits": []
   },
   {
    "id": "feedback.toast-trigger",
    "title": "feedback.toast-trigger",
    "file": "playground.src.html",
-   "line": 686,
+   "line": 680,
    "edits": []
   },
   {
    "id": "app",
    "title": "App 专属",
    "file": "playground.src.html",
-   "line": 690,
+   "line": 684,
    "edits": [
     {
      "key": "app#1",
@@ -786,14 +786,14 @@
    "id": "app.buttons",
    "title": "app.buttons",
    "file": "playground.src.html",
-   "line": 693,
+   "line": 687,
    "edits": []
   },
   {
    "id": "app.templates",
    "title": "风格模板色",
    "file": "playground.src.html",
-   "line": 702,
+   "line": 696,
    "edits": [
     {
      "key": "app.templates#1",
@@ -805,14 +805,14 @@
    "id": "app.stickers",
    "title": "贴纸素材规范",
    "file": "playground.src.html",
-   "line": 704,
+   "line": 698,
    "edits": []
   },
   {
    "id": "page",
    "title": "页面拼装示例",
    "file": "playground.src.html",
-   "line": 710,
+   "line": 704,
    "edits": [
     {
      "key": "page#1",
@@ -824,14 +824,14 @@
    "id": "page.landing",
    "title": "Trending Products",
    "file": "playground.src.html",
-   "line": 713,
+   "line": 707,
    "edits": []
   },
   {
    "id": "assets",
    "title": "素材清单",
    "file": "playground.src.html",
-   "line": 750,
+   "line": 744,
    "edits": [
     {
      "key": "assets#1",
@@ -843,14 +843,14 @@
    "id": "assets.catalog",
    "title": "assets.catalog",
    "file": "playground.src.html",
-   "line": 753,
+   "line": 747,
    "edits": []
   },
   {
    "id": "ai",
    "title": "给 AI 用",
    "file": "playground.src.html",
-   "line": 766,
+   "line": 760,
    "edits": [
     {
      "key": "ai#1",
@@ -862,7 +862,7 @@
    "id": "ai.install",
    "title": "1. 一键安装（Claude Code + Codex，macOS / Linux）",
    "file": "playground.src.html",
-   "line": 769,
+   "line": 763,
    "edits": [
     {
      "key": "ai.install#1",
@@ -874,7 +874,7 @@
    "id": "ai.download",
    "title": "2. 手动下载",
    "file": "playground.src.html",
-   "line": 771,
+   "line": 765,
    "edits": [
     {
      "key": "ai.download#1",
@@ -886,7 +886,7 @@
    "id": "ai.prompt",
    "title": "3. 不装 skill，直接给 agent 这段话",
    "file": "playground.src.html",
-   "line": 777,
+   "line": 771,
    "edits": [
     {
      "key": "ai.prompt#1",
@@ -898,161 +898,11 @@
    "id": "ai.contribute",
    "title": "修改规范",
    "file": "playground.src.html",
-   "line": 779,
+   "line": 773,
    "edits": [
     {
      "key": "ai.contribute#1",
      "source": "修改规范"
-    }
-   ]
-  },
-  {
-   "id": "tool",
-   "title": "工具页",
-   "file": "playground.src.html",
-   "line": 783,
-   "edits": [
-    {
-     "key": "tool#1",
-     "source": "落地页 + 带参跳转。先选风格，下一步上传照片。<b>参数名待开发确认</b>：style / utm_source / utm_content 尚未核实被目标页识别。关键词与数字保持占位；数字只能从品牌事实寄存器取。"
-    }
-   ]
-  },
-  {
-   "id": "tool.breadcrumb",
-   "title": "Breadcrumb",
-   "file": "playground.src.html",
-   "line": 787,
-   "edits": []
-  },
-  {
-   "id": "tool.hero",
-   "title": "Tool hero",
-   "file": "playground.src.html",
-   "line": 826,
-   "edits": [
-    {
-     "key": "tool.hero#1",
-     "source": "Tool hero"
-    }
-   ]
-  },
-  {
-   "id": "tool.picker",
-   "title": "Style picker · 状态",
-   "file": "playground.src.html",
-   "line": 925,
-   "edits": [
-    {
-     "key": "tool.picker#1",
-     "source": "Style picker · 状态"
-    }
-   ]
-  },
-  {
-   "id": "tool.proof",
-   "title": "Evidence sequence",
-   "file": "playground.src.html",
-   "line": 1008,
-   "edits": [
-    {
-     "key": "tool.proof#1",
-     "source": "Evidence sequence"
-    }
-   ]
-  },
-  {
-   "id": "tool.examples",
-   "title": "Example grid",
-   "file": "playground.src.html",
-   "line": 1053,
-   "edits": [
-    {
-     "key": "tool.examples#1",
-     "source": "Example grid"
-    }
-   ]
-  },
-  {
-   "id": "tool.prose",
-   "title": "Long-form content",
-   "file": "playground.src.html",
-   "line": 1096,
-   "edits": [
-    {
-     "key": "tool.prose#1",
-     "source": "Long-form content"
-    }
-   ]
-  },
-  {
-   "id": "tool.compare",
-   "title": "Comparison table",
-   "file": "playground.src.html",
-   "line": 1131,
-   "edits": []
-  },
-  {
-   "id": "tool.related",
-   "title": "Related links",
-   "file": "playground.src.html",
-   "line": 1202,
-   "edits": [
-    {
-     "key": "tool.related#1",
-     "source": "Related links"
-    }
-   ]
-  },
-  {
-   "id": "tool.cta",
-   "title": "Closing CTA",
-   "file": "playground.src.html",
-   "line": 1241,
-   "edits": [
-    {
-     "key": "tool.cta#1",
-     "source": "Closing CTA"
-    }
-   ]
-  },
-  {
-   "id": "tool.rules",
-   "title": "tool.rules",
-   "file": "playground.src.html",
-   "line": 1252,
-   "edits": [
-    {
-     "key": "tool.rules#1",
-     "source": "不放文件输入或假上传框，不调用生成接口；按钮下一行明确“下一步上传照片”。"
-    },
-    {
-     "key": "tool.rules#2",
-     "source": "原图、AI 预览、实物照必须分别标注；产品渲染图单独说明。AI 预览不是实物。"
-    },
-    {
-     "key": "tool.rules#3",
-     "source": "只有一个主动作：原生 GET 表单跳到定制页；页尾 CTA 提交同一表单。"
-    },
-    {
-     "key": "tool.rules#4",
-     "source": "参数名待开发确认；有 URL 参数不等于目标页已支持。"
-    },
-    {
-     "key": "tool.rules#5",
-     "source": "不写搜索量、竞品名、内部链接或策略；比较列使用 Other options。"
-    }
-   ]
-  },
-  {
-   "id": "page.tool",
-   "title": "完整工具页 · Page assembly",
-   "file": "playground.src.html",
-   "line": 1253,
-   "edits": [
-    {
-     "key": "page.tool#1",
-     "source": "完整工具页 · Page assembly"
     }
    ]
   }

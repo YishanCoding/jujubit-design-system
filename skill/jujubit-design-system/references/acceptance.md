@@ -11,18 +11,18 @@ Before declaring a JuJuBit design-system task complete, check the applicable ite
 7. New token proposals are semantic, documented, and do not introduce unexplained literal values.
 8. Validation evidence matches the claim: browser preview is not native-app validation; static checks are not human UX approval; a local prototype is not a production release.
 
-## Tool pages (playground section 19)
+## Tool pages ([standalone template](../templates/tool-page/README.md))
 
-- Exactly one h1 inside the example document, containing the approved target term; h2/h3 hierarchy without skips. Catalogue headings are outside its iframe.
-- Tool intent only; keywords and factual numbers remain slots until approved. Numbers come only from the brand fact register. No private research, internal URLs or named opponents.
+- Exactly one h1 in `templates/tool-page/index.html`; h2/h3 hierarchy without skips. No iframe or catalogue dependency.
+- All content slots are visibly marked; attribute-only slots have a visible key. Replace slots before use and remove template-only notices. Factual numbers are never hardcoded; use verified content or omit them.
 - No file input, fake drop zone or generation request. Native GET form action is `/products/customize-your-own`; radios share `name="style"`; hidden fields are `utm_source=tool` and `utm_content={{tool_slug}}`.
-- Both web notes and playground say **参数名待开发确认**. Do not infer destination behavior from successful serialization.
+- Both web notes and template README say **参数名待开发确认**. Do not infer destination behavior from successful serialization.
 - Without JavaScript, selection works, hero and tail CTA submit the same selected style, and FAQ opens. One primary action; next-step upload explanation immediately follows the hero button.
 - Picker: default/hover/checked/focus-visible/disabled; visible native radio selection, keyboard arrow navigation, disabled color change with no opacity reduction. Test local scrolling without page overflow and unavailable styles.
 - Check 390×844, 768, 1440 and 1600: document scrollWidth ≤ innerWidth; hero submit within the mobile first screen; example grid 2/3/4/4 columns; centered cap, no enlarged type on wide screens.
-- Check the complete page AND component catalogue. Table scrolls locally by keyboard; first column remains sticky; row/column headers, caption, icon-plus-text outcomes. Related cards have real internal link destinations before release.
+- Check the complete standalone template and its component states. Table scrolls locally by keyboard; first column remains sticky; row/column headers, caption, icon-plus-text outcomes. Related cards have real internal link destinations before release.
 - Original/AI/physical evidence has separate labels and border treatments. Rendered or generated media must never masquerade as physical evidence. Placeholder diagrams are not evidence; omit the section until a matched set exists.
-- Every image has width/height and truthful alt. One eager/high-priority hero; all remaining images lazy; theme images use responsive image_url/image_tag. Observe LCP in the final theme, not just this template.
-- No new third-party scripts or tool-page JS dependency. Reuse theme fonts; no repository TTF on Shopify. Visible text is the source for any selected schema; no Product schema on tool pages.
+- Evidence and related-card placeholder symbols are centered and capped at 96px using existing tokens. MINI_Pop.png has the neutral label and alt “Sample image”. Every image has width/height and truthful alt. One eager/high-priority hero; all remaining images lazy; theme images use responsive image_url/image_tag. Observe LCP in the final theme, not just this template.
+- No new third-party scripts or tool-page JS dependency. Reuse theme fonts; no repository TTF on Shopify.
 - Interactive elements carry lowercase underscore event hooks and tool slug; analytics must deduplicate CTA clicks into a single form-submit event. Hook presence is not proof of tracking.
-- Run build and repository tests. Confirm old data-mod IDs remain, all routing links exist, and added component CSS has no literal colors/font sizes. Report browser and integration limitations explicitly.
+- Run build and repository tests. Confirm the catalogue data-mod ID set matches c0832ba, template resource paths resolve, and tool-page.css has no literal colors/font sizes. Report browser and integration limitations explicitly.
