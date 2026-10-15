@@ -21,7 +21,6 @@
   .pg-side .meta { margin-top: 28px; font-size: 12px; color: var(--jjb-text-tertiary); line-height: 1.6; }
   .pg-main { min-width: 0; padding: 0 48px 120px; }
   .pg-hero { padding: 64px 0 40px; border-bottom: 1px solid var(--jjb-border); position: relative; overflow: hidden; }
-  .pg-hero .jjb-display { position: absolute; right: -10px; top: 0; }
   .pg-hero p { max-width: 720px; color: var(--jjb-text-secondary); }
   .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
   .src { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 100px; font-size: 11px;
@@ -167,6 +166,24 @@
   .people-card dd { margin: 0; }
   .people-styles { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-top: 16px; }
   .people-styles img { width: 100%; border-radius: 12px; display: block; }
+  /* "?" 收纳：次要说明折叠进去，界面只留一句话 */
+  .pg-help { position: relative; display: inline-block; vertical-align: middle; text-transform: none; letter-spacing: 0; font-weight: 400; }
+  .pg-help > summary { list-style: none; width: 22px; height: 22px; border-radius: var(--jjb-radius-full); display: grid; place-items: center;
+    font: 600 12px/1 var(--jjb-font-body); color: var(--jjb-text-tertiary); background: #fff; box-shadow: inset 0 0 0 1px var(--jjb-border); cursor: pointer;
+    transition: background-color var(--jjb-dur-micro) var(--jjb-ease), color var(--jjb-dur-micro) var(--jjb-ease); }
+  .pg-help > summary::-webkit-details-marker { display: none; }
+  .pg-help > summary:hover, .pg-help[open] > summary { background: #000; color: #fff; box-shadow: none; }
+  .pg-help__body { position: absolute; z-index: 40; top: calc(100% + 8px); left: -8px; width: min(440px, calc(100vw - 32px)); padding: 16px 18px;
+    border-radius: var(--jjb-radius-md); background: #fff; box-shadow: var(--jjb-shadow-float), inset 0 0 0 1px var(--jjb-border);
+    font: 400 14px/1.65 var(--jjb-font-body); color: var(--jjb-text-primary); text-align: left; white-space: normal; }
+  .pg-help__body p { margin: 0 0 8px; } .pg-help__body p:last-child { margin: 0; }
+  .pg-help__body .asset-table { margin-bottom: 10px; display: table; }
+  @media (max-width: 640px) { .pg-help__body { position: fixed; left: 16px; right: 16px; top: auto; bottom: 16px; width: auto; max-height: 70vh; overflow: auto; } }
+  .sym-rows { display: grid; gap: 10px; }
+  .sym-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
+  .sym-row__name { min-width: 120px; font-size: 14px; font-weight: 600; }
+  .sym-row__name code { font-weight: 400; color: var(--jjb-text-tertiary); }
+  .sym-row img { height: 56px; max-width: 100%; }
 </style>
 </head>
 <body class="jjb">
@@ -199,22 +216,22 @@
 
   <main class="pg-main">
     <section class="pg-hero" data-mod="hero">
-      <div class="jjb-display" aria-hidden="true">JUJUBIT</div>
       <div class="jjb-eyebrow">Design System v2</div>
       <h1 class="jjb-h1" style="margin-top:12px">JuJuBit Design Playground</h1>
-      <p>新页面（独立站 + App）的视觉规范和可复用组件。网页区块和组件外观以 2026-10 上线的新版首页为准（标 <code>[新版]</code>）；色值、字体和 App 规范以设计团队 Figma 为准；两边都没定义的项沿用线上实测值并标出来源，等设计确认。agent 做新页面时先引 <code>tokens.css</code> 和 <code>components.css</code>，再从本页复制组件 markup。</p>
+      <p>独立站和 App 新页面的视觉规范与组件。先引 <code>tokens.css</code> 和 <code>components.css</code>，再从本页复制 markup。</p>
       <div class="legend">
         <span class="src src--f">F · Figma token</span>
         <span class="src src--fs">F稿 · Figma 设计稿实测</span>
-        <span class="src src--live">线上 · v1.1 实测，待设计确认</span>
-        <span class="src src--app">App · 仅 App 页面用</span>
+        <span class="src src--live">线上 · 待设计确认</span>
+        <span class="src src--app">App · 仅 App 用</span>
+        <details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p><b>以谁为准：</b>网页区块和组件外观以 2026-10 上线的新版首页为准（标 <code>新版</code>）；色值、字体和 App 规范以设计团队 Figma 为准；两边都没定义的项沿用线上 v1.1 实测值并标 <code>线上</code>，等设计确认。</p><p>点击色块、图标、代码即可复制。</p></div></details>
       </div>
     </section>
 
     <!-- 01 BRAND -->
     <section class="pg-sec" id="brand" data-mod="brand">
-      <header><span class="num">01</span><h2 class="jjb-h2">品牌与 Logo</h2><span class="src src--f">F</span></header>
-      <p class="lead">两套标识：横版字标 <b>JuJuBit</b>（网站页头、页脚、邮件）和 3D 字标 <b>JuJu</b>（App icon、头像、社媒方图）。深底用浅色标，浅底用深色或橙色标。</p>
+      <header><span class="num">01</span><h2 class="jjb-h2">品牌与 Logo</h2><span class="src src--f">F</span><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>横版字标 <b>JuJuBit</b> 用在网站页头、页脚、邮件；3D 字标 <b>JuJu</b> 用在 App icon、头像、社媒方图。深底用浅色标，浅底用深色或橙色标。</p></div></details></header>
+      <p class="lead">两套标识：横版字标 JuJuBit 和 3D 字标 JuJu。</p>
       <div class="logo-grid" data-mod="brand.logos">
         <div><div class="logo-tile" style="background:#fff;color:var(--jjb-brand-500)">{{WORDMARK}}</div>
           <div class="logo-cap">橙色字标 · <code>assets/logo/wordmark-orange.svg</code></div></div>
@@ -233,67 +250,51 @@
         <li><b>可以：</b>深底配浅色标、浅底配深色/橙色标；横版字标最小高度 22px（页头 25px）。</li>
         <li><b>不可以：</b>加描边、变形缩放、加阴影、改颜色、放在低对比底色上、改透视、改字母间距（对外规范 1.7）。</li>
       </ul>
-      <div class="pg-mod" data-mod="brand.symbols"><div class="pg-sub" style="margin-top:24px">品牌符号 <span class="src src--live">线上</span> <span class="src src--new">新版</span></div>
-      <p>母本是礼盒侧面那一排白色涂鸦：&amp; 环、爪印、徽章、星光、灵感。在它们的基础上按产品线扩成几组符号，广告推哪条线，底纹就用哪一组。SVG 在 <code>assets/brand-symbols/</code>（<code>fill="currentColor"</code>，100×100）。</p>
-      <img src="assets/brand-symbols/sheet-core.svg" alt="通用层：& 环、爪印、徽章、星光、灵感" style="width:100%;max-width:604px;display:block;margin:12px 0" loading="lazy">
-      <p><b>画法</b>（从母本量出来的，新符号逐条照做）：① 粗线围合——主体是一圈很粗的圆头线，线宽约为图形高度的 1/7，里面是空的，最多一个小圆点或小钩；② 整体前倾约 10°，和字标斜度一致；③ 边缘有一点手作的不平整，不用正圆、直角；④ 主体旁边放两三个短划、圆点或小加号，像在跳、在发光；⑤ 单色；⑥ 画物件，不画"上传""设置"这类功能图标。</p>
-      <div style="display:flex;flex-direction:column;gap:16px;margin-top:12px">
-        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px"><div style="min-width:120px"><b>通用层</b> <code>core</code></div><img src="assets/brand-symbols/sheet-core.svg" alt="通用层" style="height:56px;max-width:100%" loading="lazy"><p style="flex:1 1 260px;min-width:0;margin:0">这是 JuJuBit。每张图都有，占三成左右。</p></div>
-        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px"><div style="min-width:120px"><b>真人定制</b> <code>people</code></div><img src="assets/brand-symbols/sheet-people.svg" alt="相机、照片、蓬发头、品牌盒" style="height:56px;max-width:100%" loading="lazy"><p style="flex:1 1 260px;min-width:0;margin:0">能把一个人做成小人：从照片开始（相机、照片），代言人 Maya（蓬发头），收到实物（品牌盒）。</p></div>
-        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px"><div style="min-width:120px"><b>宠物</b> <code>pets</code></div><img src="assets/brand-symbols/sheet-pets.svg" alt="爪印、猫、狗、守宫" style="height:56px;max-width:100%" loading="lazy"><p style="flex:1 1 260px;min-width:0;margin:0">能把我的宠物做成小人。守宫是爬宠子位，确认在卖再用。</p></div>
-        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px"><div style="min-width:120px"><b>TRPG</b> <code>trpg</code></div><img src="assets/brand-symbols/sheet-trpg.svg" alt="二十面骰、剑、盾" style="height:56px;max-width:100%" loading="lazy"><p style="flex:1 1 260px;min-width:0;margin:0">能把我的角色做成模型。二十面骰是跑团圈最强的识别符号。</p></div>
+      <div class="pg-mod" data-mod="brand.symbols"><div class="pg-sub" style="margin-top:40px">品牌符号 <span class="src src--live">线上</span> <details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p><b>来源：</b>母本是礼盒侧面那排白色涂鸦（&amp; 环、爪印、徽章、星光、灵感），按产品线扩成几组。广告推哪条线，底纹就用哪一组。</p>
+<p><b>画法</b>（新符号逐条照做）：粗圆头线围合、线宽约为高度的 1/7、里面空心；前倾约 10°；边缘手作感；旁边两三个短划/圆点/小加号；单色；画物件，不画功能图标。</p>
+<p><b>每组一眼要认出：</b>通用＝这是 JuJuBit；真人＝从照片做成小人（相机、照片、Maya 的蓬发、品牌盒）；宠物＝我的宠物（守宫是爬宠子位，确认在卖再用）；TRPG＝我的角色（二十面骰）。</p>
+<p><b>待设计师补：</b>底座小人、两人、一家人三个符号还没画好；礼盒原图形的源矢量未到位，现版本是从包装效果图复原后描摹的。到位后替换 <code>assets/brand-symbols/</code> 同名文件，重跑 <code>make_backgrounds.py</code>。</p></div></details></div>
+      <div class="sym-rows">
+        <div class="sym-row"><span class="sym-row__name">通用 <code>core</code></span><img src="assets/brand-symbols/sheet-core.svg" alt="通用层：&amp; 环、爪印、徽章、星光、灵感" loading="lazy"></div>
+        <div class="sym-row"><span class="sym-row__name">真人定制 <code>people</code></span><img src="assets/brand-symbols/sheet-people.svg" alt="相机、照片、蓬发头、品牌盒" loading="lazy"></div>
+        <div class="sym-row"><span class="sym-row__name">宠物 <code>pets</code></span><img src="assets/brand-symbols/sheet-pets.svg" alt="爪印、猫、狗、守宫" loading="lazy"></div>
+        <div class="sym-row"><span class="sym-row__name">TRPG <code>trpg</code></span><img src="assets/brand-symbols/sheet-trpg.svg" alt="二十面骰、剑、盾" loading="lazy"></div>
       </div>
-      <div class="people-styles" style="margin-top:12px">
+      <div class="people-styles">
         <img src="assets/backgrounds/previews/orange-pattern-people--gp-feature-1024x500.png" alt="真人定制组底纹" loading="lazy">
         <img src="assets/backgrounds/previews/orange-pattern-pets--gp-feature-1024x500.png" alt="宠物组底纹" loading="lazy">
         <img src="assets/backgrounds/previews/orange-pattern-trpg--gp-feature-1024x500.png" alt="TRPG 组底纹" loading="lazy">
-        <img src="assets/backgrounds/previews/light-pattern-people--gp-feature-1024x500.png" alt="真人定制组浅底" loading="lazy">
       </div>
-      <p style="margin-top:12px"><b>待设计师补：</b>底座小人、两人、一家人三个符号还没画好（头和身体连成"8"字），暂不入库；礼盒原图形的设计源矢量未到位，现在的版本是从包装效果图复原后描摹的，到位后替换 <code>assets/brand-symbols/</code> 里的同名文件并重跑 <code>make_backgrounds.py</code>。描摹工具：<code>assets/brand-symbols/trace_glyphs.py</code>。</p>
+      <div class="note">底纹文件：<code>assets/backgrounds/</code>，按变体 × 尺寸 × 产品线命名 <details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><table class="asset-table"><tr><th>变体</th><th>用在哪里</th></tr>
+<tr><td><code>orange-pattern</code></td><td>商店头图、广告首屏、海报、包装内卡</td></tr>
+<tr><td><code>orange-swoosh</code></td><td>同上 + 人物：人物放在右侧白色弧面上</td></tr>
+<tr><td><code>light-pattern</code></td><td>生活感、教程、截图底、信息多的版面</td></tr>
+<tr><td><code>orange-plain</code></td><td>要放大段文字时，无图形</td></tr></table>
+<p>尺寸：<code>gp-feature-1024x500</code>、<code>ios-header-3840x1646</code>、<code>landscape-1920x1080</code>、<code>square-1080</code>、<code>portrait-1080x1350</code>、<code>story-1080x1920</code>。无后缀＝只用通用层；带产品线后缀＝七成该组 + 三成通用层。</p>
+<p>全尺寸 PNG：<code>python3 assets/backgrounds/make_backgrounds.py --png</code>（输出到 <code>out/</code>，不进仓库）。新尺寸加在脚本的 <code>SIZES</code>，新产品线加在 <code>SETS</code>。</p></div></details></div>
       </div>
       <ul class="rules" data-mod="brand.symbols-rules">
-        <li><b>可以：</b>一张图 = 通用层 + 一组产品线符号；印刷品（礼盒、感谢卡）用白色线稿，商店图、广告、海报用比底色深一档的同色底纹。</li>
-        <li><b>不可以：</b>两条产品线的符号混在一张图里；把符号改成实心图标、细线图标或 emoji；照着别家图标库补新符号（新符号先按上面的画法出稿，过混排测试再入库）。</li>
+        <li><b>可以：</b>一张图 = 通用层 + 一组产品线；人物、产品、文字压在底纹上；图形被画面边缘裁掉一半。</li>
+        <li><b>不可以：</b>两条产品线混在一张图；改成实心、细线图标或 emoji；改底纹颜色；把图形做小做密成壁纸；文字下面放图形。</li>
       </ul>
-      <div class="pg-mod" data-mod="brand.backgrounds"><div class="pg-sub" style="margin-top:24px">品牌背景 <span class="src src--new">新版</span></div>
-      <p>品牌橙底上零散放几个大号品牌符号（见上），颜色比底色深一档。图形要大、要稀，不做密铺花纹。不带产品线后缀的文件只用通用层；带 <code>-people</code> / <code>-pets</code> / <code>-trpg</code> 后缀的是约七成该组符号 + 三成通用层。</p>
-      <div class="people-styles">
-        <img src="assets/backgrounds/previews/orange-pattern--gp-feature-1024x500.png" alt="orange-pattern：满版橙底纹" loading="lazy">
-        <img src="assets/backgrounds/previews/orange-swoosh--gp-feature-1024x500.png" alt="orange-swoosh：橙底纹加白色弧面，人物放在白面上" loading="lazy">
-        <img src="assets/backgrounds/previews/light-pattern--gp-feature-1024x500.png" alt="light-pattern：浅底淡纹" loading="lazy">
-        <img src="assets/backgrounds/previews/orange-plain--gp-feature-1024x500.png" alt="orange-plain：纯橙渐变" loading="lazy">
-      </div>
-      <table class="asset-table" style="margin-top:12px">
-        <tr><th>变体</th><th>用在哪里</th></tr>
-        <tr><td><code>orange-pattern</code></td><td>高能量档：商店头图、广告首屏、海报、包装内卡</td></tr>
-        <tr><td><code>orange-swoosh</code></td><td>高能量档 + 人物：人物放在右侧白色弧面上（线上 feature graphic 的构图）</td></tr>
-        <tr><td><code>light-pattern</code></td><td>生活感档、教程、截图底、信息多的版面</td></tr>
-        <tr><td><code>orange-plain</code></td><td>要放大段文字时（如感谢卡正文区）</td></tr>
-      </table>
-      <p style="margin-top:12px">每种变体 × 每条产品线（<code>orange-plain</code> 无图形，不分线）都有 6 个尺寸：<code>gp-feature-1024x500</code>、<code>ios-header-3840x1646</code>、<code>landscape-1920x1080</code>、<code>square-1080</code>、<code>portrait-1080x1350</code>、<code>story-1080x1920</code>。SVG 在 <code>assets/backgrounds/</code>，可直接放进设计稿；要全尺寸 PNG 时跑 <code>python3 assets/backgrounds/make_backgrounds.py --png</code>（输出到 <code>assets/backgrounds/out/</code>，不进仓库）。新尺寸加在脚本的 <code>SIZES</code> 里。</p>
-      </div>
-      <ul class="rules" data-mod="brand.backgrounds-rules">
-        <li><b>可以：</b>人物、产品、文字压在底纹上；图形被画面边缘裁掉一半；AI 出图时把背景 PNG 作为参考图一起传入，或者先出透明底人物再合成。</li>
-        <li><b>不可以：</b>改底纹颜色（只用 <code>tokens.css</code> 的品牌橙）；把图形做小做密成壁纸；在底纹上加其他品牌的图形或 emoji；文字区域下面放图形（文字下面用 <code>orange-plain</code> 或加纯色底）。</li>
-      </ul>
-      <div class="pg-mod" data-mod="brand.packaging"><div class="pg-sub" style="margin-top:24px">品牌包装 <span class="src src--live">线上</span></div>
-      <p>出货包装按小人高度选盒：5–10cm 用 14×14×14cm 磁吸翻盖礼盒，5cm 以下用 14×14×9cm 双开门硬盒。盒色品牌橙 <code>#FF5A11</code> 配白色：正面白色 JuJuBit 字标，侧面一排白色底纹图形，背面 App Store 标和合规信息（Holymolly Limited、CE、Powered by Tripo）。内部海绵内衬（10×10×10cm 坑位），小人套 JUJUBIT 塑料袋，附 10.8×8cm 品牌感谢卡。来源：飞书「JuJuBit 设计素材归档 · 品牌包装」和「Shop 包装盒升级」（徐莹睿）。</p>
-      <div class="people-styles">
+      <div class="pg-mod" data-mod="brand.packaging"><div class="pg-sub" style="margin-top:40px">品牌包装 <span class="src src--live">线上</span> <details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>盒色品牌橙 <code>#FF5A11</code> 配白：正面白色 JuJuBit 字标，侧面一排白色品牌符号，背面 App Store 标和合规信息（Holymolly Limited、CE、Powered by Tripo）。</p><p>内部海绵内衬（10×10×10cm 坑位），小人套 JUJUBIT 塑料袋，附 10.8×8cm 感谢卡。</p><p>来源：飞书「JuJuBit 设计素材归档 · 品牌包装」「Shop 包装盒升级」（徐莹睿）。</p></div></details></div>
+      <p>5–10cm 小人用 14cm 磁吸翻盖礼盒，5cm 以下用 14×14×9cm 双开门盒。</p>
+      <div class="people-styles" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr))">
         <img src="assets/packaging/flip-box.jpg" alt="磁吸翻盖礼盒 正面和背面" loading="lazy">
         <img src="assets/packaging/double-door-box.jpg" alt="双开门硬盒 正面和背面" loading="lazy">
         <img src="assets/packaging/flip-box-structure.jpg" alt="翻盖礼盒结构、海绵内衬尺寸、感谢卡" loading="lazy">
         <img src="assets/packaging/thank-you-cards.jpg" alt="品牌感谢卡三版" loading="lazy">
       </div></div>
       <ul class="rules" data-mod="brand.packaging-rules">
-        <li><b>可以：</b>广告、人物图、开箱图里出现盒子时，按上面的真实盒子画：橙色方盒、白色字标、侧面图形排；AI 出图时把 <code>assets/packaging/flip-box.jpg</code> 作为参考图传入。</li>
-        <li><b>不可以：</b>让 AI 自己编盒子（换颜色、加缎带、加别的字、改成牛皮纸盒）；把盒子画得比小人小；把白色素胚放进盒子里当成交付品。</li>
+        <li><b>可以：</b>画面里出现盒子时按真实盒子画；AI 出图把 <code>assets/packaging/flip-box.jpg</code> 作参考图传入。</li>
+        <li><b>不可以：</b>让 AI 编盒子（换色、加缎带、改字、牛皮纸盒）；盒子比小人小；把白色素胚放进盒子当交付品。</li>
       </ul>
     </section>
 
     <!-- 02 PEOPLE -->
     <section class="pg-sec" id="people" data-mod="people">
-      <header><span class="num">02</span><h2 class="jjb-h2">品牌人物</h2><span class="src src--new">新版</span></header>
-      <p class="lead">品牌人物分两层：<b>JuJu</b> 是品牌角色，负责品牌识别；<b>Maya</b> 和 <b>Danny</b> 是两位固定的真人代言人，代表"用 JuJuBit 创作的人"，负责示范和带入。需要真人形象时只用这两位，不另找新面孔。两人是品牌虚构角色（AI 生成），对外不得说成真实客户。气质是好奇、调皮、对自己的作品有点得意——潮玩和创作感，不是温馨贺卡式的煽情。</p>
+      <header><span class="num">02</span><h2 class="jjb-h2">品牌人物</h2><span class="src src--new">新版</span><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p><b>JuJu</b> 是品牌角色，负责品牌识别；<b>Maya</b> 和 <b>Danny</b> 代表"用 JuJuBit 创作的人"，负责示范和带入。</p><p>两人是 AI 生成的虚构角色，对外不得说成真实客户。气质：好奇、调皮、对自己的作品有点得意——潮玩和创作感，不是贺卡式煽情。</p></div></details></header>
+      <p class="lead">需要真人时只用 Maya 和 Danny 两位固定代言人，不另找新面孔。</p>
       <div class="people-grid" data-mod="people.cast">
         <div class="people-card"><img src="assets/people/maya-portrait.jpg" alt="Maya 设定照" loading="lazy"><div class="body">
           <h3>Maya · 主脸</h3>
@@ -308,24 +309,22 @@
           <dt>衣着</dt><dd>灰连帽衫 + 军绿工装夹克</dd>
           <dt>位置</dt><dd>TRPG 页面、跑团广告、社区素材、mini-me 素材</dd></dl></div></div>
       </div>
-      <div class="pg-mod" data-mod="people.bios"><div class="pg-sub" style="margin-top:24px">人物设定</div>
+      <div class="pg-mod" data-mod="people.bios"><div class="pg-sub" style="margin-top:40px">人物设定 <details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p><b>两人关系：</b>创作者社群里认识的朋友。Maya 出点子，Danny 较真把角色做对。可以同框互相展示作品，不设定为情侣或家人。</p><p><b>和 JuJu：</b>JuJu 不是他们的宠物或道具，同框时以贴纸、公仔或屏幕形象出现。</p><p><b>更多背景：</b>Maya 第一次用 JuJuBit 是把和闺蜜的大学合照做成生日礼物；Danny 跑了十几年 D&amp;D，以前用 Hero Forge 总差点意思。</p></div></details></div>
       <table class="asset-table">
         <tr><th></th><th>Maya</th><th>Danny</th></tr>
-        <tr><td>背景</td><td>住在奥斯汀的活动策划，天天帮别人办生日会和婚礼，自己最爱琢磨送什么礼物。第一次用 JuJuBit 是给闺蜜做生日礼物——把两人大学时的合照做成小人，从此身边每个人、每只宠物都被她"做成过一次小人"。</td><td>芝加哥郊区的高中物理老师，两个孩子的爸爸。跑了十几年 D&amp;D，每周五在自家地下室当 DM。以前在 Hero Forge 捏人总差点意思，现在把队友自己设计的角色、自家孩子扮成的小法师都做成实体。</td></tr>
-        <tr><td>性格</td><td>好奇、手快、爱分享；点子多，不会建模但很会说清楚自己想要什么</td><td>温和、有点书呆子气、讲究细节；嘴上吐槽，实际最舍得给朋友花心思</td></tr>
-        <tr><td>在 JuJuBit 做什么</td><td>拍照上传、试不同风格、把作品发到社媒；送礼、mini-me、宠物、家庭和毕业场景的示范者</td><td>把原创角色做成跑团微缩、给整队做角色、把自己做进奇幻世界；TRPG 和 mini-me 场景的示范者</td></tr>
-        <tr><td>说话方式</td><td>短句、热情、带点自嘲。例："Okay, tiny me is way cuter than real me."</td><td>平实、带冷幽默、懂行。例："Rolled a nat 20 on this one. That's my ranger, down to the scar."</td></tr>
-        <tr><td>两人关系</td><td colspan="2">在一个创作者社群里认识的朋友：Maya 负责"想做什么就做什么"的点子，Danny 负责"把角色做对"的较真。两人可以同框互相展示作品，但不设定为情侣或家人，方便各自独立出镜。</td></tr>
-        <tr><td>和 JuJu</td><td colspan="2">JuJu 是品牌角色，不是他们的宠物或吉祥物道具。同框时 JuJu 以贴纸、公仔或屏幕里的形象出现，人和 JuJu 各自保持原样。</td></tr>
+        <tr><td>背景</td><td>奥斯汀的活动策划，送礼高手，身边每个人和宠物都被她做成过小人。</td><td>芝加哥郊区的高中物理老师，每周五在地下室当 DM。</td></tr>
+        <tr><td>性格</td><td>好奇、手快、爱分享</td><td>温和、讲究细节、嘴上吐槽</td></tr>
+        <tr><td>示范场景</td><td>送礼、mini-me、宠物、家庭、毕业</td><td>TRPG、给整队做角色、mini-me</td></tr>
+        <tr><td>说话方式</td><td>"Okay, tiny me is way cuter than real me."</td><td>"Rolled a nat 20 on this one. That's my ranger, down to the scar."</td></tr>
       </table></div>
-      <div class="pg-mod" data-mod="people.anchors"><div class="pg-sub" style="margin-top:24px">锚点要跨风格保留</div>
-      <p>同一个人做成大头潮玩、3D 动画、32mm 跑团微缩三种风格后，仍要一眼认出是谁。靠的就是锚点：Maya 的圆形大蓬发和灰背心、Danny 的眼镜和橙色毛线帽，任何风格都不能去掉。</p>
+      <div class="pg-mod" data-mod="people.anchors"><div class="pg-sub" style="margin-top:40px">锚点要跨风格保留</div>
+      <p>换成任何风格都要一眼认出：Maya 的大蓬发和灰背心，Danny 的眼镜和橙色毛线帽。</p>
       <div class="people-styles">
         <img src="assets/people/maya-3-styles.jpg" alt="Maya 三种风格小人" loading="lazy">
         <img src="assets/people/danny-3-styles.jpg" alt="Danny 三种风格小人" loading="lazy">
       </div></div>
-      <div class="pg-mod" data-mod="people.energy"><div class="pg-sub" style="margin-top:24px">两档情绪：高能量和生活感</div>
-      <p><b>高能量档</b>用在商店头图（Google Play feature graphic、App Store header）、广告首屏、活动海报：满版品牌橙背景，人物张开双手接住或高高举起小人，小人飞在空中，表情是惊喜、大笑、欢呼。这一档沿用线上 feature graphic 的构图，是用户第一眼看到的品牌印象。<b>生活感档</b>用在教程、App Store 截图后几屏、社媒日常、详情页：真实室内、暖光、会心一笑。两档人物锚点完全一样，不能换脸。</p>
+      <div class="pg-mod" data-mod="people.energy"><div class="pg-sub" style="margin-top:40px">两档情绪 <details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p><b>高能量</b>沿用线上 Google Play feature graphic 的构图，是用户第一眼看到的品牌印象：满版品牌橙，人物张手接住或高举小人，小人飞在空中，表情惊喜、大笑、欢呼。</p><p><b>生活感</b>用真实室内、暖光、会心一笑。</p><p>两档人物锚点完全一样，不能换脸。</p></div></details></div>
+      <p><b>高能量</b>：商店头图、广告首屏、海报。<b>生活感</b>：教程、截图后几屏、社媒、详情页。</p>
       <div class="people-styles" style="grid-template-columns:1fr">
         <img src="assets/people/maya-energy-wide.jpg" alt="Maya 高能量横版：伸手接住飞出来的小人（即线上 feature graphic 的 21:9 版）" loading="lazy">
       </div>
@@ -334,22 +333,22 @@
         <img src="assets/people/danny-energy.jpg" alt="Danny 高能量竖版：举起自己的跑团角色小人欢呼" loading="lazy">
         <img src="assets/people/danny-gamenight.jpg" alt="Danny 生活感：跑团夜把全彩小人放上地图" loading="lazy">
       </div></div>
+      <div class="pg-sub" style="margin-top:40px">使用规则 <details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p><b>小人质感：</b>生活感档按真实交付品拍——哑光漆面、颜色比渲染图暗一档、细部略粗，背景用真实桌面杂物，不比实物更完美。</p><p><b>出图：</b>每次沿用下方英文固定描述，不改写。当前是 AI 设定图，正式实拍时按此设定找模特。</p></div></details></div>
       <ul class="rules" data-mod="people.rules">
-        <li><b>可以：</b>用在品牌位（首页 Hero、App Store 截图、广告、教程、社媒）；和 JuJu 同框；展示创作动作（拍照上传、挑风格、给小人摆姿势、放上跑团地图）；表情好奇、调皮、得意。</li>
-        <li><b>橙色：</b>人物身上只有 Danny 的毛线帽是橙色，Maya 不戴橙色配件；其余橙色放在背景和品牌盒上，衣服用中性色，不穿整件橙色。</li>
-        <li><b>小人质感：</b>画面里的小人一律是 JuJuBit 的全彩定制小人，带 JuJuBit 木底座或品牌盒；不出现灰色素胚、金属或树脂原色兵棋模型（那是别家的产品）。生活感档按真实交付品拍：哑光漆面、颜色比渲染图暗一档、细部略粗，背景用真实桌面杂物，不比实物更完美。</li>
-        <li><b>不可以：</b>用在评价、客户证言、"Real Figurines. Real People." 这类主张真实的位置——那里只用授权的真实客户；改动锚点；煽情落泪、模特化修图；把大头款标成 Funko / Pop。</li>
-        <li><b>出图：</b>每次沿用下方英文固定描述，不改写。当前是 AI 设定图，用作选角和出图依据；正式实拍时按此设定找模特。</li>
+        <li><b>可以：</b>首页 Hero、商店截图、广告、教程、社媒；和 JuJu 同框；表情好奇、调皮、得意。</li>
+        <li><b>不可以：</b>用在评价、客户证言等主张真实的位置；改锚点；煽情或模特化修图；把大头款标成 Funko / Pop。</li>
+        <li><b>小人：</b>一律是全彩 JuJuBit 小人，带木底座或品牌盒；不出现灰色素胚或别家兵棋。</li>
+        <li><b>橙色：</b>人物身上只有 Danny 的毛线帽是橙色；其余橙色放在背景和品牌盒上。</li>
       </ul>
-      <details class="snippet" data-mod="people.prompts" open><summary>出图固定描述（英文，逐字使用）</summary><pre>Maya: about 26-year-old Black American woman, warm deep-brown skin, a big round voluminous natural afro of tight dark curls, small stud earrings, no glasses, heather-grey athletic tank top (everyday shots may add an open light-wash denim jacket). Always pass the Google Play feature graphic (or assets/people/maya-portrait.jpg) as the face reference image.
+      <details class="snippet" data-mod="people.prompts"><summary>出图固定描述（英文，逐字使用）</summary><pre>Maya: about 26-year-old Black American woman, warm deep-brown skin, a big round voluminous natural afro of tight dark curls, small stud earrings, no glasses, heather-grey athletic tank top (everyday shots may add an open light-wash denim jacket). Always pass the Google Play feature graphic (or assets/people/maya-portrait.jpg) as the face reference image.
 
 Danny: 37-year-old white American man, short brown beard, round tortoiseshell glasses, a bright vivid orange (#FF5A11) knit beanie, grey hoodie under an olive work jacket.</pre></details>
     </section>
 
     <!-- 03 COLOR -->
     <section class="pg-sec" id="color" data-mod="color">
-      <header><span class="num">03</span><h2 class="jjb-h2">色彩</h2></header>
-      <p class="lead">一个主色：JuJu Orange <code>#FF5A11</code>，只用在主按钮、选中态和关键强调。大面积底色用白、浅灰和品牌浅底。文字不用实色灰，用黑色透明度分四级。点击色块复制 CSS 变量。</p>
+      <header><span class="num">03</span><h2 class="jjb-h2">色彩</h2><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>大面积底色用白、浅灰和品牌浅底。文字不用实色灰，用黑色透明度分四级。</p></div></details></header>
+      <p class="lead">一个主色 JuJu Orange <code>#FF5A11</code>，只用在主按钮、选中态和关键强调。点击色块复制 CSS 变量。</p>
       <div class="pg-mod" data-mod="color.brand"><div class="pg-sub">品牌色 <span class="src src--f">F</span></div>
       <div class="sw-grid" data-swatches="brand"></div>
       </div><div class="pg-mod" data-mod="color.neutral"><div class="pg-sub">中性色 <span class="src src--f">F</span></div>
@@ -371,8 +370,8 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 
     <!-- 04 TYPE -->
     <section class="pg-sec" id="type" data-mod="type">
-      <header><span class="num">04</span><h2 class="jjb-h2">字体</h2><span class="src src--f">F</span></header>
-      <p class="lead">两个字族，各管一件事。Bebas Neue 只有大写字形，只用于标题、导航和 tab；正文、按钮、表单全部用 Outfit。不引入第三个字族。</p>
+      <header><span class="num">04</span><h2 class="jjb-h2">字体</h2><span class="src src--f">F</span><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>Bebas Neue 只有大写字形；正文、按钮、表单全部用 Outfit。不引入第三个字族。</p></div></details></header>
+      <p class="lead">两个字族：Bebas Neue 管标题、导航和 tab，Outfit 管其余一切。</p>
       <div class="two" data-mod="type.fonts">
         <div class="font-card"><div class="jjb-mini jjb-muted">Display · <code>assets/fonts/BebasNeue-Regular.ttf</code></div>
           <div class="big" style="font-family:var(--jjb-font-display);margin-top:12px">BEBAS NEUE 400</div>
@@ -394,8 +393,8 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 
     <!-- 05 LAYOUT -->
     <section class="pg-sec" id="layout" data-mod="layout">
-      <header><span class="num">05</span><h2 class="jjb-h2">间距与布局</h2><span class="src src--new">新版</span></header>
-      <p class="lead">首页区块全宽铺满，左右留 30px（手机 20px）。文章、政策、表单等窄内容页用 1220px 居中容器。卡片网格间距统一 12px（Figma 稿是 30，线上已改）。商品桌面 4 列、手机 2 列。</p>
+      <header><span class="num">05</span><h2 class="jjb-h2">间距与布局</h2><span class="src src--new">新版</span><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>文章、政策、表单等窄内容页用 1220px 居中容器。卡片间距 Figma 稿是 30，线上已改为 12。商品桌面 4 列、手机 2 列。</p></div></details></header>
+      <p class="lead">首页区块全宽，左右留 30px（手机 20px）；卡片间距 12px。</p>
       <div class="two">
         <div id="space-scale" data-mod="layout.spacing"></div>
         <table class="state-table" data-mod="layout.dimensions">
@@ -416,8 +415,8 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 
     <!-- 06 SHAPE -->
     <section class="pg-sec" id="shape" data-mod="shape">
-      <header><span class="num">06</span><h2 class="jjb-h2">圆角与阴影</h2><span class="src src--fs">F稿</span></header>
-      <p class="lead">按钮、胶囊、tab 一律全圆角。弹窗和大卡片 20px，半屏面板 16px，toast 和徽章 12px，提示条 8px。阴影只有 4 种，只给浮起来的东西用；商品卡和 logo 不加阴影，层次靠边框和底色。</p>
+      <header><span class="num">06</span><h2 class="jjb-h2">圆角与阴影</h2><span class="src src--fs">F稿</span><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>弹窗和大卡片 20px，半屏面板 16px，toast 和徽章 12px，提示条 8px。阴影只有 4 种；商品卡和 logo 不加阴影，层次靠边框和底色。</p></div></details></header>
+      <p class="lead">按钮、胶囊、tab 全圆角；阴影只给浮起来的东西。</p>
       <div class="radius-grid" id="radius-grid" data-mod="shape.radii"></div>
       <div class="pg-mod" data-mod="shape.shadows"><div class="pg-sub">阴影（只允许这 4 种）</div>
       <div class="shadow-stage"><div class="shadow-grid" id="shadow-grid"></div></div>
@@ -427,8 +426,8 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 
     <!-- 07 MOTION -->
     <section class="pg-sec" id="motion" data-mod="motion">
-      <header><span class="num">07</span><h2 class="jjb-h2">动效</h2><span class="src src--live">线上</span></header>
-      <p class="lead">Web 动效：一条缓动曲线 <code>cubic-bezier(.165,.84,.44,1)</code>，四档时长。Figma 没有 motion token，这部分沿用线上实测值；App 动效以设计团队交付的视频为准（下方）。用户开启“减少动态效果”时全部关掉。</p>
+      <header><span class="num">07</span><h2 class="jjb-h2">动效</h2><span class="src src--live">线上</span><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>曲线 <code>cubic-bezier(.165,.84,.44,1)</code>。Figma 没有 motion token，Web 沿用线上实测值；App 动效以设计团队交付的视频为准（下方）。</p></div></details></header>
+      <p class="lead">一条缓动曲线、四档时长；用户开启"减少动态效果"时全部关掉。</p>
       <div class="ease-demo" id="ease-demo" data-mod="motion.easing"></div>
       <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap" data-mod="motion.playback">
         <button class="jjb-btn jjb-btn--secondary jjb-btn--s" id="play-ease">播放时长对比</button>
@@ -469,8 +468,8 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 
     <!-- 09 BUTTONS -->
     <section class="pg-sec" id="buttons" data-mod="buttons">
-      <header><span class="num">09</span><h2 class="jjb-h2">按钮</h2><span class="src src--f">F</span></header>
-      <p class="lead">Web 三档高度 44 / 50 / 54，字体 Outfit 600（小号 500），全圆角，宽度随内容。主按钮橙色，次按钮黑色，描边按钮用于第三层级。每个页面主按钮只放一个。</p>
+      <header><span class="num">09</span><h2 class="jjb-h2">按钮</h2><span class="src src--f">F</span><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>字体 Outfit 600（小号 500），宽度随内容。主按钮橙色，次按钮黑色，描边按钮用于第三层级。</p></div></details></header>
+      <p class="lead">三档高度 44 / 50 / 54，全圆角；每个页面只放一个主按钮。</p>
       <table class="state-table" data-mod="buttons.states">
         <tr><th>Web</th><th>Default</th><th>Hover</th><th>Pressed</th><th>Disabled</th></tr>
         <tr><td>Primary</td><td><button class="jjb-btn jjb-btn--primary">Create Yours</button></td><td><button class="jjb-btn jjb-btn--primary is-hover">Create Yours</button></td><td><button class="jjb-btn jjb-btn--primary is-active">Create Yours</button></td><td><button class="jjb-btn jjb-btn--primary" disabled>Create Yours</button></td></tr>
@@ -506,8 +505,8 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 
     <!-- 10 NAV -->
     <section class="pg-sec" id="nav" data-mod="nav">
-      <header><span class="num">10</span><h2 class="jjb-h2">公告栏与导航</h2><span class="src src--new">新版</span></header>
-      <p class="lead">公告栏 48px 橙色渐变，左右箭头切换文案。页头 78px（手机 56px）：压在首屏图上时是半透明毛玻璃（<code>--jjb-header-glass</code> + saturate 1.8 blur 20），滚动后切白底加 <code>--jjb-shadow-header</code>。菜单居中，Bebas 20；右侧依次是 Log In 胶囊、搜索/账户/购物车 20px 图标、橙色 CREATE 36px。</p>
+      <header><span class="num">10</span><h2 class="jjb-h2">公告栏与导航</h2><span class="src src--new">新版</span><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>公告栏橙色渐变，左右箭头切换文案。毛玻璃：<code>--jjb-header-glass</code> + saturate 1.8 blur 20；滚动后白底加 <code>--jjb-shadow-header</code>。</p><p>菜单居中，Bebas 20；右侧依次是 Log In 胶囊、搜索/账户/购物车 20px 图标、橙色 CREATE 36px。</p></div></details></header>
+      <p class="lead">公告栏 48px + 页头 78px（手机 56px）；压在首屏图上是毛玻璃，滚动后切白底。</p>
       <div class="nav-frame" data-mod="nav.solid">
         <div class="jjb-announce"><button aria-label="Previous"><svg class="jjb-icon jjb-icon--20"><use href="#i-chevron_left"/></svg></button><span>Create Your Own Design — Get 15% OFF</span><button aria-label="Next"><svg class="jjb-icon jjb-icon--20"><use href="#i-chevron_right"/></svg></button></div>
         <header class="jjb-nav">
@@ -549,8 +548,8 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 
     <!-- 11 COMMERCE -->
     <section class="pg-sec" id="commerce" data-mod="commerce">
-      <header><span class="num">11</span><h2 class="jjb-h2">区块标题、商品卡与标签</h2><span class="src src--new">新版</span></header>
-      <p class="lead">区块标题居中，Bebas 64（手机 28）；右侧 View All 18px 500。筛选用黑白胶囊（42px），不再用下划线 tab。商品卡 4 列，间距 12px。卡片没有品牌副标，也没有 Quick view。标题 16px 500，最多两行；价格 16px 500。鼠标悬停时淡入第二张商品图（220ms）。价格为示例。</p>
+      <header><span class="num">11</span><h2 class="jjb-h2">区块标题、商品卡与标签</h2><span class="src src--new">新版</span><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>标题 Bebas 64（手机 28）；右侧 View All 18px 500。筛选用黑白胶囊（42px），不再用下划线 tab。</p><p>卡片没有品牌副标，也没有 Quick view。标题 16px 500，最多两行；价格 16px 500。悬停淡入 220ms。价格为示例。</p></div></details></header>
+      <p class="lead">区块标题居中；商品卡 4 列、间距 12px，悬停淡入第二张图。</p>
       <div class="jjb-section-head" data-mod="commerce.section-title"><h3 class="jjb-section-head__title">Trending Products</h3><a class="jjb-section-head__more" href="#commerce">View All</a></div>
       <div class="jjb-tabs" role="tablist" style="margin-bottom:32px" data-mod="commerce.filters"><button class="jjb-chip" role="tab" aria-selected="true">Custom Figurines</button><button class="jjb-chip" role="tab" aria-selected="false">Art Toy</button></div>
       <div class="jjb-grid" id="product-grid" data-mod="commerce.product-card"></div>
@@ -586,8 +585,8 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 
     <!-- 12 HOME BLOCKS -->
     <section class="pg-sec" id="blocks" data-mod="blocks">
-      <header><span class="num">12</span><h2 class="jjb-h2">首页区块</h2><span class="src src--new">新版</span></header>
-      <p class="lead">2026-10 上线首页的区块。模板卡、分类卡、信任卡和买家秀图统一 12px 圆角（手机 8px），卡片间距 12px。图片取自线上，只作示例。</p>
+      <header><span class="num">12</span><h2 class="jjb-h2">首页区块</h2><span class="src src--new">新版</span><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>模板卡、分类卡、信任卡和买家秀图统一圆角。图片取自线上，只作示例。</p></div></details></header>
+      <p class="lead">2026-10 上线首页的区块，卡片 12px 圆角（手机 8px）、间距 12px。</p>
 
       <div class="pg-mod" data-mod="blocks.templates"><div class="pg-sub">模板入口（横向轮播；模板色已做进图片里）</div>
       <div class="jjb-track" id="tpl-track"></div>
@@ -636,8 +635,8 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 
     <!-- 13 FORMS -->
     <section class="pg-sec" id="forms" data-mod="forms">
-      <header><span class="num">13</span><h2 class="jjb-h2">表单与 FAQ</h2><span class="src src--live">线上</span></header>
-      <p class="lead">Figma 组件库的表单区还是空的，这里沿用线上规则：44px 高、4px 圆角、1px 描边，聚焦时黑描边加蓝色焦点环，错误用红色描边和说明文字。FAQ 是新版样式：左侧分类，右侧 Bebas 问题，用 +/– 图标，答案灰色 14px。</p>
+      <header><span class="num">13</span><h2 class="jjb-h2">表单与 FAQ</h2><span class="src src--live">线上</span><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>Figma 组件库的表单区还是空的，这里沿用线上规则：聚焦时黑描边加蓝色焦点环，错误用红色描边和说明文字。</p><p>FAQ 是新版样式：右侧 Bebas 问题，用 +/– 图标，答案灰色 14px。</p></div></details></header>
+      <p class="lead">输入框 44px 高、4px 圆角、1px 描边；FAQ 左分类、右问题。</p>
       <div class="two" data-mod="forms.fields">
         <div style="display:grid;gap:16px">
           <div class="jjb-field"><label for="f1">Email</label><input class="jjb-input" id="f1" placeholder="you@example.com"><div class="jjb-field__msg">We'll send your order updates here.</div></div>
@@ -662,8 +661,8 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 
     <!-- 13 FEEDBACK -->
     <section class="pg-sec" id="feedback" data-mod="feedback">
-      <header><span class="num">14</span><h2 class="jjb-h2">反馈与浮层</h2><span class="src src--f">F</span></header>
-      <p class="lead">toast：80% 黑底、12px 圆角，带淡蓝光晕阴影。弹窗：白底、20px 圆角、宽 300，右上角 35px 关闭钮。底部抽屉：顶部两角 20px，向上的柔和阴影。</p>
+      <header><span class="num">14</span><h2 class="jjb-h2">反馈与浮层</h2><span class="src src--f">F</span><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>toast：80% 黑底、12px 圆角，带淡蓝光晕阴影。弹窗：白底、20px 圆角、宽 300，右上角 35px 关闭钮。底部抽屉：顶部两角 20px，向上的柔和阴影。</p></div></details></header>
+      <p class="lead">toast、弹窗、底部抽屉三种浮层。</p>
       <div class="stage stage--sunken" style="align-items:flex-start">
         <div class="jjb-toast" data-mod="feedback.toast"><svg class="jjb-icon jjb-icon--20"><use href="#i-check"/></svg>Added to cart</div>
         <div class="jjb-dialog" data-mod="feedback.dialog">
@@ -683,8 +682,8 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 
     <!-- 14 APP -->
     <section class="pg-sec" id="app" data-mod="app">
-      <header><span class="num">15</span><h2 class="jjb-h2">App 专属</h2><span class="src src--app">App</span></header>
-      <p class="lead">App 按钮三档 36 / 44 / 54，没有 hover 态；次按钮白底。风格模板卡用各自的模板色做底，底部叠同色相深色渐变。独立站的模板入口直接用带模板色的图片（见 11 首页区块），不在 CSS 里另写模板色。</p>
+      <header><span class="num">15</span><h2 class="jjb-h2">App 专属</h2><span class="src src--app">App</span><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>次按钮白底。风格模板卡用各自的模板色做底，底部叠同色相深色渐变。独立站的模板入口直接用带模板色的图片，不在 CSS 里另写模板色。</p></div></details></header>
+      <p class="lead">App 按钮三档 36 / 44 / 54，没有 hover 态。</p>
       <div class="stage stage--sunken" data-mod="app.buttons">
         <button class="jjb-app-btn jjb-app-btn--primary jjb-app-btn--l">Generate</button>
         <button class="jjb-app-btn jjb-app-btn--primary">Generate</button>
@@ -703,8 +702,8 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 
     <!-- 15 PAGE -->
     <section class="pg-sec" id="page" data-mod="page">
-      <header><span class="num">16</span><h2 class="jjb-h2">页面拼装示例</h2></header>
-      <p class="lead">一个新落地页的最小骨架：公告栏 → 毛玻璃页头压首图 → 区块（居中标题 + View All + 网格）→ 黑底页脚。区块上下各 50px（手机 32px），首页区块全宽，左右只留 30px（手机 20px）。新页面从这里复制结构，再替换内容。</p>
+      <header><span class="num">16</span><h2 class="jjb-h2">页面拼装示例</h2><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>公告栏 → 毛玻璃页头压首图 → 区块（居中标题 + View All + 网格）→ 黑底页脚。区块上下各 50px（手机 32px），首页区块全宽，左右只留 30px（手机 20px）。</p></div></details></header>
+      <p class="lead">新落地页的最小骨架：从这里复制结构，再换内容。</p>
       <div class="nav-frame" data-mod="page.landing">
         <div class="jjb-announce"><span>示例公告</span></div>
         <div style="position:relative;height:420px;background:url('https://jujubit.ai/cdn/shop/collections/Figurines.jpg?width=1600') center/cover, var(--jjb-dark-grey);display:grid;align-content:end;padding:40px 57px 60px;color:#fff">
@@ -759,11 +758,10 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
     </section>
     <!-- 18 AI -->
     <section class="pg-sec" id="ai" data-mod="ai">
-      <header><span class="num">18</span><h2 class="jjb-h2">给 AI 用</h2></header>
-      <p class="lead">把本规范装成 agent skill。装好后对 Claude Code 或 Codex 说“按 JuJuBit 设计规范做一个 xx 页面”，它会自动读取规则、token、组件和素材。skill 跟着本页自动更新，重新跑一次安装命令就能拿到最新版。</p>
+      <header><span class="num">18</span><h2 class="jjb-h2">给 AI 用</h2><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>它会自动读取规则、token、组件和素材。skill 跟着本页自动更新，重新跑一次安装命令就能拿到最新版。</p><p>装到 <code>~/.claude/skills/jujubit-design-system</code> 和 <code>~/.codex/skills/jujubit-design-system</code>。只装一个：命令末尾加 <code>-s claude</code> 或 <code>-s codex</code>。装完重启 agent。</p></div></details></header>
+      <p class="lead">把本规范装成 agent skill，之后对 agent 说"按 JuJuBit 设计规范做一个 xx 页面"即可。</p>
       <div class="pg-mod" data-mod="ai.install"><div class="pg-sub">1. 一键安装（Claude Code + Codex，macOS / Linux）</div>
       <div class="ai-cmd"><code>curl -fsSL https://playverseai.com/design/install.sh | bash</code><button class="jjb-btn jjb-btn--secondary jjb-btn--s" data-copy="curl -fsSL https://playverseai.com/design/install.sh | bash" data-label="安装命令">复制</button></div>
-      <p class="note">装到 <code>~/.claude/skills/jujubit-design-system</code> 和 <code>~/.codex/skills/jujubit-design-system</code>。只装一个：命令末尾加 <code>-s claude</code> 或 <code>-s codex</code>。装完重启 agent。</p>
       </div><div class="pg-mod" data-mod="ai.download"><div class="pg-sub">2. 手动下载</div>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <a class="jjb-btn jjb-btn--primary jjb-btn--s" href="downloads/jujubit-design-system-skill.zip" download>下载 skill 包（zip）</a>
@@ -912,6 +910,22 @@ document.addEventListener('click', e => {
   box.addEventListener('mouseenter', () => { paused = true; });
   box.addEventListener('mouseleave', () => { paused = false; });
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(() => { if (!paused && !document.hidden) show(i + 1); }, 3000);
+})();
+// "?" 收纳：一次只开一个；点外面或按 Esc 关闭；桌面端不超出右边界
+(() => {
+  const all = () => document.querySelectorAll('.pg-help[open]');
+  document.addEventListener('toggle', e => {
+    const d = e.target;
+    if (!d.matches || !d.matches('.pg-help') || !d.open) return;
+    all().forEach(x => { if (x !== d) x.open = false; });
+    const body = d.querySelector('.pg-help__body'); body.style.left = '';
+    if (matchMedia('(min-width: 641px)').matches) {
+      const over = body.getBoundingClientRect().right - (innerWidth - 16);
+      if (over > 0) body.style.left = `${-8 - over}px`;
+    }
+  }, true);
+  document.addEventListener('click', e => { if (!e.target.closest('.pg-help')) all().forEach(x => { x.open = false; }); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') all().forEach(x => { x.open = false; }); });
 })();
 </script>
 </body>

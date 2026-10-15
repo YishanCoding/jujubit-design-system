@@ -5,18 +5,18 @@
    "id": "hero",
    "title": "hero",
    "file": "playground.src.html",
-   "line": 201,
+   "line": 218,
    "edits": []
   },
   {
    "id": "brand",
    "title": "品牌与 Logo",
    "file": "playground.src.html",
-   "line": 215,
+   "line": 232,
    "edits": [
     {
      "key": "brand#1",
-     "source": "两套标识：横版字标 <b>JuJuBit</b>（网站页头、页脚、邮件）和 3D 字标 <b>JuJu</b>（App icon、头像、社媒方图）。深底用浅色标，浅底用深色或橙色标。"
+     "source": "两套标识：横版字标 JuJuBit 和 3D 字标 JuJu。"
     }
    ]
   },
@@ -24,7 +24,7 @@
    "id": "brand.logos",
    "title": "brand.logos",
    "file": "playground.src.html",
-   "line": 218,
+   "line": 235,
    "edits": [
     {
      "key": "brand.logos#1",
@@ -56,7 +56,7 @@
    "id": "brand.rules",
    "title": "brand.rules",
    "file": "playground.src.html",
-   "line": 232,
+   "line": 249,
    "edits": [
     {
      "key": "brand.rules#1",
@@ -70,70 +70,47 @@
   },
   {
    "id": "brand.symbols",
-   "title": "品牌符号",
+   "title": "品牌符号  ?来源：母本是礼盒侧面那排白色涂鸦（& 环、爪印、徽章、星光、灵感），按产品线扩成几组。广告推哪条线，底纹就用哪一组。\n画法（新符号逐条照做）：粗圆头线围合、线宽约为高度的 1/7、里面空心；前倾约 10°；边缘手作感；旁边两三个短划/圆点/小加号；单色；画物件，不画功能图标。\n每组一眼要认出：通用＝这是 JuJuBit；真人＝从照片做成小人（相机、照片、Maya 的蓬发、品牌盒）；宠物＝我的宠物（守宫是爬宠子位，确认在卖再用）；TRPG＝我的角色（二十面骰）。\n待设计师补：底座小人、两人、一家人三个符号还没画好；礼盒原图形的源矢量未到位，现版本是从包装效果图复原后描摹的。到位后替换 assets/brand-symbols/ 同名文件，重跑 make_backgrounds.py。",
    "file": "playground.src.html",
-   "line": 236,
+   "line": 253,
    "edits": []
   },
   {
    "id": "brand.symbols-rules",
    "title": "brand.symbols-rules",
    "file": "playground.src.html",
-   "line": 254,
+   "line": 276,
    "edits": [
     {
      "key": "brand.symbols-rules#1",
-     "source": "<b>可以：</b>一张图 = 通用层 + 一组产品线符号；印刷品（礼盒、感谢卡）用白色线稿，商店图、广告、海报用比底色深一档的同色底纹。"
+     "source": "<b>可以：</b>一张图 = 通用层 + 一组产品线；人物、产品、文字压在底纹上；图形被画面边缘裁掉一半。"
     },
     {
      "key": "brand.symbols-rules#2",
-     "source": "<b>不可以：</b>两条产品线的符号混在一张图里；把符号改成实心图标、细线图标或 emoji；照着别家图标库补新符号（新符号先按上面的画法出稿，过混排测试再入库）。"
-    }
-   ]
-  },
-  {
-   "id": "brand.backgrounds",
-   "title": "品牌背景",
-   "file": "playground.src.html",
-   "line": 258,
-   "edits": []
-  },
-  {
-   "id": "brand.backgrounds-rules",
-   "title": "brand.backgrounds-rules",
-   "file": "playground.src.html",
-   "line": 275,
-   "edits": [
-    {
-     "key": "brand.backgrounds-rules#1",
-     "source": "<b>可以：</b>人物、产品、文字压在底纹上；图形被画面边缘裁掉一半；AI 出图时把背景 PNG 作为参考图一起传入，或者先出透明底人物再合成。"
-    },
-    {
-     "key": "brand.backgrounds-rules#2",
-     "source": "<b>不可以：</b>改底纹颜色（只用 <code>tokens.css</code> 的品牌橙）；把图形做小做密成壁纸；在底纹上加其他品牌的图形或 emoji；文字区域下面放图形（文字下面用 <code>orange-plain</code> 或加纯色底）。"
+     "source": "<b>不可以：</b>两条产品线混在一张图；改成实心、细线图标或 emoji；改底纹颜色；把图形做小做密成壁纸；文字下面放图形。"
     }
    ]
   },
   {
    "id": "brand.packaging",
-   "title": "品牌包装",
+   "title": "品牌包装  ?盒色品牌橙 #FF5A11 配白：正面白色 JuJuBit 字标，侧面一排白色品牌符号，背面 App Store 标和合规信息（Holymolly Limited、CE、Powered by Tripo）。内部海绵内衬（10×10×10cm 坑位），小人套 JUJUBIT 塑料袋，附 10.8×8cm 感谢卡。来源：飞书「JuJuBit 设计素材归档 · 品牌包装」「Shop 包装盒升级」（徐莹睿）。",
    "file": "playground.src.html",
-   "line": 279,
+   "line": 280,
    "edits": []
   },
   {
    "id": "brand.packaging-rules",
    "title": "brand.packaging-rules",
    "file": "playground.src.html",
-   "line": 287,
+   "line": 288,
    "edits": [
     {
      "key": "brand.packaging-rules#1",
-     "source": "<b>可以：</b>广告、人物图、开箱图里出现盒子时，按上面的真实盒子画：橙色方盒、白色字标、侧面图形排；AI 出图时把 <code>assets/packaging/flip-box.jpg</code> 作为参考图传入。"
+     "source": "<b>可以：</b>画面里出现盒子时按真实盒子画；AI 出图把 <code>assets/packaging/flip-box.jpg</code> 作参考图传入。"
     },
     {
      "key": "brand.packaging-rules#2",
-     "source": "<b>不可以：</b>让 AI 自己编盒子（换颜色、加缎带、加别的字、改成牛皮纸盒）；把盒子画得比小人小；把白色素胚放进盒子里当成交付品。"
+     "source": "<b>不可以：</b>让 AI 编盒子（换色、加缎带、改字、牛皮纸盒）；盒子比小人小；把白色素胚放进盒子当交付品。"
     }
    ]
   },
@@ -141,11 +118,11 @@
    "id": "people",
    "title": "品牌人物",
    "file": "playground.src.html",
-   "line": 294,
+   "line": 295,
    "edits": [
     {
      "key": "people#1",
-     "source": "品牌人物分两层：<b>JuJu</b> 是品牌角色，负责品牌识别；<b>Maya</b> 和 <b>Danny</b> 是两位固定的真人代言人，代表\"用 JuJuBit 创作的人\"，负责示范和带入。需要真人形象时只用这两位，不另找新面孔。两人是品牌虚构角色（AI 生成），对外不得说成真实客户。气质是好奇、调皮、对自己的作品有点得意——潮玩和创作感，不是温馨贺卡式的煽情。"
+     "source": "需要真人时只用 Maya 和 Danny 两位固定代言人，不另找新面孔。"
     }
    ]
   },
@@ -153,26 +130,21 @@
    "id": "people.cast",
    "title": "Maya · 主脸",
    "file": "playground.src.html",
-   "line": 297,
+   "line": 298,
    "edits": []
   },
   {
    "id": "people.bios",
-   "title": "人物设定",
+   "title": "人物设定 ?两人关系：创作者社群里认识的朋友。Maya 出点子，Danny 较真把角色做对。可以同框互相展示作品，不设定为情侣或家人。和 JuJu：JuJu 不是他们的宠物或道具，同框时以贴纸、公仔或屏幕形象出现。更多背景：Maya 第一次用 JuJuBit 是把和闺蜜的大学合照做成生日礼物；Danny 跑了十几年 D&D，以前用 Hero Forge 总差点意思。",
    "file": "playground.src.html",
-   "line": 311,
-   "edits": [
-    {
-     "key": "people.bios#1",
-     "source": "人物设定"
-    }
-   ]
+   "line": 312,
+   "edits": []
   },
   {
    "id": "people.anchors",
    "title": "锚点要跨风格保留",
    "file": "playground.src.html",
-   "line": 321,
+   "line": 320,
    "edits": [
     {
      "key": "people.anchors#1",
@@ -182,15 +154,10 @@
   },
   {
    "id": "people.energy",
-   "title": "两档情绪：高能量和生活感",
+   "title": "两档情绪 ?高能量沿用线上 Google Play feature graphic 的构图，是用户第一眼看到的品牌印象：满版品牌橙，人物张手接住或高举小人，小人飞在空中，表情惊喜、大笑、欢呼。生活感用真实室内、暖光、会心一笑。两档人物锚点完全一样，不能换脸。",
    "file": "playground.src.html",
-   "line": 327,
-   "edits": [
-    {
-     "key": "people.energy#1",
-     "source": "两档情绪：高能量和生活感"
-    }
-   ]
+   "line": 326,
+   "edits": []
   },
   {
    "id": "people.rules",
@@ -200,23 +167,19 @@
    "edits": [
     {
      "key": "people.rules#1",
-     "source": "<b>可以：</b>用在品牌位（首页 Hero、App Store 截图、广告、教程、社媒）；和 JuJu 同框；展示创作动作（拍照上传、挑风格、给小人摆姿势、放上跑团地图）；表情好奇、调皮、得意。"
+     "source": "<b>可以：</b>首页 Hero、商店截图、广告、教程、社媒；和 JuJu 同框；表情好奇、调皮、得意。"
     },
     {
      "key": "people.rules#2",
-     "source": "<b>橙色：</b>人物身上只有 Danny 的毛线帽是橙色，Maya 不戴橙色配件；其余橙色放在背景和品牌盒上，衣服用中性色，不穿整件橙色。"
+     "source": "<b>不可以：</b>用在评价、客户证言等主张真实的位置；改锚点；煽情或模特化修图；把大头款标成 Funko / Pop。"
     },
     {
      "key": "people.rules#3",
-     "source": "<b>小人质感：</b>画面里的小人一律是 JuJuBit 的全彩定制小人，带 JuJuBit 木底座或品牌盒；不出现灰色素胚、金属或树脂原色兵棋模型（那是别家的产品）。生活感档按真实交付品拍：哑光漆面、颜色比渲染图暗一档、细部略粗，背景用真实桌面杂物，不比实物更完美。"
+     "source": "<b>小人：</b>一律是全彩 JuJuBit 小人，带木底座或品牌盒；不出现灰色素胚或别家兵棋。"
     },
     {
      "key": "people.rules#4",
-     "source": "<b>不可以：</b>用在评价、客户证言、\"Real Figurines. Real People.\" 这类主张真实的位置——那里只用授权的真实客户；改动锚点；煽情落泪、模特化修图；把大头款标成 Funko / Pop。"
-    },
-    {
-     "key": "people.rules#5",
-     "source": "<b>出图：</b>每次沿用下方英文固定描述，不改写。当前是 AI 设定图，用作选角和出图依据；正式实拍时按此设定找模特。"
+     "source": "<b>橙色：</b>人物身上只有 Danny 的毛线帽是橙色；其余橙色放在背景和品牌盒上。"
     }
    ]
   },
@@ -224,18 +187,18 @@
    "id": "people.prompts",
    "title": "people.prompts",
    "file": "playground.src.html",
-   "line": 344,
+   "line": 343,
    "edits": []
   },
   {
    "id": "color",
    "title": "色彩",
    "file": "playground.src.html",
-   "line": 350,
+   "line": 349,
    "edits": [
     {
      "key": "color#1",
-     "source": "一个主色：JuJu Orange <code>#FF5A11</code>，只用在主按钮、选中态和关键强调。大面积底色用白、浅灰和品牌浅底。文字不用实色灰，用黑色透明度分四级。点击色块复制 CSS 变量。"
+     "source": "一个主色 JuJu Orange <code>#FF5A11</code>，只用在主按钮、选中态和关键强调。点击色块复制 CSS 变量。"
     }
    ]
   },
@@ -243,49 +206,49 @@
    "id": "color.brand",
    "title": "品牌色",
    "file": "playground.src.html",
-   "line": 353,
+   "line": 352,
    "edits": []
   },
   {
    "id": "color.neutral",
    "title": "中性色",
    "file": "playground.src.html",
-   "line": 355,
+   "line": 354,
    "edits": []
   },
   {
    "id": "color.text-alpha",
    "title": "文字（透明度）",
    "file": "playground.src.html",
-   "line": 357,
+   "line": 356,
    "edits": []
   },
   {
    "id": "color.surface",
    "title": "面与遮罩",
    "file": "playground.src.html",
-   "line": 359,
+   "line": 358,
    "edits": []
   },
   {
    "id": "color.functional",
    "title": "功能色",
    "file": "playground.src.html",
-   "line": 361,
+   "line": 360,
    "edits": []
   },
   {
    "id": "color.accent",
    "title": "辅助色  仅插画、营销图形、标签底",
    "file": "playground.src.html",
-   "line": 363,
+   "line": 362,
    "edits": []
   },
   {
    "id": "color.rules",
    "title": "color.rules",
    "file": "playground.src.html",
-   "line": 365,
+   "line": 364,
    "edits": [
     {
      "key": "color.rules#1",
@@ -305,11 +268,11 @@
    "id": "type",
    "title": "字体",
    "file": "playground.src.html",
-   "line": 373,
+   "line": 372,
    "edits": [
     {
      "key": "type#1",
-     "source": "两个字族，各管一件事。Bebas Neue 只有大写字形，只用于标题、导航和 tab；正文、按钮、表单全部用 Outfit。不引入第三个字族。"
+     "source": "两个字族：Bebas Neue 管标题、导航和 tab，Outfit 管其余一切。"
     }
    ]
   },
@@ -317,14 +280,14 @@
    "id": "type.fonts",
    "title": "type.fonts",
    "file": "playground.src.html",
-   "line": 376,
+   "line": 375,
    "edits": []
   },
   {
    "id": "type.web",
    "title": "Web 字号阶梯（桌面 / 手机）",
    "file": "playground.src.html",
-   "line": 384,
+   "line": 383,
    "edits": [
     {
      "key": "type.web#1",
@@ -336,14 +299,14 @@
    "id": "type.app",
    "title": "App 字号阶梯",
    "file": "playground.src.html",
-   "line": 386,
+   "line": 385,
    "edits": []
   },
   {
    "id": "type.rules",
    "title": "type.rules",
    "file": "playground.src.html",
-   "line": 388,
+   "line": 387,
    "edits": [
     {
      "key": "type.rules#1",
@@ -359,11 +322,11 @@
    "id": "layout",
    "title": "间距与布局",
    "file": "playground.src.html",
-   "line": 396,
+   "line": 395,
    "edits": [
     {
      "key": "layout#1",
-     "source": "首页区块全宽铺满，左右留 30px（手机 20px）。文章、政策、表单等窄内容页用 1220px 居中容器。卡片网格间距统一 12px（Figma 稿是 30，线上已改）。商品桌面 4 列、手机 2 列。"
+     "source": "首页区块全宽，左右留 30px（手机 20px）；卡片间距 12px。"
     }
    ]
   },
@@ -371,25 +334,25 @@
    "id": "layout.spacing",
    "title": "layout.spacing",
    "file": "playground.src.html",
-   "line": 400,
+   "line": 399,
    "edits": []
   },
   {
    "id": "layout.dimensions",
    "title": "layout.dimensions",
    "file": "playground.src.html",
-   "line": 401,
+   "line": 400,
    "edits": []
   },
   {
    "id": "shape",
    "title": "圆角与阴影",
    "file": "playground.src.html",
-   "line": 418,
+   "line": 417,
    "edits": [
     {
      "key": "shape#1",
-     "source": "按钮、胶囊、tab 一律全圆角。弹窗和大卡片 20px，半屏面板 16px，toast 和徽章 12px，提示条 8px。阴影只有 4 种，只给浮起来的东西用；商品卡和 logo 不加阴影，层次靠边框和底色。"
+     "source": "按钮、胶囊、tab 全圆角；阴影只给浮起来的东西。"
     }
    ]
   },
@@ -397,14 +360,14 @@
    "id": "shape.radii",
    "title": "shape.radii",
    "file": "playground.src.html",
-   "line": 421,
+   "line": 420,
    "edits": []
   },
   {
    "id": "shape.shadows",
    "title": "阴影（只允许这 4 种）",
    "file": "playground.src.html",
-   "line": 422,
+   "line": 421,
    "edits": [
     {
      "key": "shape.shadows#1",
@@ -416,7 +379,7 @@
    "id": "shape.gradients",
    "title": "渐变 / 毛玻璃",
    "file": "playground.src.html",
-   "line": 424,
+   "line": 423,
    "edits": [
     {
      "key": "shape.gradients#1",
@@ -428,11 +391,11 @@
    "id": "motion",
    "title": "动效",
    "file": "playground.src.html",
-   "line": 429,
+   "line": 428,
    "edits": [
     {
      "key": "motion#1",
-     "source": "Web 动效：一条缓动曲线 <code>cubic-bezier(.165,.84,.44,1)</code>，四档时长。Figma 没有 motion token，这部分沿用线上实测值；App 动效以设计团队交付的视频为准（下方）。用户开启“减少动态效果”时全部关掉。"
+     "source": "一条缓动曲线、四档时长；用户开启\"减少动态效果\"时全部关掉。"
     }
    ]
   },
@@ -440,21 +403,21 @@
    "id": "motion.easing",
    "title": "motion.easing",
    "file": "playground.src.html",
-   "line": 432,
+   "line": 431,
    "edits": []
   },
   {
    "id": "motion.playback",
    "title": "motion.playback",
    "file": "playground.src.html",
-   "line": 433,
+   "line": 432,
    "edits": []
   },
   {
    "id": "motion.reveal",
    "title": "入场：translateY(20px) → 0，只触发一次",
    "file": "playground.src.html",
-   "line": 437,
+   "line": 436,
    "edits": [
     {
      "key": "motion.reveal#1",
@@ -466,21 +429,21 @@
    "id": "motion.skeleton",
    "title": "骨架屏：#F0F0F0 ↔ #EEEEEE，1 秒循环",
    "file": "playground.src.html",
-   "line": 439,
+   "line": 438,
    "edits": []
   },
   {
    "id": "motion.videos",
    "title": "品牌与 App 动效交付视频  压缩预览版（720p），原片找设计团队",
    "file": "playground.src.html",
-   "line": 444,
+   "line": 443,
    "edits": []
   },
   {
    "id": "motion.rules",
    "title": "motion.rules",
    "file": "playground.src.html",
-   "line": 446,
+   "line": 445,
    "edits": [
     {
      "key": "motion.rules#1",
@@ -500,7 +463,7 @@
    "id": "icons",
    "title": "图标",
    "file": "playground.src.html",
-   "line": 454,
+   "line": 453,
    "edits": [
     {
      "key": "icons#1",
@@ -512,25 +475,25 @@
    "id": "icons.controls",
    "title": "icons.controls",
    "file": "playground.src.html",
-   "line": 457,
+   "line": 456,
    "edits": []
   },
   {
    "id": "icons.library",
    "title": "icons.library",
    "file": "playground.src.html",
-   "line": 463,
+   "line": 462,
    "edits": []
   },
   {
    "id": "buttons",
    "title": "按钮",
    "file": "playground.src.html",
-   "line": 471,
+   "line": 470,
    "edits": [
     {
      "key": "buttons#1",
-     "source": "Web 三档高度 44 / 50 / 54，字体 Outfit 600（小号 500），全圆角，宽度随内容。主按钮橙色，次按钮黑色，描边按钮用于第三层级。每个页面主按钮只放一个。"
+     "source": "三档高度 44 / 50 / 54，全圆角；每个页面只放一个主按钮。"
     }
    ]
   },
@@ -538,14 +501,14 @@
    "id": "buttons.states",
    "title": "buttons.states",
    "file": "playground.src.html",
-   "line": 474,
+   "line": 473,
    "edits": []
   },
   {
    "id": "buttons.sizes",
    "title": "尺寸与图标位",
    "file": "playground.src.html",
-   "line": 481,
+   "line": 480,
    "edits": [
     {
      "key": "buttons.sizes#1",
@@ -557,14 +520,14 @@
    "id": "buttons.live",
    "title": "线上新版用法",
    "file": "playground.src.html",
-   "line": 489,
+   "line": 488,
    "edits": []
   },
   {
    "id": "nav",
    "title": "公告栏与导航",
    "file": "playground.src.html",
-   "line": 508,
+   "line": 507,
    "edits": [
     {
      "key": "nav#1",
@@ -572,7 +535,7 @@
     },
     {
      "key": "nav#2",
-     "source": "公告栏 48px 橙色渐变，左右箭头切换文案。页头 78px（手机 56px）：压在首屏图上时是半透明毛玻璃（<code>--jjb-header-glass</code> + saturate 1.8 blur 20），滚动后切白底加 <code>--jjb-shadow-header</code>。菜单居中，Bebas 20；右侧依次是 Log In 胶囊、搜索/账户/购物车 20px 图标、橙色 CREATE 36px。"
+     "source": "公告栏 48px + 页头 78px（手机 56px）；压在首屏图上是毛玻璃，滚动后切白底。"
     }
    ]
   },
@@ -580,21 +543,21 @@
    "id": "nav.solid",
    "title": "nav.solid",
    "file": "playground.src.html",
-   "line": 511,
+   "line": 510,
    "edits": []
   },
   {
    "id": "nav.glass",
    "title": "nav.glass",
    "file": "playground.src.html",
-   "line": 525,
+   "line": 524,
    "edits": []
   },
   {
    "id": "commerce",
    "title": "区块标题、商品卡与标签",
    "file": "playground.src.html",
-   "line": 551,
+   "line": 550,
    "edits": [
     {
      "key": "commerce#1",
@@ -602,7 +565,7 @@
     },
     {
      "key": "commerce#2",
-     "source": "区块标题居中，Bebas 64（手机 28）；右侧 View All 18px 500。筛选用黑白胶囊（42px），不再用下划线 tab。商品卡 4 列，间距 12px。卡片没有品牌副标，也没有 Quick view。标题 16px 500，最多两行；价格 16px 500。鼠标悬停时淡入第二张商品图（220ms）。价格为示例。"
+     "source": "区块标题居中；商品卡 4 列、间距 12px，悬停淡入第二张图。"
     }
    ]
   },
@@ -610,28 +573,28 @@
    "id": "commerce.section-title",
    "title": "Trending Products",
    "file": "playground.src.html",
-   "line": 554,
+   "line": 553,
    "edits": []
   },
   {
    "id": "commerce.filters",
    "title": "commerce.filters",
    "file": "playground.src.html",
-   "line": 555,
+   "line": 554,
    "edits": []
   },
   {
    "id": "commerce.product-card",
    "title": "commerce.product-card",
    "file": "playground.src.html",
-   "line": 556,
+   "line": 555,
    "edits": []
   },
   {
    "id": "commerce.dots",
    "title": "轮播指示点（演示：每 3 秒自动切换，可点击；系统开启「减少动态效果」时不自动播放）",
    "file": "playground.src.html",
-   "line": 557,
+   "line": 556,
    "edits": [
     {
      "key": "commerce.dots#1",
@@ -643,7 +606,7 @@
    "id": "commerce.tags",
    "title": "标签与提示条",
    "file": "playground.src.html",
-   "line": 559,
+   "line": 558,
    "edits": [
     {
      "key": "commerce.tags#1",
@@ -655,18 +618,18 @@
    "id": "commerce.options",
    "title": "胶囊选项（App / 生成工具里的风格选择）",
    "file": "playground.src.html",
-   "line": 567,
+   "line": 566,
    "edits": []
   },
   {
    "id": "blocks",
    "title": "首页区块",
    "file": "playground.src.html",
-   "line": 588,
+   "line": 587,
    "edits": [
     {
      "key": "blocks#1",
-     "source": "2026-10 上线首页的区块。模板卡、分类卡、信任卡和买家秀图统一 12px 圆角（手机 8px），卡片间距 12px。图片取自线上，只作示例。"
+     "source": "2026-10 上线首页的区块，卡片 12px 圆角（手机 8px）、间距 12px。"
     }
    ]
   },
@@ -674,7 +637,7 @@
    "id": "blocks.templates",
    "title": "模板入口（横向轮播；模板色已做进图片里）",
    "file": "playground.src.html",
-   "line": 592,
+   "line": 591,
    "edits": [
     {
      "key": "blocks.templates#1",
@@ -686,7 +649,7 @@
    "id": "blocks.steps",
    "title": "How it works（黑底步骤，点击切换）",
    "file": "playground.src.html",
-   "line": 595,
+   "line": 594,
    "edits": [
     {
      "key": "blocks.steps#1",
@@ -698,14 +661,14 @@
    "id": "blocks.categories",
    "title": "分类卡",
    "file": "playground.src.html",
-   "line": 609,
+   "line": 608,
    "edits": []
   },
   {
    "id": "blocks.trust",
    "title": "信任卡（灰底区块）",
    "file": "playground.src.html",
-   "line": 612,
+   "line": 611,
    "edits": [
     {
      "key": "blocks.trust#1",
@@ -717,7 +680,7 @@
    "id": "blocks.reviews",
    "title": "评价卡",
    "file": "playground.src.html",
-   "line": 615,
+   "line": 614,
    "edits": [
     {
      "key": "blocks.reviews#1",
@@ -729,7 +692,7 @@
    "id": "blocks.social",
    "title": "社媒竖版视频（深灰底，居中一张放大）",
    "file": "playground.src.html",
-   "line": 618,
+   "line": 617,
    "edits": [
     {
      "key": "blocks.social#1",
@@ -741,11 +704,11 @@
    "id": "forms",
    "title": "表单与 FAQ",
    "file": "playground.src.html",
-   "line": 638,
+   "line": 637,
    "edits": [
     {
      "key": "forms#1",
-     "source": "Figma 组件库的表单区还是空的，这里沿用线上规则：44px 高、4px 圆角、1px 描边，聚焦时黑描边加蓝色焦点环，错误用红色描边和说明文字。FAQ 是新版样式：左侧分类，右侧 Bebas 问题，用 +/– 图标，答案灰色 14px。"
+     "source": "输入框 44px 高、4px 圆角、1px 描边；FAQ 左分类、右问题。"
     }
    ]
   },
@@ -753,21 +716,21 @@
    "id": "forms.fields",
    "title": "forms.fields",
    "file": "playground.src.html",
-   "line": 641,
+   "line": 640,
    "edits": []
   },
   {
    "id": "forms.faq",
    "title": "FAQ",
    "file": "playground.src.html",
-   "line": 648,
+   "line": 647,
    "edits": []
   },
   {
    "id": "feedback",
    "title": "反馈与浮层",
    "file": "playground.src.html",
-   "line": 664,
+   "line": 663,
    "edits": [
     {
      "key": "feedback#1",
@@ -775,7 +738,7 @@
     },
     {
      "key": "feedback#2",
-     "source": "toast：80% 黑底、12px 圆角，带淡蓝光晕阴影。弹窗：白底、20px 圆角、宽 300，右上角 35px 关闭钮。底部抽屉：顶部两角 20px，向上的柔和阴影。"
+     "source": "toast、弹窗、底部抽屉三种浮层。"
     }
    ]
   },
@@ -783,39 +746,39 @@
    "id": "feedback.toast",
    "title": "feedback.toast",
    "file": "playground.src.html",
-   "line": 668,
+   "line": 667,
    "edits": []
   },
   {
    "id": "feedback.dialog",
    "title": "feedback.dialog",
    "file": "playground.src.html",
-   "line": 669,
+   "line": 668,
    "edits": []
   },
   {
    "id": "feedback.sheet",
    "title": "feedback.sheet",
    "file": "playground.src.html",
-   "line": 675,
+   "line": 674,
    "edits": []
   },
   {
    "id": "feedback.toast-trigger",
    "title": "feedback.toast-trigger",
    "file": "playground.src.html",
-   "line": 681,
+   "line": 680,
    "edits": []
   },
   {
    "id": "app",
    "title": "App 专属",
    "file": "playground.src.html",
-   "line": 685,
+   "line": 684,
    "edits": [
     {
      "key": "app#1",
-     "source": "App 按钮三档 36 / 44 / 54，没有 hover 态；次按钮白底。风格模板卡用各自的模板色做底，底部叠同色相深色渐变。独立站的模板入口直接用带模板色的图片（见 11 首页区块），不在 CSS 里另写模板色。"
+     "source": "App 按钮三档 36 / 44 / 54，没有 hover 态。"
     }
    ]
   },
@@ -823,14 +786,14 @@
    "id": "app.buttons",
    "title": "app.buttons",
    "file": "playground.src.html",
-   "line": 688,
+   "line": 687,
    "edits": []
   },
   {
    "id": "app.templates",
    "title": "风格模板色",
    "file": "playground.src.html",
-   "line": 697,
+   "line": 696,
    "edits": [
     {
      "key": "app.templates#1",
@@ -842,18 +805,18 @@
    "id": "app.stickers",
    "title": "贴纸素材规范",
    "file": "playground.src.html",
-   "line": 699,
+   "line": 698,
    "edits": []
   },
   {
    "id": "page",
    "title": "页面拼装示例",
    "file": "playground.src.html",
-   "line": 705,
+   "line": 704,
    "edits": [
     {
      "key": "page#1",
-     "source": "一个新落地页的最小骨架：公告栏 → 毛玻璃页头压首图 → 区块（居中标题 + View All + 网格）→ 黑底页脚。区块上下各 50px（手机 32px），首页区块全宽，左右只留 30px（手机 20px）。新页面从这里复制结构，再替换内容。"
+     "source": "新落地页的最小骨架：从这里复制结构，再换内容。"
     }
    ]
   },
@@ -861,14 +824,14 @@
    "id": "page.landing",
    "title": "Trending Products",
    "file": "playground.src.html",
-   "line": 708,
+   "line": 707,
    "edits": []
   },
   {
    "id": "assets",
    "title": "素材清单",
    "file": "playground.src.html",
-   "line": 745,
+   "line": 744,
    "edits": [
     {
      "key": "assets#1",
@@ -880,18 +843,18 @@
    "id": "assets.catalog",
    "title": "assets.catalog",
    "file": "playground.src.html",
-   "line": 748,
+   "line": 747,
    "edits": []
   },
   {
    "id": "ai",
    "title": "给 AI 用",
    "file": "playground.src.html",
-   "line": 761,
+   "line": 760,
    "edits": [
     {
      "key": "ai#1",
-     "source": "把本规范装成 agent skill。装好后对 Claude Code 或 Codex 说“按 JuJuBit 设计规范做一个 xx 页面”，它会自动读取规则、token、组件和素材。skill 跟着本页自动更新，重新跑一次安装命令就能拿到最新版。"
+     "source": "把本规范装成 agent skill，之后对 agent 说\"按 JuJuBit 设计规范做一个 xx 页面\"即可。"
     }
    ]
   },
@@ -899,7 +862,7 @@
    "id": "ai.install",
    "title": "1. 一键安装（Claude Code + Codex，macOS / Linux）",
    "file": "playground.src.html",
-   "line": 764,
+   "line": 763,
    "edits": [
     {
      "key": "ai.install#1",
@@ -911,7 +874,7 @@
    "id": "ai.download",
    "title": "2. 手动下载",
    "file": "playground.src.html",
-   "line": 767,
+   "line": 765,
    "edits": [
     {
      "key": "ai.download#1",
@@ -923,7 +886,7 @@
    "id": "ai.prompt",
    "title": "3. 不装 skill，直接给 agent 这段话",
    "file": "playground.src.html",
-   "line": 773,
+   "line": 771,
    "edits": [
     {
      "key": "ai.prompt#1",
@@ -935,7 +898,7 @@
    "id": "ai.contribute",
    "title": "修改规范",
    "file": "playground.src.html",
-   "line": 775,
+   "line": 773,
    "edits": [
     {
      "key": "ai.contribute#1",
