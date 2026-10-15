@@ -339,9 +339,30 @@
         <li data-edit="brand.rules#1"><b>可以：</b>深底配浅色标、浅底配深色/橙色标；横版字标最小高度 22px（页头 25px）。</li>
         <li data-edit="brand.rules#2"><b>不可以：</b>加描边、变形缩放、加阴影、改颜色、放在低对比底色上、改透视、改字母间距（对外规范 1.7）。</li>
       </ul>
+      <div class="pg-mod" data-mod="brand.symbols"><div class="pg-sub" style="margin-top:24px">品牌符号 <span class="src src--live">线上</span> <span class="src src--new">新版</span></div>
+      <p>母本是礼盒侧面那一排白色涂鸦：&amp; 环、爪印、徽章、星光、灵感。在它们的基础上按产品线扩成几组符号，广告推哪条线，底纹就用哪一组。SVG 在 <code>assets/brand-symbols/</code>（<code>fill="currentColor"</code>，100×100）。</p>
+      <img src="assets/brand-symbols/sheet-core.svg" alt="通用层：& 环、爪印、徽章、星光、灵感" style="width:100%;max-width:604px;display:block;margin:12px 0" loading="lazy">
+      <p><b>画法</b>（从母本量出来的，新符号逐条照做）：① 粗线围合——主体是一圈很粗的圆头线，线宽约为图形高度的 1/7，里面是空的，最多一个小圆点或小钩；② 整体前倾约 10°，和字标斜度一致；③ 边缘有一点手作的不平整，不用正圆、直角；④ 主体旁边放两三个短划、圆点或小加号，像在跳、在发光；⑤ 单色；⑥ 画物件，不画"上传""设置"这类功能图标。</p>
+      <div style="display:flex;flex-direction:column;gap:16px;margin-top:12px">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px"><div style="min-width:120px"><b>通用层</b> <code>core</code></div><img src="assets/brand-symbols/sheet-core.svg" alt="通用层" style="height:56px;max-width:100%" loading="lazy"><p style="flex:1 1 260px;min-width:0;margin:0">这是 JuJuBit。每张图都有，占三成左右。</p></div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px"><div style="min-width:120px"><b>真人定制</b> <code>people</code></div><img src="assets/brand-symbols/sheet-people.svg" alt="相机、照片、蓬发头、品牌盒" style="height:56px;max-width:100%" loading="lazy"><p style="flex:1 1 260px;min-width:0;margin:0">能把一个人做成小人：从照片开始（相机、照片），代言人 Maya（蓬发头），收到实物（品牌盒）。</p></div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px"><div style="min-width:120px"><b>宠物</b> <code>pets</code></div><img src="assets/brand-symbols/sheet-pets.svg" alt="爪印、猫、狗、守宫" style="height:56px;max-width:100%" loading="lazy"><p style="flex:1 1 260px;min-width:0;margin:0">能把我的宠物做成小人。守宫是爬宠子位，确认在卖再用。</p></div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px"><div style="min-width:120px"><b>TRPG</b> <code>trpg</code></div><img src="assets/brand-symbols/sheet-trpg.svg" alt="二十面骰、剑、盾" style="height:56px;max-width:100%" loading="lazy"><p style="flex:1 1 260px;min-width:0;margin:0">能把我的角色做成模型。二十面骰是跑团圈最强的识别符号。</p></div>
+      </div>
+      <div class="people-styles" style="margin-top:12px">
+        <img src="assets/backgrounds/previews/orange-pattern-people--gp-feature-1024x500.png" alt="真人定制组底纹" loading="lazy">
+        <img src="assets/backgrounds/previews/orange-pattern-pets--gp-feature-1024x500.png" alt="宠物组底纹" loading="lazy">
+        <img src="assets/backgrounds/previews/orange-pattern-trpg--gp-feature-1024x500.png" alt="TRPG 组底纹" loading="lazy">
+        <img src="assets/backgrounds/previews/light-pattern-people--gp-feature-1024x500.png" alt="真人定制组浅底" loading="lazy">
+      </div>
+      <p style="margin-top:12px"><b>待设计师补：</b>底座小人、两人、一家人三个符号还没画好（头和身体连成"8"字），暂不入库；礼盒原图形的设计源矢量未到位，现在的版本是从包装效果图复原后描摹的，到位后替换 <code>assets/brand-symbols/</code> 里的同名文件并重跑 <code>make_backgrounds.py</code>。描摹工具：<code>assets/brand-symbols/trace_glyphs.py</code>。</p>
+      </div>
+      <ul class="rules" data-mod="brand.symbols-rules">
+        <li data-edit="brand.symbols-rules#1"><b>可以：</b>一张图 = 通用层 + 一组产品线符号；印刷品（礼盒、感谢卡）用白色线稿，商店图、广告、海报用比底色深一档的同色底纹。</li>
+        <li data-edit="brand.symbols-rules#2"><b>不可以：</b>两条产品线的符号混在一张图里；把符号改成实心图标、细线图标或 emoji；照着别家图标库补新符号（新符号先按上面的画法出稿，过混排测试再入库）。</li>
+      </ul>
       <div class="pg-mod" data-mod="brand.backgrounds"><div class="pg-sub" style="margin-top:24px">品牌背景 <span class="src src--new">新版</span></div>
-      <p>品牌底纹来自线上 Google Play feature graphic、礼盒侧面和感谢卡：品牌橙底上，零散放几个大号粗圆图形（星芒、爱心、&amp;、!、圆环、爪印、箭头、五角星），颜色比底色深一档。图形要大、要稀，不做密铺花纹。<b>当前图形是按线上素材重绘的，设计源文件到位后替换。</b></p>
-      <img src="assets/backgrounds/glyphs.svg" alt="品牌底纹图形" style="width:100%;max-width:960px;display:block;margin:12px 0" loading="lazy">
+      <p>品牌橙底上零散放几个大号品牌符号（见上），颜色比底色深一档。图形要大、要稀，不做密铺花纹。不带产品线后缀的文件只用通用层；带 <code>-people</code> / <code>-pets</code> / <code>-trpg</code> 后缀的是约七成该组符号 + 三成通用层。</p>
       <div class="people-styles">
         <img src="assets/backgrounds/previews/orange-pattern--gp-feature-1024x500.png" alt="orange-pattern：满版橙底纹" loading="lazy">
         <img src="assets/backgrounds/previews/orange-swoosh--gp-feature-1024x500.png" alt="orange-swoosh：橙底纹加白色弧面，人物放在白面上" loading="lazy">
@@ -355,7 +376,7 @@
         <tr><td><code>light-pattern</code></td><td>生活感档、教程、截图底、信息多的版面</td></tr>
         <tr><td><code>orange-plain</code></td><td>要放大段文字时（如感谢卡正文区）</td></tr>
       </table>
-      <p style="margin-top:12px">每种变体都有 6 个尺寸：<code>gp-feature-1024x500</code>、<code>ios-header-3840x1646</code>、<code>landscape-1920x1080</code>、<code>square-1080</code>、<code>portrait-1080x1350</code>、<code>story-1080x1920</code>。SVG 在 <code>assets/backgrounds/</code>，可直接放进设计稿；要全尺寸 PNG 时跑 <code>python3 assets/backgrounds/make_backgrounds.py --png</code>（输出到 <code>assets/backgrounds/out/</code>，不进仓库）。新尺寸加在脚本的 <code>SIZES</code> 里。</p>
+      <p style="margin-top:12px">每种变体 × 每条产品线（<code>orange-plain</code> 无图形，不分线）都有 6 个尺寸：<code>gp-feature-1024x500</code>、<code>ios-header-3840x1646</code>、<code>landscape-1920x1080</code>、<code>square-1080</code>、<code>portrait-1080x1350</code>、<code>story-1080x1920</code>。SVG 在 <code>assets/backgrounds/</code>，可直接放进设计稿；要全尺寸 PNG 时跑 <code>python3 assets/backgrounds/make_backgrounds.py --png</code>（输出到 <code>assets/backgrounds/out/</code>，不进仓库）。新尺寸加在脚本的 <code>SIZES</code> 里。</p>
       </div>
       <ul class="rules" data-mod="brand.backgrounds-rules">
         <li data-edit="brand.backgrounds-rules#1"><b>可以：</b>人物、产品、文字压在底纹上；图形被画面边缘裁掉一半；AI 出图时把背景 PNG 作为参考图一起传入，或者先出透明底人物再合成。</li>

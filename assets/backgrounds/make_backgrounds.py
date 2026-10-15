@@ -1,18 +1,16 @@
 #!/usr/bin/env python3
 """JuJuBit brand backgrounds for store art, ads, posters and packaging inserts.
 
-The pattern copies the brand texture used on the live Google Play feature
-graphic, the gift box side panel and the thank-you card: a few big, chunky,
-single-color glyphs (sparkle, heart, ampersand, exclamation, ring, paw, arrow)
-printed one shade darker than the base. Colors come from tokens.css; "&" and
-"!" are taken from the brand font Outfit. Everything is deterministic, so the
-same size always gives the same background.
+The pattern is the brand symbol set (../brand-symbols/, traced from the five
+white glyphs on the gift box side panel plus one set per product line): a few
+big glyphs printed one shade darker than the base. Colors come from tokens.css.
+Everything is deterministic, so the same size always gives the same background.
 
-    python3 assets/backgrounds/make_backgrounds.py          # SVG + previews
+    python3 assets/backgrounds/make_backgrounds.py          # SVG + previews + symbol sheets
     python3 assets/backgrounds/make_backgrounds.py --png    # also full-size PNG into ./out (gitignored)
 
-Glyphs are redrawn by hand, not the designer's source vectors. When the
-source glyphs arrive, replace GLYPHS below and re-run.
+Output: <variant>--<size>.svg uses the core set only; <variant>-<line>--<size>.svg
+mixes ~70% of that product line with ~30% core. Add a line in SETS below.
 """
 import argparse, random, re, shutil, subprocess
 from pathlib import Path
@@ -20,7 +18,6 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.parent
 TOKENS = ROOT / "tokens.css"
-FONT = ROOT / "assets" / "fonts" / "Outfit-VariableFont_wght.ttf"
 
 def token(name):
     return re.search(rf"--jjb-{name}:\s*(#[0-9A-Fa-f]{{6}})", TOKENS.read_text()).group(1)
@@ -36,43 +33,27 @@ SIZES = {
     "story-1080x1920": (1080, 1920),
 }
 
-def font_glyph(char, weight=900):
-    """Path of one Outfit glyph at the given weight, normalised to a 100x100 box."""
-    from fontTools.ttLib import TTFont
-    from fontTools.varLib.instancer import instantiateVariableFont
-    from fontTools.pens.svgPathPen import SVGPathPen
-    from fontTools.pens.boundsPen import BoundsPen
-    f = instantiateVariableFont(TTFont(FONT), {"wght": weight})
-    gs = f.getGlyphSet()
-    name = f.getBestCmap()[ord(char)]
-    bp = BoundsPen(gs); gs[name].draw(bp)
-    x0, y0, x1, y1 = bp.bounds
-    s = 100 / max(x1 - x0, y1 - y0)
-    pen = SVGPathPen(gs); gs[name].draw(pen)
-    tx = -x0 * s + (100 - (x1 - x0) * s) / 2
-    ty = y1 * s + (100 - (y1 - y0) * s) / 2
-    return f'<path transform="translate({tx:.1f} {ty:.1f}) scale({s:.4f} {-s:.4f})" d="{pen.getCommands()}"/>'
+SYMBOLS = ROOT / "assets" / "brand-symbols"
 
-# Chunky single-color glyphs, 100x100 box, filled with currentColor.
-GLYPHS = {
-    "sparkle": '<path d="M50 4C54 30 70 46 96 50C70 54 54 70 50 96C46 70 30 54 4 50C30 46 46 30 50 4Z"/>',
-    "heart": '<path d="M50 90C40 82 6 62 6 34C6 14 22 6 34 6C42 6 47 11 50 17C53 11 58 6 66 6C78 6 94 14 94 34C94 62 60 82 50 90Z"/>',
-    "ring": '<path fill-rule="evenodd" d="M50 6a44 44 0 1 1 0 88a44 44 0 1 1 0-88Zm0 24a20 20 0 1 0 0 40a20 20 0 1 0 0-40Z"/>',
-    "paw": '<ellipse cx="50" cy="66" rx="26" ry="22"/><ellipse cx="20" cy="40" rx="11" ry="14"/><ellipse cx="38" cy="20" rx="11" ry="15"/>'
-           '<ellipse cx="62" cy="20" rx="11" ry="15"/><ellipse cx="80" cy="40" rx="11" ry="14"/>',
-    "arrow": '<path d="M6 34H50V10L96 50L50 90V66H6Z"/>',
-    "star": '<path d="M50 6L62 36L94 38L69 58L77 92L50 73L23 92L31 58L6 38L38 36Z"/>',
+# Brand symbols (playground section 01 "品牌符号"). "core" is the five glyphs on
+# the gift box side panel; each product line adds its own set. One image = core
+# + one line, never two lines mixed. Glyphs marked 待修 on the playground are
+# not listed here until the designer redraws them.
+SETS = {
+    "core": ["amp", "paw", "badge", "sparkle", "sun"],
+    "people": ["camera", "photo", "afro", "box"],
+    "pets": ["paw", "cat", "dog", "gecko"],
+    "trpg": ["d20", "sword", "shield"],
 }
+CORE_SHARE = .3  # share of core glyphs in a product-line background
 
-def glyph_defs():
-    g = dict(GLYPHS)
-    try:
-        g["amp"] = font_glyph("&")
-        g["bang"] = font_glyph("!")
-    except Exception as e:  # font missing: keep the drawn set
-        print("font glyphs skipped:", e)
-    return g, "".join(f'<symbol id="g-{k}" viewBox="0 0 100 100" overflow="visible"><g fill="currentColor">{v}</g></symbol>'
-                      for k, v in g.items())
+def symbol(name):
+    s = (SYMBOLS / f"{name}.svg").read_text()
+    inner = re.search(r"<svg[^>]*>(.*)</svg>", s, re.S).group(1)
+    return f'<symbol id="g-{name}" viewBox="0 0 100 100" overflow="visible">{inner}</symbol>'
+
+def symdefs(names):
+    return "".join(symbol(n) for n in dict.fromkeys(names))
 
 def scatter(w, h, seed, cols):
     """Jittered grid: big glyphs, evenly spread, never clumped."""
@@ -88,12 +69,13 @@ def scatter(w, h, seed, cols):
             pts.append((x, y, min(cell, cy) * rnd.uniform(.7, .98), rnd.uniform(-24, 24)))
     return pts, rnd
 
-def pattern(w, h, names, color, opacity, seed, cols):
+def pattern(w, h, line, color, opacity, seed, cols):
     pts, rnd = scatter(w, h, seed, cols)
     out = [f'<g color="{color}" opacity="{opacity}">']
     last = None
     for x, y, s, r in pts:
-        n = rnd.choice([k for k in names if k != last]); last = n
+        pool = SETS["core"] if line == "core" or rnd.random() < CORE_SHARE else SETS[line]
+        n = rnd.choice([k for k in pool if k != last] or pool); last = n
         out.append(f'<use href="#g-{n}" width="{s:.0f}" height="{s:.0f}" '
                    f'transform="translate({x - s/2:.0f} {y - s/2:.0f}) rotate({r:.0f} {s/2:.0f} {s/2:.0f})"/>')
     out.append("</g>")
@@ -119,13 +101,13 @@ def base(kind):
     return (f'<radialGradient id="bg" cx=".5" cy=".45" r=".85"><stop offset="0" stop-color="#FFFFFF"/>'
             f'<stop offset="1" stop-color="{C["brand-light-bg"]}"/></radialGradient>')
 
-def svg(variant, w, h, names, symdefs):
+def svg(variant, w, h, line):
     kind, color, op, sw, _ = VARIANTS[variant]
     cols = 5 if w / h > 1.6 else 4 if w >= h else 3
     parts = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}">',
-             f"<defs>{base(kind)}{symdefs}</defs>", f'<rect width="{w}" height="{h}" fill="url(#bg)"/>']
+             f"<defs>{base(kind)}{symdefs(SETS['core'] + SETS[line]) if color else ''}</defs>", f'<rect width="{w}" height="{h}" fill="url(#bg)"/>']
     if color:
-        parts.append(pattern(w, h, names, color, op, w * 7 + h * 13, cols))
+        parts.append(pattern(w, h, line, color, op, w * 7 + h * 13 + len(line), cols))
     if sw:
         parts.append(swoosh(w, h))
     parts.append("</svg>")
@@ -135,31 +117,36 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--png", action="store_true")
     a = ap.parse_args()
-    glyphs, symdefs = glyph_defs()
-    names = list(glyphs)
     for old in HERE.glob("*.svg"):
         old.unlink()
     prev = HERE / "previews"; prev.mkdir(exist_ok=True)
     for old in prev.glob("*.png"):
         old.unlink()
     resvg = shutil.which("resvg")
-    for v in VARIANTS:
-        for name, (w, h) in SIZES.items():
-            f = HERE / f"{v}--{name}.svg"
-            f.write_text(svg(v, w, h, names, symdefs))
-            if resvg and name in ("gp-feature-1024x500", "portrait-1080x1350"):
-                subprocess.run([resvg, "-w", "720", str(f), str(prev / f"{v}--{name}.png")], check=True)
-            if a.png and resvg:
-                (HERE / "out").mkdir(exist_ok=True)
-                subprocess.run([resvg, str(f), str(HERE / "out" / f"{v}--{name}.png")], check=True)
-    # glyph sheet for the playground
-    sheet = ['<svg xmlns="http://www.w3.org/2000/svg" width="960" height="140" viewBox="0 0 960 140">',
-             f"<defs>{symdefs}</defs>", f'<rect width="960" height="140" rx="12" fill="{C["brand-500"]}"/>']
-    for i, n in enumerate(names):
-        sheet.append(f'<use href="#g-{n}" x="{24 + i * 116}" y="22" width="96" height="96" color="#FFFFFF"/>')
-    sheet.append("</svg>")
-    (HERE / "glyphs.svg").write_text("\n".join(sheet))
-    print(f"{len(VARIANTS)} variants x {len(SIZES)} sizes, glyphs: {', '.join(names)}")
+    n = 0
+    for line in SETS:
+        for v in VARIANTS:
+            if line != "core" and not VARIANTS[v][1]:
+                continue  # plain variant has no glyphs, one copy is enough
+            stem = v if line == "core" else f"{v}-{line}"
+            for name, (w, h) in SIZES.items():
+                f = HERE / f"{stem}--{name}.svg"
+                f.write_text(svg(v, w, h, line)); n += 1
+                if resvg and (name == "gp-feature-1024x500" or (line == "core" and name == "portrait-1080x1350")):
+                    subprocess.run([resvg, "-w", "720", str(f), str(prev / f"{stem}--{name}.png")], check=True)
+                if a.png and resvg:
+                    (HERE / "out").mkdir(exist_ok=True)
+                    subprocess.run([resvg, str(f), str(HERE / "out" / f"{stem}--{name}.png")], check=True)
+    # one symbol sheet per set for the playground
+    for line, names in SETS.items():
+        W = 24 + len(names) * 116
+        sheet = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="140" viewBox="0 0 {W} 140">',
+                 f"<defs>{symdefs(names)}</defs>", f'<rect width="{W}" height="140" rx="12" fill="{C["brand-500"]}"/>']
+        for i, g in enumerate(names):
+            sheet.append(f'<use href="#g-{g}" x="{34 + i * 116}" y="30" width="80" height="80" color="#FFFFFF"/>')
+        sheet.append("</svg>")
+        (SYMBOLS / f"sheet-{line}.svg").write_text("\n".join(sheet))
+    print(f"{n} backgrounds; sets: " + ", ".join(f"{k}({len(v)})" for k, v in SETS.items()))
 
 if __name__ == "__main__":
     main()
