@@ -26,6 +26,8 @@
   .src { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 100px; font-size: 11px;
     font-weight: 600; letter-spacing: .04em; white-space: nowrap; }
   .src--f { background: var(--jjb-brand-100); color: var(--jjb-brand-600); }
+  .src--inferred { background: var(--jjb-neutral-300); color: var(--jjb-text-secondary); }
+  #principles code { overflow-wrap: anywhere; }
   .src--fs { background: #EEF6FF; color: #1D6FD1; }
   .src--live { background: #FFF6E0; color: #9A6200; }
   .src--app { background: #F3EBFF; color: #7A3FC4; }
@@ -192,6 +194,7 @@
   <aside class="pg-side">
     {{WORDMARK}}
     <nav>
+      <a href="#principles">00 设计思路</a>
       <a href="#brand">01 品牌与 Logo</a>
       <a href="#people">02 品牌人物</a>
       <a href="#color">03 色彩</a>
@@ -225,6 +228,39 @@
         <span class="src src--live">线上 · 待设计确认</span>
         <span class="src src--app">App · 仅 App 用</span>
         <details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p><b>以谁为准：</b>网页区块和组件外观以 2026-10 上线的新版首页为准（标 <code>新版</code>）；色值、字体和 App 规范以设计团队 Figma 为准；两边都没定义的项沿用线上 v1.1 实测值并标 <code>线上</code>，等设计确认。</p><p>点击色块、图标、代码即可复制。</p></div></details>
+      </div>
+    </section>
+
+    <!-- 00 PRINCIPLES -->
+    <section class="pg-sec" id="principles" data-mod="principles">
+      <header><span class="num">00</span><h2 class="jjb-h2">设计思路</h2><details class="pg-help"><summary aria-label="展开来源说明">?</summary><div class="pg-help__body"><p>本节 F 指设计团队 Figma 与设计周报；新版指本规范已记录的 2026-10 线上实测。</p><p>改版需求用于理解创作路径；未明说的理由单独标推断，不代表已验证的转化效果。</p></div></details></header>
+      <p class="lead">用作品说明能做什么，用清晰入口引导定制；推断项待设计确认。</p>
+
+      <div class="pg-mod" data-mod="principles.site">
+        <h3 class="pg-sub">网站设计思路</h3>
+        <ul class="rules">
+          <li>橙色突出主操作，黑白承载内容。<span class="src src--f">F</span> <details class="pg-help"><summary aria-label="展开色彩原则">?</summary><div class="pg-help__body"><p>做：主按钮用品牌橙，文字与底色用中性色。不做：给每个入口分配一种强调色。</p><p><span class="src src--inferred">推断</span> 让用户先看到作品，再找到开始定制的入口，减少装饰色争抢注意力。</p><p>用法：沿用<a href="#color">色彩</a>与<a href="#buttons">按钮</a>示例。</p></div></details></li>
+          <li>Bebas 标题建立层级，Outfit 正文解释内容。<span class="src src--f">F</span> <details class="pg-help"><summary aria-label="展开字体原则">?</summary><div class="pg-help__body"><p>做：英文标题用 Bebas Neue；正文、按钮、表单用 Outfit。不做：把整段说明排成大写展示字，或再加装饰字体。</p><p><span class="src src--inferred">推断</span> 标题帮助扫读，正文保证细节可读；两者分工比每块换字体更容易保持品牌识别。</p><p>用法：从<a href="#type">字体阶梯</a>选层级。</p></div></details></li>
+          <li>先展示作品和实物效果，再解释创作方法。<span class="src src--f">F</span> <details class="pg-help"><summary aria-label="展开作品原则">?</summary><div class="pg-help__body"><p>设计稿把作品、模板与过程展示放在主要位置。首页改版需求也要求用产品效果帮助理解定制。</p><p>做：首屏给清晰作品和创作入口，分类图展示产品效果。不做：只用抽象装饰图，让用户猜能做出什么。</p><p>用法：参考<a href="#blocks">模板入口与步骤区块</a>。</p></div></details></li>
+          <li>按「看作品 → 选风格 → 了解过程与实物 → 开始定制」组织信息。<span class="src src--inferred">推断</span> <details class="pg-help"><summary aria-label="展开信息与转化路径">?</summary><div class="pg-help__body"><p>这是根据首页改版需求整理的信息顺序，用户可跳过说明直接定制。</p><p>做：首屏说明能做什么并保留创作入口；模板帮助选择；步骤、实物与 FAQ 回答顾虑。已有想法的人可直接开始。</p><p>不做：把所有卖点挤进首屏，或要求用户看完说明才能定制。</p></div></details></li>
+          <li>商品图按实际类型标注，AI 预览、产品渲染与实物照分开。<span class="src src--inferred">推断</span> <details class="pg-help"><summary aria-label="展开图片与信任原则">?</summary><div class="pg-help__body"><p>图片用途不能证明图片来源；“商品图”也可能是渲染图。分开标注，才能让用户判断哪些展示创意，哪些证明交付效果。</p><p>做：在图旁写明原始照片、AI 预览、产品渲染或实物照片；对比图使用同一作品、已获授权的素材。</p><p>不做：把 AI 预览标成实物或买家秀。来源不明时只标 Sample image，不作交付证明。</p></div></details></li>
+          <li>桌面多列比较，手机减少同屏信息并保留定制入口。<span class="src src--new">新版</span> <details class="pg-help"><summary aria-label="展开桌面与手机取舍">?</summary><div class="pg-help__body"><p>现有商品网格桌面四列、手机两列；区块标题从 64 缩为 28。沿用<a href="#layout">布局</a>与<a href="#commerce">商品卡</a>的响应式规则。</p><p><span class="src src--inferred">推断</span> 桌面留出比较空间；手机优先看清主体和操作。做：分别选取适合两端的图片裁切。不做：把桌面整页等比缩小，或把必要信息藏在悬停里。</p></div></details></li>
+          <li>语气围绕创作的好奇与成就感，操作说明保持直接。<span class="src src--inferred">推断</span> <details class="pg-help"><summary aria-label="展开品牌语气建议">?</summary><div class="pg-help__body"><p>这是从品牌人物和现有素材归纳的建议；品牌调性原文未取得，尚非正式语气规范。</p><p>做：写清用户可以创作什么、下一步做什么。不做：用夸张承诺替代产品说明，或把每次创作都写成煽情故事。</p></div></details></li>
+        </ul>
+      </div>
+
+      <div class="pg-mod" data-mod="principles.ui">
+        <h3 class="pg-sub">新版 UI 风格的设计思路 · 2026-10</h3>
+        <ul class="rules">
+          <li>首页区块改为全宽铺满，只留左右边距。<span class="src src--new">新版</span> <details class="pg-help"><summary aria-label="展开全宽区块的变化与用法">?</summary><div class="pg-help__body"><p>变化：旧稿的居中窄容器改为全宽区块。</p><p><span class="src src--inferred">推断</span> 想解决：宽屏两侧空白过多，作品展示面积不足。</p><p>用法：首页展示区用 <code>.jjb-container.jjb-container--wide</code>。做：保留桌面与手机各自的 gutter。不做：把文章、政策和表单也强行铺满。</p></div></details></li>
+          <li>区块标题统一为居中 Bebas 64，右侧放 View All。<span class="src src--new">新版</span> <details class="pg-help"><summary aria-label="展开区块标题的变化与用法">?</summary><div class="pg-help__body"><p>变化：新版统一标题与入口组合；旧站已有居中标题，不把居中本身算作新创。</p><p><span class="src src--inferred">推断</span> 想解决：区块间标题层级与查看更多入口不一致。</p><p>用法：复制 <code>.jjb-section-head</code>，手机沿用 28 的标题 token。做：有集合页时配右侧 View All。不做：为单个区块另造标题样式，或放无目标的链接。</p></div></details></li>
+          <li>网格间距从旧稿的 30 收到 12。<span class="src src--new">新版</span> <details class="pg-help"><summary aria-label="展开网格间距的变化与用法">?</summary><div class="pg-help__body"><p>变化：商品、分类和信任卡网格采用更紧凑的间距。</p><p><span class="src src--inferred">推断</span> 想解决：卡片间空白割裂作品，降低同屏比较效率。</p><p>用法：沿用 <code>var(--jjb-grid-gap)</code>。做：收紧卡片之间的距离。不做：连区块间距和正文留白一起压缩。</p></div></details></li>
+          <li>首屏用透明玻璃导航，滚动后切回白底。<span class="src src--new">新版</span> <details class="pg-help"><summary aria-label="展开导航的变化与用法">?</summary><div class="pg-help__body"><p>变化：首屏导航叠在主视觉上，与滚动后的白底导航区分。</p><p><span class="src src--inferred">推断</span> 想解决：不透明顶栏切断主视觉，同时保证滚动后的菜单可读。</p><p>用法：首屏使用 <code>.jjb-nav--glass</code>，滚动状态参考<a href="#nav">导航示例</a>。做：逐张检查背景上的文字对比。不做：在浅色内容页永久套透明白字导航。</p></div></details></li>
+          <li>筛选胶囊替代下划线 tab。<span class="src src--new">新版</span> <details class="pg-help"><summary aria-label="展开筛选的变化与用法">?</summary><div class="pg-help__body"><p>变化：旧稿的 Bebas 下划线 tab 改为黑白胶囊，选中态用黑底白字。</p><p><span class="src src--inferred">推断</span> 想解决：筛选项看起来像标题，点击范围和当前选项不够明确。</p><p>用法：复用 <code>.jjb-chip</code> 及其状态属性。做：筛选按钮同步 <code>aria-pressed</code>。不做：仅用文字下划线表示选中。</p></div></details></li>
+          <li>商品卡去掉品牌副标和 Quick view，悬停换第二张图。<span class="src src--new">新版</span> <details class="pg-help"><summary aria-label="展开商品卡的变化与用法">?</summary><div class="pg-help__body"><p>变化：旧稿的品牌副标与悬浮 Quick view 按钮移除；可用第二张图补充角度。</p><p><span class="src src--inferred">推断</span> 想解决：重复信息和浮动按钮遮挡作品，分散进入详情的注意力。</p><p>用法：复制 <code>.jjb-card</code>。做：保留图片、名称、价格和详情链接，第二张图只作补充。不做：把尺寸、材质等必要信息只放在悬停图里。</p></div></details></li>
+          <li>卡片和 Logo 不加阴影，延续平面表达。<span class="src src--new">新版</span> <span class="src src--f">F</span> <details class="pg-help"><summary aria-label="展开卡片与 Logo 的规则">?</summary><div class="pg-help__body"><p>变化边界：新版卡片保持无投影；Logo 禁止加阴影是既有品牌规则，此次继续沿用。</p><p><span class="src src--inferred">推断</span> 想解决：界面装饰与作品本身的立体感争抢注意力。</p><p>用法：做：沿用现有卡片底色、边框和留白。不做：给卡片或 Logo 添加悬浮投影。导航、浮层的专用阴影不扩用到卡片。</p></div></details></li>
+          <li>社媒视频独立成深色区块。<span class="src src--new">新版</span> <details class="pg-help"><summary aria-label="展开社媒区块的变化与用法">?</summary><div class="pg-help__body"><p>变化：新版用深灰底承载竖版视频，居中的视频放大，与浅底商品网格区分。</p><p><span class="src src--inferred">推断</span> 想解决：连续商品网格节奏单一，让用户能切换到观看作品过程与实物展示。</p><p>用法：参考 <code>.jjb-social</code>，底色沿用 <code>var(--jjb-surface-dark)</code>。做：配清晰封面并保留素材来源身份。不做：把所有内容区都改成深色，或把品牌视频冒充客户评价。</p></div></details></li>
+        </ul>
       </div>
     </section>
 

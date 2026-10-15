@@ -34,6 +34,8 @@ Use the first that exists:
 
 ## How to build a page
 
+Read playground section 00 “设计思路” first for site principles and the 2026-10 UI rationale; items tagged “推断” still await design confirmation.
+
 1. Open the playground and find the closest section (11 = homepage blocks, 16 = full page example). For tool pages, start from `templates/tool-page/index.html` and its README.
 2. Link `tokens.css` then `components.css`. For Shopify, follow `platforms/web.md`: prefer a shared theme token asset loaded once with owner confirmation, or copy only the needed custom properties and their dependencies into the section's `{% style %}`. Keep the `--jjb-` names; do not load the repository TTFs in the theme.
 3. Copy markup from the playground. Use `var(--jjb-*)` for every color, size, radius, shadow, and duration.
