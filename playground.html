@@ -971,7 +971,7 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 <input type="hidden" name="utm_source" value="tool">
 <input type="hidden" name="utm_content" value="{{tool_slug}}">
 <button class="jjb-btn jjb-btn--primary jjb-btn--l" type="submit" aria-describedby="catalogue-next" data-jjb-event="tool_cta_submit" data-jjb-tool="{{tool_slug}}">Upload your photo</button>
-<small id="catalogue-next" class="jjb-foot">Next: upload your photo.（下一步上传照片）</small>
+<small id="catalogue-next" class="jjb-foot">Next: upload your photo.</small>
 </form>
 </div>
 <figure class="jjb-tool-hero__media">
@@ -1020,7 +1020,7 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 &lt;input type=&quot;hidden&quot; name=&quot;utm_source&quot; value=&quot;tool&quot;&gt;
 &lt;input type=&quot;hidden&quot; name=&quot;utm_content&quot; value=&quot;{{tool_slug}}&quot;&gt;
 &lt;button class=&quot;jjb-btn jjb-btn--primary jjb-btn--l&quot; type=&quot;submit&quot; aria-describedby=&quot;catalogue-next&quot; data-jjb-event=&quot;tool_cta_submit&quot; data-jjb-tool=&quot;{{tool_slug}}&quot;&gt;Upload your photo&lt;/button&gt;
-&lt;small id=&quot;catalogue-next&quot; class=&quot;jjb-foot&quot;&gt;Next: upload your photo.（下一步上传照片）&lt;/small&gt;
+&lt;small id=&quot;catalogue-next&quot; class=&quot;jjb-foot&quot;&gt;Next: upload your photo.&lt;/small&gt;
 &lt;/form&gt;
 &lt;/div&gt;
 &lt;figure class=&quot;jjb-tool-hero__media&quot;&gt;
@@ -1348,12 +1348,12 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 <h2 class="jjb-h2">{{closing_heading}}</h2>
 <p>{{closing_copy}}</p>
 <button type="submit" form="catalogue-form" class="jjb-btn jjb-btn--white jjb-btn--l" data-jjb-event="tool_cta_submit" data-jjb-tool="{{tool_slug}}">Upload your photo</button>
-<small>Next: upload your photo.（下一步上传照片）</small>
+<small>Next: upload your photo.</small>
 </section></div><details class="snippet"><summary>Markup · 可复制（替换 slots 后使用）</summary><pre>&lt;section class=&quot;jjb-cta-band&quot;&gt;
 &lt;h2 class=&quot;jjb-h2&quot;&gt;{{closing_heading}}&lt;/h2&gt;
 &lt;p&gt;{{closing_copy}}&lt;/p&gt;
 &lt;button type=&quot;submit&quot; form=&quot;catalogue-form&quot; class=&quot;jjb-btn jjb-btn--white jjb-btn--l&quot; data-jjb-event=&quot;tool_cta_submit&quot; data-jjb-tool=&quot;{{tool_slug}}&quot;&gt;Upload your photo&lt;/button&gt;
-&lt;small&gt;Next: upload your photo.（下一步上传照片）&lt;/small&gt;
+&lt;small&gt;Next: upload your photo.&lt;/small&gt;
 &lt;/section&gt;</pre></details></div>
 <ul class="rules" data-mod="tool.rules"><li>只接工具意图词，不抢商品页的商品意图词；关键词保持 {{h1_keyword}} 等占位。</li><li data-edit="tool.rules#1">不放文件输入或假上传框，不调用生成接口；按钮下一行明确“下一步上传照片”。</li><li>数字只能从品牌事实寄存器取；例如 {{fact:rating}}。无可验证事实则省略。</li><li data-edit="tool.rules#2">原图、AI 预览、实物照必须分别标注；产品渲染图单独说明。AI 预览不是实物。</li><li data-edit="tool.rules#3">只有一个主动作：原生 GET 表单跳到定制页；页尾 CTA 提交同一表单。</li><li data-edit="tool.rules#4">参数名待开发确认；有 URL 参数不等于目标页已支持。</li><li data-edit="tool.rules#5">不写搜索量、竞品名、内部链接或策略；比较列使用 Other options。</li></ul>
 <div data-mod="page.tool"><h3 class="pg-sub" data-edit="page.tool#1">完整工具页 · Page assembly</h3><p class="note">示例在独立 iframe 内：只计其中一个 h1。iframe 内没有脚本。下方是整页源码（外链 sprite，与组件目录隔离）；生产只复制 body 所需 sections 并接主题。所有 slots 发布前须替换。参数名待开发确认。</p>
@@ -1441,7 +1441,7 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 &lt;input type=&quot;hidden&quot; name=&quot;utm_source&quot; value=&quot;tool&quot;&gt;
 &lt;input type=&quot;hidden&quot; name=&quot;utm_content&quot; value=&quot;{{tool_slug}}&quot;&gt;
 &lt;button class=&quot;jjb-btn jjb-btn--primary jjb-btn--l&quot; type=&quot;submit&quot; aria-describedby=&quot;tool-next&quot; data-jjb-event=&quot;tool_cta_submit&quot; data-jjb-tool=&quot;{{tool_slug}}&quot;&gt;Upload your photo&lt;/button&gt;
-&lt;small id=&quot;tool-next&quot; class=&quot;jjb-foot&quot;&gt;Next: upload your photo.（下一步上传照片）&lt;/small&gt;
+&lt;small id=&quot;tool-next&quot; class=&quot;jjb-foot&quot;&gt;Next: upload your photo.&lt;/small&gt;
 &lt;/form&gt;
 &lt;/div&gt;
 &lt;figure class=&quot;jjb-tool-hero__media&quot;&gt;
@@ -1704,7 +1704,7 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 &lt;h2 class=&quot;jjb-h2&quot;&gt;{{closing_heading}}&lt;/h2&gt;
 &lt;p&gt;{{closing_copy}}&lt;/p&gt;
 &lt;button type=&quot;submit&quot; form=&quot;tool-form&quot; class=&quot;jjb-btn jjb-btn--white jjb-btn--l&quot; data-jjb-event=&quot;tool_cta_submit&quot; data-jjb-tool=&quot;{{tool_slug}}&quot;&gt;Upload your photo&lt;/button&gt;
-&lt;small&gt;Next: upload your photo.（下一步上传照片）&lt;/small&gt;
+&lt;small&gt;Next: upload your photo.&lt;/small&gt;
 &lt;/section&gt;
 &lt;/main&gt;
 &lt;footer class=&quot;jjb-footer&quot;&gt;
@@ -1801,7 +1801,7 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 &lt;input type=&quot;hidden&quot; name=&quot;utm_source&quot; value=&quot;tool&quot;&gt;
 &lt;input type=&quot;hidden&quot; name=&quot;utm_content&quot; value=&quot;{{tool_slug}}&quot;&gt;
 &lt;button class=&quot;jjb-btn jjb-btn--primary jjb-btn--l&quot; type=&quot;submit&quot; aria-describedby=&quot;tool-next&quot; data-jjb-event=&quot;tool_cta_submit&quot; data-jjb-tool=&quot;{{tool_slug}}&quot;&gt;Upload your photo&lt;/button&gt;
-&lt;small id=&quot;tool-next&quot; class=&quot;jjb-foot&quot;&gt;Next: upload your photo.（下一步上传照片）&lt;/small&gt;
+&lt;small id=&quot;tool-next&quot; class=&quot;jjb-foot&quot;&gt;Next: upload your photo.&lt;/small&gt;
 &lt;/form&gt;
 &lt;/div&gt;
 &lt;figure class=&quot;jjb-tool-hero__media&quot;&gt;
@@ -2064,7 +2064,7 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 &lt;h2 class=&quot;jjb-h2&quot;&gt;{{closing_heading}}&lt;/h2&gt;
 &lt;p&gt;{{closing_copy}}&lt;/p&gt;
 &lt;button type=&quot;submit&quot; form=&quot;tool-form&quot; class=&quot;jjb-btn jjb-btn--white jjb-btn--l&quot; data-jjb-event=&quot;tool_cta_submit&quot; data-jjb-tool=&quot;{{tool_slug}}&quot;&gt;Upload your photo&lt;/button&gt;
-&lt;small&gt;Next: upload your photo.（下一步上传照片）&lt;/small&gt;
+&lt;small&gt;Next: upload your photo.&lt;/small&gt;
 &lt;/section&gt;
 &lt;/main&gt;
 &lt;footer class=&quot;jjb-footer&quot;&gt;
