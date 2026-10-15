@@ -39,7 +39,7 @@ Logo 源文件 `.ai`不进仓库。需要时找设计团队要。
 
 | 文件 | 用途 | 来源 |
 |---|---|---|
-| `maya-portrait.jpg` · `danny-portrait.jpg` | 两位代言人的设定照 | AI 设定图（2026-10-14），正式实拍前作选角依据 |
+| `maya-portrait.jpg` · `danny-portrait.jpg` | 两位代言人的设定照 | AI 设定图（2026-10-14）；Maya 于 2026-10-15 改用 Google Play feature graphic 里的女性做脸部参考 |
 | `maya-3-styles.jpg` · `danny-3-styles.jpg` | 锚点跨风格示例：大头潮玩、3D 动画、跑团微缩 | 同上 |
 
 使用规则见设计页第 02 节「品牌人物」。
