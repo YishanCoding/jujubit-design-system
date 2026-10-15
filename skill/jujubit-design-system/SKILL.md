@@ -18,8 +18,9 @@ Use the first that exists:
 
 | File | Use it for |
 |---|---|
+| [platforms/web.md](platforms/web.md) | Shopify integration, tool landing pages, responsive rules, image and event contracts. |
 | `tokens.css` | The only token set: colors, fonts (@font-face), type scale (Web + App), spacing, layout, radius, shadow, gradient, motion. |
-| `components.css` | Ready `.jjb-*` classes: buttons, announce bar, nav (`--glass` over hero), section head, chips, dots, product card, tags, template card + track, steps, category card, trust, review, social, form, FAQ, footer, toast/dialog/sheet, skeleton, reveal. |
+| `components.css` | Ready `.jjb-*` classes: buttons, announce bar, nav (`--glass` over hero), section head, chips, dots, product card, tags, template card + track, steps, category card, trust, review, social, form, FAQ, footer, toast/dialog/sheet, skeleton, reveal, tool hero/picker, breadcrumb, evidence, examples, prose/table, related links and CTA band. |
 | `playground.html` | Visual catalogue with copyable markup for every token and component. Open it first and copy markup from it instead of inventing. |
 | `assets/README.md` | Every asset with its path and usage. |
 | `assets/icons/sprite.svg` | 58 icons as `<symbol id="i-<name>">` plus `logo-wordmark`, all `currentColor`. |
@@ -32,14 +33,21 @@ Use the first that exists:
 
 ## How to build a page
 
-1. Open the playground and find the closest section (11 = homepage blocks, 15 = full page example).
-2. Link `tokens.css` then `components.css`. For a Shopify section, copy only the needed custom properties into the section's `{% style %}` and keep the `--jjb-` names.
+1. Open the playground and find the closest section (11 = homepage blocks, 16 = full page example, 19 = tool components and `page.tool` assembly).
+2. Link `tokens.css` then `components.css`. For Shopify, follow `platforms/web.md`: prefer a shared theme token asset loaded once with owner confirmation, or copy only the needed custom properties and their dependencies into the section's `{% style %}`. Keep the `--jjb-` names; do not load the repository TTFs in the theme.
 3. Copy markup from the playground. Use `var(--jjb-*)` for every color, size, radius, shadow, and duration.
 4. Icons: inline the sprite once, then `<svg class="jjb-icon"><use href="#i-cart"/></svg>`. Logo: `<svg viewBox="0 0 89 22" class="jjb-wordmark"><use href="#logo-wordmark"/></svg>`.
 5. Check 1440 and 390 widths (no horizontal scroll), visible keyboard focus, and `prefers-reduced-motion`.
 6. Run the [acceptance checklist](references/acceptance.md).
 
 ## Hard rules
+
+- Tool pages serve tool intent only; leave product intent to product pages. Copy section 19 and `page.tool`, not an invented upload UI.
+- Tool pages use a native GET form to `/products/customize-your-own`, style radios, `utm_source=tool`, and `utm_content={{tool_slug}}`. No file inputs, fake drop zones or generation API calls. Parameter names await developer confirmation; destination support is unverified.
+- Use keyword and fact placeholders until approved. All factual numbers must come from the brand fact register. Never publish private research or register locations.
+- Label Original photo, AI preview and Physical photo separately; product renders are a separate evidence type. AI previews are not physical products. Use matched, consented evidence or omit it; catalogue diagrams are explicitly placeholders.
+- Keep one primary action. The tail CTA submits the same hero form and preserves its selected style. Explain below the button that upload happens on the next page.
+- Tool components and `--jjb-bp-lg`, `--jjb-measure`, `--jjb-tool-*`, line/weight tokens are [待设计] proposals. Use the radio states, local table scroller with sticky first column, and example grid from `platforms/web.md`; check 390/768/1440/1600 widths and no-JS behavior.
 
 - No new hex values, font sizes, radii, shadows, or easing curves. If something is missing, propose a semantic token name to the design owner; do not ship a literal.
 - Bebas Neue only for headings, nav, and FAQ questions (uppercase). Outfit for everything else. App uses Outfit only.

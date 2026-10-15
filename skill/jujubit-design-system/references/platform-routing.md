@@ -4,10 +4,10 @@ Choose the narrowest target first. For shared requests, state the shared semanti
 
 | Target | Read first | Apply |
 |---|---|---|
-| Independent website | `platforms/web.md` when present, then `DESIGN.md` | Semantic HTML, keyboard flow, responsive reflow, browser history, WCAG checks. |
-| iOS | `platforms/ios.md` | Apple Human Interface Guidelines, system navigation, safe areas, Dynamic Type, VoiceOver, and platform-standard controls. |
-| Android | `platforms/android.md` | Android design guidance, Material 3 where appropriate, window size classes, edge-to-edge, font scaling, TalkBack, and system Back behavior. |
-| Shared pattern | `foundations.md` and `components.md` when present | Business states, content meaning, accessibility intent, analytics names, and token semantics. |
+| Independent website | [platforms/web.md](../platforms/web.md) | Semantic HTML, keyboard flow, responsive reflow, browser history, WCAG checks. |
+| iOS | Not yet written; use official Apple guidance below | Apple Human Interface Guidelines, system navigation, safe areas, Dynamic Type, VoiceOver, and platform-standard controls. |
+| Android | Not yet written; use official Android guidance below | Android design guidance, Material 3 where appropriate, window size classes, edge-to-edge, font scaling, TalkBack, and system Back behavior. |
+| Shared pattern | Shared foundations and components notes are not yet written; use the [skill rules](../SKILL.md) | Business states, content meaning, accessibility intent, analytics names, and token semantics. |
 
 Do not copy an approved Web layout into iOS or Android. Preserve the task and the semantic hierarchy while using native platform patterns.
 

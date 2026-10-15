@@ -4,6 +4,7 @@
  * 真源优先级：设计团队 Figma（jujubit组件库 pVvAxy9wIEWS6KONJ1KzoI / 规范对外 B5D8pHkGH2iqqUERI15XR3）> 线上实测（DESIGN.md v1.1）
  * 每组注释标来源：[F] Figma token  [F稿] Figma 设计稿实测  [新版] 2026-10 上线的 jjb_* 新主题实测（Web 组件以它为准，比 Figma 稿新）  [线上] v1.1 旧线上实测，待设计确认
  * 2026-10-14 复核：Web 区块/组件外观以 [新版] 线上为准；色值、字体、App 规范仍以 Figma 为准。
+ * [待设计] 工具页新增语义值，尚未设计确认；不代表线上实测。
  * 新页面只用这里的变量；缺值先开 issue，不写一次性字面量。
  */
 
@@ -125,7 +126,22 @@
   --jjb-grid-gap-tight: 6px;      /* [新版] 买家秀瀑布流 */
   --jjb-header-h: 78px;  --jjb-header-h-m: 56px;   /* [新版] */
   --jjb-announce-h: 48px; --jjb-announce-h-m: 48px; /* [新版] 橙色渐变底 + 左右箭头轮播 */
-  --jjb-bp-md: 768px;             /* [线上] 唯一断点 */
+  --jjb-bp-md: 768px;             /* [线上] 基础断点 */
+  --jjb-bp-lg: 1200px;            /* [待设计] 工具页示例网格切为四列 */
+
+  /* ===== 工具页 [待设计]：待设计确认的语义值 ===== */
+  --jjb-measure: 720px;            /* 长文最大行宽 */
+  --jjb-tool-option-width: 104px;  /* 手机横滚风格卡宽 */
+  --jjb-tool-thumb: 48px;          /* 风格缩略图 */
+  --jjb-tool-table-min: 640px;     /* 对比表最小可读宽度 */
+  --jjb-tool-key-width: 144px;     /* 对比表固定首列 */
+  --jjb-line-thin: 1px;           /* 工具页边框 */
+  --jjb-line-strong: 2px;         /* 选中态与键盘焦点 */
+  --jjb-underline-offset: 3px;    /* 长文链接下划线 */
+  --jjb-weight-regular: 400;      /* 工具页标题 */
+  --jjb-weight-semibold: 600;     /* 长文三级标题、表头 */
+  --jjb-tool-link: var(--jjb-text-primary); /* 长文高对比链接，始终有下划线 */
+  --jjb-tool-link-hover: var(--jjb-text-secondary); /* hover 保留下划线 */
 
   /* ===== 控件尺寸 [F] ===== */
   --jjb-btn-h-l: 54px; --jjb-btn-h-m: 50px; --jjb-btn-h-s: 44px;           /* Web */
