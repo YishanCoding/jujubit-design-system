@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>JuJuBit Copy &amp; Facts</title>
+<!-- 来源 Issue: #1362 | 决策: D-20261015-001-andrew | 生成: 2026-10-15 | 状态: v1
+     本文件就是源文件，直接改。网址 https://playverseai.com/brand （worker 读 brand/index.html）。
+     内容真源：03-execution/content/copy-guide/copy-guide-v1.md（怎么说）+ 03-execution/content/brand-constants.md（事实值）+ copy-guide/pending-live-fixes.md（待改）。
+     视觉引用同仓库 /design/tokens.css + /design/components.css，不另写 token。 -->
+<link rel="stylesheet" href="/design/tokens.css">
+<link rel="stylesheet" href="/design/components.css">
+<style>
+/* ---------- 页面骨架：照抄设计 playground 的 pg-* 写法 ---------- */
+/* 布局：左侧固定目录 + 右侧编号章节，与设计 playground 同构 */
+:root { color-scheme: light; }
+body { margin: 0; background: var(--jjb-surface); color: var(--jjb-text-primary); }
+.pg { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
+.pg-side { position: sticky; top: 0; height: 100vh; overflow: auto; padding: 28px 20px; border-right: 1px solid var(--jjb-border); background: var(--jjb-neutral-100); box-sizing: border-box; }
+.pg-side .jjb-wordmark { width: 100px; height: auto; color: var(--jjb-brand-500); display: block; }
+.pg-side nav { display: grid; gap: 2px; margin-top: 28px; }
+.pg-side a { color: var(--jjb-text-secondary); text-decoration: none; font-size: 14px; padding: 7px 10px; border-radius: 8px;
+  transition: background-color var(--jjb-dur-micro) var(--jjb-ease), color var(--jjb-dur-micro) var(--jjb-ease); }
+.pg-side a:hover { background: var(--jjb-neutral-200); color: var(--jjb-neutral-1000); }
+.pg-side a:focus-visible, .copy-btn:focus-visible, .pg-help > summary:focus-visible, .snippet summary:focus-visible { outline: 2px solid var(--jjb-focus); outline-offset: 2px; }
+.pg-side .meta { margin-top: 28px; font-size: 12px; color: var(--jjb-text-tertiary); line-height: 1.6; }
+.pg-main { min-width: 0; padding-inline: 48px; padding-block: 0 120px; }
+.pg-hero { padding: 64px 0 40px; border-bottom: 1px solid var(--jjb-border); }
+.pg-hero p { max-width: 720px; color: var(--jjb-text-secondary); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; align-items: center; }
+.pg-sec { padding-top: 72px; scroll-margin-top: 8px; }
+.pg-sec > header { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+.pg-sec > header .num { font: 400 22px/1 var(--jjb-font-display); color: var(--jjb-brand-500); }
+.pg-sec > header .jjb-h2 { margin: 0; text-wrap: balance; }
+.lead { color: var(--jjb-text-secondary); max-width: 760px; margin: 0 0 8px; }
+.pg-sub { font: 600 13px/1.2 var(--jjb-font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--jjb-text-tertiary);
+  margin: 36px 0 14px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.rules { margin: 16px 0 0; padding: 16px 20px 16px 36px; border-radius: 12px; background: var(--jjb-neutral-200); font-size: 14px; }
+.rules li { margin: 4px 0; }
+.rules b { color: var(--jjb-neutral-1000); }
+.note { margin: 12px 0 0; font-size: 13px; color: var(--jjb-text-tertiary); max-width: 760px; }
+code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+
+/* 来源/状态徽章：与 playground .src 同形同色 */
+.src { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 100px; font-size: 11px;
+  font-weight: 600; letter-spacing: .04em; white-space: nowrap; vertical-align: middle; }
+.src--live { background: #E8F8EE; color: #17803D; }      /* = playground 新版 绿 */
+.src--pending { background: #FFF6E0; color: #9A6200; }   /* = playground 线上 黄 */
+.src--draft { background: var(--jjb-neutral-300); color: var(--jjb-text-secondary); }
+.src--d { background: var(--jjb-brand-100); color: var(--jjb-brand-600); }
+.src--obs { background: #EEF6FF; color: #1D6FD1; }       /* = playground F稿 蓝 */
+.src--high { background: var(--jjb-neutral-1000); color: var(--jjb-text-on-dark); }
+
+/* 表格 */
+.tbl-wrap { overflow-x: auto; border-radius: 12px; box-shadow: inset 0 0 0 1px var(--jjb-border); background: var(--jjb-neutral-100); }
+.tbl { width: 100%; border-collapse: collapse; font-size: 13px; line-height: 1.55; }
+.tbl th, .tbl td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--jjb-border); vertical-align: top; }
+.tbl tr:last-child td { border-bottom: 0; }
+.tbl th { font-size: 12px; color: var(--jjb-text-tertiary); font-weight: 600; background: var(--jjb-neutral-200); white-space: nowrap; }
+.tbl td:first-child { font-weight: 600; white-space: nowrap; }
+.tbl .num-cell { font-variant-numeric: tabular-nums; white-space: nowrap; font-weight: 600; }
+.tbl--wide { min-width: 860px; }
+.tbl .no { color: var(--jjb-error); }
+
+/* 逐字引用块：深灰底 + 复制按钮，对应 playground 的 snippet/ai-cmd */
+.verbatim { display: flex; gap: 12px; align-items: flex-start; padding: 16px 18px; border-radius: 12px; background: var(--jjb-dark-grey); color: var(--jjb-text-on-dark); }
+.verbatim q { flex: 1; min-width: 0; quotes: none; font-size: 15px; line-height: 1.6; overflow-wrap: anywhere; }
+.verbatim--slogan q { font: 400 44px/1.05 var(--jjb-font-display); letter-spacing: .01em; color: var(--jjb-brand-500); }
+.copy-btn { flex: none; height: 30px; padding: 0 12px; border-radius: var(--jjb-radius-pill); border: 1px solid rgba(255,255,255,.24); background: transparent;
+  color: var(--jjb-text-on-dark); font: 600 12px/1 var(--jjb-font-body); cursor: copy; transition: background-color var(--jjb-dur-micro) var(--jjb-ease); }
+.copy-btn:hover { background: rgba(255,255,255,.12); }
+.stack { display: grid; gap: 10px; }
+
+/* 语气原则：可以 / 不要 成对 */
+.say-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: var(--jjb-grid-gap); }
+.say { display: grid; gap: 10px; align-content: start; padding: 18px 20px; border-radius: var(--jjb-radius-card); background: var(--jjb-neutral-100); box-shadow: inset 0 0 0 1px var(--jjb-border); min-width: 0; }
+.say h3 { margin: 0; font: 600 16px/1.35 var(--jjb-font-body); }
+.say .ch { font-size: 12px; color: var(--jjb-text-tertiary); font-weight: 400; }
+.say p { margin: 0; font-size: 14px; color: var(--jjb-text-secondary); }
+.ex { display: grid; grid-template-columns: 44px 1fr; gap: 8px; align-items: baseline; font-size: 14px; }
+.ex b { font-size: 12px; }
+.ex--do b { color: var(--jjb-stock-ok); }
+.ex--dont b { color: var(--jjb-error); }
+.ex--dont span { text-decoration: line-through; text-decoration-color: var(--jjb-error); color: var(--jjb-text-secondary); }
+.ex span { min-width: 0; overflow-wrap: anywhere; }
+.say .from { font-size: 12px; color: var(--jjb-text-tertiary); }
+
+/* 术语：用 / 不用 */
+.term-use { color: var(--jjb-neutral-1000); font-weight: 600; }
+.term-no { color: var(--jjb-text-tertiary); text-decoration: line-through; }
+
+/* 事实速查卡 */
+.fact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--jjb-grid-gap); }
+.fact { padding: 16px 18px; border-radius: var(--jjb-radius-card); background: var(--jjb-neutral-200); display: grid; gap: 6px; align-content: start; }
+.fact .k { font-size: 12px; color: var(--jjb-text-tertiary); }
+.fact .v { font: 400 34px/1 var(--jjb-font-display); font-variant-numeric: tabular-nums; }
+.fact .v small { font: 500 13px/1.3 var(--jjb-font-body); color: var(--jjb-text-secondary); margin-left: 4px; }
+.fact .s { font-size: 12px; color: var(--jjb-text-secondary); line-height: 1.5; }
+
+/* 渠道卡 */
+.ch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--jjb-grid-gap); }
+.ch-card { padding: 20px; border-radius: var(--jjb-radius-card); box-shadow: inset 0 0 0 1px var(--jjb-border); background: var(--jjb-neutral-100); min-width: 0; }
+.ch-card h3 { margin: 0 0 10px; font: 400 26px/1 var(--jjb-font-display); letter-spacing: .02em; }
+.ch-card ul { margin: 0; padding-left: 18px; font-size: 14px; display: grid; gap: 6px; }
+.ch-card code { overflow-wrap: anywhere; }
+
+/* 流程 */
+.flow { counter-reset: s; list-style: none; margin: 0; padding: 0; display: grid; gap: var(--jjb-grid-gap); grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+.flow li { counter-increment: s; padding: 18px; border-radius: var(--jjb-radius-card); background: var(--jjb-neutral-200); font-size: 14px; display: grid; gap: 6px; align-content: start; }
+.flow li::before { content: counter(s, decimal-leading-zero); font: 400 28px/1 var(--jjb-font-display); color: var(--jjb-brand-500); }
+.flow b { font-size: 15px; }
+
+/* 折叠说明 "?"：与 playground 同 */
+.pg-help { position: relative; display: inline-block; vertical-align: middle; text-transform: none; letter-spacing: 0; font-weight: 400; }
+.pg-help > summary { list-style: none; width: 22px; height: 22px; border-radius: var(--jjb-radius-full); display: grid; place-items: center;
+  font: 600 12px/1 var(--jjb-font-body); color: var(--jjb-text-tertiary); background: var(--jjb-neutral-100); box-shadow: inset 0 0 0 1px var(--jjb-border); cursor: pointer; }
+.pg-help > summary::-webkit-details-marker { display: none; }
+.pg-help > summary:hover, .pg-help[open] > summary { background: var(--jjb-neutral-1000); color: var(--jjb-text-on-dark); box-shadow: none; }
+.pg-help__body { position: absolute; z-index: 40; top: calc(100% + 8px); left: -8px; width: min(440px, calc(100vw - 32px)); padding: 16px 18px; box-sizing: border-box;
+  border-radius: var(--jjb-radius-md); background: var(--jjb-neutral-100); box-shadow: var(--jjb-shadow-float), inset 0 0 0 1px var(--jjb-border);
+  font: 400 14px/1.65 var(--jjb-font-body); color: var(--jjb-text-primary); text-align: left; white-space: normal; }
+.pg-help__body p { margin: 0 0 8px; } .pg-help__body p:last-child { margin: 0; }
+.snippet { margin-top: 12px; }
+.snippet summary { cursor: pointer; font-size: 13px; color: var(--jjb-text-secondary); }
+.snippet pre { margin: 8px 0 0; padding: 14px 16px; border-radius: 12px; background: var(--jjb-dark-grey); color: var(--jjb-text-on-dark); overflow: auto; font: 12px/1.6 ui-monospace, Menlo, monospace; white-space: pre-wrap; }
+
+.copied { position: fixed; left: 50%; bottom: calc(32px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); opacity: 0; pointer-events: none;
+  transition: opacity var(--jjb-dur-micro) var(--jjb-ease), transform var(--jjb-dur-micro) var(--jjb-ease); z-index: 50; }
+.copied.show { opacity: 1; transform: translate(-50%, 0); }
+
+@media (max-width: 960px) {
+  .pg { grid-template-columns: 1fr; }
+  .pg-side { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--jjb-border);
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .pg-side nav { grid-template-columns: repeat(2, 1fr); }
+  .pg-main { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 80px; }
+  .pg-hero { padding-top: 40px; }
+  .pg-sec { padding-top: 56px; }
+  .say-grid, .ch-grid { grid-template-columns: 1fr; }
+  .verbatim--slogan q { font-size: 30px; }
+  .verbatim { flex-direction: column; }
+}
+@media (max-width: 640px) { .pg-help__body { position: fixed; left: 16px; right: 16px; top: auto; bottom: 16px; width: auto; max-height: 70vh; overflow: auto; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body class="jjb">
+<div class="pg">
+  <aside class="pg-side">
+    <svg viewBox="0 0 89 22" class="jjb-wordmark" role="img" aria-label="JuJuBit"><use href="/design/assets/icons/sprite.svg#logo-wordmark"/></svg>
+    <nav aria-label="目录">
+      <a href="#read">00 怎么用这页</a>
+      <a href="#oneliner">01 品牌一句话</a>
+      <a href="#voice">02 语气原则</a>
+      <a href="#terms">03 术语表</a>
+      <a href="#claims">04 可说 / 不能说</a>
+      <a href="#facts">05 品牌事实速查</a>
+      <a href="#channels">06 分渠道规则</a>
+      <a href="#timely">07 会过期的数字</a>
+      <a href="#change">08 改动流程</a>
+      <a href="#pending">09 线上待改清单</a>
+      <a href="#ai">10 给 AI 用</a>
+    </nav>
+    <div class="meta">文案规范 v1 · 2026-10-15<br>Issue #1362 · D-20261015-001<br>怎么说＝copy-guide-v1.md<br>事实值＝brand-constants.md<br>点击「复制」拿逐字原文</div>
+  </aside>
+
+  <main class="pg-main">
+    <section class="pg-hero">
+      <div class="jjb-eyebrow">Copy &amp; Facts v1</div>
+      <h1 class="jjb-h1" style="margin-top:12px">JuJuBit Copy &amp; Facts</h1>
+      <p>写 JuJuBit 的任何对外文字之前看这页：品牌怎么说、哪些事实能说、数字取哪一版、线上还有哪些地方没对齐。先说明用户能做什么、会收到什么，再说明必要限制。</p>
+      <div class="legend">
+        <span class="src src--live">LIVE · 线上已验证（带日期）</span>
+        <span class="src src--pending">PENDING · 已批准，未上线或未同步</span>
+        <span class="src src--draft">DRAFT · 线索，待同口径复核</span>
+        <span class="src src--d">D-x · 决策编号</span>
+        <details class="pg-help"><summary aria-label="展开状态说明">?</summary><div class="pg-help__body"><p><b>PENDING 不等于错。</b>它表示口径已经拍板，但网站、商店或客服资料还没改过来；写新稿照 PENDING 的口径写，不要照抄线上旧文。</p><p><b>LIVE 后面的日期</b>是那次实测的日期，不是今天。超过复核周期的数字，发布前先重查。</p><p>D 编号见活页 <code>02-status/handoffs/issue-1362-copy-facts-spec.md</code> 的「决策」段。</p></div></details>
+      </div>
+    </section>
+
+    <!-- 00 -->
+    <section class="pg-sec" id="read">
+      <header><span class="num">00</span><h2 class="jjb-h2">怎么用这页</h2></header>
+      <p class="lead">两份真源分工：<b>文案规范</b>管怎么说，<b>品牌事实寄存器</b>管事实值。本页是两者的可视化索引，改动以仓库文件为准。</p>
+      <ul class="rules">
+        <li><b>文案冲突的取舍顺序（D-6）：</b>最新的飞书规范文档 &gt; 线上现状 &gt; 仓库草稿。线上不一致的列入待改清单。</li>
+        <li><b>事实冲突不按日期投票：</b>较新的错误页面不能推翻事实，走 <code>brand-facts.md</code> §22.7 一手核验。</li>
+        <li><b>拍板优先：</b>D-7～D-11 的明确裁定优先于上面的顺序。</li>
+        <li><b>不授权发布：</b>本页和 skill 只管写法，任何线上改动另走授权、备份、回读。</li>
+      </ul>
+    </section>
+
+    <!-- 01 -->
+    <section class="pg-sec" id="oneliner">
+      <header><span class="num">01</span><h2 class="jjb-h2">品牌一句话</h2><span class="src src--d">D-7</span><span class="src src--pending">PENDING 跨渠道同步</span></header>
+      <p class="lead">主 slogan 逐字使用，不用活动副句替换。</p>
+      <div class="pg-sub">主 slogan</div>
+      <div class="verbatim verbatim--slogan"><q>What you make tells who you are</q><button class="copy-btn" type="button" data-copy="What you make tells who you are">复制</button></div>
+
+      <div class="pg-sub">副句 · 只作渠道或活动表达</div>
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>副句</th><th>用在哪里</th><th>依据</th></tr></thead>
+        <tbody>
+          <tr><td>Turn your moments into things</td><td>社媒简介、纪念场景；X 已有带句号版本</td><td>D-7</td></tr>
+          <tr><td>Your Idea, Made Real</td><td>Google Play 图形素材主标题、创作主题活动副句</td><td>D-7；冲突 B02</td></tr>
+          <tr><td>Make Something. Become Someone.</td><td>About 页现存局部文案，不是第三条主 slogan</td><td>D-7</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="pg-sub">Canonical positioning · 逐字引用 <span class="src src--d">D-8</span> <details class="pg-help"><summary aria-label="展开定位说明">?</summary><div class="pg-help__body"><p>需要完整品牌定位时逐字使用这句，不另写缩写版或同义改写。</p><p><b>your</b> 同时修饰 photos、characters、ideas，指用户特定的人、宠物、角色、记忆或想法。可以加粗，不能删掉，也不能弱化成泛泛的 personalized。</p><p>本轮按 D-8 只把 physical figures 改成 physical figurines，其余原句不变。</p></div></details></div>
+      <div class="verbatim"><q>JuJuBit turns your photos, characters, and ideas into production-ready 3D models and full-color physical figurines—without requiring any 3D skills.</q><button class="copy-btn" type="button" data-copy="JuJuBit turns your photos, characters, and ideas into production-ready 3D models and full-color physical figurines—without requiring any 3D skills.">复制</button></div>
+      <ul class="rules">
+        <li><b>品类边界：</b>定制人偶、宠物、家庭/情侣、定制 TRPG 是核心业务。水晶、现成艺术玩具等非定制商品不进品牌第一句话。</li>
+        <li><b>差异化红线：</b>AI-assisted、3D preview、artist-refined、full-color printing、made from your photo、worldwide shipping 竞品都有，不能单独说成 JuJuBit 独有；没有对照数据不说质量、交期优于竞品。</li>
+      </ul>
+    </section>
+
+    <!-- 02 -->
+    <section class="pg-sec" id="voice">
+      <header><span class="num">02</span><h2 class="jjb-h2">语气原则</h2><details class="pg-help"><summary aria-label="展开例句说明">?</summary><div class="pg-help__body"><p>正反例都是来源原文：SOP 示例、历史文案或已脱敏的编辑案例。</p><p>正例只证明表达方式，不顺带授权其中的价格、功能或处理承诺。</p></div></details></header>
+      <p class="lead">八条原则，每条一对原文例句。</p>
+      <div class="say-grid">
+        <article class="say">
+          <h3>先说实物和用户收益 <span class="ch">广告图片</span></h3>
+          <p>让读者一眼知道照片会变成什么，主标题不塞技术介绍。</p>
+          <div class="ex ex--do"><b>可以</b><span>From photo to figurine.</span></div>
+          <div class="ex ex--dont"><b>不要</b><span>JuJuBit - AI powered custom 3D printed figurine platform</span></div>
+          <div class="from">《JJBT广告文案审核&amp;优化sop》示例 · R001</div>
+        </article>
+        <article class="say">
+          <h3>还原度有边界 <span class="ch">广告</span></h3>
+          <p>表达接近用户照片的价值，不保证完全一致。</p>
+          <div class="ex ex--do"><b>可以</b><span>accurate likeness / true to your photo</span></div>
+          <div class="ex ex--dont"><b>不要</b><span>100% identical / perfect replica</span></div>
+          <div class="from">同一广告 SOP · R007；材料限制见寄存器 §12.3</div>
+        </article>
+        <article class="say">
+          <h3>用团队口吻 <span class="ch">App Store / GP 评论回复</span></h3>
+          <p>公开回复用 we 代表团队，不以个人身份承诺。客服邮件的经办人语境不受此条约束。</p>
+          <div class="ex ex--do"><b>可以</b><span>we</span></div>
+          <div class="ex ex--dont"><b>不要</b><span>I</span></div>
+          <div class="from">《JuJuBit 商店评论回复 SOP》L5 · R013</div>
+        </article>
+        <article class="say">
+          <h3>措辞服从实际状态 <span class="ch">客服与公开回复</span></h3>
+          <p>没完成就说正在核查。评论阶段词：未排期用 reviewing / looking closely at，已进开发才用 actively working on，已上线才用 fixed。</p>
+          <div class="ex ex--do"><b>可以</b><span>We are checking</span></div>
+          <div class="ex ex--dont"><b>不要</b><span>处理完成（实际执行失败时）</span></div>
+          <div class="from">《客服邮件回复规范》· R028；review skill 285–290</div>
+        </article>
+        <article class="say">
+          <h3>写用户得到的变化 <span class="ch">What's New</span></h3>
+          <p>收益写在功能前面，不只列开发动作。新稿产品名按 §03 用 figurine。</p>
+          <div class="ex ex--do"><b>可以</b><span>See your figure at actual size in AR before you order.</span></div>
+          <div class="ex ex--dont"><b>不要</b><span>我们新增了……</span></div>
+          <div class="from">App Store 10/15 快照，只借句式（figure 是 D-8 之前的旧词）· R034</div>
+        </article>
+        <article class="say">
+          <h3>提示给出下一步 <span class="ch">App 表单</span></h3>
+          <p>告诉用户怎么改对，不只说错了。</p>
+          <div class="ex ex--do"><b>可以</b><span>输入8位数字</span></div>
+          <div class="ex ex--dont"><b>不要</b><span>不正确</span></div>
+          <div class="from">《JuJuBit文案标准》A3 · R038；数字只演示结构</div>
+        </article>
+        <article class="say">
+          <h3>不把单个记录写成普遍现象 <span class="ch">博客</span></h3>
+          <p>说频率要有分母或采样依据。</p>
+          <div class="ex ex--do"><b>可以</b><span>The evidence records one preview-to-result mismatch. Describe that mismatch.</span></div>
+          <div class="ex ex--dont"><b>不要</b><span>Some customers notice that the preview and the finished result can look different.</span></div>
+          <div class="from">博客 voice 页 Before / After 脱敏案例</div>
+        </article>
+        <article class="say">
+          <h3>缺工艺依据就删句 <span class="ch">博客</span></h3>
+          <p>「仔细」「精密」这类修饰词替不了一条没核实的工序。</p>
+          <div class="ex ex--do"><b>可以</b><span>删掉这句，等批准来源写明工序再加。</span></div>
+          <div class="ex ex--dont"><b>不要</b><span>Each piece is carefully finished through a precise multi-step process before it ships.</span></div>
+          <div class="from">博客 voice 页 430–431 脱敏案例</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 03 -->
+    <section class="pg-sec" id="terms">
+      <header><span class="num">03</span><h2 class="jjb-h2">术语表</h2><span class="src src--d">D-8</span><span class="src src--d">D-11</span></header>
+      <p class="lead">金额统一两位小数（$99.00），生成次数等计数用整数；对外「满 $99」的既定说法保留（D-11 ③）。</p>
+      <div class="tbl-wrap"><table class="tbl tbl--wide">
+        <thead><tr><th>对象</th><th>用</th><th>不用</th><th>例外与边界</th></tr></thead>
+        <tbody>
+          <tr><td>品牌</td><td class="term-use">JuJuBit</td><td class="term-no">内部简称</td><td>内部别名不直接对外</td></tr>
+          <tr><td>实物手办</td><td class="term-use">figurine / figurines</td><td class="term-no">figure / figures</td><td>商店标题等字数受限处可例外；GP 标题只观察，不强改</td></tr>
+          <tr><td>TRPG 实物</td><td class="term-use">mini / miniature</td><td class="term-no">figure（作默认名）</td><td>不因 mini 一词承诺固定比例或兼容所有网格</td></tr>
+          <tr><td>定制</td><td class="term-use">custom（形容词）· customize（动词）</td><td class="term-no">customized（广告默认形容词）</td><td>历史引用和既有 handle 不做全局替换</td></tr>
+          <tr><td>材质</td><td class="term-use">resin / photopolymer resin</td><td class="term-no">实心金属；ABS 实材</td><td>可说 ABS-like toughness；不公开供应商、设备、采购</td></tr>
+          <tr><td>默认成色</td><td class="term-use">full-color printing · paint-free</td><td class="term-no">hand-painted / full-painted</td><td>否定句 not hand-painted 可用；画风名、真实引用另核</td></tr>
+          <tr><td>可选白模</td><td class="term-use">unpainted / white model</td><td class="term-no">白模说成默认成品</td><td>可选服务，客户在订单备注提出</td></tr>
+          <tr><td>创作助手</td><td class="term-use">JuJuBot</td><td class="term-no">JuJuBot 替代品牌名</td><td>只指 App 内创作助手，不暗示人工客服（D-11 ⑧）</td></tr>
+          <tr><td>创作动作</td><td class="term-use">自己作品 Edit · 他人/平台作品 Remix</td><td class="term-no">两个入口混写</td><td>PRD 不当作已上线范围证明</td></tr>
+          <tr><td>会员</td><td class="term-use">JuJuBit Membership · 最高档 Premium</td><td class="term-no">VIP Program / Prime</td><td>埋点和工程枚举里的 Prime 保留</td></tr>
+          <tr><td>技术背书</td><td class="term-use">网站可用 Powered by Tripo AI</td><td class="term-no">推导为 VAST 运营主体</td><td>App 商店收益段改用户收益句，见 §06</td></tr>
+          <tr><td>专名</td><td class="term-use">当前渠道批准名称</td><td class="term-no">研究提案名当已上架商品</td><td>Healing Angel 等名称不证明疗效</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- 04 -->
+    <section class="pg-sec" id="claims">
+      <header><span class="num">04</span><h2 class="jjb-h2">可说 / 不能说</h2></header>
+      <p class="lead">已定边界。动态数值不写死在这里，去 §05 或寄存器对应节取。</p>
+      <div class="tbl-wrap"><table class="tbl tbl--wide">
+        <thead><tr><th>主题</th><th>可以说</th><th>不能说</th><th>依据 · 日期</th></tr></thead>
+        <tbody>
+          <tr><td>取消</td><td>建模或生产开始前可取消</td><td class="no">固定下单小时数作取消门槛（旧「2 小时」已删）；开工后仍可取消</td><td>D-10 A01 · 9/29 重申</td></tr>
+          <tr><td>修改</td><td>同取消口径；建模前复杂修改可能收费；建模/生产开始后不能改</td><td class="no">统一一次免费修改；无条件限时修改</td><td>D-10 A02 · 9/29</td></tr>
+          <tr><td>改地址</td><td>尽快联系，最好 24 小时内，发货前通常可改</td><td class="no">24 小时当绝对截止；发货后一定能改</td><td>D-10 A02 · 9/29 §D</td></tr>
+          <tr><td>售后</td><td>损坏、瑕疵或错发免费重做，3 个工作日内回复</td><td class="no">通用文案承诺退款；丢件无条件免费补发</td><td>D-11 ⑥ · 10/15</td></tr>
+          <tr><td>TRPG 尺寸</td><td>4cm 是网格最小；6cm 官方推荐，因 4cm 丢人脸细节</td><td class="no">4cm 是官方推荐；保证兼容所有战棋比例</td><td>D-10 A06 · IE-040</td></tr>
+          <tr><td>尺寸测量</td><td>按模型最长可见点，含武器、翅膀、底座、配件</td><td class="no">所选尺寸＝人物净身高；底座另算</td><td>寄存器 §六 · 8/25</td></tr>
+          <tr><td>工艺</td><td>resin + full-color 打印成色；paint-free 可用</td><td class="no">hand-painted / full-painted 作定制件工艺</td><td>D-10 A07 · 8/24</td></tr>
+          <tr><td>金属色</td><td>以普通颜色呈现，没有金属光泽</td><td class="no">「金属色效果」「金属色全彩打印效果」</td><td>D-11 ⑦ · 寄存器 §12.3</td></tr>
+          <tr><td>评分</td><td>Judge.me 只用已发布口径，月度核对；其他平台标来源</td><td class="no">已发布集合称「全部买家」；跨平台合计冒充单平台评分</td><td>D-10 A09 · 截至 9/29</td></tr>
+          <tr><td>局部编辑</td><td>局部 Edit 只改所选部分，以 App Store 现行描述为准</td><td class="no">「局部修改必定整体重新生成」（旧评论口径）</td><td>D-10 A10 · Yishan 口头确认 10/15</td></tr>
+          <tr><td>运费</td><td>按地区和运输方式引用 §05；对外门槛保留「满 $99」</td><td class="no">国际统一 $9.99；后台已是 ≥$99.00；加急费叠加在标准费上</td><td>D-9 · 后台核验 10/15</td></tr>
+          <tr><td>时效</td><td>制作和运输分开写，工作日口径</td><td class="no">制作时间写成总到货时间；内部平均值替代对外承诺</td><td>寄存器 §二 · 9/29</td></tr>
+          <tr><td>材料</td><td>按 §12 列出的可对外字段说明</td><td class="no">食品接触、蛋糕顶饰、医疗用途；不坏、不褪色、完全还原</td><td>寄存器 §12.3–12.4</td></tr>
+          <tr><td>可售选项</td><td>只引用已确认的商品选项</td><td class="no">设备能透明打印＝现在卖透明款</td><td>寄存器 §12.8</td></tr>
+          <tr><td>差异化</td><td>用户输入、可预览、实体交付等已确认能力</td><td class="no">无对照证据称 first / unique / best</td><td>寄存器 §零</td></tr>
+          <tr><td>水晶</td><td>材质、珠径、礼物场景；traditionally associated with …</td><td class="no">healing / cure / anxiety / therapy / protection 等功效暗示</td><td>寄存器 §八</td></tr>
+          <tr><td>保密</td><td>寄存器批准的公开工艺结论</td><td class="no">供应商身份、采购、成本、设备编号、内部材料链接</td><td>寄存器 §12.1、§12.7</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- 05 -->
+    <section class="pg-sec" id="facts">
+      <header><span class="num">05</span><h2 class="jjb-h2">品牌事实速查</h2><details class="pg-help"><summary aria-label="展开取值规则">?</summary><div class="pg-help__body"><p>数值来自 <code>brand-constants.md</code>，本页是 2026-10-15 的抄录。寄存器更新后以寄存器为准。</p><p>同一数字搬到首页、Schema、商店或客服模板时，平台、地区、集合、起算点和单位要一起带上。</p></div></details></header>
+      <p class="lead">高频数字放卡片，完整字段在下方表格。</p>
+
+      <div class="pg-sub">物流与运费 <span class="src src--live">LIVE 2026-10-15 后台只读核验</span></div>
+      <div class="fact-grid">
+        <div class="fact"><span class="k">制作时间</span><span class="v">7–10<small>工作日</small></span><span class="s">运输在制作完成后起算 <span class="src src--live">LIVE 8/28</span></span></div>
+        <div class="fact"><span class="k">美国标准配送</span><span class="v">5–12<small>工作日</small></span><span class="s">不含周末和当地节假日</span></div>
+        <div class="fact"><span class="k">国际标准配送</span><span class="v">10–25<small>工作日</small></span><span class="s">香港暂按此口径 <span class="src src--pending">PENDING 确认</span></span></div>
+        <div class="fact"><span class="k">加急配送（全球）</span><span class="v">3–7<small>工作日</small></span><span class="s">固定 $29.99，不叠加标准运费</span></div>
+        <div class="fact"><span class="k">标准运费 · 美国 / 香港</span><span class="v">$9.99</span><span class="s">只适用 US/HK 区</span></div>
+        <div class="fact"><span class="k">标准运费 · 其他可配送国家</span><span class="v">$12.99</span><span class="s">不是所有国家都可配送</span></div>
+        <div class="fact"><span class="k">免运 · 对外文案</span><span class="v">满 $99</span><span class="s">后台现为 ≥$99.99，目标 ≥$99.00 <span class="src src--pending">PENDING 后台 A1/A2</span></span></div>
+      </div>
+      <p class="note">禁止写法：「14–22 days」在任何已确认来源里都不存在；「国际 $9.99」是旧客服口径，已作废。</p>
+
+      <div class="pg-sub">评分 <span class="src src--live">截至 2026-09-29 批准快照</span> <span class="src src--pending">下次核对 2026-10-29</span></div>
+      <div class="fact-grid">
+        <div class="fact"><span class="k">Judge.me（对外 / Schema）</span><span class="v">4.53★<small>1,315 条</small></span><span class="s">已发布且页面可见集合；全量 4.08 / 1,565 只作内部</span></div>
+        <div class="fact"><span class="k">App Store</span><span class="v">4.74★<small>421 ratings</small></span><span class="s">沿用原核验的商店/地区范围</span></div>
+        <div class="fact"><span class="k">Google Play</span><span class="v">4.6★<small>353 ratings</small></span><span class="s">保持原展示精度</span></div>
+        <div class="fact"><span class="k">Trustpilot</span><span class="v">3.9<small>117 条</small></span><span class="s">TrustScore，不是星级算术均分；差评回复率 81%</span></div>
+        <div class="fact"><span class="k">四平台汇总</span><span class="v">≈4.55★<small>2,206</small></span><span class="s">写明 reviews and ratings、平台组成、加权方式和日期</span></div>
+      </div>
+      <p class="note">10/15 widget 出现 4.46 / 1,422 <span class="src src--draft">DRAFT</span>，集合口径待核，不替换上面的批准基线，也不据此推断趋势。</p>
+
+      <div class="pg-sub">尺寸、工艺与材料</div>
+      <div class="tbl-wrap"><table class="tbl tbl--wide">
+        <thead><tr><th>字段</th><th>内容</th><th>状态</th></tr></thead>
+        <tbody>
+          <tr><td>标准尺寸</td><td>4 / 5 / 6 / 7 / 8 / 10 cm；定制尺寸可询价</td><td><span class="src src--live">LIVE</span></td></tr>
+          <tr><td>与标准桌游对比</td><td>标准 28mm mini ≈ 1.1"；JuJuBit 最小 4cm ≈ 1.6"</td><td><span class="src src--live">LIVE</span></td></tr>
+          <tr><td>TRPG 推荐</td><td>4cm 网格最小；6cm 官方推荐（4cm 会丢人脸和精细部件细节）</td><td><span class="src src--pending">PENDING 线上同步</span></td></tr>
+          <tr><td>测量口径</td><td>模型外轮廓最长可见点，含武器、翅膀、底座、配件</td><td><span class="src src--live">LIVE 8/25</span></td></tr>
+          <tr><td>默认交付</td><td>全彩打印成品，颜色在打印过程中形成，不是事后上色</td><td><span class="src src--pending">PENDING 下游同步</span></td></tr>
+          <tr><td>白模</td><td>可选服务，在订单备注提出</td><td><span class="src src--live">Yishan 确认 8/24</span></td></tr>
+          <tr><td>已知缺点（必须如实说）</td><td>有色差；户外长期直射会褪色；不宜高温强光；不能打印金属色</td><td><span class="src src--live">LIVE 8/20</span></td></tr>
+          <tr><td>食品接触</td><td>无认证（只有 RoHS）。婚礼场景用 keepsake、摆件、伴手礼，不说 cake topper</td><td><span class="src src--live">IE-029</span></td></tr>
+        </tbody>
+      </table></div>
+      <div class="pg-sub">可直接用的工艺句式 · 都有一手依据</div>
+      <div class="stack">
+        <div class="verbatim"><q>Every figurine ships full-color by default — printed in full color, with the color formed during the printing process itself, not painted on afterwards. Want an unpainted (white model) version instead? Just note it in your order.</q><button class="copy-btn" type="button" data-copy="Every figurine ships full-color by default — printed in full color, with the color formed during the printing process itself, not painted on afterwards. Want an unpainted (white model) version instead? Just note it in your order.">复制</button></div>
+        <div class="verbatim"><q>photopolymer resin with ABS-like toughness, RoHS certified</q><button class="copy-btn" type="button" data-copy="photopolymer resin with ABS-like toughness, RoHS certified">复制</button></div>
+        <div class="verbatim"><q>dimensional accuracy within ±0.2 mm or 0.3%</q><button class="copy-btn" type="button" data-copy="dimensional accuracy within ±0.2 mm or 0.3%">复制</button></div>
+        <div class="verbatim"><q>keep it away from heat and direct sunlight; the material softens above about 50 °C and strong UV will fade the colors over time</q><button class="copy-btn" type="button" data-copy="keep it away from heat and direct sunlight; the material softens above about 50 °C and strong UV will fade the colors over time">复制</button></div>
+        <div class="verbatim"><q>metallic finishes are the one thing this process cannot reproduce</q><button class="copy-btn" type="button" data-copy="metallic finishes are the one thing this process cannot reproduce">复制</button></div>
+      </div>
+
+      <div class="pg-sub">售后与取消</div>
+      <div class="tbl-wrap"><table class="tbl tbl--wide">
+        <thead><tr><th>字段</th><th>内容</th><th>状态</th></tr></thead>
+        <tbody>
+          <tr><td>对外统一句</td><td>损坏、瑕疵或错发免费重做，3 个工作日内回复；退款只在已批准个案说</td><td><span class="src src--pending">PENDING D-11 ⑥</span></td></tr>
+          <tr><td>取消 / 修改</td><td>建模或生产开始前可取消；建模前复杂修改可能收费；开始后不能取消或修改</td><td><span class="src src--pending">PENDING 线上 C1–C5</span></td></tr>
+          <tr><td>改地址</td><td>尽快联系，最好 24 小时内；发货前通常可改</td><td><span class="src src--pending">PENDING</span></td></tr>
+          <tr><td>换货窗口</td><td>收货后 7 天内联系，超期不受理</td><td><span class="src src--live">LIVE 9/21</span></td></tr>
+          <tr><td>换货条件</td><td>只限破损 / 瑕疵 / 发错；需清晰照片或视频；商品未使用</td><td><span class="src src--live">LIVE 9/21</span></td></tr>
+          <tr><td>不适用</td><td>改变主意（换色、换款、换尺寸）、误用或正常磨损、超期</td><td><span class="src src--live">LIVE 9/21</span></td></tr>
+          <tr><td>回复时效</td><td>邮件 support@jujubit.ai 提交后 3 个工作日内</td><td><span class="src src--live">LIVE 9/21</span></td></tr>
+          <tr><td>重做费用</td><td>同款或修正版重做不额外收费；我方过错由我方承担补发运费</td><td><span class="src src--live">LIVE 9/21</span></td></tr>
+          <tr><td>丢件</td><td>发货后美国 30 天、国际 60 天仍未收到，联系后补发或其他方案</td><td><span class="src src--pending">PENDING</span></td></tr>
+          <tr><td>保养说明</td><td>寄存器无值，线上也无来源。需要时先找 Yishan/Harry 要一手口径，不由 AI 按材料物性推测</td><td><span class="src src--draft">缺</span></td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="pg-sub">账号、主体与价格</div>
+      <div class="tbl-wrap"><table class="tbl tbl--wide">
+        <thead><tr><th>字段</th><th>内容</th><th>状态</th></tr></thead>
+        <tbody>
+          <tr><td>社交账号（固定 4 个）</td><td>Instagram @thisisjujubit_ · TikTok @jujubit_official · YouTube @thisisjujubit · X @thisisjujubit；Snapchat 已下线</td><td><span class="src src--live">LIVE 6/25–26</span></td></tr>
+          <tr><td>对外技术背书</td><td>Powered by Tripo AI（网站页脚），不写 operated by VAST</td><td><span class="src src--live">LIVE 7/24</span></td></tr>
+          <tr><td>香港实体</td><td>Holymolly Limited，商业登记号只写 75530432；地址标 Company / Mailing address，不是退货地址</td><td><span class="src src--live">LIVE 9/28</span></td></tr>
+          <tr><td>CTA</td><td>Hero：Create Your Figurine；模板入口：Browse All Templates；Web 画板：Generate</td><td><span class="src src--pending">PENDING #147 / #1362</span></td></tr>
+          <tr><td>价格</td><td>写「Starting from $X」或区间，不写死单价；写前重跑 products.json 复核</td><td><span class="src src--live">区间 LIVE 6/26，需复核</span></td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- 06 -->
+    <section class="pg-sec" id="channels">
+      <header><span class="num">06</span><h2 class="jjb-h2">分渠道规则</h2></header>
+      <p class="lead">同一事实各渠道说法一致；格式限制只管自己的版位，不推广到全部。</p>
+      <div class="ch-grid">
+        <article class="ch-card"><h3>App Store</h3><ul>
+          <li>局部 Edit 按 D-10 A10：只改所选部分。</li>
+          <li>评分标平台和核验时点，不把 Judge.me 评价说成 App Store 评价。</li>
+          <li>What's New 先写本次用户收益，可用「功能名 + em dash + 收益」；收益句要来自本次版本事实。</li>
+          <li>回复 ≤500 字符，短好评一两句即可；thanks for the kind words 只是示例，不强制。</li>
+        </ul></article>
+        <article class="ch-card"><h3>Google Play</h3><ul>
+          <li>标题 <code>JuJuBit: AI Custom 3D Figures</code> <span class="src src--obs">只观察</span>，不强改；正文新写用 figurine。</li>
+          <li>截图、Feature Graphic、CSL 不放评分、麦穗、价格促销；不照搬 iOS 评分素材。</li>
+          <li>WHY JUJUBIT 收益段：<code>Simple and fast: AI brings your idea to life</code>，替换 Powered by Tripo。</li>
+          <li>回复控制在 350 字符内，超过 340 先压缩。</li>
+        </ul></article>
+        <article class="ch-card"><h3>网站</h3><ul>
+          <li>商品页先分清定制打印件、现货件和画风；现货和特殊商品逐 SKU 核实产线后再改工艺文案。</li>
+          <li>hand-painted-style 画风名、客户原话、否定句不机械替换。</li>
+          <li>FAQ 和政策同一事实一致，改文本时同步检查 FAQPage / Product JSON-LD。</li>
+          <li>取消、改地址、丢件各用各的窗口，不压成一个「售后时限」。</li>
+        </ul></article>
+        <article class="ch-card"><h3>博客</h3><ul>
+          <li>用 voice 页「现行 v5 规则」：每个核心 H2 绑定材料、实际落句、编辑判断和品牌替换结果。</li>
+          <li>机械检查通过后仍需人工终审。</li>
+          <li><code>memory-facts-dnd-v1.md</code> 是带日期的历史库，FIG-04 的 hand-painted 不能进新稿。</li>
+        </ul></article>
+        <article class="ch-card"><h3>评论回复</h3><ul>
+          <li>用 we、跟随用户语言、不用 em dash；无效昵称不点名，纯好评不机械附邮箱。</li>
+          <li>逐个回应具体痛点，不替用户加没提到的产品或场景。</li>
+          <li>旧 skill 第 48 行（整模重生成）、第 54 行（旧取消窗口）已列待改，不要照抄。</li>
+          <li>Trustpilot 不沿用 looking into / working on 话术，走该平台独立门禁。</li>
+        </ul></article>
+        <article class="ch-card"><h3>客服邮件与 KB</h3><ul>
+          <li>先读完整上下文，先答当前诉求，再写需客户配合的动作。</li>
+          <li>开头可用 Hi there，结尾 <code>Best,</code> / <code>JuJuBit Support</code>。</li>
+          <li>不知道就写核查状态，不从历史「快速退款 / 加急」样句推导常规服务。</li>
+          <li>运费不再写「国际 $9.99」；售后用统一句。</li>
+        </ul></article>
+        <article class="ch-card"><h3>广告与社媒</h3><ul>
+          <li>图片主文案用实物收益短句；搜索广告可用 AI figurine 匹配明确意图，不是全面禁 AI。</li>
+          <li>广告 CTA 用 Create 降低门槛，不改 Web 的 Generate 按钮。</li>
+          <li>社媒主句按 D-7；Reddit、Pinterest、达人内容各有语境，暂不定统一模板。</li>
+          <li>不复制历史折扣，不用第一人称样句虚构客户经历。</li>
+        </ul></article>
+      </div>
+    </section>
+
+    <!-- 07 -->
+    <section class="pg-sec" id="timely">
+      <header><span class="num">07</span><h2 class="jjb-h2">会过期的数字</h2></header>
+      <p class="lead">评分、运费门槛、时效都带「截至 / as of」，或引用寄存器，不固定写进长期模板。</p>
+      <ul class="rules">
+        <li><b>评分：</b>用截至 2026-09-29 的批准快照，每月复核；公开稿不出现内部文件名，链接给公开评价页。</li>
+        <li><b>运费：</b>US/HK 标准 $9.99、其他可配送国家 $12.99、两区加急固定 $29.99。免运后台仍是 ≥$99.99，对外保留「满 $99」，不写后台已对齐。</li>
+        <li><b>时效：</b>制作 7–10 工作日；制作后美国标准 5–12、国际标准 10–25、加急 3–7。香港标准暂按国际口径，确认后更新。</li>
+        <li><b>没有新快照</b>就引用事实入口，不伪造「截至今天」。</li>
+      </ul>
+    </section>
+
+    <!-- 08 -->
+    <section class="pg-sec" id="change">
+      <header><span class="num">08</span><h2 class="jjb-h2">改动流程</h2></header>
+      <p class="lead">事实或口径要变时按这五步走。</p>
+      <ol class="flow">
+        <li><b>先定事实对象</b>读寄存器、相关决策和同 fact_key 最新未被推翻的记录。文案取舍用 D-6，事实冲突走 §22.7。</li>
+        <li><b>记录依据</b>先写 decision-log，再写寄存器 changelog，留旧值、新值、日期和原因。寄存器由 Andrew 串行维护。</li>
+        <li><b>级联检查</b>按 §22.4 搜旧值：网站正文与 Schema、App Store、GP、广告社媒、客服 KB、评论 skill、博客事实库。</li>
+        <li><b>分开标状态</b>批准未执行标 PENDING；上线并留证后才标 LIVE + 日期。审核通过不等于线上一致。</li>
+        <li><b>验收再交付</b>发布前按 §22.6 重读寄存器、逐字段核对并声明结果。线上改动另走授权、备份、回读。</li>
+      </ol>
+    </section>
+
+    <!-- 09 -->
+    <section class="pg-sec" id="pending">
+      <header><span class="num">09</span><h2 class="jjb-h2">线上待改清单</h2><span class="src src--pending">22 条 · 均未执行</span><details class="pg-help"><summary aria-label="展开风险说明">?</summary><div class="pg-help__body"><p>风险按计划的修改动作分级：只观察为低，本地文档和可撤销的外部文案为中，Shopify 主题、批量商品、政策和后台运费为高。</p><p>风险低也不替代授权。每条执行前都要重新核对对象、备份、给出 diff 和回退、拿到当次授权、上线后回读；主题改动另需三酱确认。</p></div></details></header>
+      <p class="lead">登记线上差异和会继续产出错误文案的下游资料。这里只登记，不执行。</p>
+      <div class="tbl-wrap"><table class="tbl tbl--wide">
+        <thead><tr><th>渠道</th><th>位置</th><th>应改为</th><th>风险</th><th>谁授权</th></tr></thead>
+        <tbody>
+          <tr><td>Shopify 后台</td><td>9/29 清单 A1/A2</td><td>免运门槛改 ≥$99.00；对外 $99 保留</td><td><span class="src src--high">高</span></td><td>Yishan + 备份 + Andrew 审</td></tr>
+          <tr><td>GMC / 购物车</td><td>A3–A7、Y11</td><td>随后台变更联动；先核对同步来源</td><td><span class="src src--high">高</span></td><td>Yishan；主题需三酱</td></tr>
+          <tr><td>网站政策 / FAQ</td><td>C1–C5、D1–D3、L1</td><td>取消/修改按 D-10；地址、丢件各自窗口</td><td><span class="src src--high">高</span></td><td>Yishan；三酱；先备份</td></tr>
+          <tr><td>网站运费 / 时效</td><td>S1–S10、T1–T6</td><td>按原编号与 K1；不改成 $99.99</td><td><span class="src src--high">高</span></td><td>Yishan；三酱；批量 diff</td></tr>
+          <tr><td>网站工艺</td><td>P1–P4、X8</td><td>定制件按 A07；现货逐 SKU 核产线；改 handle 需 301</td><td><span class="src src--high">高</span></td><td>Yishan；Akira 给产线事实</td></tr>
+          <tr><td>网站评分</td><td>R1–R7</td><td>按月度核验值，带日期</td><td><span class="src src--high">高</span></td><td>Yishan；三酱</td></tr>
+          <tr><td>网站 ja/ko</td><td>X1–X8</td><td>跟随英文定稿逐项同步</td><td><span class="src src--high">高</span></td><td>Yishan</td></tr>
+          <tr><td>客服 / KB</td><td>《KB &amp; 话术缺口补充》§5</td><td>运费分 US/HK $9.99 与其他 $12.99</td><td><span class="src src--pending">中</span></td><td>Yishan</td></tr>
+          <tr><td>客服 / KB</td><td>同文档「基础修改」</td><td>删「24 小时内可改一次」，改 A02 口径</td><td><span class="src src--pending">中</span></td><td>Yishan</td></tr>
+          <tr><td>客服 / KB</td><td>材质/工艺边界两处</td><td>删「金属色全彩打印效果」「类似金属色涂装效果」</td><td><span class="src src--pending">中</span></td><td>Yishan</td></tr>
+          <tr><td>评论回复 skill</td><td>SKILL.md:48</td><td>局部 Edit 只改所选部分；旧立场标历史</td><td><span class="src src--pending">中</span></td><td>Yishan（跨仓库）</td></tr>
+          <tr><td>评论回复 skill</td><td>SKILL.md:54</td><td>取消窗口同步为 A01</td><td><span class="src src--pending">中</span></td><td>Yishan；Andrew 审</td></tr>
+          <tr><td>公开立场登记</td><td>review-reply-local :79–87</td><td>「局部修改整体重生成」标历史，改 A10</td><td><span class="src src--pending">中</span></td><td>Yishan；先确认 poller 读哪份</td></tr>
+          <tr><td>公开立场登记</td><td>review-reply-engine</td><td>待定位实际加载的版本</td><td><span class="src src--pending">中</span></td><td>Yishan；评论项目维护者</td></tr>
+          <tr><td>Google Play</td><td>标题</td><td>只观察，不强改</td><td><span class="src src--obs">观察</span></td><td>改标题须 Yishan</td></tr>
+          <tr><td>Google Play</td><td>短描述</td><td>figure 改 figurine</td><td><span class="src src--pending">中</span></td><td>Yishan</td></tr>
+          <tr><td>App Store / GP</td><td>描述中的泛称</td><td>普通实物 figurine，TRPG mini</td><td><span class="src src--pending">中</span></td><td>Yishan</td></tr>
+          <tr><td>Google Play</td><td>完整描述 WHY JUJUBIT</td><td>改 Simple and fast: AI brings your idea to life</td><td><span class="src src--pending">中</span></td><td>Yishan</td></tr>
+          <tr><td>TRPG 商品页</td><td>尺寸建议</td><td>4cm 网格最小，6cm 官方推荐</td><td><span class="src src--high">高</span></td><td>Yishan；先备份</td></tr>
+          <tr><td>博客事实库</td><td>memory-facts-dnd-v1 FIG-04</td><td>hand-painted 标为被 A07 取代</td><td><span class="src src--pending">中</span></td><td>Andrew 分配</td></tr>
+          <tr><td>旧资料汇总</td><td>9/29 清单 §Z、K4–K6</td><td>商店 reprint or refund / 24–48 hours 改统一售后句</td><td><span class="src src--pending">中</span> <span class="src src--high">高</span></td><td>Andrew 安排；外部需 Yishan</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">源清单 22 条，本页把两条金属色 KB 合成一行。按改动单元计，不等于页面或 SKU 数。完整现文证据见 <code>copy-guide/pending-live-fixes.md</code>。</p>
+    </section>
+
+    <!-- 10 -->
+    <section class="pg-sec" id="ai">
+      <header><span class="num">10</span><h2 class="jjb-h2">给 AI 用</h2></header>
+      <p class="lead">agent 写作或审核 JuJuBit 文案时调用 skill，再按这里的顺序读文件。</p>
+      <div class="verbatim"><q>$jujubit-copy-guide</q><button class="copy-btn" type="button" data-copy="$jujubit-copy-guide">复制</button></div>
+      <details class="snippet" open><summary>读取顺序与文件</summary><pre>1. 03-execution/content/brand-constants.md        事实值（唯一真源）
+2. 03-execution/content/copy-guide/copy-guide-v1.md   怎么说
+3. 03-execution/content/copy-guide/pending-live-fixes.md   线上哪里还没对齐
+4. .claude/skills/jujubit-copy-guide/references/checklist.md   发布前自查
+发布前：按 brand-facts.md §22.6 重读寄存器快照 → 逐字段核对 → 在交付说明里声明结果。
+skill 不授予任何线上操作权限。</pre></details>
+    </section>
+  </main>
+</div>
+<div class="jjb-toast copied" id="copied" role="status" aria-live="polite">已复制</div>
+<script>
+(function () {
+  var toast = document.getElementById('copied'), t;
+  function show(msg) { toast.textContent = msg; toast.classList.add('show'); clearTimeout(t); t = setTimeout(function () { toast.classList.remove('show'); }, 1400); }
+  function fallback(btn) {
+    var q = btn.parentNode.querySelector('q'); if (!q) return;
+    var r = document.createRange(); r.selectNodeContents(q); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    show('已选中，按 ⌘C 复制');
+  }
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-copy]'); if (!btn) return;
+    var text = btn.getAttribute('data-copy');
+    try {
+      navigator.clipboard.writeText(text).then(function () { show('已复制'); }, function () { fallback(btn); });
+    } catch (err) { fallback(btn); }
+  });
+})();
+</script>
+
+</body>
+</html>

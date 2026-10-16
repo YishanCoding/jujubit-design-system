@@ -7,6 +7,8 @@ workers_dev = false
 routes = [
   { pattern = "playverseai.com/design", zone_name = "playverseai.com" },
   { pattern = "playverseai.com/design/*", zone_name = "playverseai.com" },
+  { pattern = "playverseai.com/brand", zone_name = "playverseai.com" },
+  { pattern = "playverseai.com/brand/*", zone_name = "playverseai.com" },
 ]
 
 [[d1_databases]]

@@ -21,3 +21,14 @@ test('test_html_rewriter_contract',async()=>{
  let selector,markup,opts;class FakeRewriter {on(s,handler){selector=s;this.handler=handler;return this;}transform(r){this.handler.element({append(m,o){markup=m;opts=o;}});return r;}}
  injectEditor(new Response('test'),FakeRewriter);assert.equal(selector,'body');assert.equal(markup,'<link rel="stylesheet" href="editor/editor.css"><script src="editor/editor.js" defer></script>');assert.deepEqual(opts,{html:true});
 });
+test('test_brand_route_maps_to_brand_dir',async()=>{
+ const urls=[];const d={...deps,fetchFn:async url=>{urls.push(url);return new Response('test-static');}};
+ for(const p of ['/brand','/brand/']) {const r=await route(new Request('https://example.test'+p),{...env(),RAW_BASE:'http://localhost:8788/'},d);assert.equal(r.status,200);assert.equal(r.headers.get('content-type'),'text/html; charset=utf-8');}
+ assert.deepEqual(urls,['http://localhost:8788/brand/index.html','http://localhost:8788/brand/index.html']);
+ for(const p of ['/brand/../tokens.css','/brandx','/brand/%E0']) assert.equal((await route(new Request('https://example.test'+p),env(),d)).status,404);
+});
+test('test_raw_fetch_sends_pat_only_to_raw',async()=>{
+ const seen=[];const d={...deps,fetchFn:async(url,init={})=>{seen.push([url,init.headers?.Authorization]);return new Response('x');}};
+ await route(request('tokens.css'),{...env(),GITHUB_PAT:'test-pat',RAW_BASE:'http://localhost:8788/'},d);
+ assert.deepEqual(seen,[['http://localhost:8788/tokens.css','Bearer test-pat']]);
+});
