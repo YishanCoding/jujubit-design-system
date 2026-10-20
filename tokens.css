@@ -187,6 +187,56 @@
   --jjb-dur-hero: 800ms;      /* 首屏 */
   --jjb-dur-skeleton: 1000ms; /* [F稿] 骨架屏 #F0F0F0↔#EEEEEE 循环 */
   --jjb-stagger: 60ms;        /* 列表错峰，总延迟 ≤600ms */
+
+  /* ===== 数据看板 [看板] =====
+     来源：https://playverseai.com/jujubit/aso/dashboard/app-store-funnel */
+  --jjb-dash-bg: #F0F2F5;
+  --jjb-dash-surface: #FFFFFF;
+  --jjb-dash-surface-1: #F8F9FA;
+  --jjb-dash-surface-2: #F0F2F4;
+  --jjb-dash-border: #E3E6EB;
+  --jjb-dash-border-strong: #D1D5DB;
+  --jjb-dash-text: #111827;
+  --jjb-dash-text-2: #374151;
+  --jjb-dash-sub: #6B7280;
+  --jjb-dash-hint: #9CA3AF;
+  --jjb-dash-blue: #1D6AE5;
+  --jjb-dash-blue-l: #EBF2FF;
+  --jjb-dash-blue-d: #1558C0;
+  --jjb-dash-green: #0EA770;
+  --jjb-dash-green-l: #E7F8F1;
+  --jjb-dash-red: #E53935;
+  --jjb-dash-red-l: #FEECEC;
+  --jjb-dash-orange: #F59E0B;
+  --jjb-dash-orange-l: #FEF3C7;
+  --jjb-dash-orange-d: #B45309;
+  --jjb-dash-purple: #7C3AED;
+  --jjb-dash-purple-l: #F3F0FF;
+  --jjb-dash-gray: #6B7280;
+  --jjb-dash-gray-l: #F3F4F6;
+  --jjb-dash-el1: 0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
+  --jjb-dash-el2: 0 4px 12px rgba(0,0,0,.08),0 1px 3px rgba(0,0,0,.06);
+  --jjb-dash-el3: 0 8px 24px rgba(0,0,0,.10),0 2px 6px rgba(0,0,0,.07);
+  --jjb-dash-t: 180ms cubic-bezier(.4,0,.2,1);
+  --jjb-dash-tip-bg: rgba(17,24,39,.95);
+  --jjb-dash-font: 'Inter','SF Pro Display','Helvetica Neue',sans-serif;
+  --jjb-dash-c-asa: #E53935;
+  --jjb-dash-c-search: #1D6AE5;
+  --jjb-dash-c-browse: #0EA770;
+  --jjb-dash-c-appref: #7C3AED;
+  --jjb-dash-c-web: #F59E0B;
+  --jjb-dash-c-other: #6B7280;
+  --jjb-dash-c-instagram: #E1306C;
+  --jjb-dash-c-facebook: #1877F2;
+  --jjb-dash-c-tiktok: #111827;
+  --jjb-dash-c-youtube: #FF0000;
+  --jjb-dash-c-google: #4285F4;
+  --jjb-dash-c-teal: #69C9D0;
+  /* [看板] 原页的毛玻璃与渐隐依赖值集中在 token。 */
+  --jjb-dash-glass: rgba(255,255,255,.9);
+  --jjb-dash-glass-blur: blur(14px);
+  --jjb-dash-callout-bg: linear-gradient(90deg, var(--jjb-dash-blue-l), transparent);
+  --jjb-dash-chart-bg: linear-gradient(180deg, var(--jjb-dash-surface), var(--jjb-dash-surface-1));
 }
 
 @media (prefers-reduced-motion: reduce) {

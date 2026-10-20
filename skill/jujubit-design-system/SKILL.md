@@ -22,9 +22,17 @@ Use the first that exists:
 | `tokens.css` | The only token set: colors, fonts (@font-face), type scale (Web + App), spacing, layout, radius, shadow, gradient, motion. |
 | `components.css` | Ready `.jjb-*` classes: buttons, announce bar, nav (`--glass` over hero), section head, chips, dots, product card, tags, template card + track, steps, category card, trust, review, social, form, FAQ, footer, toast/dialog/sheet, skeleton and reveal. |
 | [templates/tool-page/](templates/tool-page/README.md) | Standalone tool-page recipe: `index.html` and `tool-page.css`; proposed components stay outside the catalogue. |
+| [templates/dashboard/](templates/dashboard/README.md) | Standalone internal dashboard starter with date controls, KPI, and a D3 trend card. |
+| [references/dashboard.md](references/dashboard.md) | Dashboard tokens, layout, components, chart grammar, and content rules. |
 | `playground.html` | Visual catalogue with copyable markup for every token and component. Open it first and copy markup from it instead of inventing. |
 | `assets/README.md` | Every asset with its path and usage. |
 | `assets/icons/sprite.svg` | 58 icons as `<symbol id="i-<name>">` plus `logo-wordmark`, all `currentColor`. |
+
+## Dashboards
+
+Internal data dashboards use the `.jjb-dash` kit and [dashboard specification](references/dashboard.md); start from [templates/dashboard/](templates/dashboard/README.md).
+Inside `.jjb-dash`, the brand rules for orange primary actions, no accent buttons, four shadows, and Outfit/Bebas do not apply; use dashboard tokens and Inter.
+Dashboard styles must not be used on the website, in the App, or in marketing assets.
 
 ## Source priority
 
