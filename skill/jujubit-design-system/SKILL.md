@@ -30,7 +30,7 @@ Use the first that exists:
 
 ## Dashboards
 
-Internal data dashboards use the `.jjb-dash` kit and [dashboard specification](references/dashboard.md); the visual catalogue is the separate page `dashboard.html` in the repo root (not part of `playground.html`); start from [templates/dashboard/](templates/dashboard/README.md).
+Internal data dashboards use the `.jjb-dash` kit and [dashboard specification](references/dashboard.md); the visual catalogue is the separate page `dashboard.html` in the repo root (not part of `playground.html`); start from [templates/dashboard/](templates/dashboard/README.md). Use `templates/dashboard/dashboard-kit.js` for interactions; do not rewrite them per dashboard.
 Inside `.jjb-dash`, the brand rules for orange primary actions, no accent buttons, four shadows, and Outfit/Bebas do not apply; use dashboard tokens and Inter.
 Dashboard styles must not be used on the website, in the App, or in marketing assets.
 

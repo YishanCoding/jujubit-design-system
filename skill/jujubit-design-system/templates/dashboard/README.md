@@ -1,22 +1,26 @@
-# 数据看板模板
+# 数据看板交互模板
 
-入口为 [index.html](index.html)。这是一页可复制的内部看板骨架：topbar → date-bar → KPI → 趋势卡（图表/数字切换、复制图片、口径 callout）。所有数值均为**示例数据**；替换成真实数据前，要核对分子、分母、来源与缺失值规则。
+[index.html](index.html) 是可直接在本仓库 HTTP 服务下运行的示例。所有数值由 `JJBDash.sampleData(4319)` 生成，均为**示例数据**。
 
-## 使用
+页面按顺序加载 `tokens.css`、`components.css`、D3 7.8.5（cdnjs）、d3-sankey 0.12.3（jsdelivr）、本目录的 `html2canvas.min.js` 和 [dashboard-kit.js](dashboard-kit.js)。无构建步骤；全局 API 是 `window.JJBDash`。独立解压 skill 时，把 CSS 路径改为 `../../kit/` 下的同名文件。
 
-在仓库内用 HTTP 服务打开模板。页面依次加载 `../../../../tokens.css`、`../../../../components.css`、D3 7.8.5（cdnjs）和同目录的 `html2canvas.min.js`。后者是本地 MIT 许可副本，用来复制卡片图片，不产生新的运行时 CDN 依赖。
+```js
+const rows = JJBDash.sampleData(4319); // 替换为校验过的数据
+const dates = rows.map(row => row.date);
+const state = JJBDash.createState({ preset: '近 90 天' });
+JJBDash.dateBar(bar, state, dates, rangeBadges);
+JJBDash.chips(chipRoot, state, 'channels', channels, isAvailable);
+JJBDash.viewToggle(card, state, 'trend');
+state.subscribe(() => {
+  const selected = JJBDash.inRange(rows, JJBDash.range(state.value, dates));
+  const grouped = JJBDash.aggregate(selected, state.value.granularity, ['downloads']);
+  JJBDash.lineChart(plot, grouped, [{ key: 'downloads', name: '下载', color: 'c-search' }]);
+  JJBDash.table(numberRoot, [{ label: '日期', value: row => row.label }], grouped);
+});
+```
 
-skill 下载包含整个 `templates/dashboard/` 目录及共享 `kit/`。解压后独立使用时，把 `index.html` 中的 `../../../../tokens.css` 和 `../../../../components.css` 分别改成 `../../kit/tokens.css`、`../../kit/components.css`。
+可用渲染器还有 `barLineChart`、`stackedBarChart`、`timelineChart`、`sankey`；工具有 `copyImage`、`infoTip`、`legend`、`empty` 和 `crosshair`。完整的多卡示例、可复制 Markup 与 JS 调用在仓库根目录 [dashboard.html](../../../../dashboard.html)。筛选与范围共同驱动 KPI、图、表、badge，卡片视图保存在 `state.views`。缺失值使用 `null`，不要补零；接真实数据时先核对每个指标的分子、分母和口径。
 
-## 结构与行为
+## 本地浏览器验收
 
-| 顺序 | 组件 | 行为 |
-|---|---|---|
-| 1 | `.jjb-dash-topbar` | 显示产品、页名、数据源和时间范围。 |
-| 2 | `.jjb-dash-date-bar` | 全页唯一时间范围和聚合粒度控制；选中预设会同步范围 badge。 |
-| 3 | `.jjb-dash-kpis` | 六列网格，窄屏改为三列或两列。 |
-| 4 | `.jjb-dash-card` | D3 折线、渠道 chip、图表/数字切换、tooltip/pin、legend、口径 callout；复制图片使用本地 html2canvas。 |
-
-图表采用 `curveMonotoneX`、6 个 Y 轴刻度、旋转日期标签和 3.3px 数据点。虚线是不同口径，缺失值用 `null` 断线；卡片始终说明这两点。把示例数组换成真实数据时，保留无效值断线和「—」显示。数值用千分位，百分比保留 1 位。图表区域横向滚动，页面不横滚。
-
-适用范围和品牌例外见 [dashboard.md](../../references/dashboard.md)。看板样式只在 `.jjb-dash` 内使用，不放到网站、App 或营销素材。
+在仓库根目录先运行 `python3 -m http.server 8765`，再运行 `python3 skill/jujubit-design-system/templates/dashboard/verify.py`。脚本检查规范页和模板的 1440/390 布局、交互与脚本错误，并把全页、桑基 hover、趋势 pin 截图写入仓库根目录 `.codex-shots/v2-*.png`。截图仅供本地验收，不要 `git add`。
