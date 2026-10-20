@@ -32,3 +32,10 @@ test('test_raw_fetch_sends_pat_only_to_raw',async()=>{
  await route(request('tokens.css'),{...env(),GITHUB_PAT:'test-pat',RAW_BASE:'http://localhost:8788/'},d);
  assert.deepEqual(seen,[['http://localhost:8788/tokens.css','Bearer test-pat']]);
 });
+test('test_dashboard_route_maps_to_dashboard_html',async()=>{
+ const urls=[];const d={...deps,fetchFn:async url=>{urls.push(url);return new Response('test-static');},injectEditor:()=>{throw new Error('dashboard must not inject editor');}};
+ for(const p of ['dashboard','dashboard.html']) {const r=await route(request(p),{...env(),RAW_BASE:'http://localhost:8788/'},d);assert.equal(r.status,200);assert.equal(r.headers.get('content-type'),'text/html; charset=utf-8');}
+ assert.deepEqual(urls,Array(2).fill('http://localhost:8788/dashboard.html'));
+ assert.equal((await route(request('dashboardx'),env(),d)).status,404);
+ const r=await route(request('dashboard/'),env(),d);assert.equal(r.status,301);assert.equal(r.headers.get('location'),'https://example.test/design/dashboard');
+});

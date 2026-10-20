@@ -14,7 +14,7 @@ const TYPES = {
   ttf: "font/ttf", woff: "font/woff", woff2: "font/woff2", zip: "application/zip",
 };
 const BRAND_ALLOWED = /^brand\/[A-Za-z0-9_\-./]+$/;
-const ALLOWED = /^(playground\.html|tokens\.css|components\.css|install\.sh|modules\.json|editor\/[A-Za-z0-9_\-.]+|(assets|skill|downloads)\/[A-Za-z0-9_\-./]+)$/;
+const ALLOWED = /^(playground\.html|dashboard\.html|tokens\.css|components\.css|install\.sh|modules\.json|editor\/[A-Za-z0-9_\-.]+|(assets|skill|downloads)\/[A-Za-z0-9_\-./]+)$/;
 
 export function injectEditor(response, Rewriter = HTMLRewriter) {
   return new Rewriter().on('body', {
@@ -65,6 +65,8 @@ export async function route(request, env, deps = {}) {
   try { path = decodeURIComponent(url.pathname.slice('/design/'.length)); }
   catch { return new Response('Not Found', {status:404}); }
   if (path === "" || path === "index.html") path = "playground.html";
+  if (path === "dashboard/") return Response.redirect(url.origin + "/design/dashboard" + url.search, 301);
+  if (path === "dashboard") path = "dashboard.html";
   if (!ALLOWED.test(path) || path.includes("..")) return new Response("Not Found", { status: 404 });
   const response = await serveRaw(path);
   if (response.status !== 200) return response;

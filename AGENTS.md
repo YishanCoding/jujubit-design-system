@@ -4,7 +4,7 @@
 
 ## 必须遵守
 
-- 只改源文件：`tokens.css`、`components.css`、`playground.src.html`、`brand/index.html`、`assets/`、`skill/`、`README.md`。`brand/index.html` 的内容真源在 jujubit-seo-geo 仓库 `03-execution/content/copy-guide/` 与 `brand-constants.md`，先改那边再同步这里。不要手改 `playground.html`、`assets/icons/sprite.svg`、`downloads/`，它们由 `build.py` 生成。
+- 只改源文件：`tokens.css`、`components.css`、`playground.src.html`、`dashboard.html`（数据看板规范独立页，/design/dashboard）、`brand/index.html`、`assets/`、`skill/`、`README.md`。`brand/index.html` 的内容真源在 jujubit-seo-geo 仓库 `03-execution/content/copy-guide/` 与 `brand-constants.md`，先改那边再同步这里。不要手改 `playground.html`、`assets/icons/sprite.svg`、`downloads/`，它们由 `build.py` 生成。
 - 新颜色、字号、圆角、阴影、动效先在 `tokens.css` 里加成 `--jjb-*` token（注释写来源标签 `[F]` / `[F稿]` / `[新版]` / `[线上]`），组件和页面只用 `var(--jjb-*)`。
 - 改了组件或 token，同步改 `playground.src.html` 里对应的示例和 markup，以及 `skill/jujubit-design-system/SKILL.md` 里受影响的规则。
 - 加图标：把 SVG 放进 `assets/icons/`（黑色改成 `currentColor`），文件名用小写加下划线。

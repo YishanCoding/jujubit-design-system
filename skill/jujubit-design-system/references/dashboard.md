@@ -1,7 +1,7 @@
 # 数据看板设计语言（Dashboard kit）
 
 > 来源：https://playverseai.com/jujubit/aso/dashboard/app-store-funnel（2026-10-20 抽取，来源标签 `[看板]`）。
-> 可视目录：仓库根目录 `dashboard.html`（独立页，不并入 playground）。
+> 可视目录：https://playverseai.com/design/dashboard（源文件仓库根目录 `dashboard.html`，独立页，不并入 playground）。
 > 适用范围：内部数据看板（ASO/ASA/SEO/GEO/商店数据等 playverseai.com 上的报表页）。不用于 jujubit.ai 网站、App 或营销物料。
 
 ## 与品牌硬规则的关系（例外条款）
