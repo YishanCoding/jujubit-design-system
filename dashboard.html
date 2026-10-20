@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap">
 <style>
   body { margin: 0; background: var(--jjb-dash-bg); color: var(--jjb-dash-text); font: 14px/1.55 var(--jjb-dash-font); }
+  .dg-top { position: sticky; top: 0; z-index: 200; }
   .dg-shell { display: grid; grid-template-columns: 220px minmax(0, 1fr); max-width: 1440px; margin: 0 auto; }
   .dg-side { position: sticky; top: 58px; align-self: start; height: calc(100vh - 58px); overflow: auto; padding: 28px 16px 28px 24px; }
   .dg-side nav { display: grid; gap: 2px; }
@@ -43,7 +44,7 @@
 </style>
 </head>
 <body>
-<div class="jjb-dash">
+<div class="jjb-dash dg-top">
   <div class="jjb-dash-topbar"><span class="jjb-dash-topbar__icon">J</span><strong class="jjb-dash-topbar__product">JuJuBit</strong><span class="jjb-dash-topbar__sep">/</span><span class="jjb-dash-topbar__title">数据看板设计规范</span><span class="jjb-dash-topbar__spacer"></span><span class="jjb-dash-badge">标准：App Store Funnel 看板</span></div>
 </div>
 <div class="dg-shell">
