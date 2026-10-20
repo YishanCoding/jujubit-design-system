@@ -7,7 +7,6 @@
 <!-- 由 build.py 从 playground.src.html 生成，改源文件不要改产物。仓库：github.com/YishanCoding/jujubit-design-system -->
 <link rel="stylesheet" href="tokens.css">
 <link rel="stylesheet" href="components.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap">
 <style>
   .pg-mod{display:contents}
   body { margin: 0; background: var(--jjb-surface); }
@@ -33,13 +32,6 @@
   .src--live { background: #FFF6E0; color: #9A6200; }
   .src--app { background: #F3EBFF; color: #7A3FC4; }
   .src--new { background: #E8F8EE; color: #17803D; }
-  .src--dash { background: var(--jjb-dash-blue-l); color: var(--jjb-dash-blue-d); }
-  .dash-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 10px; }
-  .dash-swatch { min-width: 0; border: 1px solid var(--jjb-dash-border); border-radius: 10px; overflow: hidden; background: var(--jjb-dash-surface); font-size: 11px; }
-  .dash-swatch__color { height: 42px; background: var(--swatch); }
-  .dash-swatch__label { padding: 6px 8px; overflow-wrap: anywhere; }
-  .dash-snippet { margin: 8px 0 30px; }
-  .dash-snippet pre { max-height: 250px; }
   .note { margin: 12px 0 0; font-size: 13px; color: var(--jjb-text-tertiary); }
   .hiw-demo { background: #000; display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; padding: 40px; color: #fff; }
   .hiw-demo > img { width: 100%; max-width: 420px; }
@@ -325,7 +317,6 @@
       <a href="#page">16 页面拼装示例</a>
       <a href="#assets">17 素材清单</a>
       <a href="#ai">18 给 AI 用</a>
-      <a href="#dashboard">19 数据看板</a>
     </nav>
     <div class="meta">v2 · 2026-10-14<br>真源：网页外观=线上新版，色值/字体/App=Figma<br>引用：<code>tokens.css</code> + <code>components.css</code><br>点击色块/图标/代码即复制<br><a href="/brand" style="padding:0;color:var(--jjb-brand-600)">文案与品牌事实 →</a></div>
   </aside>
@@ -924,50 +915,10 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
       </div><div class="pg-mod" data-mod="ai.contribute"><div class="pg-sub" data-edit="ai.contribute#1">修改规范</div>
       <p class="note">源文件在 <a href="https://github.com/YishanCoding/jujubit-design-system" target="_blank" rel="noopener">github.com/YishanCoding/jujubit-design-system</a>。改动 push 到 main 后自动构建，约 5 分钟后本页和 skill 包更新。</p>
     </div></section>
-    <!-- 19 DASHBOARD [看板] -->
-    <section class="pg-sec" id="dashboard" data-mod="dashboard">
-      <header><span class="num">19</span><h2 class="jjb-h2">数据看板</h2><span class="src src--dash">看板</span></header>
-      <p class="lead">内部 ASO、ASA、SEO、GEO 与商店数据报表使用这一套件。<strong>品牌硬规则例外：</strong>仅在 <code>.jjb-dash</code> 内改用看板蓝、Inter、看板阴影；网站、App 和营销页面不可套用。以下数字均为<strong>示例数据</strong>。</p>
-
-      <div class="pg-mod" data-mod="dashboard.tokens"><div class="pg-sub" data-edit="dashboard.tokens#1">Tokens · 色板与渠道色</div>
-        <div class="jjb-dash"><div class="jjb-dash-main"><div class="jjb-dash-card"><span class="jjb-dash-badge">示例数据</span><div class="jjb-dash-section-label">基础色</div><div class="dash-swatches" data-dash-swatches="base"></div><div class="jjb-dash-section-label">渠道色 · 语义固定</div><div class="dash-swatches" data-dash-swatches="channel"></div><p>多系列顺序：ASA → Instagram → App Referrer → Browse → Web Referrer → Google → TikTok → 青色。</p></div></div></div>
-      </div>
-      <div class="pg-mod" data-mod="dashboard.layout"><div class="pg-sub" data-edit="dashboard.layout#1">Layout · topbar、section label、card</div>
-        <div class="jjb-dash dash-demo"><div class="jjb-dash-topbar"><span class="jjb-dash-topbar__icon">J</span><strong class="jjb-dash-topbar__product">JuJuBit</strong><span class="jjb-dash-topbar__sep">/</span><span class="jjb-dash-topbar__title">示例漏斗看板</span><span class="jjb-dash-topbar__spacer"></span><span class="jjb-dash-badge">示例数据</span><span class="jjb-dash-badge jjb-dash-badge--green">近 30 天</span></div><div class="jjb-dash-main"><div class="jjb-dash-section-label">漏斗概览</div><div class="jjb-dash-card">白色卡片 · 24px 内边距 · 20px 卡间距</div></div></div>
-      </div>
-      <div class="pg-mod" data-mod="dashboard.date-bar"><div class="pg-sub" data-edit="dashboard.date-bar#1">Date-bar · 全页唯一时间控制</div>
-        <div class="jjb-dash dash-demo"><div class="jjb-dash-main"><div class="jjb-dash-date-bar" data-dash-date-bar><span class="jjb-dash-date-bar__label">时间范围</span><div class="jjb-dash-date-bar__group" aria-label="时间范围"><button class="jjb-dash-pill" type="button" aria-pressed="false">全周期</button><button class="jjb-dash-pill" type="button" aria-pressed="false">上周</button><button class="jjb-dash-pill" type="button" aria-pressed="false">近两周</button><button class="jjb-dash-pill" type="button" aria-pressed="true">近 30 天</button><button class="jjb-dash-pill" type="button" aria-pressed="false">近 90 天</button><button class="jjb-dash-pill" type="button" aria-pressed="false">自定义</button></div><span class="jjb-dash-date-bar__divider">|</span><input class="jjb-dash-date" type="date" aria-label="开始日期" value="2026-09-01"><span>–</span><input class="jjb-dash-date" type="date" aria-label="结束日期" value="2026-09-30"><span class="jjb-dash-date-bar__label">聚合粒度</span><div class="jjb-dash-date-bar__group" aria-label="聚合粒度"><button class="jjb-dash-pill" type="button" aria-pressed="true">按日</button><button class="jjb-dash-pill" type="button" aria-pressed="false">按周</button></div><span class="jjb-dash-date-bar__range">当前范围 <strong>30 天</strong> · 示例数据</span></div></div></div>
-      </div>
-      <div class="pg-mod" data-mod="dashboard.kpi"><div class="pg-sub" data-edit="dashboard.kpi#1">KPI · 六列响应式指标</div>
-        <div class="jjb-dash dash-demo"><div class="jjb-dash-main"><div class="jjb-dash-section-label">核心指标 · 示例数据</div><div class="jjb-dash-kpis"><div class="jjb-dash-kpi" style="--jjb-dash-series:var(--jjb-dash-c-search)"><i class="jjb-dash-kpi__dot"></i><div class="jjb-dash-kpi__value">12,480</div><div class="jjb-dash-kpi__label">曝光</div><div class="jjb-dash-kpi__detail"><span class="jjb-dash-positive">▲ 8.2%</span> 环比</div></div><div class="jjb-dash-kpi" style="--jjb-dash-series:var(--jjb-dash-c-browse)"><i class="jjb-dash-kpi__dot"></i><div class="jjb-dash-kpi__value">8,125</div><div class="jjb-dash-kpi__label">产品页浏览</div><div class="jjb-dash-kpi__detail">→ 下载 18.3%</div></div><div class="jjb-dash-kpi" style="--jjb-dash-series:var(--jjb-dash-c-asa)"><i class="jjb-dash-kpi__dot"></i><div class="jjb-dash-kpi__value">1,487</div><div class="jjb-dash-kpi__label">下载</div><div class="jjb-dash-kpi__detail"><span class="jjb-dash-negative">▼ 2.4%</span> 环比</div></div><div class="jjb-dash-kpi" style="--jjb-dash-series:var(--jjb-dash-c-appref)"><i class="jjb-dash-kpi__dot"></i><div class="jjb-dash-kpi__value">18.3%</div><div class="jjb-dash-kpi__label">页面转化率</div><div class="jjb-dash-kpi__detail">下载 ÷ 浏览</div></div><div class="jjb-dash-kpi" style="--jjb-dash-series:var(--jjb-dash-c-web)"><i class="jjb-dash-kpi__dot"></i><div class="jjb-dash-kpi__value">385</div><div class="jjb-dash-kpi__label">Web Referrer</div><div class="jjb-dash-kpi__detail">→ 下载 12.6%</div></div><div class="jjb-dash-kpi" style="--jjb-dash-series:var(--jjb-dash-c-other)"><i class="jjb-dash-kpi__dot"></i><div class="jjb-dash-kpi__value">—</div><div class="jjb-dash-kpi__label">其他渠道</div><div class="jjb-dash-kpi__detail">数据缺失</div></div></div></div></div>
-      </div>
-      <div class="pg-mod" data-mod="dashboard.bars"><div class="pg-sub" data-edit="dashboard.bars#1">Bars · 横向占比条</div>
-        <div class="jjb-dash dash-demo"><div class="jjb-dash-main"><div class="jjb-dash-section-label">下载来源 · 示例数据</div><div class="jjb-dash-card"><div class="jjb-dash-bars"><div class="jjb-dash-bar" style="--jjb-dash-series:var(--jjb-dash-c-search);--jjb-dash-width:62%"><span class="jjb-dash-bar__name">自然搜索</span><div class="jjb-dash-bar__track"><div class="jjb-dash-bar__fill">62.0%</div></div><span class="jjb-dash-bar__value">922</span><span class="jjb-dash-bar__rate">18.3%</span></div><div class="jjb-dash-bar" style="--jjb-dash-series:var(--jjb-dash-c-asa);--jjb-dash-width:8%"><span class="jjb-dash-bar__name">ASA</span><div class="jjb-dash-bar__track"><div class="jjb-dash-bar__fill"></div><span class="jjb-dash-bar__outside">8.0%</span></div><span class="jjb-dash-bar__value">119</span><span class="jjb-dash-bar__rate">12.6%</span></div></div></div></div></div>
-      </div>
-      <div class="pg-mod" data-mod="dashboard.chart-card"><div class="pg-sub" data-edit="dashboard.chart-card#1">Chart card · 筛选、图表/数字、tooltip、legend、口径</div>
-        <div class="jjb-dash dash-demo"><div class="jjb-dash-main"><div class="jjb-dash-section-label">趋势 · 示例数据</div><div class="jjb-dash-card" data-dash-chart><div class="jjb-dash-chart-head"><div class="jjb-dash-chart-head__text"><h3 class="jjb-dash-chart-head__title">渠道下载趋势 <button class="jjb-dash-help" type="button" aria-label="查看图表口径">?<span class="jjb-dash-help__tip">示例数据。分子：下载次数；分母：对应渠道的产品页浏览。来源：虚构示例。下载大于浏览时转化率无效，断线不补零。</span></button></h3><p class="jjb-dash-chart-head__sub">选择渠道查看折线；点数据点可固定明细。</p></div><div class="jjb-dash-chart-head__actions"><div class="jjb-dash-view-toggle" role="group" aria-label="图表视图"><button type="button" aria-pressed="true" data-dash-view="chart">图表</button><button type="button" aria-pressed="false" data-dash-view="numbers">数字</button></div><button class="jjb-dash-copy" type="button" data-dash-copy>复制图片</button><span class="jjb-dash-badge jjb-dash-badge--green" data-dash-range>近 30 天</span></div></div><div class="jjb-dash-chips" aria-label="渠道筛选"><button class="jjb-dash-chip" type="button" aria-pressed="true" data-dash-series="search" style="--jjb-dash-series:var(--jjb-dash-c-search)"><i class="jjb-dash-chip__dot"></i>自然搜索</button><button class="jjb-dash-chip" type="button" aria-pressed="true" data-dash-series="asa" style="--jjb-dash-series:var(--jjb-dash-c-asa)"><i class="jjb-dash-chip__dot"></i>ASA</button><button class="jjb-dash-chip" type="button" aria-pressed="false" data-dash-series="browse" style="--jjb-dash-series:var(--jjb-dash-c-browse)"><i class="jjb-dash-chip__dot"></i>Browse</button><button class="jjb-dash-chip" type="button" disabled style="--jjb-dash-series:var(--jjb-dash-c-other)"><i class="jjb-dash-chip__dot"></i>其他</button><button class="jjb-dash-chip jjb-dash-chip--more" type="button" data-dash-more>+ 更多</button></div><div class="jjb-dash-chart-scroll" data-dash-chart-view><div class="jjb-dash-chart-wrap"><svg viewBox="0 0 820 330" role="img" aria-label="示例数据：渠道下载趋势"><path class="jjb-dash-gridline" d="M54 50H790 M54 100H790 M54 150H790 M54 200H790 M54 250H790"/><path class="jjb-dash-axis" d="M54 30V280H790"/><g><text x="20" y="254">0</text><text x="14" y="204">20</text><text x="14" y="154">40</text><text x="14" y="104">60</text><text x="14" y="54">80</text><text x="120" y="309" transform="rotate(-35 120 309)" text-anchor="end">09-01</text><text x="340" y="309" transform="rotate(-35 340 309)" text-anchor="end">09-08</text><text x="560" y="309" transform="rotate(-35 560 309)" text-anchor="end">09-15</text><text x="780" y="309" transform="rotate(-35 780 309)" text-anchor="end">09-22</text></g><g data-dash-plot="search" style="--jjb-dash-series:var(--jjb-dash-c-search)"><path class="jjb-dash-line" d="M120 180 C200 170 260 115 340 125 S490 155 560 100 S710 75 780 60"/><circle class="jjb-dash-point" cx="120" cy="180" r="3.3" data-dash-point="自然搜索 · 40 次"/><circle class="jjb-dash-point" cx="340" cy="125" r="3.3" data-dash-point="自然搜索 · 62 次"/><circle class="jjb-dash-point" cx="560" cy="100" r="3.3" data-dash-point="自然搜索 · 72 次"/><circle class="jjb-dash-point" cx="780" cy="60" r="3.3" data-dash-point="自然搜索 · 88 次"/></g><g data-dash-plot="asa" style="--jjb-dash-series:var(--jjb-dash-c-asa)"><path class="jjb-dash-line" d="M120 230 C220 220 240 250 340 220 S470 175 560 190 S710 165 780 155"/><circle class="jjb-dash-point" cx="120" cy="230" r="3.3" data-dash-point="ASA · 20 次"/><circle class="jjb-dash-point" cx="340" cy="220" r="3.3" data-dash-point="ASA · 24 次"/><circle class="jjb-dash-point" cx="560" cy="190" r="3.3" data-dash-point="ASA · 36 次"/><circle class="jjb-dash-point" cx="780" cy="155" r="3.3" data-dash-point="ASA · 50 次"/></g><g data-dash-plot="browse" hidden style="--jjb-dash-series:var(--jjb-dash-c-browse)"><path class="jjb-dash-line" d="M120 255 C230 245 260 235 340 240 S490 225 560 210 S700 195 780 200"/></g></svg><div class="jjb-dash-tip" data-dash-tip hidden>示例数据</div><div class="jjb-dash-pin" data-dash-pin hidden><button class="jjb-dash-pin__close" type="button" aria-label="关闭固定提示">×</button><span data-dash-pin-text></span><div class="jjb-dash-pin__sub">示例数据 · 点击固定</div></div></div></div><div class="jjb-dash-numbers" data-dash-numbers hidden><div class="jjb-dash-table-wrap"><table class="jjb-dash-table"><thead><tr><th>日期</th><th>自然搜索</th><th>ASA</th><th>Browse</th></tr></thead><tbody><tr><td>09-01</td><td>40</td><td>20</td><td>10</td></tr><tr><td>09-08</td><td>62</td><td>24</td><td>16</td></tr><tr><td>09-15</td><td>72</td><td>36</td><td>22</td></tr><tr><td>09-22</td><td>88</td><td>50</td><td>20</td></tr></tbody></table></div></div><div class="jjb-dash-legend"><span class="jjb-dash-legend__item" style="--jjb-dash-series:var(--jjb-dash-c-search)"><i class="jjb-dash-legend__line"></i>自然搜索</span><span class="jjb-dash-legend__item" style="--jjb-dash-series:var(--jjb-dash-c-asa)"><i class="jjb-dash-legend__line"></i>ASA</span><span class="jjb-dash-legend__item" style="--jjb-dash-series:var(--jjb-dash-c-other)"><i class="jjb-dash-legend__line jjb-dash-legend__line--dashed"></i>虚线＝不同口径</span></div><div class="jjb-dash-callout">口径：下载次数来自虚构示例，转化率分母为对应渠道产品页浏览。虚线代表不同口径，不与实线直接比较大小。缺失值断线，不补零。</div></div></div></div>
-      </div>
-      <div class="pg-mod" data-mod="dashboard.table"><div class="pg-sub" data-edit="dashboard.table#1">Table · 数字表</div>
-        <div class="jjb-dash dash-demo"><div class="jjb-dash-main"><div class="jjb-dash-section-label">每日明细 · 示例数据</div><div class="jjb-dash-card"><div class="jjb-dash-table-wrap"><table class="jjb-dash-table"><thead><tr><th>日期</th><th>曝光</th><th>浏览</th><th>下载</th><th>转化率</th></tr></thead><tbody><tr><td>09-01</td><td>1,220</td><td>812</td><td>148</td><td>18.2%</td></tr><tr><td>09-02</td><td>1,295</td><td>831</td><td>—</td><td>—</td></tr><tr data-dash-extra hidden><td>09-03</td><td>1,318</td><td>840</td><td>159</td><td>18.9%</td></tr></tbody></table></div><button class="jjb-dash-table-more" type="button" data-dash-expand aria-expanded="false">展开全部</button></div></div></div>
-      </div>
-      <div class="pg-mod" data-mod="dashboard.tooltip"><div class="pg-sub" data-edit="dashboard.tooltip#1">Tooltip · tip 与 pin card</div>
-        <div class="jjb-dash dash-demo"><div class="jjb-dash-main"><div class="jjb-dash-section-label">悬浮与固定 · 示例数据</div><div class="jjb-dash-card" style="display:flex;flex-wrap:wrap;gap:20px"><div class="jjb-dash-tip"><strong>09-08 · 62 次</strong><div class="jjb-dash-tip__sub">自然搜索 · 悬浮提示</div></div><div class="jjb-dash-pin"><button class="jjb-dash-pin__close" type="button" aria-label="关闭示例固定卡">×</button><strong>09-15 · 36 次</strong><div class="jjb-dash-pin__sub">ASA · 点击后固定</div></div><div class="jjb-dash-empty">当前筛选范围没有可展示的渠道数据</div></div></div></div>
-      </div>
-      <div class="pg-mod" data-mod="dashboard.chart-grammar"><div class="pg-sub" data-edit="dashboard.chart-grammar#1">Chart grammar · 虚线口径、断线、双轴</div>
-        <div class="jjb-dash dash-demo"><div class="jjb-dash-main"><div class="jjb-dash-section-label">图表语法 · 示例数据</div><div class="jjb-dash-card"><div class="jjb-dash-chart-head"><div class="jjb-dash-chart-head__text"><h3 class="jjb-dash-chart-head__title">口径与缺失值 <button class="jjb-dash-help" type="button" aria-label="查看图表口径">?<span class="jjb-dash-help__tip">示例数据：下载÷浏览。某点下载大于浏览，转化率无效，故断线；虚线是不同口径。</span></button></h3></div><span class="jjb-dash-badge">示例数据</span></div><div class="jjb-dash-chart-scroll"><div class="jjb-dash-chart-wrap"><svg viewBox="0 0 820 330" role="img" aria-label="示例数据：虚线、断线及双轴"><path class="jjb-dash-gridline" d="M60 50H780 M60 100H780 M60 150H780 M60 200H780 M60 250H780"/><path class="jjb-dash-axis" d="M60 30V280H780 M780 30V280"/><g><text x="20" y="255">0</text><text x="14" y="205">20</text><text x="14" y="155">40</text><text x="14" y="105">60</text><text x="14" y="55">80</text><text x="785" y="255">0</text><text x="785" y="155">100</text><text x="785" y="55">200</text><text x="130" y="310" transform="rotate(-35 130 310)" text-anchor="end">09-01</text><text x="350" y="310" transform="rotate(-35 350 310)" text-anchor="end">09-08</text><text x="570" y="310" transform="rotate(-35 570 310)" text-anchor="end">09-15</text><text x="760" y="310" transform="rotate(-35 760 310)" text-anchor="end">09-22</text></g><g style="--jjb-dash-series:var(--jjb-dash-c-search)"><rect class="jjb-dash-bar-mark" x="112" y="160" width="36" height="120"/><rect class="jjb-dash-bar-mark" x="332" y="130" width="36" height="150"/><rect class="jjb-dash-bar-mark" x="552" y="105" width="36" height="175"/><rect class="jjb-dash-bar-mark" x="742" y="95" width="36" height="185"/></g><g style="--jjb-dash-series:var(--jjb-dash-c-asa)"><path class="jjb-dash-line" d="M130 220 C210 200 260 180 350 170"/><path class="jjb-dash-line" d="M570 150 C640 145 700 125 760 110"/><circle class="jjb-dash-point" cx="130" cy="220" r="3.3"/><circle class="jjb-dash-point" cx="350" cy="170" r="3.3"/><circle class="jjb-dash-point" cx="570" cy="150" r="3.3"/><circle class="jjb-dash-point" cx="760" cy="110" r="3.3"/></g><g style="--jjb-dash-series:var(--jjb-dash-c-other)"><path class="jjb-dash-line jjb-dash-line--dashed" d="M130 245 C320 235 560 225 760 215"/></g><text class="jjb-dash-value-label" x="350" y="158">44</text><text x="478" y="150">无效值：断线</text></svg></div></div><div class="jjb-dash-legend"><span class="jjb-dash-legend__item" style="--jjb-dash-series:var(--jjb-dash-c-search)"><i class="jjb-dash-legend__swatch"></i>曝光 · 左轴</span><span class="jjb-dash-legend__item" style="--jjb-dash-series:var(--jjb-dash-c-asa)"><i class="jjb-dash-legend__line"></i>下载 · 右轴</span><span class="jjb-dash-legend__item" style="--jjb-dash-series:var(--jjb-dash-c-other)"><i class="jjb-dash-legend__line jjb-dash-legend__line--dashed"></i>不同口径</span></div><div class="jjb-dash-callout">口径：曝光与下载使用不同纵轴；虚线为不同口径，不能与实线直接比较。09-15 示例转化率无效，图上断线且不补零。</div></div></div></div>
-      </div>
-      <div class="pg-mod" data-mod="dashboard.rules"><div class="pg-sub" data-edit="dashboard.rules#1">Rules · 内容约定</div>
-        <div class="jjb-dash dash-demo"><div class="jjb-dash-main"><div class="jjb-dash-section-label">内容约定</div><div class="jjb-dash-card"><ol><li>每个模块为 section label + 卡片；卡内顺序：卡头 → 筛选 chip → 图/表 → legend → 口径 callout。</li><li>每张图都有「口径：」callout 和至少一个 ?，写清分子、分母、数据源、已知偏差。</li><li>每张趋势图支持「图表 / 数字」切换与「复制图片」。</li><li>时间范围和聚合粒度是全页唯一控制，放顶部 date-bar；卡片右上 badge 回显范围。</li><li>中文界面，数字加千分位，百分比保留 1 位；缺失值用「—」。</li><li>示例与模板只用虚构数据并标注「示例数据」，不内联真实 ASC/ASA 数据。</li></ol></div></div></div>
-      </div>
-      <div class="pg-mod" data-mod="dashboard.example"><div class="pg-sub" data-edit="dashboard.example#1">Example · 整页拼装</div>
-        <div class="jjb-dash dash-demo"><div class="jjb-dash-topbar"><span class="jjb-dash-topbar__icon">J</span><strong class="jjb-dash-topbar__product">JuJuBit</strong><span class="jjb-dash-topbar__sep">/</span><span class="jjb-dash-topbar__title">示例漏斗看板</span><span class="jjb-dash-topbar__spacer"></span><span class="jjb-dash-badge">示例数据</span><span class="jjb-dash-badge jjb-dash-badge--green">近 30 天</span></div><div class="jjb-dash-main jjb-dash-stack"><div class="jjb-dash-date-bar"><span class="jjb-dash-date-bar__label">时间范围</span><button class="jjb-dash-pill" aria-pressed="true">近 30 天</button><input class="jjb-dash-date" type="date" aria-label="开始日期" value="2026-09-01"><input class="jjb-dash-date" type="date" aria-label="结束日期" value="2026-09-30"><span class="jjb-dash-date-bar__label">聚合粒度</span><button class="jjb-dash-pill" aria-pressed="true">按日</button><button class="jjb-dash-pill" aria-pressed="false">按周</button><span class="jjb-dash-date-bar__range"><strong>30 天</strong> · 示例数据</span></div><div class="jjb-dash-section-label">核心指标</div><div class="jjb-dash-kpis"><div class="jjb-dash-kpi"><i class="jjb-dash-kpi__dot"></i><div class="jjb-dash-kpi__value">12,480</div><div class="jjb-dash-kpi__label">曝光</div></div><div class="jjb-dash-kpi"><i class="jjb-dash-kpi__dot"></i><div class="jjb-dash-kpi__value">8,125</div><div class="jjb-dash-kpi__label">浏览</div></div><div class="jjb-dash-kpi"><i class="jjb-dash-kpi__dot"></i><div class="jjb-dash-kpi__value">1,487</div><div class="jjb-dash-kpi__label">下载</div></div></div><div class="jjb-dash-section-label">渠道占比</div><div class="jjb-dash-card"><div class="jjb-dash-bars"><div class="jjb-dash-bar" style="--jjb-dash-width:62%"><span class="jjb-dash-bar__name">自然搜索</span><div class="jjb-dash-bar__track"><div class="jjb-dash-bar__fill">62.0%</div></div><span class="jjb-dash-bar__value">922</span><span class="jjb-dash-bar__rate">18.3%</span></div></div></div><div class="jjb-dash-section-label">下载趋势</div><div class="jjb-dash-card"><div class="jjb-dash-chart-head"><div class="jjb-dash-chart-head__text"><h3 class="jjb-dash-chart-head__title">自然搜索 <button class="jjb-dash-help" type="button" aria-label="查看口径">?<span class="jjb-dash-help__tip">下载次数÷产品页浏览，来源为虚构示例；缺失点断线。</span></button></h3></div><span class="jjb-dash-badge jjb-dash-badge--green">近 30 天</span></div><div class="jjb-dash-chart-scroll"><div class="jjb-dash-chart-wrap"><svg viewBox="0 0 820 330" role="img" aria-label="示例下载趋势"><path class="jjb-dash-gridline" d="M60 70H780 M60 130H780 M60 190H780 M60 250H780"/><path class="jjb-dash-axis" d="M60 30V280H780"/><path class="jjb-dash-line" d="M120 235 C270 195 350 205 500 135 S680 120 760 80"/><text x="120" y="310">09-01</text><text x="500" y="310">09-15</text></svg></div></div><div class="jjb-dash-legend"><span class="jjb-dash-legend__item"><i class="jjb-dash-legend__line"></i>自然搜索</span></div><div class="jjb-dash-callout">口径：下载次数÷产品页浏览；来源为虚构示例，缺失点断线，不补零。</div></div></div></div>
-      </div>
-    </section>
   </main>
 </div>
 <div class="jjb-toast copied" id="copied">已复制</div>
 
-<script src="skill/jujubit-design-system/templates/dashboard/html2canvas.min.js"></script>
 <script>
 const ICONS = ["add", "add_square", "album", "back", "box", "camera_filled", "camera_outline", "cart", "cart_outline", "chat", "check", "check_small", "chevron_down", "chevron_left", "chevron_right", "close", "close_alert", "close_circle", "compass", "copy", "delete", "dislike", "edit", "edit_refine", "edit_square", "favorite", "heart", "inspire", "language", "like", "loading", "magic", "magic_pencil", "magic_pencil_sparkles", "magic_wand", "mail", "menu", "minus", "more_horizontal", "my", "notification", "payment", "redo", "search", "send", "setting", "share", "shield", "size", "sparkle", "sparkles", "templet", "texture", "truck", "undo", "user", "view_2d", "view_3d"];
 const $ = (s, r = document) => r.querySelector(s);
@@ -1089,114 +1040,6 @@ document.addEventListener('click', e => {
   const el = e.target.closest('[data-copy]');
   if (el) copy(el.dataset.copy, el.dataset.label || el.dataset.copy);
 });
-
-// [看板] 色板、可复制示例和小范围交互；仅绑定到 #dashboard。
-(() => {
-  const root = document.querySelector('#dashboard');
-  const base = ['bg','surface','surface-1','surface-2','border','border-strong','text','text-2','sub','hint','blue','blue-l','blue-d','green','green-l','red','red-l','orange','orange-l','orange-d','purple','purple-l','gray','gray-l'];
-  const channels = [['asa','ASA 搜索广告'],['search','自然搜索 / 汇总'],['browse','Browse'],['appref','App Referrer'],['web','Web Referrer'],['other','其他'],['instagram','Instagram'],['facebook','Facebook'],['tiktok','TikTok'],['youtube','YouTube'],['google','Google'],['teal','青色补位']];
-  root.querySelectorAll('[data-dash-swatches]').forEach(grid => {
-    const rows = grid.dataset.dashSwatches === 'base' ? base.map(x => [x, x]) : channels.map(([k, n]) => ['c-' + k, n]);
-    grid.innerHTML = rows.map(([k, n]) => `<div class="dash-swatch"><div class="dash-swatch__color" style="--swatch:var(--jjb-dash-${k})"></div><div class="dash-swatch__label">${n}<br><code>--jjb-dash-${k}</code></div></div>`).join('');
-  });
-  root.querySelector('[data-mod="dashboard.tokens"] .jjb-dash').classList.add('dash-demo');
-  const example = root.querySelector('[data-mod="dashboard.example"]');
-  example.querySelector('.jjb-dash-date-bar').replaceWith(root.querySelector('[data-mod="dashboard.date-bar"] .jjb-dash-date-bar').cloneNode(true));
-  example.querySelector('.jjb-dash-main > .jjb-dash-card:last-child').replaceWith(root.querySelector('[data-mod="dashboard.chart-card"] [data-dash-chart]').cloneNode(true));
-  const moreButton = root.querySelector('[data-dash-more]');
-  moreButton.insertAdjacentHTML('beforebegin', '<button class="jjb-dash-chip" type="button" data-dash-extra-chip disabled hidden style="--jjb-dash-series:var(--jjb-dash-c-instagram)"><i class="jjb-dash-chip__dot"></i>Instagram</button><button class="jjb-dash-chip" type="button" data-dash-extra-chip disabled hidden style="--jjb-dash-series:var(--jjb-dash-c-web)"><i class="jjb-dash-chip__dot"></i>Web Referrer</button>');
-  root.querySelectorAll('.pg-mod').forEach(mod => {
-    const demo = mod.querySelector('.dash-demo');
-    if (!demo) return;
-    const details = document.createElement('details');
-    details.className = 'snippet dash-snippet';
-    details.innerHTML = '<summary>Markup · 复制此子模块</summary><button type="button" class="jjb-btn jjb-btn--secondary jjb-btn--s" data-dash-copy-markup>复制 markup</button><pre></pre>';
-    details.querySelector('pre').textContent = demo.outerHTML;
-    mod.append(details);
-  });
-  root.addEventListener('click', async e => {
-    const markup = e.target.closest('[data-dash-copy-markup]');
-    if (markup) { copy(markup.closest('details').querySelector('pre').textContent, 'markup'); return; }
-    const pill = e.target.closest('.jjb-dash-date-bar__group .jjb-dash-pill');
-    if (pill) {
-      pill.parentElement.querySelectorAll('.jjb-dash-pill').forEach(b => b.setAttribute('aria-pressed', String(b === pill)));
-      if (pill.parentElement.getAttribute('aria-label') === '时间范围') {
-        const days = {'全周期':'—','上周':'7 天','近两周':'14 天','近 30 天':'30 天','近 90 天':'90 天'};
-        pill.closest('.jjb-dash-date-bar').querySelector('.jjb-dash-date-bar__range strong').textContent = days[pill.textContent] || '30 天';
-        root.querySelectorAll('[data-dash-range]').forEach(b => b.textContent = pill.textContent);
-      }
-      return;
-    }
-    const view = e.target.closest('[data-dash-view]');
-    if (view) {
-      const card = view.closest('[data-dash-chart]');
-      card.querySelectorAll('[data-dash-view]').forEach(b => b.setAttribute('aria-pressed', String(b === view)));
-      card.querySelector('[data-dash-chart-view]').hidden = view.dataset.dashView !== 'chart';
-      card.querySelector('[data-dash-numbers]').hidden = view.dataset.dashView !== 'numbers';
-      return;
-    }
-    const chip = e.target.closest('[data-dash-series]');
-    if (chip) {
-      const card = chip.closest('[data-dash-chart]');
-      const on = chip.getAttribute('aria-pressed') !== 'true';
-      chip.setAttribute('aria-pressed', String(on));
-      card.querySelector(`[data-dash-plot="${chip.dataset.dashSeries}"]`).hidden = !on;
-      return;
-    }
-    const point = e.target.closest('[data-dash-point]');
-    if (point) {
-      const wrap = point.closest('.jjb-dash-chart-wrap');
-      const pin = wrap.querySelector('[data-dash-pin]');
-      pin.querySelector('[data-dash-pin-text]').textContent = point.dataset.dashPoint;
-      pin.style.left = Math.min(point.getBoundingClientRect().left - wrap.getBoundingClientRect().left, wrap.clientWidth - 245) + 'px';
-      pin.style.top = Math.max(0, point.getBoundingClientRect().top - wrap.getBoundingClientRect().top - 58) + 'px';
-      pin.hidden = false;
-      return;
-    }
-    if (e.target.closest('.jjb-dash-pin__close')) { e.target.closest('.jjb-dash-pin').hidden = true; return; }
-    const expand = e.target.closest('[data-dash-expand]');
-    if (expand) {
-      const on = expand.getAttribute('aria-expanded') !== 'true';
-      expand.setAttribute('aria-expanded', String(on));
-      expand.textContent = on ? '收起' : '展开全部';
-      expand.closest('.jjb-dash-card').querySelectorAll('[data-dash-extra]').forEach(row => row.hidden = !on);
-      return;
-    }
-    const more = e.target.closest('[data-dash-more]');
-    if (more) { const on = more.getAttribute('aria-expanded') !== 'true'; more.setAttribute('aria-expanded', String(on)); more.textContent = on ? '收起' : '+ 更多'; more.parentElement.querySelectorAll('[data-dash-extra-chip]').forEach(b => { b.hidden = !on; }); return; }
-    const image = e.target.closest('[data-dash-copy]');
-    if (image) {
-      image.disabled = true;
-      try {
-        const canvas = await html2canvas(image.closest('[data-dash-chart]'), { backgroundColor: getComputedStyle(root.querySelector('.jjb-dash-card')).backgroundColor });
-        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-        if (!blob || !navigator.clipboard?.write || !window.ClipboardItem) throw new Error('clipboard unavailable');
-        await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
-        image.classList.add('is-success'); image.textContent = '已复制';
-      } catch (_) { image.classList.add('is-error'); image.textContent = '复制失败'; }
-      setTimeout(() => { image.classList.remove('is-success', 'is-error'); image.textContent = '复制图片'; image.disabled = false; }, 1800);
-    }
-  });
-  root.addEventListener('change', e => {
-    if (!e.target.matches('.jjb-dash-date')) return;
-    const bar = e.target.closest('.jjb-dash-date-bar');
-    const dates = [...bar.querySelectorAll('.jjb-dash-date')].map(x => x.value);
-    const span = dates.every(Boolean) ? Math.max(0, Math.round((new Date(dates[1]) - new Date(dates[0])) / 86400000) + 1) : 0;
-    bar.querySelectorAll('[aria-label="时间范围"] .jjb-dash-pill').forEach(b => b.setAttribute('aria-pressed', String(b.textContent === '自定义')));
-    bar.querySelector('.jjb-dash-date-bar__range strong').textContent = span ? `${span} 天` : '—';
-    root.querySelectorAll('[data-dash-range]').forEach(b => b.textContent = '自定义');
-  });
-  root.addEventListener('pointerover', e => {
-    const point = e.target.closest('[data-dash-point]');
-    if (!point) return;
-    const wrap = point.closest('.jjb-dash-chart-wrap'), tip = wrap.querySelector('[data-dash-tip]');
-    tip.textContent = point.dataset.dashPoint + ' · 示例数据';
-    tip.style.left = Math.min(point.getBoundingClientRect().left - wrap.getBoundingClientRect().left, wrap.clientWidth - 245) + 'px';
-    tip.style.top = Math.max(0, point.getBoundingClientRect().top - wrap.getBoundingClientRect().top - 54) + 'px';
-    tip.hidden = false;
-  });
-  root.addEventListener('pointerout', e => { if (e.target.closest('[data-dash-point]')) e.target.closest('.jjb-dash-chart-wrap').querySelector('[data-dash-tip]').hidden = true; });
-})();
 
 // 轮播指示点演示：自动轮换 + 点击切换；悬停暂停；尊重 prefers-reduced-motion
 (() => {
