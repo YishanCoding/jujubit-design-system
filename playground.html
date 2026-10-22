@@ -186,6 +186,66 @@
   .sym-row__name { min-width: 120px; font-size: 14px; font-weight: 600; }
   .sym-row__name code { font-weight: 400; color: var(--jjb-text-tertiary); }
   .sym-row img { height: 56px; max-width: 100%; }
+
+  /* [F] 徐莹睿 SF Pro 规范 2026-10-22 */
+  #type .type-family-grid, #type .type-colors { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--jjb-space-4); }
+  #type .type-family-card { padding:var(--jjb-space-6); border:var(--jjb-line-thin) solid var(--jjb-border); border-radius:var(--jjb-radius-xl); background:var(--jjb-surface-sunken); min-width:0; }
+  #type .type-family-card h3 { margin:var(--jjb-space-3) 0; font:var(--jjb-weight-h3) var(--jjb-type-h3)/var(--jjb-lh-type-normal) var(--jjb-font-display); letter-spacing:var(--jjb-ls-h3); }
+  #type .type-family-card p { margin:0; color:var(--jjb-type-body-color); font-size:var(--jjb-type-body2); overflow-wrap:anywhere; }
+  #type .type-family-card .type-alphabet { color:var(--jjb-type-primary-color); margin-top:var(--jjb-space-4); }
+  #type .type-toolbar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:var(--jjb-space-3); margin:var(--jjb-space-8) 0 var(--jjb-space-3); }
+  #type .type-toolbar .pg-sub { margin:0; }
+  #type .type-toggle { display:flex; gap:var(--jjb-space-1); padding:var(--jjb-space-1); border-radius:var(--jjb-radius-pill); background:var(--jjb-neutral-200); }
+  #type .type-toggle button, #type .type-chips button { border:var(--jjb-line-thin) solid transparent; border-radius:var(--jjb-radius-pill); padding:var(--jjb-space-2) var(--jjb-space-4); background:transparent; color:var(--jjb-text-primary); font:var(--jjb-weight-h4) var(--jjb-type-body2)/var(--jjb-lh-type-normal) var(--jjb-font-body); cursor:pointer; }
+  #type .type-toggle button[aria-pressed=true], #type .type-chips button[aria-pressed=true] { background:var(--jjb-text-primary); color:var(--jjb-text-on-dark); }
+  #type .type-toggle button:focus-visible, #type .type-chips button:focus-visible, #type select:focus-visible { outline:var(--jjb-line-strong) solid var(--jjb-focus); }
+  #type .type-scale { border:var(--jjb-line-thin) solid var(--jjb-border); border-radius:var(--jjb-radius-lg); overflow:hidden; }
+  #type .type-scale-row { display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,2fr); gap:var(--jjb-space-6); padding:var(--jjb-space-6); border-bottom:var(--jjb-line-thin) solid var(--jjb-border); min-width:0; }
+  #type .type-scale-row:last-child { border-bottom:0; }
+  #type .type-scale-name { color:var(--jjb-type-accent-color); font-weight:var(--jjb-weight-h3); }
+  #type .type-scale-sample { min-width:0; align-self:center; overflow-wrap:anywhere; color:var(--jjb-type-heading-color); }
+  #type .type-scale-sample[data-level="h1"] { font:var(--jjb-weight-h1) var(--jjb-type-h1)/var(--jjb-lh-type-normal) var(--jjb-font-display); text-transform:uppercase; }
+  #type .type-scale-sample[data-level="h2"] { font:var(--jjb-weight-h2) var(--jjb-type-h2)/var(--jjb-lh-h2) var(--jjb-font-display); text-transform:uppercase; }
+  #type .type-scale-sample[data-level="h3"] { font:var(--jjb-weight-h3) var(--jjb-type-h3)/var(--jjb-lh-type-normal) var(--jjb-font-display); letter-spacing:var(--jjb-ls-h3); }
+  #type .type-scale-sample[data-level="h4"] { font:var(--jjb-weight-h4) var(--jjb-type-h4)/var(--jjb-lh-type-normal) var(--jjb-font-display); }
+  #type .type-scale-sample[data-level="body1"] { font:var(--jjb-weight-body) var(--jjb-type-body1)/var(--jjb-lh-type-normal) var(--jjb-font-body); }
+  #type .type-scale-sample[data-level="body2"] { font:var(--jjb-weight-body) var(--jjb-type-body2)/var(--jjb-lh-type-normal) var(--jjb-font-body); }
+  #type .type-scale-sample[data-level="body3"] { font:var(--jjb-weight-body) var(--jjb-type-body3)/var(--jjb-lh-type-normal) var(--jjb-font-body); }
+  #type .type-scale-sample[data-level^="body"] { color:var(--jjb-type-body-color); letter-spacing:var(--jjb-ls-body); }
+  #type .type-scale-spec { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--jjb-space-3); margin-top:var(--jjb-space-4); }
+  #type .type-scale-spec span { min-width:0; color:var(--jjb-type-primary-color); overflow-wrap:anywhere; }
+  #type .type-scale-spec small { display:block; color:var(--jjb-type-body-color); text-transform:uppercase; }
+  #type .type-locale-controls { display:flex; flex-wrap:wrap; gap:var(--jjb-space-3); align-items:center; }
+  #type select { font:var(--jjb-weight-body) var(--jjb-type-body2)/var(--jjb-lh-type-normal) var(--jjb-font-body); padding:var(--jjb-space-2); border:var(--jjb-line-thin) solid var(--jjb-border); border-radius:var(--jjb-radius-sm); background:var(--jjb-surface); }
+  #type .type-chips { display:flex; flex-wrap:wrap; gap:var(--jjb-space-1); }
+  #type .type-chips button { padding:var(--jjb-space-1) var(--jjb-space-3); }
+  #type .type-locale-stage, #type .type-editorial { border:var(--jjb-line-thin) solid var(--jjb-border); border-radius:var(--jjb-radius-xl); padding:var(--jjb-space-8); margin-top:var(--jjb-space-4); min-width:0; }
+  #type .type-locale-stage h3 { font:var(--jjb-weight-h2) var(--jjb-type-h2)/var(--jjb-lh-h2) var(--jjb-font-display); overflow-wrap:anywhere; }
+  #type .type-locale-stage p, #type .type-editorial p { font:var(--jjb-weight-body) var(--jjb-type-body1)/var(--jjb-lh-type-normal) var(--jjb-font-body); letter-spacing:var(--jjb-ls-body); color:var(--jjb-type-body-color); }
+  #type .type-glyphs, #type .type-coverage { overflow-wrap:anywhere; color:var(--jjb-type-body-color); font-size:var(--jjb-type-body3); }
+  #type .type-color { display:flex; align-items:center; gap:var(--jjb-space-4); padding:var(--jjb-space-4); border:var(--jjb-line-thin) solid var(--jjb-border); border-radius:var(--jjb-radius-lg); }
+  #type .type-color-swatch { flex:none; width:var(--jjb-space-8); height:var(--jjb-space-8); border:var(--jjb-line-thin) solid var(--jjb-border); border-radius:var(--jjb-radius-full); background:var(--swatch); }
+  #type .type-editorial { max-width:var(--jjb-measure); }
+  #type .type-editorial h3 { font:var(--jjb-weight-h2) var(--jjb-type-h2)/var(--jjb-lh-h2) var(--jjb-font-display); text-transform:uppercase; }
+  #type .type-editorial h4 { font:var(--jjb-weight-h3) var(--jjb-type-h3)/var(--jjb-lh-type-normal) var(--jjb-font-display); letter-spacing:var(--jjb-ls-h3); }
+  #type .type-code { padding:var(--jjb-space-4); background:var(--jjb-dark-grey); color:var(--jjb-text-on-dark); border-radius:var(--jjb-radius-md); overflow:auto; white-space:pre-wrap; overflow-wrap:anywhere; }
+  @media(max-width:767px) {
+    #type .type-family-grid, #type .type-colors, #type .type-scale-row { grid-template-columns:1fr; }
+    #type .type-scale-row, #type .type-locale-stage, #type .type-editorial { padding:var(--jjb-space-4); }
+    #type .type-scale-spec { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    #type .type-scale-sample[data-level="h1"] { font-size:var(--jjb-type-h1-m); }
+    #type .type-scale-sample[data-level="h2"] { font-size:var(--jjb-type-h2-m); }
+    #type .type-scale-sample[data-level="h3"] { font-size:var(--jjb-type-h3-m); }
+    #type .type-scale-sample[data-level="h4"] { font-size:var(--jjb-type-h4-m); }
+  }
+  #type[data-scale="mobile"] .type-scale-sample[data-level="h1"] { font-size:var(--jjb-type-h1-m); }
+  #type[data-scale="mobile"] .type-scale-sample[data-level="h2"] { font-size:var(--jjb-type-h2-m); }
+  #type[data-scale="mobile"] .type-scale-sample[data-level="h3"] { font-size:var(--jjb-type-h3-m); }
+  #type[data-scale="mobile"] .type-scale-sample[data-level="h4"] { font-size:var(--jjb-type-h4-m); }
+  #type[data-scale="desktop"] .type-scale-sample[data-level="h1"] { font-size:var(--jjb-type-h1); }
+  #type[data-scale="desktop"] .type-scale-sample[data-level="h2"] { font-size:var(--jjb-type-h2); }
+  #type[data-scale="desktop"] .type-scale-sample[data-level="h3"] { font-size:var(--jjb-type-h3); }
+  #type[data-scale="desktop"] .type-scale-sample[data-level="h4"] { font-size:var(--jjb-type-h4); }
 </style>
 </head>
 <body class="jjb">
@@ -344,7 +404,7 @@
         <h3 class="pg-sub" data-edit="principles.site#1">网站设计思路</h3>
         <ul class="rules">
           <li>橙色突出主操作，黑白承载内容。<span class="src src--f">F</span> <details class="pg-help"><summary aria-label="展开色彩原则">?</summary><div class="pg-help__body"><p>做：主按钮用品牌橙，文字与底色用中性色。不做：给每个入口分配一种强调色。</p><p><span class="src src--inferred">推断</span> 让用户先看到作品，再找到开始定制的入口，减少装饰色争抢注意力。</p><p>用法：沿用<a href="#color">色彩</a>与<a href="#buttons">按钮</a>示例。</p></div></details></li>
-          <li>Bebas 标题建立层级，Outfit 正文解释内容。<span class="src src--f">F</span> <details class="pg-help"><summary aria-label="展开字体原则">?</summary><div class="pg-help__body"><p>做：英文标题用 Bebas Neue；正文、按钮、表单用 Outfit。不做：把整段说明排成大写展示字，或再加装饰字体。</p><p><span class="src src--inferred">推断</span> 标题帮助扫读，正文保证细节可读；两者分工比每块换字体更容易保持品牌识别。</p><p>用法：从<a href="#type">字体阶梯</a>选层级。</p></div></details></li>
+          <li>SF Pro Display 用字重和字号建立标题、正文层级。<span class="src src--f">F</span> <details class="pg-help"><summary aria-label="展开字体原则">?</summary><div class="pg-help__body"><p>做：标题和正文都用系统字体栈；H1/H2 700 大写，H3/H4 600。不要嵌入 SF Pro 字体文件。</p><p><span class="src src--inferred">推断</span> 字重、字号与大小写帮助扫读，正文保留可读性。</p><p>用法：从<a href="#type">字体阶梯</a>选层级。</p></div></details></li>
           <li>先展示作品和实物效果，再解释创作方法。<span class="src src--f">F</span> <details class="pg-help"><summary aria-label="展开作品原则">?</summary><div class="pg-help__body"><p>设计稿把作品、模板与过程展示放在主要位置。首页改版需求也要求用产品效果帮助理解定制。</p><p>做：首屏给清晰作品和创作入口，分类图展示产品效果。不做：只用抽象装饰图，让用户猜能做出什么。</p><p>用法：参考<a href="#blocks">模板入口与步骤区块</a>。</p></div></details></li>
           <li>按「看作品 → 选风格 → 了解过程与实物 → 开始定制」组织信息。<span class="src src--inferred">推断</span> <details class="pg-help"><summary aria-label="展开信息与转化路径">?</summary><div class="pg-help__body"><p>这是根据首页改版需求整理的信息顺序，用户可跳过说明直接定制。</p><p>做：首屏说明能做什么并保留创作入口；模板帮助选择；步骤、实物与 FAQ 回答顾虑。已有想法的人可直接开始。</p><p>不做：把所有卖点挤进首屏，或要求用户看完说明才能定制。</p></div></details></li>
           <li>商品图按实际类型标注，AI 预览、产品渲染与实物照分开。<span class="src src--inferred">推断</span> <details class="pg-help"><summary aria-label="展开图片与信任原则">?</summary><div class="pg-help__body"><p>图片用途不能证明图片来源；“商品图”也可能是渲染图。分开标注，才能让用户判断哪些展示创意，哪些证明交付效果。</p><p>做：在图旁写明原始照片、AI 预览、产品渲染或实物照片；对比图使用同一作品、已获授权的素材。</p><p>不做：把 AI 预览标成实物或买家秀。来源不明时只标 Sample image，不作交付证明。</p></div></details></li>
@@ -357,10 +417,10 @@
         <h3 class="pg-sub" data-edit="principles.ui#1">新版 UI 风格的设计思路 · 2026-10</h3>
         <ul class="rules">
           <li>首页区块改为全宽铺满，只留左右边距。<span class="src src--new">新版</span> <details class="pg-help"><summary aria-label="展开全宽区块的变化与用法">?</summary><div class="pg-help__body"><p>变化：旧稿的居中窄容器改为全宽区块。</p><p><span class="src src--inferred">推断</span> 想解决：宽屏两侧空白过多，作品展示面积不足。</p><p>用法：首页展示区用 <code>.jjb-container.jjb-container--wide</code>。做：保留桌面与手机各自的 gutter。不做：把文章、政策和表单也强行铺满。</p></div></details></li>
-          <li>区块标题统一为居中 Bebas 64，右侧放 View All。<span class="src src--new">新版</span> <details class="pg-help"><summary aria-label="展开区块标题的变化与用法">?</summary><div class="pg-help__body"><p>变化：新版统一标题与入口组合；旧站已有居中标题，不把居中本身算作新创。</p><p><span class="src src--inferred">推断</span> 想解决：区块间标题层级与查看更多入口不一致。</p><p>用法：复制 <code>.jjb-section-head</code>，手机沿用 28 的标题 token。做：有集合页时配右侧 View All。不做：为单个区块另造标题样式，或放无目标的链接。</p></div></details></li>
+          <li>区块标题统一为居中 SF Pro H1 48（手机 28），右侧放 View All。<span class="src src--new">新版</span> <details class="pg-help"><summary aria-label="展开区块标题的变化与用法">?</summary><div class="pg-help__body"><p>变化：新版统一标题与入口组合；旧站已有居中标题，不把居中本身算作新创。</p><p><span class="src src--inferred">推断</span> 想解决：区块间标题层级与查看更多入口不一致。</p><p>用法：复制 <code>.jjb-section-head</code>，手机沿用 H1 28 的标题 token。做：有集合页时配右侧 View All。不做：为单个区块另造标题样式，或放无目标的链接。</p></div></details></li>
           <li>网格间距从旧稿的 30 收到 12。<span class="src src--new">新版</span> <details class="pg-help"><summary aria-label="展开网格间距的变化与用法">?</summary><div class="pg-help__body"><p>变化：商品、分类和信任卡网格采用更紧凑的间距。</p><p><span class="src src--inferred">推断</span> 想解决：卡片间空白割裂作品，降低同屏比较效率。</p><p>用法：沿用 <code>var(--jjb-grid-gap)</code>。做：收紧卡片之间的距离。不做：连区块间距和正文留白一起压缩。</p></div></details></li>
           <li>首屏用透明玻璃导航，滚动后切回白底。<span class="src src--new">新版</span> <details class="pg-help"><summary aria-label="展开导航的变化与用法">?</summary><div class="pg-help__body"><p>变化：首屏导航叠在主视觉上，与滚动后的白底导航区分。</p><p><span class="src src--inferred">推断</span> 想解决：不透明顶栏切断主视觉，同时保证滚动后的菜单可读。</p><p>用法：首屏使用 <code>.jjb-nav--glass</code>，滚动状态参考<a href="#nav">导航示例</a>。做：逐张检查背景上的文字对比。不做：在浅色内容页永久套透明白字导航。</p></div></details></li>
-          <li>筛选胶囊替代下划线 tab。<span class="src src--new">新版</span> <details class="pg-help"><summary aria-label="展开筛选的变化与用法">?</summary><div class="pg-help__body"><p>变化：旧稿的 Bebas 下划线 tab 改为黑白胶囊，选中态用黑底白字。</p><p><span class="src src--inferred">推断</span> 想解决：筛选项看起来像标题，点击范围和当前选项不够明确。</p><p>用法：复用 <code>.jjb-chip</code> 及其状态属性。做：筛选按钮同步 <code>aria-pressed</code>。不做：仅用文字下划线表示选中。</p></div></details></li>
+          <li>筛选胶囊替代下划线 tab。<span class="src src--new">新版</span> <details class="pg-help"><summary aria-label="展开筛选的变化与用法">?</summary><div class="pg-help__body"><p>变化：旧稿的下划线 tab 改为黑白胶囊，选中态用黑底白字。</p><p><span class="src src--inferred">推断</span> 想解决：筛选项看起来像标题，点击范围和当前选项不够明确。</p><p>用法：复用 <code>.jjb-chip</code> 及其状态属性。做：筛选按钮同步 <code>aria-pressed</code>。不做：仅用文字下划线表示选中。</p></div></details></li>
           <li>商品卡去掉品牌副标和 Quick view，悬停换第二张图。<span class="src src--new">新版</span> <details class="pg-help"><summary aria-label="展开商品卡的变化与用法">?</summary><div class="pg-help__body"><p>变化：旧稿的品牌副标与悬浮 Quick view 按钮移除；可用第二张图补充角度。</p><p><span class="src src--inferred">推断</span> 想解决：重复信息和浮动按钮遮挡作品，分散进入详情的注意力。</p><p>用法：复制 <code>.jjb-card</code>。做：保留图片、名称、价格和详情链接，第二张图只作补充。不做：把尺寸、材质等必要信息只放在悬停图里。</p></div></details></li>
           <li>卡片和 Logo 不加阴影，延续平面表达。<span class="src src--new">新版</span> <span class="src src--f">F</span> <details class="pg-help"><summary aria-label="展开卡片与 Logo 的规则">?</summary><div class="pg-help__body"><p>变化边界：新版卡片保持无投影；Logo 禁止加阴影是既有品牌规则，此次继续沿用。</p><p><span class="src src--inferred">推断</span> 想解决：界面装饰与作品本身的立体感争抢注意力。</p><p>用法：做：沿用现有卡片底色、边框和留白。不做：给卡片或 Logo 添加悬浮投影。导航、浮层的专用阴影不扩用到卡片。</p></div></details></li>
           <li>社媒视频独立成深色区块。<span class="src src--new">新版</span> <details class="pg-help"><summary aria-label="展开社媒区块的变化与用法">?</summary><div class="pg-help__body"><p>变化：新版用深灰底承载竖版视频，居中的视频放大，与浅底商品网格区分。</p><p><span class="src src--inferred">推断</span> 想解决：连续商品网格节奏单一，让用户能切换到观看作品过程与实物展示。</p><p>用法：参考 <code>.jjb-social</code>，底色沿用 <code>var(--jjb-surface-dark)</code>。做：配清晰封面并保留素材来源身份。不做：把所有内容区都改成深色，或把品牌视频冒充客户评价。</p></div></details></li>
@@ -511,26 +571,38 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
     </section>
 
     <!-- 04 TYPE -->
-    <section class="pg-sec" id="type" data-mod="type">
-      <header><span class="num">04</span><h2 class="jjb-h2">字体</h2><span class="src src--f">F</span><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>Bebas Neue 只有大写字形；正文、按钮、表单全部用 Outfit。不引入第三个字族。</p></div></details></header>
-      <p class="lead" data-edit="type#1">两个字族：Bebas Neue 管标题、导航和 tab，Outfit 管其余一切。</p>
-      <div class="two" data-mod="type.fonts">
-        <div class="font-card"><div class="jjb-mini jjb-muted">Display · <code>assets/fonts/BebasNeue-Regular.ttf</code></div>
-          <div class="big" style="font-family:var(--jjb-font-display);margin-top:12px">BEBAS NEUE 400</div>
-          <div class="jjb-body-s jjb-muted" style="margin-top:12px">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</div></div>
-        <div class="font-card"><div class="jjb-mini jjb-muted">Body · <code>assets/fonts/Outfit-VariableFont_wght.ttf</code></div>
-          <div class="big" style="font-family:var(--jjb-font-body);font-size:48px;font-weight:600;margin-top:16px">Outfit 400–700</div>
-          <div class="jjb-body-s jjb-muted" style="margin-top:12px">Aa Bb Cc — <span style="font-weight:400">400</span> <span style="font-weight:500">500</span> <span style="font-weight:600">600</span> <span style="font-weight:700">700</span></div></div>
+    <section class="pg-sec" id="type" data-mod="type" data-scale="desktop">
+      <header><span class="num">04</span><h2 class="jjb-h2">字体</h2><span class="src src--f">F</span></header>
+      <p class="lead" data-edit="type#1">徐莹睿 · 2026-10-22：标题和正文统一使用 SF Pro Display 的系统字体栈。Apple 设备显示系统 SF Pro；其他平台使用系统回退。Apple 许可不允许在网页嵌入 SF Pro，因此不托管字体文件。</p>
+      <div class="type-family-grid" data-mod="type.fonts">
+        <div class="type-family-card"><span class="jjb-mini">DISPLAY · 标题</span><h3>SF Pro Display</h3><p>H1/H2 700 大写 · H3/H4 600</p><p class="type-alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ · 0123456789</p></div>
+        <div class="type-family-card"><span class="jjb-mini">BODY · 正文</span><h3>SF Pro Display</h3><p>Body 1/2/3 400 · 字距 0.01em</p><p class="type-alphabet">Aa Bb Cc — Make something uniquely yours.</p></div>
       </div>
-      <div class="pg-mod" data-mod="type.web"><div class="pg-sub" data-edit="type.web#1">Web 字号阶梯（桌面 / 手机）</div>
-      <div id="type-web"></div>
-      </div><div class="pg-mod" data-mod="type.app"><div class="pg-sub">App 字号阶梯 <span class="src src--app">App</span></div>
-      <div id="type-app"></div>
-      </div><ul class="rules" data-mod="type.rules">
-        <li data-edit="type.rules#1">标题行高 1.2，正文行高 1.6；字距一律用 <code>em</code>（站点有 /ja /ko，px 字距会撑坏非拉丁字形）。</li>
-        <li data-edit="type.rules#2">大写小标两种：区块上标 14px / <code>0.2em</code>；商品品牌副标 14px / <code>0.15em</code>，颜色 tertiary。</li>
-        <li>手机端 Web 标题字号 Figma 未定义，取线上实测值（标 <span class="src src--live">线上</span>）。</li>
-      </ul>
+      <div class="pg-mod" data-mod="type.locales">
+        <div class="pg-sub" data-edit="type.locales#1">多语言预览</div>
+        <div class="type-locale-controls"><label for="type-language">语言</label><select id="type-language" aria-label="预览语言"></select><div class="type-chips" id="type-chips" aria-label="语言快捷切换"></div></div>
+        <div class="type-locale-stage" id="type-locale-stage" lang="en"><small id="type-locale-script"></small><h3 id="type-locale-title"></h3><p id="type-locale-copy"></p><div class="type-glyphs" id="type-locale-glyphs"></div><p class="type-coverage" id="type-locale-coverage"></p></div>
+        <p class="note">拉丁字符按设备实际字体显示；日文和韩文使用设备的系统 CJK 回退字体。预览无法保证所有操作系统字形一致。</p>
+      </div>
+      <div class="pg-mod" data-mod="type.web">
+        <div class="type-toolbar"><div class="pg-sub">Web 字号阶梯 <span id="type-mode-label">桌面</span></div><div class="type-toggle" role="group" aria-label="字号预览尺寸"><button type="button" data-type-mode="desktop" aria-pressed="true">Web</button><button type="button" data-type-mode="mobile" aria-pressed="false">Mobile ≤767px</button></div></div>
+        <div class="type-scale" id="type-web"></div>
+      </div>
+      <div class="pg-mod" data-mod="type.colors"><div class="pg-sub" data-edit="type.colors#1">核心文字颜色</div><div class="type-colors">
+        <div class="type-color"><span class="type-color-swatch" style="--swatch:var(--jjb-type-heading-color)"></span><div>Heading / Text primary<br><code>--jjb-type-heading-color · #000000</code></div></div>
+        <div class="type-color"><span class="type-color-swatch" style="--swatch:var(--jjb-type-body-color)"></span><div>Text secondary / Body<br><code>--jjb-type-body-color · #666666</code></div></div>
+        <div class="type-color"><span class="type-color-swatch" style="--swatch:var(--jjb-type-accent-color)"></span><div>Accent<br><code>--jjb-type-accent-color · #FF5A11</code></div></div>
+      </div></div>
+      <div class="pg-mod" data-mod="type.example"><div class="pg-sub" data-edit="type.example#1">正文排版示例 · Editorial</div><article class="type-editorial"><h3>MAKE SOMETHING UNIQUELY YOURS</h3><p>Turn an idea into a collectible you can see, share, and hold. Use one clear headline, then give the details room to breathe.</p><h4>Made for the moment</h4><p>Each piece begins with your idea. Keep supporting copy readable at Body 1 and use Body 2 or Body 3 only for shorter supporting information.</p></article></div>
+      <div class="pg-mod" data-mod="type.app"><div class="pg-sub">App 字号阶梯 <span class="src src--app">App</span></div><p class="note">沿用现有 App 数值；字族改用系统字体栈，字号待设计复核。</p><div id="type-app"></div></div>
+      <div class="pg-mod" data-mod="type.rules"><ul class="rules">
+        <li data-edit="type.rules#1">H1/H2 700 大写；H3/H4 600。H3 字距 <code>--jjb-ls-h3</code>，正文统一 <code>--jjb-ls-body</code>。</li>
+        <li data-edit="type.rules#2">正文行高 normal，颜色用 <code>--jjb-type-body-color</code>；标题和主要文字用黑色。</li>
+        <li data-edit="type.rules#3">导航、步骤、按钮、18px Body L、Mini 与 App 字号尚未获此次交付覆盖，保留现有数值待设计确认。</li>
+      </ul></div>
+      <div class="pg-sub" data-edit="type#2">可复制 CSS token 片段</div><button class="jjb-btn jjb-btn--secondary jjb-btn--s" type="button" data-copy-source="#type-css-code" data-label="CSS token 片段">复制 CSS</button><pre id="type-css-code" class="type-code">.page-title { font: var(--jjb-weight-h1) var(--jjb-type-h1)/var(--jjb-lh-type-normal) var(--jjb-font-display); text-transform: uppercase; color: var(--jjb-type-heading-color); }
+@media (max-width: 767px) { .page-title { font-size: var(--jjb-type-h1-m); } }
+.body-copy { font: var(--jjb-weight-body) var(--jjb-type-body1)/var(--jjb-lh-type-normal) var(--jjb-font-body); letter-spacing: var(--jjb-ls-body); color: var(--jjb-type-body-color); }</pre>
     </section>
 
     <!-- 05 LAYOUT -->
@@ -610,7 +682,7 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 
     <!-- 09 BUTTONS -->
     <section class="pg-sec" id="buttons" data-mod="buttons">
-      <header><span class="num">09</span><h2 class="jjb-h2">按钮</h2><span class="src src--f">F</span><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>字体 Outfit 600（小号 500），宽度随内容。主按钮橙色，次按钮黑色，描边按钮用于第三层级。</p></div></details></header>
+      <header><span class="num">09</span><h2 class="jjb-h2">按钮</h2><span class="src src--f">F</span><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>按钮使用系统字体栈。字号与字重沿用现有组件值，待设计复核；宽度随内容。主按钮橙色，次按钮黑色，描边按钮用于第三层级。</p></div></details></header>
       <p class="lead" data-edit="buttons#1">三档高度 44 / 50 / 54，全圆角；每个页面只放一个主按钮。</p>
       <table class="state-table" data-mod="buttons.states">
         <tr><th>Web</th><th>Default</th><th>Hover</th><th>Pressed</th><th>Disabled</th></tr>
@@ -647,7 +719,7 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 
     <!-- 10 NAV -->
     <section class="pg-sec" id="nav" data-mod="nav">
-      <header><span class="num">10</span><h2 class="jjb-h2" data-edit="nav#1">公告栏与导航</h2><span class="src src--new">新版</span><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>公告栏橙色渐变，左右箭头切换文案。毛玻璃：<code>--jjb-header-glass</code> + saturate 1.8 blur 20；滚动后白底加 <code>--jjb-shadow-header</code>。</p><p>菜单居中，Bebas 20；右侧依次是 Log In 胶囊、搜索/账户/购物车 20px 图标、橙色 CREATE 36px。</p></div></details></header>
+      <header><span class="num">10</span><h2 class="jjb-h2" data-edit="nav#1">公告栏与导航</h2><span class="src src--new">新版</span><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>公告栏橙色渐变，左右箭头切换文案。毛玻璃：<code>--jjb-header-glass</code> + saturate 1.8 blur 20；滚动后白底加 <code>--jjb-shadow-header</code>。</p><p>菜单居中，SF Pro 系统栈 20（字号待设计复核）；右侧依次是 Log In 胶囊、搜索/账户/购物车 20px 图标、橙色 CREATE 36px。</p></div></details></header>
       <p class="lead" data-edit="nav#2">公告栏 48px + 页头 78px（手机 56px）；压在首屏图上是毛玻璃，滚动后切白底。</p>
       <div class="nav-frame" data-mod="nav.solid">
         <div class="jjb-announce"><button aria-label="Previous"><svg class="jjb-icon jjb-icon--20"><use href="#i-chevron_left"/></svg></button><span>Create Your Own Design — Get 15% OFF</span><button aria-label="Next"><svg class="jjb-icon jjb-icon--20"><use href="#i-chevron_right"/></svg></button></div>
@@ -690,7 +762,7 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 
     <!-- 11 COMMERCE -->
     <section class="pg-sec" id="commerce" data-mod="commerce">
-      <header><span class="num">11</span><h2 class="jjb-h2" data-edit="commerce#1">区块标题、商品卡与标签</h2><span class="src src--new">新版</span><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>标题 Bebas 64（手机 28）；右侧 View All 18px 500。筛选用黑白胶囊（42px），不再用下划线 tab。</p><p>卡片没有品牌副标，也没有 Quick view。标题 16px 500，最多两行；价格 16px 500。悬停淡入 220ms。价格为示例。</p></div></details></header>
+      <header><span class="num">11</span><h2 class="jjb-h2" data-edit="commerce#1">区块标题、商品卡与标签</h2><span class="src src--new">新版</span><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>标题 SF Pro H1 48（手机 28）；右侧 View All 18px 500。筛选用黑白胶囊（42px），不再用下划线 tab。</p><p>卡片没有品牌副标，也没有 Quick view。标题 16px 500，最多两行；价格 16px 500。悬停淡入 220ms。价格为示例。</p></div></details></header>
       <p class="lead" data-edit="commerce#2">区块标题居中；商品卡 4 列、间距 12px，悬停淡入第二张图。</p>
       <div class="jjb-section-head" data-mod="commerce.section-title"><h3 class="jjb-section-head__title">Trending Products</h3><a class="jjb-section-head__more" href="#commerce">View All</a></div>
       <div class="jjb-tabs" role="tablist" style="margin-bottom:32px" data-mod="commerce.filters"><button class="jjb-chip" role="tab" aria-selected="true">Custom Figurines</button><button class="jjb-chip" role="tab" aria-selected="false">Art Toy</button></div>
@@ -777,7 +849,7 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
 
     <!-- 13 FORMS -->
     <section class="pg-sec" id="forms" data-mod="forms">
-      <header><span class="num">13</span><h2 class="jjb-h2">表单与 FAQ</h2><span class="src src--live">线上</span><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>Figma 组件库的表单区还是空的，这里沿用线上规则：聚焦时黑描边加蓝色焦点环，错误用红色描边和说明文字。</p><p>FAQ 是新版样式：右侧 Bebas 问题，用 +/– 图标，答案灰色 14px。</p></div></details></header>
+      <header><span class="num">13</span><h2 class="jjb-h2">表单与 FAQ</h2><span class="src src--live">线上</span><details class="pg-help"><summary aria-label="展开说明">?</summary><div class="pg-help__body"><p>Figma 组件库的表单区还是空的，这里沿用线上规则：聚焦时黑描边加蓝色焦点环，错误用红色描边和说明文字。</p><p>FAQ 是新版样式：右侧 SF Pro 问题，用 +/– 图标，答案灰色 14px。</p></div></details></header>
       <p class="lead" data-edit="forms#1">输入框 44px 高、4px 圆角、1px 描边；FAQ 左分类、右问题。</p>
       <div class="two" data-mod="forms.fields">
         <div style="display:grid;gap:16px">
@@ -889,7 +961,7 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
       <table class="asset-table" data-mod="assets.catalog">
         <tr><th>素材</th><th>路径</th><th>用途</th></tr>
         <tr><td>Token / 组件样式</td><td><code>tokens.css</code> · <code>components.css</code></td><td>每个新页面必引</td></tr>
-        <tr><td>字体</td><td><code>assets/fonts/</code></td><td>Bebas Neue、Outfit 可变字体（OFL）</td></tr>
+        <tr><td>字体</td><td><code>assets/fonts/</code></td><td>Bebas Neue、Outfit 历史字体文件，已停用；SF Pro 不托管</td></tr>
         <tr><td>Logo</td><td><code>assets/logo/</code></td><td>字标 SVG（橙/白）、3D 字标、位图</td></tr>
         <tr><td>图标</td><td><code>assets/icons/*.svg</code> · <code>sprite.svg</code></td><td>58 个线性图标</td></tr>
         <tr><td>品牌人物</td><td><code>assets/people/</code></td><td>代言人 Maya、Danny 设定照与跨风格示例</td></tr>
@@ -909,7 +981,7 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
         <a class="jjb-btn jjb-btn--primary jjb-btn--s" href="downloads/jujubit-design-system-skill.zip" download>下载 skill 包（zip）</a>
         <a class="jjb-btn jjb-btn--outline jjb-btn--s" href="skill/jujubit-design-system/SKILL.md" target="_blank" rel="noopener">查看 SKILL.md</a>
       </div>
-      <p class="note">解压后把 <code>jujubit-design-system</code> 文件夹放进 agent 的 skills 目录。包里带 tokens.css、components.css、字体、Logo 和图标，离线也能用。</p>
+      <p class="note">解压后把 <code>jujubit-design-system</code> 文件夹放进 agent 的 skills 目录。包里带 tokens.css、components.css、历史字体资产、Logo 和图标；规范使用系统字体栈，离线也能用。</p>
       </div><div class="pg-mod" data-mod="ai.prompt"><div class="pg-sub" data-edit="ai.prompt#1">3. 不装 skill，直接给 agent 这段话</div>
       <div class="ai-cmd"><code>按 JuJuBit 设计规范做这个页面。先读 https://playverseai.com/design/skill/jujubit-design-system/SKILL.md ，页面引用 https://playverseai.com/design/tokens.css 和 https://playverseai.com/design/components.css ，组件 markup 从 https://playverseai.com/design/ 复制，不要新增色值、字号、圆角。</code><button class="jjb-btn jjb-btn--secondary jjb-btn--s" data-copy="按 JuJuBit 设计规范做这个页面。先读 https://playverseai.com/design/skill/jujubit-design-system/SKILL.md ，页面引用 https://playverseai.com/design/tokens.css 和 https://playverseai.com/design/components.css ，组件 markup 从 https://playverseai.com/design/ 复制，不要新增色值、字号、圆角。" data-label="提示词">复制</button></div>
       </div><div class="pg-mod" data-mod="ai.contribute"><div class="pg-sub" data-edit="ai.contribute#1">修改规范</div>
@@ -951,20 +1023,61 @@ document.querySelectorAll('[data-swatches]').forEach(grid => {
   }).join('');
 });
 
-const TW = [['Headline L','--jjb-type-headline-l','56 / 32','Bebas 400 · 1.2','display','Make it yours'],['Headline M','--jjb-type-headline-m','30 / 24','Bebas 400 · 1.2','display','Shop by style'],
-  ['Headline S','--jjb-type-headline-s','22 / 18','Bebas 400 · 导航、tab','display','Customize'],['Eyebrow','--jjb-type-body-s','14 · 0.2em · 大写','Outfit 400','eyebrow','Top picks'],
-  ['Body L','--jjb-type-body-l','18','Outfit 400 · 1.6 · 商品标题','body','Turn your favorite photo into a hand-finished figurine.'],
-  ['Body M','--jjb-type-body-m','16','Outfit 400/600 · 默认正文','body','Each piece is printed and painted after you approve the preview.'],
-  ['Body S','--jjb-type-body-s','14','Outfit 400 · 辅助说明','body','Preview images are AI generated and may differ slightly from the final piece.'],
-  ['Foot','--jjb-type-foot','12','Outfit 400 · 注释','body','Prices shown in USD.'],['Mini','--jjb-type-mini','12 · 大写','Outfit · 标签','mini','Limited edition']];
-$('#type-web').innerHTML = TW.map(([n, v, size, spec, kind, txt]) => {
-  const style = kind === 'display' ? `font-family:var(--jjb-font-display);font-size:var(${v});line-height:1.2;text-transform:uppercase`
-    : kind === 'eyebrow' ? `font-size:14px;letter-spacing:.2em;text-transform:uppercase` : kind === 'mini' ? `font-size:12px;text-transform:uppercase;letter-spacing:.08em;font-weight:700`
-    : `font-size:var(${v});line-height:1.6`;
-  return `<div class="type-row"><div class="spec copyable" data-copy="var(${v})"><b>${n}</b><br>${size}px<br>${spec}<br><code>${v}</code></div><div style="${style}">${txt}</div></div>`;
-}).join('');
+const languageSamples={
+en:{name:'English',code:'en · Latin script',script:'English · Latin',title:'What you make tells who you are',copy:'Turn a fleeting idea into something you can see, share, and hold.',glyphs:'ABCDEFGHIJKLMNOPQRSTUVWXYZ · abcdefghijklmnopqrstuvwxyz · 0123456789',display:'SF Pro Display',text:'SF Pro Display',displayCss:'var(--display)',textCss:'var(--text)',status:'SF Pro 直接覆盖拉丁字符、数字与标点。'},
+de:{name:'Deutsch',code:'de · Latin script',script:'Deutsch · Latin',title:'Was du erschaffst, zeigt, wer du bist',copy:'Verwandle eine flüchtige Idee in etwas, das du sehen, teilen und in den Händen halten kannst.',glyphs:'Ä Ö Ü ẞ · ä ö ü ß · Grüße · Größe · außergewöhnlich',display:'SF Pro Display',text:'SF Pro Display',displayCss:'var(--display)',textCss:'var(--text)',status:'SF Pro 覆盖德语变音符号 Ä/Ö/Ü 与 ß。'},
+nl:{name:'Nederlands',code:'nl · Latin script',script:'Nederlands · Latin',title:'Wat je maakt, laat zien wie je bent',copy:'Verander een vluchtig idee in iets dat je kunt zien, delen en vasthouden.',glyphs:'IJ · ë ï é è · ideeën · creëren · geïnteresseerd',display:'SF Pro Display',text:'SF Pro Display',displayCss:'var(--display)',textCss:'var(--text)',status:'SF Pro 覆盖荷兰语拉丁字符与常用变音符号。'},
+sv:{name:'Svenska',code:'sv · Latin script',script:'Svenska · Latin',title:'Det du skapar visar vem du är',copy:'Förvandla en flyktig idé till något du kan se, dela och hålla i handen.',glyphs:'Å Ä Ö · å ä ö · föremål · särskild · överraskning',display:'SF Pro Display',text:'SF Pro Display',displayCss:'var(--display)',textCss:'var(--text)',status:'SF Pro 覆盖瑞典语 Å/Ä/Ö 及其小写字符。'},
+es:{name:'Español',code:'es · Latin script',script:'Español · Latin',title:'Lo que creas dice quién eres',copy:'Convierte una idea fugaz en algo que puedas ver, compartir y sostener.',glyphs:'Á É Í Ó Ú Ü Ñ ¿ ¡ · creación · único · imaginación',display:'SF Pro Display',text:'SF Pro Display',displayCss:'var(--display)',textCss:'var(--text)',status:'SF Pro 覆盖西班牙语重音、Ñ 与倒置标点。'},
+ja:{name:'日本語',code:'ja · Japanese script',script:'日本語 · Japanese',title:'つくるものが、あなたを語る',copy:'ひらめきを、見て、分かち合い、手に取れるかたちへ。',glyphs:'あいうえお · アイウエオ · 漢字 · 創造 · ものづくり · 0123456789',display:'Hiragino Sans / Yu Gothic',text:'Hiragino Sans / Yu Gothic',displayCss:'"Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif',textCss:'"Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif',status:'SF Pro 不含完整日文字形；自动回退到系统日文字体，拉丁字符与数字仍可使用 SF Pro。'},
+pl:{name:'Polski',code:'pl · Latin script',script:'Polski · Latin',title:'To, co tworzysz, mówi, kim jesteś',copy:'Zamień ulotny pomysł w coś, co możesz zobaczyć, udostępnić i trzymać w dłoni.',glyphs:'Ą Ć Ę Ł Ń Ó Ś Ź Ż · ą ć ę ł ń ó ś ź ż · wyjątkowy',display:'SF Pro Display',text:'SF Pro Display',displayCss:'var(--display)',textCss:'var(--text)',status:'SF Pro 覆盖波兰语 Ł、Ą、Ę、Ś、Ź、Ż 等扩展拉丁字符。'},
+fr:{name:'Français',code:'fr · Latin script',script:'Français · Latin',title:'Ce que vous créez révèle qui vous êtes',copy:'Transformez une idée fugace en un objet que vous pouvez voir, partager et tenir.',glyphs:'À Â Æ Ç É È Ê Ë Î Ï Ô Œ Ù Û Ü Ÿ · français · cœur',display:'SF Pro Display',text:'SF Pro Display',displayCss:'var(--display)',textCss:'var(--text)',status:'SF Pro 覆盖法语重音字符、Ç、Æ 与 Œ。'},
+it:{name:'Italiano',code:'it · Latin script',script:'Italiano · Latin',title:'Ciò che crei racconta chi sei',copy:'Trasforma un’idea fugace in qualcosa che puoi vedere, condividere e tenere tra le mani.',glyphs:'À È É Ì Í Î Ò Ó Ù Ú · perché · qualità · creatività',display:'SF Pro Display',text:'SF Pro Display',displayCss:'var(--display)',textCss:'var(--text)',status:'SF Pro 覆盖意大利语重音字符和弯引号。'},
+pt:{name:'Português',code:'pt · Latin script',script:'Português · Latin',title:'O que você cria revela quem você é',copy:'Transforme uma ideia passageira em algo que você possa ver, compartilhar e segurar.',glyphs:'Á À Â Ã Ç É Ê Í Ó Ô Õ Ú · criação · coração · você',display:'SF Pro Display',text:'SF Pro Display',displayCss:'var(--display)',textCss:'var(--text)',status:'SF Pro 覆盖葡萄牙语鼻化、重音与 Ç。'},
+ko:{name:'한국어',code:'ko · Korean script',script:'한국어 · Korean',title:'당신이 만드는 것이 당신을 말해 줍니다',copy:'스쳐 가는 아이디어를 보고, 나누고, 손에 쥘 수 있는 형태로 바꿔 보세요.',glyphs:'가나다라마바사 · 아자차카타파하 · 창작 · 상상력 · 0123456789',display:'Apple SD Gothic Neo / Noto Sans KR',text:'Apple SD Gothic Neo / Noto Sans KR',displayCss:'"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif',textCss:'"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif',status:'SF Pro 不含完整韩文字形；自动回退到系统韩文字体，拉丁字符与数字仍可使用 SF Pro。'}
+};
+const typeLanguage = document.getElementById('type-language');
+const localeCodes = ['en','de','nl','sv','es','ja','pl','fr','it','pt','ko'];
+typeLanguage.innerHTML = localeCodes.map(code => `<option value="${code}">${languageSamples[code].name}</option>`).join('');
+document.getElementById('type-chips').innerHTML = localeCodes.map(code => `<button type="button" data-locale="${code}" aria-pressed="false">${code.toUpperCase()}</button>`).join('');
+function setTypeLanguage(code) {
+  const item = languageSamples[code];
+  const stage = document.getElementById('type-locale-stage');
+  stage.lang = code;
+  document.getElementById('type-locale-script').textContent = item.script;
+  document.getElementById('type-locale-title').textContent = item.title;
+  document.getElementById('type-locale-copy').textContent = item.copy;
+  document.getElementById('type-locale-glyphs').textContent = item.glyphs;
+  document.getElementById('type-locale-coverage').textContent = item.status;
+  typeLanguage.value = code;
+  document.querySelectorAll('#type-chips button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.locale === code)));
+}
+typeLanguage.addEventListener('change', () => setTypeLanguage(typeLanguage.value));
+document.querySelectorAll('#type-chips button').forEach(button => button.addEventListener('click', () => setTypeLanguage(button.dataset.locale)));
+setTypeLanguage('en');
+const typeRows = [
+  ['H1','h1','--jjb-type-h1','--jjb-type-h1-m','700','normal','Heading / #000000','normal','uppercase','MAKE IT YOURS'],
+  ['H2','h2','--jjb-type-h2','--jjb-type-h2-m','700','1','Heading / #000000','normal','uppercase','SHOP BY STYLE'],
+  ['H3','h3','--jjb-type-h3','--jjb-type-h3-m','600','normal','Heading / #000000','-0.02em','none','Make something special'],
+  ['H4','h4','--jjb-type-h4','--jjb-type-h4-m','600','normal','Heading / #000000','normal','none','The little details'],
+  ['Body 1','body1','--jjb-type-body1',null,'400','normal','Body / #666666','0.01em','none','Turn your idea into something you can hold.'],
+  ['Body 2','body2','--jjb-type-body2',null,'400','normal','Body / #666666','0.01em','none','A collectible made from your favorite moment.'],
+  ['Body 3','body3','--jjb-type-body3',null,'400','normal','Body / #666666','0.01em','none','Details and supporting information.']
+];
+function renderTypeScale(mode) {
+  document.getElementById('type').dataset.scale = mode;
+  document.getElementById('type-mode-label').textContent = mode === 'mobile' ? '手机 ≤767px' : '桌面';
+  document.querySelectorAll('[data-type-mode]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.typeMode === mode)));
+  document.getElementById('type-web').innerHTML = typeRows.map(([name,level,desktop,mobile,weight,lh,color,tracking,letterCase,sample]) => {
+    const token = mode === 'mobile' && mobile ? mobile : desktop;
+    const size = getComputedStyle(document.documentElement).getPropertyValue(token).trim();
+    return `<div class="type-scale-row"><div><div class="type-scale-name">${name}</div><code>${token}</code><div class="type-scale-spec"><span><small>Size</small>${size}</span><span><small>Weight</small>${weight}</span><span><small>Line height</small>${lh}</span><span><small>Color</small>${color}</span><span><small>Tracking</small>${tracking}</span><span><small>Case</small>${letterCase}</span></div></div><div class="type-scale-sample" data-level="${level}">${sample}</div></div>`;
+  }).join('');
+}
+document.querySelectorAll('[data-type-mode]').forEach(button => button.addEventListener('click', () => renderTypeScale(button.dataset.typeMode)));
+renderTypeScale(matchMedia('(max-width: 767px)').matches ? 'mobile' : 'desktop');
 const TA = [['Headline L','24','700'],['Headline M','22','700'],['Headline S','16','700'],['Body M','14','400 / 600'],['Body S','12','400'],['Foot','10','400'],['Button L / M / S','16 / 14 / 12','600']];
-$('#type-app').innerHTML = TA.map(([n, s, w]) => `<div class="type-row"><div class="spec"><b>${n}</b><br>${s}px · Outfit ${w}</div><div style="font-size:${s.split(' ')[0]}px;font-weight:${w.split(' ')[0]}">Create your own collectible</div></div>`).join('');
+$('#type-app').innerHTML = TA.map(([n, s, w]) => `<div class="type-row"><div class="spec"><b>${n}</b><br>${s}px · SF Pro 系统栈 ${w}</div><div style="font-size:var(--jjb-app-${n === 'Foot' ? 'foot' : n.startsWith('Headline') ? 'headline-' + n.split(' ')[1].toLowerCase() : n.startsWith('Body') ? 'body-' + n.split(' ')[1].toLowerCase() : 'btn-l'});font-weight:${w.split(' ')[0]}">Create your own collectible</div></div>`).join('');
 
 $('#space-scale').innerHTML = [4,8,12,16,20,24,30,40,64,100].map((px, i) =>
   `<div class="space-row copyable" data-copy="var(--jjb-space-${i+1})"><code>--jjb-space-${i+1}</code><div class="bar" style="width:${px*2}px"></div><span>${px}px</span></div>`).join('');
@@ -1037,6 +1150,8 @@ $('#tpl-grid').innerHTML = [['Dnd Character','#EF507D','rgba(128,16,48,.4)'],['D
 document.querySelectorAll('.stage .jjb-option').forEach(o => o.onclick = () => o.parentElement.querySelectorAll('.jjb-option').forEach(x => x.setAttribute('aria-pressed', x === o)));
 $('#show-toast').onclick = () => copy('', '— toast 示例');
 document.addEventListener('click', e => {
+  const source = e.target.closest('[data-copy-source]');
+  if (source) { copy(document.querySelector(source.dataset.copySource).textContent, source.dataset.label); return; }
   const el = e.target.closest('[data-copy]');
   if (el) copy(el.dataset.copy, el.dataset.label || el.dataset.copy);
 });

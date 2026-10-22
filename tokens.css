@@ -8,17 +8,6 @@
  * 新页面只用这里的变量；缺值先开 issue，不写一次性字面量。
  */
 
-@font-face {
-  font-family: "Bebas Neue";
-  src: url("./assets/fonts/BebasNeue-Regular.ttf") format("truetype");
-  font-weight: 400; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: "Outfit";
-  src: url("./assets/fonts/Outfit-VariableFont_wght.ttf") format("truetype");
-  font-weight: 100 900; font-style: normal; font-display: swap;
-}
-
 :root {
   /* ===== 品牌色 [F] ===== */
   --jjb-brand-500: #FF5A11;   /* JuJu Orange：主按钮、链接强调、选中态 */
@@ -80,32 +69,46 @@
   --jjb-accent-orange: #F89719;
   --jjb-accent-red: #FF5353;
 
-  /* ===== 字体 [F] ===== */
-  --jjb-font-display: "Bebas Neue", "Arial Narrow", sans-serif; /* 只用于标题/导航/tab，全大写字形 */
-  --jjb-font-body: "Outfit", system-ui, sans-serif;
+  /* ===== 字体 [F] 徐莹睿 SF Pro 规范 2026-10-22；系统字体，不托管字体文件 ===== */
+  --jjb-font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans", "Apple SD Gothic Neo", sans-serif;
+  --jjb-font-body: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans", "Apple SD Gothic Neo", sans-serif;
+  --jjb-type-h1: 48px; --jjb-type-h1-m: 28px;
+  --jjb-type-h2: 32px; --jjb-type-h2-m: 24px;
+  --jjb-type-h3: 24px; --jjb-type-h3-m: 24px;
+  --jjb-type-h4: 20px; --jjb-type-h4-m: 20px;
+  --jjb-type-body1: 16px; --jjb-type-body2: 14px; --jjb-type-body3: 12px;
+  --jjb-type-heading-color: var(--jjb-text-primary); /* #000000 */
+  --jjb-type-primary-color: var(--jjb-text-primary); /* #000000 */
+  --jjb-type-body-color: #666666;
+  --jjb-type-accent-color: var(--jjb-brand-500); /* #FF5A11 */
+  --jjb-lh-type-normal: normal;
+  --jjb-lh-h2: 1;
+  --jjb-ls-h3: -.02em;
+  --jjb-weight-h1: 700; --jjb-weight-h2: 700;
+  --jjb-weight-h3: 600; --jjb-weight-h4: 600;
+  --jjb-weight-body: 400;
 
-  /* 区块大标题 [新版]：首页所有区块标题 Bebas 64 / 手机 28，字距 -1.4px */
-  --jjb-type-section: 64px;  --jjb-type-section-m: 28px;  --jjb-ls-section: -.022em;
+  /* 旧 Web token 已并入 SF Pro 规范；保留名称供外部调用。 */
+  --jjb-type-section: var(--jjb-type-h1); --jjb-type-section-m: var(--jjb-type-h1-m); --jjb-ls-section: normal;
   --jjb-type-step: 40px;      /* [新版] How it works 步骤标题 */
-  --jjb-type-card-title: 32px; --jjb-type-card-title-m: 20px; /* [新版] 分类卡标题 Bebas */
-  --jjb-type-nav: 20px;       /* [新版] 导航 Bebas 20 */
-  /* Web 字号 [F] Typography-WEB；手机列为 [线上] */
-  --jjb-type-headline-l: 56px;   --jjb-type-headline-l-m: 32px;
-  --jjb-type-headline-m: 30px;   --jjb-type-headline-m-m: 24px;
-  --jjb-type-headline-s: 22px;   --jjb-type-headline-s-m: 18px;
-  --jjb-type-mini: 12px;          /* Outfit 大写小标 */
+  --jjb-type-card-title: var(--jjb-type-h3); --jjb-type-card-title-m: var(--jjb-type-h3-m);
+  --jjb-type-nav: 20px;       /* [新版] 待设计确认 */
+  --jjb-type-headline-l: var(--jjb-type-h1); --jjb-type-headline-l-m: var(--jjb-type-h1-m);
+  --jjb-type-headline-m: var(--jjb-type-h2); --jjb-type-headline-m-m: var(--jjb-type-h2-m);
+  --jjb-type-headline-s: var(--jjb-type-h4); --jjb-type-headline-s-m: var(--jjb-type-h4-m);
+  --jjb-type-mini: 12px;          /* [F稿] 待设计确认 */
   --jjb-type-body-l: 18px;
-  --jjb-type-body-m: 16px;
-  --jjb-type-body-s: 14px;
-  --jjb-type-foot: 12px;
+  --jjb-type-body-m: var(--jjb-type-body1);
+  --jjb-type-body-s: var(--jjb-type-body2);
+  --jjb-type-foot: var(--jjb-type-body3);
   --jjb-type-btn-l: 16px;  --jjb-type-btn-m: 14px;  --jjb-type-btn-s: 12px;
-  --jjb-lh-heading: 1.2;   /* [F] */
-  --jjb-lh-body: 1.6;      /* [F稿] Shopify 主题原生 28.8/18 */
-  --jjb-ls-body: .02em;    /* [F] 品牌规范示范字距 */
+  --jjb-lh-heading: var(--jjb-lh-type-normal); /* 已并入 SF Pro 规范；H2 单独用 --jjb-lh-h2 */
+  --jjb-lh-body: var(--jjb-lh-type-normal);    /* 已并入 SF Pro 规范 */
+  --jjb-ls-body: .01em;    /* [F] 徐莹睿 SF Pro 规范 2026-10-22 */
   --jjb-ls-eyebrow: .2em;  /* [F稿] "TOP PICKS" 区块上标 */
   --jjb-ls-brand: .15em;   /* [F稿] 商品品牌副标 */
 
-  /* App 字号 [F] Typography-APP（全部 Outfit） */
+  /* App 字号 [F] Typography-APP，数值待设计按 SF Pro 新规范复核 */
   --jjb-app-headline-l: 24px;  --jjb-app-headline-m: 22px;  --jjb-app-headline-s: 16px; /* 700 */
   --jjb-app-body-m: 14px;      --jjb-app-body-s: 12px;      --jjb-app-foot: 10px;
   --jjb-app-btn-l: 16px;       --jjb-app-btn-m: 14px;       --jjb-app-btn-s: 12px;    /* 600 */

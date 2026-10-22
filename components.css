@@ -24,23 +24,34 @@
 }
 
 /* ---------- 文字 ---------- */
-.jjb-display, .jjb-h1, .jjb-h2, .jjb-h3 { font-family: var(--jjb-font-display); font-weight: 400;
-  line-height: var(--jjb-lh-heading); letter-spacing: 0; text-transform: uppercase; margin: 0; }
-.jjb-h1 { font-size: var(--jjb-type-headline-l); }
-.jjb-h2 { font-size: var(--jjb-type-headline-m); }
-.jjb-h3 { font-size: var(--jjb-type-headline-s); }
+.jjb-display, .jjb-h1, .jjb-h2, .jjb-h3, .jjb-h4 { font-family: var(--jjb-font-display);
+  color: var(--jjb-type-heading-color); margin: 0; overflow-wrap: anywhere; }
+.jjb-display, .jjb-h1 { font-size: var(--jjb-type-h1); font-weight: var(--jjb-weight-h1);
+  line-height: var(--jjb-lh-type-normal); letter-spacing: normal; text-transform: uppercase; }
+.jjb-h2 { font-size: var(--jjb-type-h2); font-weight: var(--jjb-weight-h2);
+  line-height: var(--jjb-lh-h2); letter-spacing: normal; text-transform: uppercase; }
+.jjb-h3 { font-size: var(--jjb-type-h3); font-weight: var(--jjb-weight-h3);
+  line-height: var(--jjb-lh-type-normal); letter-spacing: var(--jjb-ls-h3); text-transform: none; }
+.jjb-h4 { font-size: var(--jjb-type-h4); font-weight: var(--jjb-weight-h4);
+  line-height: var(--jjb-lh-type-normal); letter-spacing: normal; text-transform: none; }
+.jjb-section--dark :is(.jjb-display, .jjb-h1, .jjb-h2, .jjb-h3, .jjb-h4) { color: var(--jjb-text-on-dark); }
 .jjb-display { font-size: 200px; line-height: 1; color: #FAFAFA; pointer-events: none; } /* 超大装饰背景字 */
 .jjb-eyebrow { font-size: var(--jjb-type-body-s); letter-spacing: var(--jjb-ls-eyebrow); text-transform: uppercase;
   color: var(--jjb-text-primary); }
 .jjb-mini { font-size: var(--jjb-type-mini); text-transform: uppercase; letter-spacing: .08em; }
+.jjb-body-l, .jjb-body1, .jjb-body2, .jjb-body3, .jjb-body-s, .jjb-foot {
+  font-weight: var(--jjb-weight-body); line-height: var(--jjb-lh-type-normal);
+  letter-spacing: var(--jjb-ls-body); color: var(--jjb-type-body-color); }
 .jjb-body-l { font-size: var(--jjb-type-body-l); }
-.jjb-body-s { font-size: var(--jjb-type-body-s); }
-.jjb-foot { font-size: var(--jjb-type-foot); color: var(--jjb-text-tertiary); }
+.jjb-body1 { font-size: var(--jjb-type-body1); }
+.jjb-body2, .jjb-body-s { font-size: var(--jjb-type-body2); }
+.jjb-body3, .jjb-foot { font-size: var(--jjb-type-body3); }
 .jjb-muted { color: var(--jjb-text-tertiary); }
 @media (max-width: 767px) {
-  .jjb-h1 { font-size: var(--jjb-type-headline-l-m); }
-  .jjb-h2 { font-size: var(--jjb-type-headline-m-m); }
-  .jjb-h3 { font-size: var(--jjb-type-headline-s-m); }
+  .jjb-display, .jjb-h1 { font-size: var(--jjb-type-h1-m); }
+  .jjb-h2 { font-size: var(--jjb-type-h2-m); }
+  .jjb-h3 { font-size: var(--jjb-type-h3-m); }
+  .jjb-h4 { font-size: var(--jjb-type-h4-m); }
   .jjb-display { font-size: 100px; }
 }
 
@@ -114,7 +125,7 @@
 .jjb-nav__logo { height: 25px; width: auto; color: var(--jjb-brand-500); }
 .jjb-nav--glass .jjb-nav__logo { color: #fff; }
 .jjb-nav__menu { flex: 1; display: flex; justify-content: center; gap: 28px; }
-.jjb-nav__link { font: 400 var(--jjb-type-nav)/1 var(--jjb-font-display); color: inherit; text-decoration: none;
+.jjb-nav__link { font: var(--jjb-weight-h4) var(--jjb-type-nav)/1 var(--jjb-font-display); color: inherit; text-decoration: none;
   transition: color var(--jjb-dur-micro) var(--jjb-ease); }
 .jjb-nav__link:hover { color: var(--jjb-brand-500); }
 .jjb-nav__actions { display: flex; align-items: center; gap: 4px; }
@@ -137,21 +148,21 @@
   .jjb-nav__create { margin-left: 8px; }
 }
 
-/* ---------- 区块标题 [新版]：居中 Bebas 64，右侧 View All ---------- */
-.jjb-section-head { position: relative; text-align: center; margin-bottom: 40px; }
-.jjb-section-head__title { margin: 0; font: 400 var(--jjb-type-section)/1 var(--jjb-font-display);
-  letter-spacing: var(--jjb-ls-section); text-transform: uppercase; }
+/* ---------- 区块标题 [F]：居中 SF Pro H1，右侧 View All ---------- */
+.jjb-section-head { position: relative; text-align: center; margin-bottom: 40px; padding-inline: var(--jjb-space-10); } /* 两侧留出 View All 位置，SF Pro 比 Bebas 宽 */
+.jjb-section-head__title { margin: 0; font: var(--jjb-weight-h1) var(--jjb-type-section)/var(--jjb-lh-type-normal) var(--jjb-font-display);
+  letter-spacing: normal; text-transform: uppercase; overflow-wrap: anywhere; }
 .jjb-section-head__more { position: absolute; right: 0; top: 50%; transform: translateY(-50%);
   font: 500 var(--jjb-type-body-l)/1.6 var(--jjb-font-body); color: inherit; text-decoration: none; }
 .jjb-section-head__more:hover { color: var(--jjb-brand-500); }
 .jjb-section-head__sub { margin-top: 16px; font-size: var(--jjb-type-body-m); font-weight: 500; }
 @media (max-width: 767px) {
-  .jjb-section-head { margin-bottom: 20px; }
-  .jjb-section-head__title { font-size: var(--jjb-type-section-m); line-height: 40px; }
+  .jjb-section-head { margin-bottom: 20px; padding-inline: var(--jjb-space-9); }
+  .jjb-section-head__title { font-size: var(--jjb-type-section-m); line-height: var(--jjb-lh-type-normal); }
   .jjb-section-head__more { font-size: var(--jjb-type-body-s); }
 }
 
-/* ---------- 筛选胶囊 [新版]（替代旧版 Bebas 下划线 tab） ---------- */
+/* ---------- 筛选胶囊 [新版]（替代旧版下划线 tab） ---------- */
 .jjb-tabs { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; }
 .jjb-chip { height: var(--jjb-chip-h); padding: 0 21px; border-radius: var(--jjb-radius-pill);
   border: 1px solid var(--jjb-border-chip); background: #fff; color: rgba(0,0,0,.81);
@@ -203,7 +214,7 @@
 .jjb-tpl-card:hover img { transform: scale(1.04); }
 .jjb-tpl-card__footer { position: absolute; inset: auto 0 0; height: 62px; padding: 0 20px; display: flex;
   align-items: center; justify-content: space-between; background: linear-gradient(180deg, transparent, rgba(0,0,0,.25)); }
-.jjb-tpl-card__name { font: 400 var(--jjb-type-headline-s)/1 var(--jjb-font-display); letter-spacing: .025em; }
+.jjb-tpl-card__name { font: var(--jjb-weight-h4) var(--jjb-type-headline-s)/var(--jjb-lh-type-normal) var(--jjb-font-display); letter-spacing: normal; overflow-wrap: anywhere; }
 .jjb-track { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 30px) / 4); gap: 10px;
   overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
 .jjb-track > * { scroll-snap-align: start; }
@@ -214,8 +225,8 @@
 .jjb-step { display: grid; grid-template-columns: 58px 1fr; column-gap: 0; padding-bottom: 20px; margin-bottom: 40px;
   border-bottom: 1px solid rgba(255,255,255,.3); opacity: .5; cursor: pointer; transition: opacity var(--jjb-dur-base); }
 .jjb-step[aria-current="true"] { opacity: 1; border-bottom-color: #fff; }
-.jjb-step__num { font: 500 24px/48px var(--jjb-font-display); }
-.jjb-step__title { margin: 0; font: 400 var(--jjb-type-step)/48px var(--jjb-font-display); text-transform: uppercase; }
+.jjb-step__num { font: var(--jjb-weight-h3) var(--jjb-type-h3)/var(--jjb-lh-type-normal) var(--jjb-font-display); }
+.jjb-step__title { margin: 0; font: var(--jjb-weight-h2) var(--jjb-type-step)/var(--jjb-lh-type-normal) var(--jjb-font-display); text-transform: uppercase; overflow-wrap: anywhere; }
 .jjb-step__body { grid-column: 2; margin: 16px 0 0; max-width: 520px; display: none; }
 .jjb-step[aria-current="true"] .jjb-step__body { display: block; }
 @media (max-width: 767px) { .jjb-step__title { font-size: 28px; line-height: 36px; } .jjb-step__num { line-height: 36px; } }
@@ -226,12 +237,12 @@
 .jjb-cat-card__img { width: 100%; aspect-ratio: 1; overflow: hidden; }
 .jjb-cat-card__img img { width: 100%; height: 100%; object-fit: cover; transition: transform 260ms; }
 .jjb-cat-card:hover .jjb-cat-card__img img { transform: scale(1.05); }
-.jjb-cat-card__title { padding: 12px 16px 0; font: 400 var(--jjb-type-card-title)/44px var(--jjb-font-display);
-  letter-spacing: -1px; text-transform: uppercase; }
+.jjb-cat-card__title { padding: 12px 16px 0; font: var(--jjb-weight-h3) var(--jjb-type-card-title)/var(--jjb-lh-type-normal) var(--jjb-font-display);
+  letter-spacing: var(--jjb-ls-h3); text-transform: none; overflow-wrap: anywhere; }
 .jjb-cat-card .jjb-btn { min-width: 103px; }
 @media (max-width: 767px) {
   .jjb-cat-card { border-radius: var(--jjb-radius-card-m); }
-  .jjb-cat-card__title { font-size: var(--jjb-type-card-title-m); line-height: 20px; }
+  .jjb-cat-card__title { font-size: var(--jjb-type-card-title-m); line-height: var(--jjb-lh-type-normal); }
 }
 
 /* ---------- 信任卡 [新版]：灰底区块里的白卡 ---------- */
@@ -285,7 +296,7 @@
 .jjb-field__msg { font-size: var(--jjb-type-foot); color: var(--jjb-text-tertiary); }
 .jjb-field.is-error .jjb-field__msg { color: var(--jjb-error); }
 
-/* ---------- FAQ [新版]：左分类 + 右问答，Bebas 问题，+/- 图标 ---------- */
+/* ---------- FAQ [新版]：左分类 + 右问答，SF Pro 问题，+/- 图标 ---------- */
 .jjb-faq { display: grid; grid-template-columns: 300px 1fr; gap: 65px; }
 .jjb-faq__cats { display: grid; gap: 20px; align-content: start; margin: 0; padding: 0; list-style: none; }
 .jjb-faq__cats button { display: flex; align-items: center; gap: 12px; padding: 0 0 0 12px; border: 0; background: none;
@@ -294,7 +305,7 @@
 .jjb-faq__cats button[aria-current="true"]::before { content: ""; width: 20px; height: 2px; background: #000; }
 .jjb-faq details { padding: 16px 0; }
 .jjb-faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
-  gap: 16px; font: 500 20px/22px var(--jjb-font-display); text-transform: uppercase; }
+  gap: 16px; font: var(--jjb-weight-h4) var(--jjb-type-h4)/var(--jjb-lh-type-normal) var(--jjb-font-display); text-transform: none; overflow-wrap: anywhere; }
 .jjb-faq summary::-webkit-details-marker { display: none; }
 .jjb-faq summary::after { content: "+"; font: 400 20px/1 var(--jjb-font-body); flex: none; }
 .jjb-faq details[open] summary::after { content: "–"; }
@@ -309,7 +320,7 @@
 /* ---------- 页脚 [新版] ---------- */
 .jjb-footer { background: #000; color: #fff; padding: 80px var(--jjb-gutter-desktop) 40px; }
 .jjb-footer__grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr 1.6fr; gap: 30px; align-items: start; }
-.jjb-footer__head { margin: 0 0 24px; font: 400 12.6px/1.2 var(--jjb-font-display); letter-spacing: .2em; text-transform: uppercase; }
+.jjb-footer__head { margin: 0 0 24px; font: var(--jjb-weight-h4) var(--jjb-type-body3)/var(--jjb-lh-type-normal) var(--jjb-font-display); letter-spacing: normal; text-transform: none; }
 .jjb-footer a { color: inherit; text-decoration: none; }
 .jjb-footer__links { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; font-size: 15px; }
 .jjb-footer__links a { display: block; padding: 4px 0; }

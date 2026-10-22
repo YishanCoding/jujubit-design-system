@@ -8,7 +8,7 @@
 
 看板是内部分析工具，按 funnel 看板的既有语言统一，**不是**品牌页面：
 
-- 主色用看板蓝 `--jjb-dash-blue`，不是品牌橙；字体用 Inter，不用 Bebas Neue / Outfit。
+- 主色用看板蓝 `--jjb-dash-blue`，不是品牌橙；字体用 Inter，不用品牌字体栈。
 - 「橙色只给主操作」「accent 不做按钮」「只有 4 个阴影 token」三条品牌硬规则，在 `.jjb-dash` 根容器内不适用，由本文件的 `--jjb-dash-*` token 取代。
 - 所有看板样式必须挂在 `.jjb-dash` 根容器下，不污染品牌组件；品牌组件也不放进看板。
 

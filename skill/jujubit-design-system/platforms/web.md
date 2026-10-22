@@ -6,7 +6,7 @@ Use this with `tokens.css`, `components.css` and the standalone [tool-page templ
 
 A new page is a Shopify Page assigned a custom JSON template such as `page.custom-tool.json`. Compose it from sections; map each `.jjb-*` component to a section or block. Reuse the theme's announcement, navigation and footer once. The template has one main content landmark. Keep section settings scoped and form IDs unique across instances.
 
-Recommended: put the custom properties from `tokens.css` in one theme asset named `jjb-tokens.css`, load it once in the layout, then load the needed shared component CSS and `templates/tool-page/tool-page.css`. **This changes theme code and requires the theme owner's confirmation.** Exclude the repository's TTF `@font-face` rules. Fallback: copy only needed custom properties, including their referenced dependencies, into the section's `{% style %}`; retain every `--jjb-` name. Scope them to the section root. Never replace tokens with one-off literals.
+Recommended: put the custom properties from `tokens.css` in one theme asset named `jjb-tokens.css`, load it once in the layout, then load the needed shared component CSS and `templates/tool-page/tool-page.css`. **This changes theme code and requires the theme owner's confirmation.** Do not include the archived TTF assets or any SF Pro `@font-face` rule. Fallback: copy only needed custom properties, including their referenced dependencies, into the section's `{% style %}`; retain every `--jjb-` name. Scope them to the section root. Never replace tokens with one-off literals.
 
 The main entry is native HTML:
 
@@ -38,7 +38,7 @@ Keep headings, styles, URLs and facts as `{{slot}}` placeholders until reviewed.
 
 ## 2. 字体
 
-Use Bebas Neue and Outfit already provided by the theme. Do not load the repository's TTFs on Shopify. If self-hosting is required, convert to WOFF2, use `font-display: swap`, and preload only one above-the-fold weight. Bebas supplies uppercase glyphs: author normal case in HTML, not manually capitalized text. Outfit handles body text and controls.
+Use `--jjb-font-display` and `--jjb-font-body`, which share the SF Pro system font stack. Apple devices use their installed SF Pro; other platforms use system fallbacks. Never embed, host, convert, preload, or offer SF Pro font files for download. H1/H2 are 700 uppercase; H3/H4 are 600; Body 1/2/3 are 400 with normal line-height and 0.01em tracking. Japanese and Korean fall back to system CJK fonts.
 
 ## 3. 断点与网格
 
@@ -67,7 +67,7 @@ One `h1` per tool page, using the heading slot. It may borrow section-heading st
 
 Picker states: default, hover, checked, focus-visible and disabled. Native radio dots convey selection independently of color; keep the checked border and an outer keyboard-focus ring. Disabled changes colors, not opacity. A real option is disabled only when unavailable; do not implement a loading state for this static page. If no styles are available, omit the picker and allow the same destination action without a style parameter. Do not render a blank radio group.
 
-`.jjb-prose`: h2 is Bebas headline-m, h3 is Outfit 600 headline-s. Links use `--jjb-tool-link` (primary text) and always have an underline; hover uses `--jjb-tool-link-hover` and a thicker underline. Keyboard focus remains visible. Long text uses `--jjb-measure: 720px`.
+`.jjb-prose`: h2 uses SF Pro H2 700 uppercase; h3 uses SF Pro H3 600 with -0.02em tracking. Links use `--jjb-tool-link` (primary text) and always have an underline; hover uses `--jjb-tool-link-hover` and a thicker underline. Keyboard focus remains visible. Long text uses `--jjb-measure: 720px`.
 
 `.jjb-table` supports an optional `--striped` modifier. Wrap `.jjb-compare-table` in `.jjb-table-scroll` with `tabindex="0"`, `role="region"` and a meaningful accessible label. Preserve native table semantics, caption, column/row headers and a sticky first column. Use icons plus written outcomes; never encode comparisons in color alone. The opponent column is “Other options”; all claims require evidence.
 

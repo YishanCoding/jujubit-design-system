@@ -9,10 +9,10 @@
 
 | 文件 | 用途 | 来源 |
 |---|---|---|
-| `BebasNeue-Regular.ttf` | 标题、导航、tab。字形只有大写 | 设计素材归档 |
-| `Outfit-VariableFont_wght.ttf` | 正文、按钮、App 全部文字。字重 100–900 | 设计素材归档 |
+| `BebasNeue-Regular.ttf` | 已停用，历史；原用于标题、导航、tab | 设计素材归档 |
+| `Outfit-VariableFont_wght.ttf` | 已停用，历史；原用于正文、按钮、App | 设计素材归档 |
 
-`tokens.css` 已经写好 `@font-face`，页面引用 `tokens.css` 就能用。Shopify 主题里已有这两款字体时，用主题自带的版本。
+`tokens.css` 已改用 SF Pro 系统字体栈。Apple 许可不允许在网页嵌入 SF Pro；不托管或下载 SF Pro 文件。以上 TTF 仅作历史归档，不再通过 CSS 加载。
 
 ## Logo `logo/`
 

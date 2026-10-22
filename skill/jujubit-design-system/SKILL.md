@@ -19,7 +19,7 @@ Use the first that exists:
 | File | Use it for |
 |---|---|
 | [platforms/web.md](platforms/web.md) | Shopify integration, tool landing pages, responsive rules, image and event contracts. |
-| `tokens.css` | The only token set: colors, fonts (@font-face), type scale (Web + App), spacing, layout, radius, shadow, gradient, motion. |
+| `tokens.css` | The only token set: colors, system font stack, type scale (Web + App), spacing, layout, radius, shadow, gradient, motion. |
 | `components.css` | Ready `.jjb-*` classes: buttons, announce bar, nav (`--glass` over hero), section head, chips, dots, product card, tags, template card + track, steps, category card, trust, review, social, form, FAQ, footer, toast/dialog/sheet, skeleton and reveal. |
 | [templates/tool-page/](templates/tool-page/README.md) | Standalone tool-page recipe: `index.html` and `tool-page.css`; proposed components stay outside the catalogue. |
 | [templates/dashboard/](templates/dashboard/README.md) | Standalone internal dashboard starter with date controls, KPI, and a D3 trend card. |
@@ -31,13 +31,14 @@ Use the first that exists:
 ## Dashboards
 
 Internal data dashboards use the `.jjb-dash` kit and [dashboard specification](references/dashboard.md); the visual catalogue is the separate page `dashboard.html` in the repo root (not part of `playground.html`); start from [templates/dashboard/](templates/dashboard/README.md). Use `templates/dashboard/dashboard-kit.js` for interactions; do not rewrite them per dashboard.
-Inside `.jjb-dash`, the brand rules for orange primary actions, no accent buttons, four shadows, and Outfit/Bebas do not apply; use dashboard tokens and Inter.
+Inside `.jjb-dash`, use dashboard tokens and Inter; the website's brand font stack and component rules do not apply.
 Dashboard styles must not be used on the website, in the App, or in marketing assets.
 
 ## Source priority
 
 - **Web section and component look** (nav, section head, chips, product card, template/category/trust/review cards, steps, social, FAQ, footer): the live jujubit.ai theme shipped 2026-10, tagged `[新版]`.
-- **Colors, fonts, base button states, App components**: the design team's Figma (`[F]` / `[F稿]`).
+- **Typography**: Xu Yingrui's 2026-10-22 SF Pro specification (`[F]`), implemented with system fonts and no embedded SF Pro files.
+- **Colors, base button states, App components**: the design team's Figma (`[F]` / `[F稿]`).
 - `[线上]` values (sale red, focus blue, stock colors, motion) are measured from the old live site and still await design confirmation. They are usable, but flag them in your delivery note.
 
 ## How to build a page
@@ -60,11 +61,11 @@ Read playground section 00 “设计思路” first for site principles and the 
 - Keep native radio states, keyboard focus and local table scrolling. Check 390/768/1440/1600 widths and no-JS behavior using `platforms/web.md`.
 
 - No new hex values, font sizes, radii, shadows, or easing curves. If something is missing, propose a semantic token name to the design owner; do not ship a literal.
-- Bebas Neue only for headings, nav, and FAQ questions (uppercase). Outfit for everything else. App uses Outfit only.
+- Use the SF Pro system font stack in `--jjb-font-display` and `--jjb-font-body` for Web and App. Apple devices render their installed SF Pro; other platforms use system fallbacks. Never embed, host, or download SF Pro font files. H1/H2 use 700 uppercase; H3/H4 use 600. Body 1/2/3 use 400, normal line-height, and `--jjb-ls-body`.
 - Orange `--jjb-brand-500` is for primary actions and emphasis. Hover is lighter (`400`), pressed darker (`600`). Disabled changes color, never opacity.
 - Accent colors (`--jjb-accent-*`) are for illustration, marketing graphics, and tag backgrounds, never buttons or links.
 - Only the 4 shadow tokens exist. Product cards and the logo have no shadow.
-- Product cards: no brand subtitle, no Quick view; an optional second image fades in on hover. Section titles are centered Bebas 64 (mobile 28) with a right-aligned View All. Grid gap is 12px.
+- Product cards: no brand subtitle, no Quick view; an optional second image fades in on hover. Section titles are centered SF Pro H1 48 (mobile 28) with a right-aligned View All. Grid gap is 12px.
 - Web vs App: `--jjb-app-*` tokens, `.jjb-app-btn`, and the sticker spec are App-only. On the website, template colors appear only inside template card images.
 - Label evidence truthfully: AI previews, product renders, and real product photos are different things. Prices in the playground are samples.
 - Brand people: when a page or asset needs a real-person image, use only the two spokespeople Maya and Danny (playground section 02, `assets/people/`), with the fixed English descriptions verbatim and their anchors kept (Maya: round natural afro + heather-grey tank, no glasses, face referenced from the Google Play feature graphic; Danny: glasses + orange beanie). On the people, orange appears only as Danny's beanie; otherwise orange goes on the backdrop and the box. Two energy registers, same faces: high-energy (full-bleed orange backdrop, arms out catching or lifting flying figurines, surprised/laughing; for store headers, feature graphics, ad first frames) and everyday (real interiors, warm light, knowing smile; for tutorials, later screenshots, social). Every figurine shown must be a full-color JuJuBit custom figurine on a JuJuBit wooden base or box, never grey/unpainted/pewter wargaming minis. Never use them in reviews, testimonials, or "Real Figurines. Real People." — those need real, consented customers. Tone: curious, playful, proud of their creation; not tearful or model-glam.
@@ -95,5 +96,5 @@ Sticker spec (App): cover and items 500×500 PNG, 30px padding on every side, 10
 ## Known gaps (do not invent; escalate)
 
 - Figma has no business components, web form/toast/dialog designs, motion tokens, focus states, or mobile type tokens; the kit fills these from the live site and marks them `[线上]`.
-- The announcement bar gradient is an approximation. The hero campaign font (Sinistre) is not part of the system.
+- The App type sizes and Web nav/step/button/18px body/mini sizes still need design confirmation. The announcement bar gradient is an approximation. The hero campaign font (Sinistre) is not part of the system.
 - Icon `report` is missing. Deep Blue in the external brand spec is contradictory (`#73BDF3` vs `#82C5F5`) and is not tokenized.
