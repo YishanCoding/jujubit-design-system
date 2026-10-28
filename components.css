@@ -7,6 +7,12 @@
  * 用法示例全部在 playground.html，复制 markup 即可。
  */
 
+@property --jjb-orb-angle {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0deg;
+}
+
 /* ---------- 基础 ---------- */
 .jjb { font-family: var(--jjb-font-body); font-size: var(--jjb-type-body-m); line-height: var(--jjb-lh-body);
   letter-spacing: var(--jjb-ls-body); color: var(--jjb-text-primary); background: var(--jjb-surface);
@@ -40,7 +46,7 @@
   color: var(--jjb-text-primary); }
 .jjb-mini { font-size: var(--jjb-type-mini); text-transform: uppercase; letter-spacing: .08em; }
 .jjb-body-l, .jjb-body1, .jjb-body2, .jjb-body3, .jjb-body-s, .jjb-foot {
-  font-weight: var(--jjb-weight-body); line-height: var(--jjb-lh-type-normal);
+  font-weight: var(--jjb-weight-body); line-height: var(--jjb-lh-body);
   letter-spacing: var(--jjb-ls-body); color: var(--jjb-type-body-color); }
 .jjb-body-l { font-size: var(--jjb-type-body-l); }
 .jjb-body1 { font-size: var(--jjb-type-body1); }
@@ -113,7 +119,7 @@
 .jjb-icon-btn:active { transform: scale(.96); }
 
 /* ---------- 公告栏 + 导航 [新版] ---------- */
-.jjb-announce { height: var(--jjb-announce-h); background: var(--jjb-gradient-announce); color: #fff;
+.jjb-announce { height: var(--jjb-announce-h); padding: 4px 12px; background: var(--jjb-gradient-announce); color: #fff;
   display: flex; align-items: center; justify-content: center; gap: 220px; font-size: var(--jjb-type-body-m); }
 .jjb-announce button { width: 32px; height: 32px; border: 0; background: none; color: inherit; display: grid;
   place-items: center; cursor: pointer; }
@@ -138,7 +144,7 @@
 .jjb-nav__create { height: var(--jjb-header-btn-h); padding: 0 18px 0 14px; margin-left: 20px; gap: 4px;
   font-size: var(--jjb-type-btn-m); text-transform: uppercase; }
 .jjb-badge-count { position: absolute; top: 6px; right: 0; min-width: 16px; height: 16px; padding: 0 4px;
-  border-radius: var(--jjb-radius-pill); background: var(--jjb-brand-500); color: #fff; font-size: 10px;
+  border-radius: var(--jjb-radius-pill); background: var(--jjb-brand-500); color: #fff; font-size: var(--jjb-type-mini);
   line-height: 16px; text-align: center; }
 @media (max-width: 960px) {
   .jjb-announce { gap: 12px; font-size: var(--jjb-type-body-s); }
@@ -199,21 +205,21 @@
 .jjb-card__media img + img { opacity: 0; }
 .jjb-card:hover .jjb-card__media img + img, .jjb-card:focus-visible .jjb-card__media img + img { opacity: 1; }
 .jjb-card__media .jjb-tag { position: absolute; left: 12px; top: 12px; }
-.jjb-card__title { margin-top: 14px; font-size: var(--jjb-type-body-m); font-weight: 500; line-height: 20px;
+.jjb-card__title { margin-top: 14px; font-size: var(--jjb-type-body-m); font-weight: 500; line-height: 22px;
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .jjb-card__price { margin-top: 14px; font-size: var(--jjb-type-body-m); font-weight: 500; line-height: 20px;
   display: flex; gap: 8px; align-items: baseline; }
 .jjb-card__price s { font-size: var(--jjb-type-body-s); font-weight: 400; color: var(--jjb-text-quartus); }
 .jjb-card__price .is-sale { color: var(--jjb-sale); }
-@media (max-width: 767px) { .jjb-card__title { font-size: var(--jjb-type-body-s); line-height: 16px; } }
+@media (max-width: 767px) { .jjb-card__title { font-size: var(--jjb-type-body-s); line-height: 20px; } }
 
 /* ---------- 模板卡 [新版]：模板色底图 + 底部名称 + 白胶囊 ---------- */
 .jjb-tpl-card { position: relative; display: block; aspect-ratio: 352 / 205; border-radius: var(--jjb-radius-card);
-  overflow: hidden; color: #fff; text-decoration: none; }
+  overflow: hidden; background: var(--jjb-dark-grey); color: #fff; text-decoration: none; }
 .jjb-tpl-card img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--jjb-dur-entrance) var(--jjb-ease); }
 .jjb-tpl-card:hover img { transform: scale(1.04); }
 .jjb-tpl-card__footer { position: absolute; inset: auto 0 0; height: 62px; padding: 0 20px; display: flex;
-  align-items: center; justify-content: space-between; background: linear-gradient(180deg, transparent, rgba(0,0,0,.25)); }
+  align-items: center; justify-content: space-between; background: linear-gradient(180deg, rgba(0,0,0,.38) 0%, rgba(0,0,0,.68) 100%); }
 .jjb-tpl-card__name { font: var(--jjb-weight-h4) var(--jjb-type-headline-s)/var(--jjb-lh-type-normal) var(--jjb-font-display); letter-spacing: normal; overflow-wrap: anywhere; }
 .jjb-track { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 30px) / 4); gap: 10px;
   overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
@@ -230,6 +236,67 @@
 .jjb-step__body { grid-column: 2; margin: 16px 0 0; max-width: 520px; display: none; }
 .jjb-step[aria-current="true"] .jjb-step__body { display: block; }
 @media (max-width: 767px) { .jjb-step__title { font-size: 28px; line-height: 36px; } .jjb-step__num { line-height: 36px; } }
+
+/* ---------- 三步工艺线稿动效卡 [新版]：0.75px 实线 + 1.25px 圆点辅助线 + 入场防打断锁 + @property 无损旋转 ---------- */
+.jjb-wireframe-grid { width: 100%; max-width: var(--jjb-bp-lg); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--jjb-grid-gap); }
+.jjb-wireframe-card { position: relative; background: var(--jjb-wf-bg); border-radius: var(--jjb-radius-xl);
+  box-shadow: inset 0 0 0 1px var(--jjb-wf-border); padding: 36px 28px 28px; display: flex; flex-direction: column;
+  justify-content: space-between; min-height: 396px; overflow: hidden; --jjb-orb-angle: 0deg;
+  transition: --jjb-orb-angle .65s var(--jjb-wf-ease-move); }
+.jjb-wireframe-card__stage { width: 100%; display: flex; align-items: center; justify-content: center; padding: 8px 0 24px; flex: 1; }
+.jjb-wireframe-card__svg { width: 202px; height: 202px; display: block; overflow: visible; }
+.jjb-wireframe-card__copy { margin-top: auto; display: flex; flex-direction: column; gap: 6px; }
+.jjb-wireframe-card__kicker { font-size: var(--jjb-type-mini); font-weight: var(--jjb-weight-h4); letter-spacing: .08em;
+  text-transform: uppercase; color: var(--jjb-wf-kicker); margin-bottom: 2px; }
+.jjb-wireframe-card__title { margin: 0; font-size: 17px; font-weight: var(--jjb-weight-h4); line-height: 1.35;
+  letter-spacing: -.015em; color: var(--jjb-text-primary); }
+.jjb-wireframe-card__desc { margin: 0; font-size: 15px; font-weight: var(--jjb-weight-body); line-height: var(--jjb-lh-body);
+  color: var(--jjb-wf-desc); }
+.jjb-wf-solid { fill: none; stroke: var(--jjb-wf-stroke); stroke-width: .75px; vector-effect: non-scaling-stroke;
+  stroke-linecap: round; stroke-linejoin: round; }
+.jjb-wf-dot { fill: none; stroke: var(--jjb-wf-stroke); stroke-width: 1.25px; stroke-linecap: round;
+  stroke-dasharray: .01 4; vector-effect: non-scaling-stroke; }
+.jjb-wireframe-card.is-entering .jjb-wf-solid { stroke-dasharray: var(--path-len, 1000); stroke-dashoffset: var(--path-len, 1000);
+  animation: jjb-wf-draw-solid 1.1s var(--jjb-wf-ease-draw) forwards; animation-delay: var(--card-delay, 0s); }
+.jjb-wireframe-card.is-entering .jjb-wf-dot { opacity: 0; animation: jjb-wf-fade-dot .45s var(--jjb-wf-ease-draw) forwards;
+  animation-delay: calc(var(--card-delay, 0s) + .65s); }
+@keyframes jjb-wf-draw-solid { to { stroke-dashoffset: 0; } }
+@keyframes jjb-wf-fade-dot { from { opacity: 0; } to { opacity: 1; } }
+.jjb-wf-meridian-a { rx: calc(44px * max(sin(30deg + var(--jjb-orb-angle)), -1 * sin(30deg + var(--jjb-orb-angle)))); }
+.jjb-wf-meridian-b { rx: calc(44px * max(sin(150deg + var(--jjb-orb-angle)), -1 * sin(150deg + var(--jjb-orb-angle)))); }
+.jjb-wf-orbit-ring { stroke-dashoffset: 0; transition: stroke-dashoffset .65s var(--jjb-wf-ease-move); }
+.jjb-wf-bust-core { transform-origin: 101px 101px; transition: transform .65s var(--jjb-wf-ease-move); }
+.jjb-wf-slab-top, .jjb-wf-slab-bottom { transition: transform .58s var(--jjb-wf-ease-move); }
+.jjb-wf-slab-shift-1, .jjb-wf-slab-shift-2, .jjb-wf-slab-shift-3 { transform: translateX(0); }
+.jjb-wf-spiral-path { stroke-dasharray: 1 1; stroke-dashoffset: 0; }
+.jjb-wf-spiral-top-ring { transform-origin: 101px 35px; }
+@media (hover: hover) and (pointer: fine) {
+  .jjb-wireframe-card.is-ready:hover { --jjb-orb-angle: 180deg; transition: --jjb-orb-angle 1s var(--jjb-wf-ease-move); }
+  .jjb-wireframe-card.is-ready:hover .jjb-wf-orbit-ring { stroke-dashoffset: -36; transition: stroke-dashoffset 1s var(--jjb-wf-ease-move); }
+  .jjb-wireframe-card.is-ready:hover .jjb-wf-bust-core { transform: translateY(-2.5px) scale(1.03); transition: transform 1s var(--jjb-wf-ease-move); }
+  .jjb-wireframe-card.is-ready:hover .jjb-wf-slab-top { transform: translateY(-14px); transition: transform .9s var(--jjb-wf-ease-move); }
+  .jjb-wireframe-card.is-ready:hover .jjb-wf-slab-bottom { transform: translateY(14px); transition: transform .9s var(--jjb-wf-ease-move); }
+  .jjb-wireframe-card.is-ready:hover .jjb-wf-slab-shift-1 { animation: jjb-wf-slab-1 1.1s var(--jjb-wf-ease-move) 0s 1 both; }
+  .jjb-wireframe-card.is-ready:hover .jjb-wf-slab-shift-2 { animation: jjb-wf-slab-2 1.1s var(--jjb-wf-ease-move) .06s 1 both; }
+  .jjb-wireframe-card.is-ready:hover .jjb-wf-slab-shift-3 { animation: jjb-wf-slab-3 1.1s var(--jjb-wf-ease-move) .12s 1 both; }
+  .jjb-wireframe-card.is-ready:hover .jjb-wf-spiral-path { animation: jjb-wf-spiral-recoil 1.4s var(--jjb-wf-ease-move) 1 forwards; }
+  .jjb-wireframe-card.is-ready:hover .jjb-wf-spiral-top-ring { animation: jjb-wf-top-ring-pulse 1.4s var(--jjb-wf-ease-move) 1 forwards; }
+}
+@keyframes jjb-wf-slab-1 { 0% { transform: translateX(0); } 38% { transform: translateX(-12px); } 100% { transform: translateX(0); } }
+@keyframes jjb-wf-slab-2 { 0% { transform: translateX(0); } 38% { transform: translateX(14px); } 100% { transform: translateX(0); } }
+@keyframes jjb-wf-slab-3 { 0% { transform: translateX(0); } 38% { transform: translateX(-8px); } 100% { transform: translateX(0); } }
+@keyframes jjb-wf-spiral-recoil { 0% { stroke-dashoffset: 0; } 46% { stroke-dashoffset: -1; } 100% { stroke-dashoffset: -2; } }
+@keyframes jjb-wf-top-ring-pulse {
+  0% { opacity: 1; transform: scale(1); }
+  28% { opacity: 0; transform: scale(.94); }
+  76% { opacity: 0; transform: scale(.94); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@media (max-width: 767px) {
+  .jjb-wireframe-grid { grid-template-columns: 1fr; }
+  .jjb-wireframe-card { min-height: 360px; padding: 28px 22px 24px; }
+}
 
 /* ---------- 分类卡 [新版] ---------- */
 .jjb-cat-card { display: grid; gap: 12px; justify-items: center; padding-bottom: 20px; background: var(--jjb-surface-card);
@@ -278,10 +345,10 @@
   font: 700 var(--jjb-type-mini)/1 var(--jjb-font-body); text-transform: uppercase; letter-spacing: .06em; }
 .jjb-tag--brand { background: var(--jjb-brand-500); color: #fff; }
 .jjb-tag--sale { background: var(--jjb-sale); color: #fff; }
-.jjb-tag--soft { background: var(--jjb-brand-100); color: var(--jjb-brand-600); }
+.jjb-tag--soft { background: var(--jjb-brand-100); color: var(--jjb-brand-700); }
 .jjb-tag--neutral { background: var(--jjb-neutral-200); color: #000; box-shadow: inset 0 0 0 1px var(--jjb-border); }
 .jjb-tip { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: var(--jjb-radius-sm);
-  background: #FFF8E5; color: #E76108; font-size: var(--jjb-type-body-s); } /* [F稿] App 促销提示条 327:717 */
+  background: #FFF8E5; color: var(--jjb-tip-text); font-size: var(--jjb-type-body-s); } /* [F稿] App 促销提示条 327:717 */
 
 /* ---------- 表单 [线上] ---------- */
 .jjb-field { display: grid; gap: 6px; }
@@ -294,7 +361,7 @@
 .jjb-input:focus { outline: none; box-shadow: inset 0 0 0 1px #000, 0 0 0 3px rgba(74,154,252,.35); }
 .jjb-field.is-error .jjb-input { box-shadow: inset 0 0 0 1px var(--jjb-error); }
 .jjb-field__msg { font-size: var(--jjb-type-foot); color: var(--jjb-text-tertiary); }
-.jjb-field.is-error .jjb-field__msg { color: var(--jjb-error); }
+.jjb-field.is-error .jjb-field__msg { color: var(--jjb-error-text); }
 
 /* ---------- FAQ [新版]：左分类 + 右问答，SF Pro 问题，+/- 图标 ---------- */
 .jjb-faq { display: grid; grid-template-columns: 300px 1fr; gap: 65px; }

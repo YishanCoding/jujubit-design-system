@@ -5,14 +5,14 @@
    "id": "hero",
    "title": "hero",
    "file": "playground.src.html",
-   "line": 281,
+   "line": 282,
    "edits": []
   },
   {
    "id": "principles",
    "title": "设计思路",
    "file": "playground.src.html",
-   "line": 295,
+   "line": 296,
    "edits": [
     {
      "key": "principles#1",
@@ -24,7 +24,7 @@
    "id": "principles.site",
    "title": "网站设计思路",
    "file": "playground.src.html",
-   "line": 299,
+   "line": 300,
    "edits": [
     {
      "key": "principles.site#1",
@@ -36,7 +36,7 @@
    "id": "principles.ui",
    "title": "新版 UI 风格的设计思路 · 2026-10",
    "file": "playground.src.html",
-   "line": 312,
+   "line": 313,
    "edits": [
     {
      "key": "principles.ui#1",
@@ -48,7 +48,7 @@
    "id": "brand",
    "title": "品牌与 Logo",
    "file": "playground.src.html",
-   "line": 328,
+   "line": 329,
    "edits": [
     {
      "key": "brand#1",
@@ -60,7 +60,7 @@
    "id": "brand.logos",
    "title": "brand.logos",
    "file": "playground.src.html",
-   "line": 331,
+   "line": 332,
    "edits": [
     {
      "key": "brand.logos#1",
@@ -92,7 +92,7 @@
    "id": "brand.rules",
    "title": "brand.rules",
    "file": "playground.src.html",
-   "line": 345,
+   "line": 346,
    "edits": [
     {
      "key": "brand.rules#1",
@@ -108,14 +108,14 @@
    "id": "brand.symbols",
    "title": "品牌符号  ?来源：母本是礼盒侧面那排白色涂鸦（& 环、爪印、徽章、星光、灵感），按产品线扩成几组。广告推哪条线，底纹就用哪一组。\n画法（新符号逐条照做）：粗圆头线围合、线宽约为高度的 1/7、里面空心；前倾约 10°；边缘手作感；旁边两三个短划/圆点/小加号；单色；画物件，不画功能图标。\n每组一眼要认出：通用＝这是 JuJuBit；真人＝从照片做成小人（相机、照片、Maya 的蓬发、品牌盒）；宠物＝我的宠物（守宫是爬宠子位，确认在卖再用）；TRPG＝我的角色（二十面骰）。\n待设计师补：底座小人、两人、一家人三个符号还没画好；礼盒原图形的源矢量未到位，现版本是从包装效果图复原后描摹的。到位后替换 assets/brand-symbols/ 同名文件，重跑 make_backgrounds.py。",
    "file": "playground.src.html",
-   "line": 349,
+   "line": 350,
    "edits": []
   },
   {
    "id": "brand.symbols-rules",
    "title": "brand.symbols-rules",
    "file": "playground.src.html",
-   "line": 372,
+   "line": 373,
    "edits": [
     {
      "key": "brand.symbols-rules#1",
@@ -131,14 +131,14 @@
    "id": "brand.packaging",
    "title": "品牌包装  ?盒色品牌橙 #FF5A11 配白：正面白色 JuJuBit 字标，侧面一排白色品牌符号，背面 App Store 标和合规信息（Holymolly Limited、CE、Powered by Tripo）。内部海绵内衬（10×10×10cm 坑位），小人套 JUJUBIT 塑料袋，附 10.8×8cm 感谢卡。来源：飞书「JuJuBit 设计素材归档 · 品牌包装」「Shop 包装盒升级」（徐莹睿）。",
    "file": "playground.src.html",
-   "line": 376,
+   "line": 377,
    "edits": []
   },
   {
    "id": "brand.packaging-rules",
    "title": "brand.packaging-rules",
    "file": "playground.src.html",
-   "line": 384,
+   "line": 385,
    "edits": [
     {
      "key": "brand.packaging-rules#1",
@@ -154,7 +154,7 @@
    "id": "people",
    "title": "品牌人物",
    "file": "playground.src.html",
-   "line": 391,
+   "line": 392,
    "edits": [
     {
      "key": "people#1",
@@ -166,21 +166,21 @@
    "id": "people.cast",
    "title": "Maya · 主脸",
    "file": "playground.src.html",
-   "line": 394,
+   "line": 395,
    "edits": []
   },
   {
    "id": "people.bios",
    "title": "人物设定 ?两人关系：创作者社群里认识的朋友。Maya 出点子，Danny 较真把角色做对。可以同框互相展示作品，不设定为情侣或家人。和 JuJu：JuJu 不是他们的宠物或道具，同框时以贴纸、公仔或屏幕形象出现。更多背景：Maya 第一次用 JuJuBit 是把和闺蜜的大学合照做成生日礼物；Danny 跑了十几年 D&D，以前用 Hero Forge 总差点意思。",
    "file": "playground.src.html",
-   "line": 408,
+   "line": 409,
    "edits": []
   },
   {
    "id": "people.anchors",
    "title": "锚点要跨风格保留",
    "file": "playground.src.html",
-   "line": 416,
+   "line": 417,
    "edits": [
     {
      "key": "people.anchors#1",
@@ -192,14 +192,14 @@
    "id": "people.energy",
    "title": "两档情绪 ?高能量沿用线上 Google Play feature graphic 的构图，是用户第一眼看到的品牌印象：满版品牌橙，人物张手接住或高举小人，小人飞在空中，表情惊喜、大笑、欢呼。生活感用真实室内、暖光、会心一笑。两档人物锚点完全一样，不能换脸。",
    "file": "playground.src.html",
-   "line": 422,
+   "line": 423,
    "edits": []
   },
   {
    "id": "people.rules",
    "title": "people.rules",
    "file": "playground.src.html",
-   "line": 433,
+   "line": 434,
    "edits": [
     {
      "key": "people.rules#1",
@@ -223,14 +223,14 @@
    "id": "people.prompts",
    "title": "people.prompts",
    "file": "playground.src.html",
-   "line": 439,
+   "line": 440,
    "edits": []
   },
   {
    "id": "color",
    "title": "色彩",
    "file": "playground.src.html",
-   "line": 445,
+   "line": 446,
    "edits": [
     {
      "key": "color#1",
@@ -242,49 +242,49 @@
    "id": "color.brand",
    "title": "品牌色",
    "file": "playground.src.html",
-   "line": 448,
+   "line": 449,
    "edits": []
   },
   {
    "id": "color.neutral",
    "title": "中性色",
    "file": "playground.src.html",
-   "line": 450,
+   "line": 451,
    "edits": []
   },
   {
    "id": "color.text-alpha",
    "title": "文字（透明度）",
    "file": "playground.src.html",
-   "line": 452,
+   "line": 453,
    "edits": []
   },
   {
    "id": "color.surface",
    "title": "面与遮罩",
    "file": "playground.src.html",
-   "line": 454,
+   "line": 455,
    "edits": []
   },
   {
    "id": "color.functional",
    "title": "功能色",
    "file": "playground.src.html",
-   "line": 456,
+   "line": 457,
    "edits": []
   },
   {
    "id": "color.accent",
    "title": "辅助色  仅插画、营销图形、标签底",
    "file": "playground.src.html",
-   "line": 458,
+   "line": 459,
    "edits": []
   },
   {
    "id": "color.rules",
    "title": "color.rules",
    "file": "playground.src.html",
-   "line": 460,
+   "line": 461,
    "edits": [
     {
      "key": "color.rules#1",
@@ -304,7 +304,7 @@
    "id": "type",
    "title": "字体",
    "file": "playground.src.html",
-   "line": 468,
+   "line": 469,
    "edits": [
     {
      "key": "type#1",
@@ -320,14 +320,14 @@
    "id": "type.fonts",
    "title": "SF Pro Display",
    "file": "playground.src.html",
-   "line": 471,
+   "line": 472,
    "edits": []
   },
   {
    "id": "type.locales",
    "title": "多语言预览",
    "file": "playground.src.html",
-   "line": 475,
+   "line": 476,
    "edits": [
     {
      "key": "type.locales#1",
@@ -339,14 +339,14 @@
    "id": "type.web",
    "title": "Web 字号阶梯 桌面",
    "file": "playground.src.html",
-   "line": 481,
+   "line": 482,
    "edits": []
   },
   {
    "id": "type.colors",
    "title": "核心文字颜色",
    "file": "playground.src.html",
-   "line": 485,
+   "line": 486,
    "edits": [
     {
      "key": "type.colors#1",
@@ -358,7 +358,7 @@
    "id": "type.example",
    "title": "正文排版示例 · Editorial",
    "file": "playground.src.html",
-   "line": 490,
+   "line": 491,
    "edits": [
     {
      "key": "type.example#1",
@@ -370,14 +370,14 @@
    "id": "type.app",
    "title": "App 字号阶梯",
    "file": "playground.src.html",
-   "line": 491,
+   "line": 492,
    "edits": []
   },
   {
    "id": "type.rules",
    "title": "type.rules",
    "file": "playground.src.html",
-   "line": 492,
+   "line": 493,
    "edits": [
     {
      "key": "type.rules#1",
@@ -397,7 +397,7 @@
    "id": "layout",
    "title": "间距与布局",
    "file": "playground.src.html",
-   "line": 503,
+   "line": 504,
    "edits": [
     {
      "key": "layout#1",
@@ -409,21 +409,21 @@
    "id": "layout.spacing",
    "title": "layout.spacing",
    "file": "playground.src.html",
-   "line": 507,
+   "line": 508,
    "edits": []
   },
   {
    "id": "layout.dimensions",
    "title": "layout.dimensions",
    "file": "playground.src.html",
-   "line": 508,
+   "line": 509,
    "edits": []
   },
   {
    "id": "shape",
    "title": "圆角与阴影",
    "file": "playground.src.html",
-   "line": 525,
+   "line": 526,
    "edits": [
     {
      "key": "shape#1",
@@ -435,14 +435,14 @@
    "id": "shape.radii",
    "title": "shape.radii",
    "file": "playground.src.html",
-   "line": 528,
+   "line": 529,
    "edits": []
   },
   {
    "id": "shape.shadows",
    "title": "阴影（只允许这 4 种）",
    "file": "playground.src.html",
-   "line": 529,
+   "line": 530,
    "edits": [
     {
      "key": "shape.shadows#1",
@@ -454,7 +454,7 @@
    "id": "shape.gradients",
    "title": "渐变 / 毛玻璃",
    "file": "playground.src.html",
-   "line": 531,
+   "line": 532,
    "edits": [
     {
      "key": "shape.gradients#1",
@@ -466,7 +466,7 @@
    "id": "motion",
    "title": "动效",
    "file": "playground.src.html",
-   "line": 536,
+   "line": 537,
    "edits": [
     {
      "key": "motion#1",
@@ -478,21 +478,21 @@
    "id": "motion.easing",
    "title": "motion.easing",
    "file": "playground.src.html",
-   "line": 539,
+   "line": 540,
    "edits": []
   },
   {
    "id": "motion.playback",
    "title": "motion.playback",
    "file": "playground.src.html",
-   "line": 540,
+   "line": 541,
    "edits": []
   },
   {
    "id": "motion.reveal",
    "title": "入场：translateY(20px) → 0，只触发一次",
    "file": "playground.src.html",
-   "line": 544,
+   "line": 545,
    "edits": [
     {
      "key": "motion.reveal#1",
@@ -504,21 +504,21 @@
    "id": "motion.skeleton",
    "title": "骨架屏：#F0F0F0 ↔ #EEEEEE，1 秒循环",
    "file": "playground.src.html",
-   "line": 546,
+   "line": 547,
    "edits": []
   },
   {
    "id": "motion.videos",
    "title": "品牌与 App 动效交付视频  压缩预览版（720p），原片找设计团队",
    "file": "playground.src.html",
-   "line": 551,
+   "line": 552,
    "edits": []
   },
   {
    "id": "motion.rules",
    "title": "motion.rules",
    "file": "playground.src.html",
-   "line": 553,
+   "line": 554,
    "edits": [
     {
      "key": "motion.rules#1",
@@ -538,7 +538,7 @@
    "id": "icons",
    "title": "图标",
    "file": "playground.src.html",
-   "line": 561,
+   "line": 562,
    "edits": [
     {
      "key": "icons#1",
@@ -550,21 +550,21 @@
    "id": "icons.controls",
    "title": "icons.controls",
    "file": "playground.src.html",
-   "line": 564,
+   "line": 565,
    "edits": []
   },
   {
    "id": "icons.library",
    "title": "icons.library",
    "file": "playground.src.html",
-   "line": 570,
+   "line": 571,
    "edits": []
   },
   {
    "id": "buttons",
    "title": "按钮",
    "file": "playground.src.html",
-   "line": 578,
+   "line": 579,
    "edits": [
     {
      "key": "buttons#1",
@@ -576,14 +576,14 @@
    "id": "buttons.states",
    "title": "buttons.states",
    "file": "playground.src.html",
-   "line": 581,
+   "line": 582,
    "edits": []
   },
   {
    "id": "buttons.sizes",
    "title": "尺寸与图标位",
    "file": "playground.src.html",
-   "line": 588,
+   "line": 589,
    "edits": [
     {
      "key": "buttons.sizes#1",
@@ -595,14 +595,14 @@
    "id": "buttons.live",
    "title": "线上新版用法",
    "file": "playground.src.html",
-   "line": 596,
+   "line": 597,
    "edits": []
   },
   {
    "id": "nav",
    "title": "公告栏与导航",
    "file": "playground.src.html",
-   "line": 615,
+   "line": 616,
    "edits": [
     {
      "key": "nav#1",
@@ -618,21 +618,21 @@
    "id": "nav.solid",
    "title": "nav.solid",
    "file": "playground.src.html",
-   "line": 618,
+   "line": 619,
    "edits": []
   },
   {
    "id": "nav.glass",
    "title": "nav.glass",
    "file": "playground.src.html",
-   "line": 632,
+   "line": 633,
    "edits": []
   },
   {
    "id": "commerce",
    "title": "区块标题、商品卡与标签",
    "file": "playground.src.html",
-   "line": 658,
+   "line": 659,
    "edits": [
     {
      "key": "commerce#1",
@@ -648,28 +648,28 @@
    "id": "commerce.section-title",
    "title": "Trending Products",
    "file": "playground.src.html",
-   "line": 661,
+   "line": 662,
    "edits": []
   },
   {
    "id": "commerce.filters",
    "title": "commerce.filters",
    "file": "playground.src.html",
-   "line": 662,
+   "line": 663,
    "edits": []
   },
   {
    "id": "commerce.product-card",
    "title": "commerce.product-card",
    "file": "playground.src.html",
-   "line": 663,
+   "line": 664,
    "edits": []
   },
   {
    "id": "commerce.dots",
    "title": "轮播指示点（演示：每 3 秒自动切换，可点击；系统开启「减少动态效果」时不自动播放）",
    "file": "playground.src.html",
-   "line": 664,
+   "line": 665,
    "edits": [
     {
      "key": "commerce.dots#1",
@@ -681,7 +681,7 @@
    "id": "commerce.tags",
    "title": "标签与提示条",
    "file": "playground.src.html",
-   "line": 666,
+   "line": 667,
    "edits": [
     {
      "key": "commerce.tags#1",
@@ -693,14 +693,14 @@
    "id": "commerce.options",
    "title": "胶囊选项（App / 生成工具里的风格选择）",
    "file": "playground.src.html",
-   "line": 674,
+   "line": 675,
    "edits": []
   },
   {
    "id": "blocks",
    "title": "首页区块",
    "file": "playground.src.html",
-   "line": 695,
+   "line": 696,
    "edits": [
     {
      "key": "blocks#1",
@@ -712,7 +712,7 @@
    "id": "blocks.templates",
    "title": "模板入口（横向轮播；模板色已做进图片里）",
    "file": "playground.src.html",
-   "line": 699,
+   "line": 700,
    "edits": [
     {
      "key": "blocks.templates#1",
@@ -724,7 +724,7 @@
    "id": "blocks.steps",
    "title": "How it works（黑底步骤，点击切换）",
    "file": "playground.src.html",
-   "line": 702,
+   "line": 703,
    "edits": [
     {
      "key": "blocks.steps#1",
@@ -733,17 +733,24 @@
    ]
   },
   {
+   "id": "blocks.wireframe-steps",
+   "title": "三步工艺线稿动效卡（0.75px 实线 + 1.25px 圆点辅助线，悬停结构自演）",
+   "file": "playground.src.html",
+   "line": 717,
+   "edits": []
+  },
+  {
    "id": "blocks.categories",
    "title": "分类卡",
    "file": "playground.src.html",
-   "line": 716,
+   "line": 820,
    "edits": []
   },
   {
    "id": "blocks.trust",
    "title": "信任卡（灰底区块）",
    "file": "playground.src.html",
-   "line": 719,
+   "line": 823,
    "edits": [
     {
      "key": "blocks.trust#1",
@@ -755,7 +762,7 @@
    "id": "blocks.reviews",
    "title": "评价卡",
    "file": "playground.src.html",
-   "line": 722,
+   "line": 826,
    "edits": [
     {
      "key": "blocks.reviews#1",
@@ -767,7 +774,7 @@
    "id": "blocks.social",
    "title": "社媒竖版视频（深灰底，居中一张放大）",
    "file": "playground.src.html",
-   "line": 725,
+   "line": 829,
    "edits": [
     {
      "key": "blocks.social#1",
@@ -779,7 +786,7 @@
    "id": "forms",
    "title": "表单与 FAQ",
    "file": "playground.src.html",
-   "line": 745,
+   "line": 856,
    "edits": [
     {
      "key": "forms#1",
@@ -791,21 +798,21 @@
    "id": "forms.fields",
    "title": "forms.fields",
    "file": "playground.src.html",
-   "line": 748,
+   "line": 859,
    "edits": []
   },
   {
    "id": "forms.faq",
    "title": "FAQ",
    "file": "playground.src.html",
-   "line": 755,
+   "line": 866,
    "edits": []
   },
   {
    "id": "feedback",
    "title": "反馈与浮层",
    "file": "playground.src.html",
-   "line": 771,
+   "line": 882,
    "edits": [
     {
      "key": "feedback#1",
@@ -821,35 +828,35 @@
    "id": "feedback.toast",
    "title": "feedback.toast",
    "file": "playground.src.html",
-   "line": 775,
+   "line": 886,
    "edits": []
   },
   {
    "id": "feedback.dialog",
    "title": "feedback.dialog",
    "file": "playground.src.html",
-   "line": 776,
+   "line": 887,
    "edits": []
   },
   {
    "id": "feedback.sheet",
    "title": "feedback.sheet",
    "file": "playground.src.html",
-   "line": 782,
+   "line": 893,
    "edits": []
   },
   {
    "id": "feedback.toast-trigger",
    "title": "feedback.toast-trigger",
    "file": "playground.src.html",
-   "line": 788,
+   "line": 899,
    "edits": []
   },
   {
    "id": "app",
    "title": "App 专属",
    "file": "playground.src.html",
-   "line": 792,
+   "line": 903,
    "edits": [
     {
      "key": "app#1",
@@ -861,14 +868,14 @@
    "id": "app.buttons",
    "title": "app.buttons",
    "file": "playground.src.html",
-   "line": 795,
+   "line": 906,
    "edits": []
   },
   {
    "id": "app.templates",
    "title": "风格模板色",
    "file": "playground.src.html",
-   "line": 804,
+   "line": 915,
    "edits": [
     {
      "key": "app.templates#1",
@@ -880,14 +887,14 @@
    "id": "app.stickers",
    "title": "贴纸素材规范",
    "file": "playground.src.html",
-   "line": 806,
+   "line": 917,
    "edits": []
   },
   {
    "id": "page",
    "title": "页面拼装示例",
    "file": "playground.src.html",
-   "line": 812,
+   "line": 923,
    "edits": [
     {
      "key": "page#1",
@@ -899,14 +906,14 @@
    "id": "page.landing",
    "title": "Trending Products",
    "file": "playground.src.html",
-   "line": 815,
+   "line": 926,
    "edits": []
   },
   {
    "id": "assets",
    "title": "素材清单",
    "file": "playground.src.html",
-   "line": 852,
+   "line": 963,
    "edits": [
     {
      "key": "assets#1",
@@ -918,14 +925,14 @@
    "id": "assets.catalog",
    "title": "assets.catalog",
    "file": "playground.src.html",
-   "line": 855,
+   "line": 966,
    "edits": []
   },
   {
    "id": "ai",
    "title": "给 AI 用",
    "file": "playground.src.html",
-   "line": 868,
+   "line": 979,
    "edits": [
     {
      "key": "ai#1",
@@ -937,7 +944,7 @@
    "id": "ai.install",
    "title": "1. 一键安装（Claude Code + Codex，macOS / Linux）",
    "file": "playground.src.html",
-   "line": 871,
+   "line": 982,
    "edits": [
     {
      "key": "ai.install#1",
@@ -949,7 +956,7 @@
    "id": "ai.download",
    "title": "2. 手动下载",
    "file": "playground.src.html",
-   "line": 873,
+   "line": 984,
    "edits": [
     {
      "key": "ai.download#1",
@@ -961,7 +968,7 @@
    "id": "ai.prompt",
    "title": "3. 不装 skill，直接给 agent 这段话",
    "file": "playground.src.html",
-   "line": 879,
+   "line": 990,
    "edits": [
     {
      "key": "ai.prompt#1",
@@ -973,7 +980,7 @@
    "id": "ai.contribute",
    "title": "修改规范",
    "file": "playground.src.html",
-   "line": 881,
+   "line": 992,
    "edits": [
     {
      "key": "ai.contribute#1",
