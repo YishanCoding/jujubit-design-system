@@ -62,7 +62,8 @@ Read playground section 00 “设计思路” first for site principles and the 
 
 - No new hex values, font sizes, radii, shadows, or easing curves. If something is missing, propose a semantic token name to the design owner; do not ship a literal.
 - Use the SF Pro system font stack in `--jjb-font-display` and `--jjb-font-body` for Web and App. Apple devices render their installed SF Pro; other platforms use system fallbacks. Never embed, host, or download SF Pro font files. H1/H2 use 700 uppercase; H3/H4 use 600. Body 1/2/3 use 400, normal line-height, and `--jjb-ls-body`.
-- Orange `--jjb-brand-500` is for primary actions and emphasis. Hover is lighter (`400`), pressed darker (`600`). Disabled changes color, never opacity.
+- Orange `--jjb-brand-500` is for primary actions and emphasis. Hover is lighter (`400`), pressed darker (`600`), and small brand text or soft badges on light backgrounds use `--jjb-brand-700` (`#C43C0A`, WCAG AA >= 5.0:1). Disabled changes color, never opacity.
+- Three-step craft wireframe cards (`.jjb-wireframe-grid` / `.jjb-wireframe-card` in section 12 `blocks.wireframe-steps`) use `0.75px` solid strokes (`.jjb-wf-solid`) and `1.25px` round-capped dotted construction lines (`.jjb-wf-dot`), optical sizing across the three 202×202 icons, an entrance draw-in hover lock (`.is-entering` -> `.is-ready`), and `@property --jjb-orb-angle` for distortion-free meridian rotation.
 - Accent colors (`--jjb-accent-*`) are for illustration, marketing graphics, and tag backgrounds, never buttons or links.
 - Only the 4 shadow tokens exist. Product cards and the logo have no shadow.
 - Product cards: no brand subtitle, no Quick view; an optional second image fades in on hover. Section titles are centered SF Pro H1 48 (mobile 28) with a right-aligned View All. Grid gap is 12px.

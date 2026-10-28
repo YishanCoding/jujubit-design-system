@@ -13,6 +13,7 @@
   --jjb-brand-500: #FF5A11;   /* JuJu Orange：主按钮、链接强调、选中态 */
   --jjb-brand-400: #FF7B41;   /* 主按钮 hover（比默认更浅） */
   --jjb-brand-600: #E54913;   /* 主按钮 pressed */
+  --jjb-brand-700: #C43C0A;   /* [待设计] 浅底小字/标签深品牌橙（WCAG AA >= 5.0:1） */
   --jjb-brand-300: #FF9C70;   /* App 主按钮 disabled */
   --jjb-brand-100: #FFF7F3;   /* 浅橙填充底 */
   --jjb-brand-light-bg: #FFF1E0; /* 品牌浅底（对外规范 Light BG，用于品牌/插画区块） */
@@ -31,7 +32,7 @@
   --jjb-text-primary: #000000;
   --jjb-text-secondary: rgba(0,0,0,.7);
   --jjb-text-tertiary: rgba(0,0,0,.6);   /* 商品副标、说明 */
-  --jjb-text-quartus: rgba(0,0,0,.4);    /* 占位、禁用文字 */
+  --jjb-text-quartus: rgba(0,0,0,.56);   /* 占位、禁用文字（WCAG AA >= 4.5:1） */
   --jjb-text-on-dark: #FFFFFF;
   --jjb-text-on-dark-secondary: rgba(255,255,255,.8);
   --jjb-text-on-dark-tertiary: rgba(255,255,255,.6);
@@ -51,7 +52,7 @@
   --jjb-surface-login: #F4F3EA;         /* [新版] 导航 Log In 胶囊底 */
   --jjb-border-chip: #E5E5E5;           /* [新版] 未选中筛选胶囊描边 */
   --jjb-dot: #D7D7D7;                   /* [新版] 轮播指示点 */
-  --jjb-text-answer: #7D7D7D;           /* [新版] FAQ 答案、FAQ 未选分类 */
+  --jjb-text-answer: #707070;           /* [新版] FAQ 答案、FAQ 未选分类（WCAG AA >= 4.5:1） */
   --jjb-text-card: #333333;             /* [新版] 信任卡文案 */
 
   /* ===== 功能色 [线上]，Figma 未定义，待设计确认 ===== */
@@ -60,6 +61,8 @@
   --jjb-stock-ok: #54C63A;
   --jjb-stock-low: #F4AF29;
   --jjb-error: #F03742;        /* [F] 对外规范 Warning Red，借作表单错误色 */
+  --jjb-error-text: #D42630;   /* [待设计] 浅底表单错误说明字色（WCAG AA >= 4.5:1） */
+  --jjb-tip-text: #B84A00;     /* [待设计] 浅黄提示条文字色（WCAG AA >= 4.5:1） */
   /* Judge.me 评价星色 #108474 归第三方所有，不改不用 */
 
   /* ===== 辅助色 [F] 对外规范：只用于插画、营销图形、标签底，不用于按钮/链接 ===== */
@@ -103,7 +106,7 @@
   --jjb-type-foot: var(--jjb-type-body3);
   --jjb-type-btn-l: 16px;  --jjb-type-btn-m: 14px;  --jjb-type-btn-s: 12px;
   --jjb-lh-heading: var(--jjb-lh-type-normal); /* 已并入 SF Pro 规范；H2 单独用 --jjb-lh-h2 */
-  --jjb-lh-body: var(--jjb-lh-type-normal);    /* 已并入 SF Pro 规范 */
+  --jjb-lh-body: 1.5;                          /* 已并入 SF Pro 规范；正文行高 >= 1.4 保障可读性 */
   --jjb-ls-body: .01em;    /* [F] 徐莹睿 SF Pro 规范 2026-10-22 */
   --jjb-ls-eyebrow: .2em;  /* [F稿] "TOP PICKS" 区块上标 */
   --jjb-ls-brand: .15em;   /* [F稿] 商品品牌副标 */
@@ -240,6 +243,15 @@
   --jjb-dash-glass-blur: blur(14px);
   --jjb-dash-callout-bg: linear-gradient(90deg, var(--jjb-dash-blue-l), transparent);
   --jjb-dash-chart-bg: linear-gradient(180deg, var(--jjb-dash-surface), var(--jjb-dash-surface-1));
+
+  /* ===== 三步工艺线稿动效卡 [新版] Wireframe Cards ===== */
+  --jjb-wf-bg: #F5F3F1;                 /* [新版] 线稿卡片暖灰底 */
+  --jjb-wf-border: rgba(0,0,0,.06);     /* [新版] 线稿卡片内描边 */
+  --jjb-wf-stroke: #000000;             /* [新版] 0.75px 实线与 1.25px 圆点辅助线 */
+  --jjb-wf-kicker: #5C564F;             /* [新版] 步骤小标（WCAG AA >= 6.4:1） */
+  --jjb-wf-desc: #635D56;               /* [新版] 工艺说明文字（WCAG AA >= 5.65:1） */
+  --jjb-wf-ease-draw: cubic-bezier(.32,.72,0,1);  /* [新版] 一笔画线入场缓动 */
+  --jjb-wf-ease-move: cubic-bezier(.65,0,.35,1);  /* [新版] 几何结构位移缓动 */
 }
 
 @media (prefers-reduced-motion: reduce) {

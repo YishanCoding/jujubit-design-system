@@ -25,7 +25,7 @@
   .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
   .src { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 100px; font-size: 11px;
     font-weight: 600; letter-spacing: .04em; white-space: nowrap; }
-  .src--f { background: var(--jjb-brand-100); color: var(--jjb-brand-600); }
+  .src--f { background: var(--jjb-brand-100); color: var(--jjb-brand-700); }
   .src--inferred { background: var(--jjb-neutral-300); color: var(--jjb-text-secondary); }
   #principles code { overflow-wrap: anywhere; }
   .src--fs { background: #EEF6FF; color: #1D6FD1; }
@@ -38,7 +38,7 @@
   .cat-grid { grid-template-columns: repeat(5, 1fr); }
   .pg-sec { padding-top: 72px; scroll-margin-top: 8px; }
   .pg-sec > header { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
-  .pg-sec > header .num { font: 400 22px/1 var(--jjb-font-display); color: var(--jjb-brand-500); }
+  .pg-sec > header .num { font: 400 22px/1 var(--jjb-font-display); color: var(--jjb-brand-700); }
   .pg-sec > p.lead { color: var(--jjb-text-secondary); max-width: 760px; margin: 0 0 28px; }
   .pg-sub { font: 600 13px/1.2 var(--jjb-font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--jjb-text-tertiary);
     margin: 36px 0 14px; display: flex; gap: 10px; align-items: center; }
@@ -135,7 +135,7 @@
   .tpl { position: relative; aspect-ratio: 3/4; border-radius: 16px; overflow: hidden; color: #fff; display: flex; align-items: flex-end; padding: 14px;
     font: 700 16px/1.2 var(--jjb-font-body); }
   .tpl::after { content: ""; position: absolute; inset: 60% 0 0; background: linear-gradient(180deg, transparent, var(--g)); }
-  .tpl span { position: relative; z-index: 1; }
+  .tpl span { position: relative; z-index: 1; background: rgba(0,0,0,.62); padding: 6px 10px; border-radius: var(--jjb-radius-sm); }
   .asset-table { width: 100%; border-collapse: collapse; font-size: 13px; }
   .asset-table th, .asset-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--jjb-border); vertical-align: top; }
   .asset-table th { font-size: 12px; color: var(--jjb-text-tertiary); font-weight: 600; }
@@ -202,15 +202,15 @@
   #type .type-scale { border:var(--jjb-line-thin) solid var(--jjb-border); border-radius:var(--jjb-radius-lg); overflow:hidden; }
   #type .type-scale-row { display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,2fr); gap:var(--jjb-space-6); padding:var(--jjb-space-6); border-bottom:var(--jjb-line-thin) solid var(--jjb-border); min-width:0; }
   #type .type-scale-row:last-child { border-bottom:0; }
-  #type .type-scale-name { color:var(--jjb-type-accent-color); font-weight:var(--jjb-weight-h3); }
+  #type .type-scale-name { color:var(--jjb-brand-700); font-weight:var(--jjb-weight-h3); }
   #type .type-scale-sample { min-width:0; align-self:center; overflow-wrap:anywhere; color:var(--jjb-type-heading-color); }
   #type .type-scale-sample[data-level="h1"] { font:var(--jjb-weight-h1) var(--jjb-type-h1)/var(--jjb-lh-type-normal) var(--jjb-font-display); text-transform:uppercase; }
   #type .type-scale-sample[data-level="h2"] { font:var(--jjb-weight-h2) var(--jjb-type-h2)/var(--jjb-lh-h2) var(--jjb-font-display); text-transform:uppercase; }
   #type .type-scale-sample[data-level="h3"] { font:var(--jjb-weight-h3) var(--jjb-type-h3)/var(--jjb-lh-type-normal) var(--jjb-font-display); letter-spacing:var(--jjb-ls-h3); }
   #type .type-scale-sample[data-level="h4"] { font:var(--jjb-weight-h4) var(--jjb-type-h4)/var(--jjb-lh-type-normal) var(--jjb-font-display); }
-  #type .type-scale-sample[data-level="body1"] { font:var(--jjb-weight-body) var(--jjb-type-body1)/var(--jjb-lh-type-normal) var(--jjb-font-body); }
-  #type .type-scale-sample[data-level="body2"] { font:var(--jjb-weight-body) var(--jjb-type-body2)/var(--jjb-lh-type-normal) var(--jjb-font-body); }
-  #type .type-scale-sample[data-level="body3"] { font:var(--jjb-weight-body) var(--jjb-type-body3)/var(--jjb-lh-type-normal) var(--jjb-font-body); }
+  #type .type-scale-sample[data-level="body1"] { font:var(--jjb-weight-body) var(--jjb-type-body1)/var(--jjb-lh-body) var(--jjb-font-body); }
+  #type .type-scale-sample[data-level="body2"] { font:var(--jjb-weight-body) var(--jjb-type-body2)/var(--jjb-lh-body) var(--jjb-font-body); }
+  #type .type-scale-sample[data-level="body3"] { font:var(--jjb-weight-body) var(--jjb-type-body3)/var(--jjb-lh-body) var(--jjb-font-body); }
   #type .type-scale-sample[data-level^="body"] { color:var(--jjb-type-body-color); letter-spacing:var(--jjb-ls-body); }
   #type .type-scale-spec { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--jjb-space-3); margin-top:var(--jjb-space-4); }
   #type .type-scale-spec span { min-width:0; color:var(--jjb-type-primary-color); overflow-wrap:anywhere; }
@@ -221,13 +221,14 @@
   #type .type-chips button { padding:var(--jjb-space-1) var(--jjb-space-3); }
   #type .type-locale-stage, #type .type-editorial { border:var(--jjb-line-thin) solid var(--jjb-border); border-radius:var(--jjb-radius-xl); padding:var(--jjb-space-8); margin-top:var(--jjb-space-4); min-width:0; }
   #type .type-locale-stage h3 { font:var(--jjb-weight-h2) var(--jjb-type-h2)/var(--jjb-lh-h2) var(--jjb-font-display); overflow-wrap:anywhere; }
-  #type .type-locale-stage p, #type .type-editorial p { font:var(--jjb-weight-body) var(--jjb-type-body1)/var(--jjb-lh-type-normal) var(--jjb-font-body); letter-spacing:var(--jjb-ls-body); color:var(--jjb-type-body-color); }
+  #type .type-locale-stage p, #type .type-editorial p { margin:0 0 var(--jjb-space-4); font:var(--jjb-weight-body) var(--jjb-type-body1)/var(--jjb-lh-body) var(--jjb-font-body); letter-spacing:var(--jjb-ls-body); color:var(--jjb-type-body-color); }
   #type .type-glyphs, #type .type-coverage { overflow-wrap:anywhere; color:var(--jjb-type-body-color); font-size:var(--jjb-type-body3); }
   #type .type-color { display:flex; align-items:center; gap:var(--jjb-space-4); padding:var(--jjb-space-4); border:var(--jjb-line-thin) solid var(--jjb-border); border-radius:var(--jjb-radius-lg); }
   #type .type-color-swatch { flex:none; width:var(--jjb-space-8); height:var(--jjb-space-8); border:var(--jjb-line-thin) solid var(--jjb-border); border-radius:var(--jjb-radius-full); background:var(--swatch); }
   #type .type-editorial { max-width:var(--jjb-measure); }
-  #type .type-editorial h3 { font:var(--jjb-weight-h2) var(--jjb-type-h2)/var(--jjb-lh-h2) var(--jjb-font-display); text-transform:uppercase; }
-  #type .type-editorial h4 { font:var(--jjb-weight-h3) var(--jjb-type-h3)/var(--jjb-lh-type-normal) var(--jjb-font-display); letter-spacing:var(--jjb-ls-h3); }
+  #type .type-editorial h3 { margin:0 0 var(--jjb-space-3); font:var(--jjb-weight-h2) var(--jjb-type-h2)/var(--jjb-lh-h2) var(--jjb-font-display); text-transform:uppercase; }
+  #type .type-editorial h4 { margin:var(--jjb-space-8) 0 var(--jjb-space-2); font:var(--jjb-weight-h3) var(--jjb-type-h3)/var(--jjb-lh-type-normal) var(--jjb-font-display); letter-spacing:var(--jjb-ls-h3); }
+  #commerce .jjb-section-head { margin-top:48px; margin-bottom:24px; }
   #type .type-code { padding:var(--jjb-space-4); background:var(--jjb-dark-grey); color:var(--jjb-text-on-dark); border-radius:var(--jjb-radius-md); overflow:auto; white-space:pre-wrap; overflow-wrap:anywhere; }
   @media(max-width:767px) {
     #type .type-family-grid, #type .type-colors, #type .type-scale-row { grid-template-columns:1fr; }
@@ -378,7 +379,7 @@
       <a href="#assets">17 素材清单</a>
       <a href="#ai">18 给 AI 用</a>
     </nav>
-    <div class="meta">v2 · 2026-10-14<br>真源：网页外观=线上新版，色值/字体/App=Figma<br>引用：<code>tokens.css</code> + <code>components.css</code><br>点击色块/图标/代码即复制<br><a href="/brand" style="padding:0;color:var(--jjb-brand-600)">文案与品牌事实 →</a></div>
+    <div class="meta">v2 · 2026-10-14<br>真源：网页外观=线上新版，色值/字体/App=Figma<br>引用：<code>tokens.css</code> + <code>components.css</code><br>点击色块/图标/代码即复制<br><a href="/brand" style="padding:0;color:var(--jjb-brand-700)">文案与品牌事实 →</a></div>
   </aside>
 
   <main class="pg-main">
@@ -810,13 +811,116 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
         <img src="https://jujubit.ai/cdn/shop/files/img01.png?v=1783938670&width=800" alt="">
         <div>
           <div class="jjb-steps" id="steps">
-            <div class="jjb-step" aria-current="true"><span class="jjb-step__num">01</span><h4 class="jjb-step__title">Pick your style</h4><p class="jjb-step__body">Pop, anime, realistic and more. New styles dropping all the time.</p></div>
-            <div class="jjb-step"><span class="jjb-step__num">02</span><h4 class="jjb-step__title">Upload your image</h4><p class="jjb-step__body">示例文案。</p></div>
-            <div class="jjb-step"><span class="jjb-step__num">03</span><h4 class="jjb-step__title">Preview in 3D</h4><p class="jjb-step__body">示例文案。</p></div>
-            <div class="jjb-step"><span class="jjb-step__num">04</span><h4 class="jjb-step__title">We make &amp; ship it</h4><p class="jjb-step__body">示例文案。</p></div>
+            <div class="jjb-step" aria-current="true"><span class="jjb-step__num">01</span><h3 class="jjb-step__title">Pick your style</h3><p class="jjb-step__body">Pop, anime, realistic and more. New styles dropping all the time.</p></div>
+            <div class="jjb-step"><span class="jjb-step__num">02</span><h3 class="jjb-step__title">Upload your image</h3><p class="jjb-step__body">示例文案。</p></div>
+            <div class="jjb-step"><span class="jjb-step__num">03</span><h3 class="jjb-step__title">Preview in 3D</h3><p class="jjb-step__body">示例文案。</p></div>
+            <div class="jjb-step"><span class="jjb-step__num">04</span><h3 class="jjb-step__title">We make &amp; ship it</h3><p class="jjb-step__body">示例文案。</p></div>
           </div>
           <a class="jjb-btn jjb-btn--primary" href="#blocks" style="font-size:16px"><svg class="jjb-icon jjb-icon--20"><use href="#i-sparkle"/></svg>CREATE</a>
         </div>
+      </div>
+
+      </div><div class="pg-mod" data-mod="blocks.wireframe-steps"><div class="pg-sub">三步工艺线稿动效卡（0.75px 实线 + 1.25px 圆点辅助线，悬停结构自演）<span class="src src--new">新版</span></div>
+      <div style="display:flex;justify-content:flex-end;margin-bottom:12px">
+        <button class="jjb-btn jjb-btn--s jjb-btn--outline" type="button" id="wf-replay-btn">重播画线入场</button>
+      </div>
+      <div class="jjb-wireframe-grid" id="wf-card-grid">
+        <article class="jjb-wireframe-card" style="--card-delay:0s">
+          <div class="jjb-wireframe-card__stage">
+            <svg class="jjb-wireframe-card__svg" viewBox="0 0 202 202" aria-hidden="true">
+              <g transform="rotate(-18 101 101)">
+                <line class="jjb-wf-dot" x1="101" y1="4" x2="101" y2="198"/>
+                <ellipse class="jjb-wf-dot jjb-wf-orbit-ring" cx="101" cy="101" rx="97" ry="26.5"/>
+                <circle class="jjb-wf-solid" cx="101" cy="101" r="88"/>
+                <ellipse class="jjb-wf-solid" cx="101" cy="101" rx="88" ry="24"/>
+                <ellipse class="jjb-wf-solid" cx="101" cy="53" rx="72" ry="20"/>
+                <ellipse class="jjb-wf-solid" cx="101" cy="149" rx="72" ry="20"/>
+                <ellipse class="jjb-wf-solid jjb-wf-meridian-a" cx="101" cy="101" rx="44" ry="88"/>
+                <ellipse class="jjb-wf-solid jjb-wf-meridian-b" cx="101" cy="101" rx="44" ry="88"/>
+              </g>
+              <g class="jjb-wf-bust-core">
+                <line class="jjb-wf-dot" x1="65" y1="68" x2="137" y2="68"/>
+                <line class="jjb-wf-dot" x1="59" y1="128" x2="143" y2="128"/>
+                <path class="jjb-wf-solid" d="M101 58 L115 65 L118 82 L111 97 L101 103 L91 97 L84 82 L87 65 Z"/>
+                <path class="jjb-wf-solid" d="M84 82 L101 86 L118 82"/>
+                <path class="jjb-wf-solid" d="M101 58 L101 138"/>
+                <path class="jjb-wf-solid" d="M91 97 L88 111 L70 120 L66 138 L136 138 L132 120 L114 111 L111 97"/>
+                <path class="jjb-wf-solid" d="M88 111 L101 117 L114 111"/>
+                <ellipse class="jjb-wf-solid" cx="101" cy="138" rx="35" ry="6.5"/>
+              </g>
+            </svg>
+          </div>
+          <div class="jjb-wireframe-card__copy">
+            <span class="jjb-wireframe-card__kicker">STEP 01 · CAPTURE</span>
+            <h3 class="jjb-wireframe-card__title">多视角特征重建</h3>
+            <p class="jjb-wireframe-card__desc">从单张日常照片提取骨相比例与神态拓扑，生成 360° 可旋转人像精雕数字底模。</p>
+          </div>
+        </article>
+        <article class="jjb-wireframe-card" style="--card-delay:.14s">
+          <div class="jjb-wireframe-card__stage">
+            <svg class="jjb-wireframe-card__svg" viewBox="0 0 202 202" aria-hidden="true">
+              <g transform="translate(101 101) scale(0.84) translate(-101 -101)">
+                <line class="jjb-wf-dot" x1="15" y1="12" x2="15" y2="192"/>
+                <line class="jjb-wf-dot" x1="131" y1="12" x2="131" y2="192"/>
+                <line class="jjb-wf-dot" x1="71" y1="-24" x2="71" y2="156"/>
+                <line class="jjb-wf-dot" x1="187" y1="-24" x2="187" y2="156"/>
+                <line class="jjb-wf-dot" x1="86" y1="36" x2="86" y2="158"/>
+                <line class="jjb-wf-dot" x1="116" y1="24" x2="116" y2="146"/>
+                <g class="jjb-wf-slab-bottom">
+                  <g class="jjb-wf-slab-shift-3">
+                    <path class="jjb-wf-solid" d="M15 177 L131 177 L187 141 L71 141 Z"/>
+                    <path class="jjb-wf-solid" d="M15 177 L15 183 L131 183 L131 177"/>
+                    <path class="jjb-wf-solid" d="M131 183 L187 147 L187 141"/>
+                    <ellipse class="jjb-wf-solid" cx="101" cy="159" rx="34" ry="10.5" transform="rotate(-11 101 159)"/>
+                    <ellipse class="jjb-wf-solid" cx="101" cy="159" rx="18" ry="5.5" transform="rotate(-11 101 159)"/>
+                  </g>
+                </g>
+                <g class="jjb-wf-slab-mid">
+                  <g class="jjb-wf-slab-shift-2">
+                    <path class="jjb-wf-solid" d="M15 116 L131 116 L187 80 L71 80 Z"/>
+                    <path class="jjb-wf-solid" d="M15 116 L15 122 L131 122 L131 116"/>
+                    <path class="jjb-wf-solid" d="M131 122 L187 86 L187 80"/>
+                    <path class="jjb-wf-solid" d="M74 104 L92 91 L126 91 L128 104 L108 109 Z"/>
+                  </g>
+                </g>
+                <g class="jjb-wf-slab-top">
+                  <g class="jjb-wf-slab-shift-1">
+                    <path class="jjb-wf-solid" d="M15 55 L131 55 L187 19 L71 19 Z"/>
+                    <path class="jjb-wf-solid" d="M15 55 L15 61 L131 61 L131 55"/>
+                    <path class="jjb-wf-solid" d="M131 61 L187 25 L187 19"/>
+                    <ellipse class="jjb-wf-solid" cx="101" cy="37" rx="15" ry="5.2" transform="rotate(-11 101 37)"/>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <div class="jjb-wireframe-card__copy">
+            <span class="jjb-wireframe-card__kicker">STEP 02 · SLICING</span>
+            <h3 class="jjb-wireframe-card__title">毫米级切片与支撑</h3>
+            <p class="jjb-wireframe-card__desc">按 0.02mm 层厚对发丝、衣褶与配饰做光学切片校验，生成零外露痕迹的微米支撑点阵。</p>
+          </div>
+        </article>
+        <article class="jjb-wireframe-card" style="--card-delay:.28s">
+          <div class="jjb-wireframe-card__stage">
+            <svg class="jjb-wireframe-card__svg" viewBox="0 0 202 202" aria-hidden="true">
+              <g transform="translate(101 108) scale(1.06) translate(-101 -108)">
+                <line class="jjb-wf-dot" x1="101" y1="8" x2="101" y2="194"/>
+                <line class="jjb-wf-dot" x1="95" y1="187" x2="19" y2="35"/>
+                <line class="jjb-wf-dot" x1="107" y1="187" x2="183" y2="35"/>
+                <ellipse class="jjb-wf-dot jjb-wf-spiral-top-ring" cx="101" cy="35" rx="82" ry="22.96"/>
+                <ellipse class="jjb-wf-dot" cx="101" cy="187" rx="16" ry="4.5"/>
+                <path class="jjb-wf-solid" d="M101 92 L113 112 L101 132 L89 112 Z"/>
+                <line class="jjb-wf-solid" x1="89" y1="112" x2="113" y2="112"/>
+                <path class="jjb-wf-solid jjb-wf-spiral-path" id="jjb-wf-spiral-curve" pathLength="1" d="M 107 187 L 101 35"/>
+              </g>
+            </svg>
+          </div>
+          <div class="jjb-wireframe-card__copy">
+            <span class="jjb-wireframe-card__kicker">STEP 03 · CURING</span>
+            <h3 class="jjb-wireframe-card__title">全彩树脂光固化</h3>
+            <p class="jjb-wireframe-card__desc">多通道 UV 激光自底座向上逐层盘旋固化全彩光敏树脂，一次成型细腻肤色与服装纹理。</p>
+          </div>
+        </article>
       </div>
 
       </div><div class="pg-mod" data-mod="blocks.categories"><div class="pg-sub">分类卡</div>
@@ -836,6 +940,13 @@ Danny: 37-year-old white American man, short brown beard, round tortoiseshell gl
   &lt;span class="jjb-tpl-card__footer"&gt;&lt;span class="jjb-tpl-card__name"&gt;Mini Pop&lt;/span&gt;&lt;span class="jjb-btn jjb-btn--white jjb-btn--pill"&gt;Create Now&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;
 
 &lt;div class="jjb-step" aria-current="true"&gt;&lt;span class="jjb-step__num"&gt;01&lt;/span&gt;&lt;h3 class="jjb-step__title"&gt;Pick your style&lt;/h3&gt;&lt;p class="jjb-step__body"&gt;…&lt;/p&gt;&lt;/div&gt;
+
+&lt;div class="jjb-wireframe-grid"&gt;
+  &lt;article class="jjb-wireframe-card is-ready"&gt;
+    &lt;div class="jjb-wireframe-card__stage"&gt;&lt;svg class="jjb-wireframe-card__svg" viewBox="0 0 202 202"&gt;…&lt;/svg&gt;&lt;/div&gt;
+    &lt;div class="jjb-wireframe-card__copy"&gt;&lt;span class="jjb-wireframe-card__kicker"&gt;STEP 01 · CAPTURE&lt;/span&gt;&lt;h3 class="jjb-wireframe-card__title"&gt;多视角特征重建&lt;/h3&gt;&lt;p class="jjb-wireframe-card__desc"&gt;…&lt;/p&gt;&lt;/div&gt;
+  &lt;/article&gt;
+&lt;/div&gt;
 
 &lt;a class="jjb-cat-card" href="/collections/trpg"&gt;&lt;span class="jjb-cat-card__img"&gt;&lt;img src="…" alt=""&gt;&lt;/span&gt;
   &lt;span class="jjb-cat-card__title"&gt;TRPG&lt;/span&gt;&lt;span class="jjb-btn jjb-btn--outline jjb-btn--pill"&gt;SHOP&lt;/span&gt;&lt;/a&gt;
@@ -1002,12 +1113,12 @@ function copy(text, label) {
 }
 
 const SW = {
-  brand: [['--jjb-brand-500','#FF5A11','主按钮、选中态'],['--jjb-brand-400','#FF7B41','主按钮 hover'],['--jjb-brand-600','#E54913','主按钮 pressed'],
+  brand: [['--jjb-brand-500','#FF5A11','主按钮、选中态'],['--jjb-brand-400','#FF7B41','主按钮 hover'],['--jjb-brand-600','#E54913','主按钮 pressed'],['--jjb-brand-700','#C43C0A','浅底小字/标签深品牌橙'],
     ['--jjb-brand-300','#FF9C70','App 主按钮 disabled'],['--jjb-brand-100','#FFF7F3','浅橙填充'],['--jjb-brand-light-bg','#FFF1E0','品牌浅底'],['--jjb-dark-grey','#141614','品牌深灰底']],
   neutral: [['--jjb-neutral-100','#FFFFFF','白'],['--jjb-neutral-200','#F9F9F9','下沉底'],['--jjb-neutral-300','#F0F0F0','边框/分隔线'],
     ['--jjb-neutral-400','#DCDCDC',''],['--jjb-neutral-500','#CCCCCC','Web 按钮 disabled'],['--jjb-neutral-800','#444444','黑按钮 hover'],['--jjb-neutral-1000','#000000','黑']],
   text: [['--jjb-text-primary','#000000','正文/标题'],['--jjb-text-secondary','rgba(0,0,0,.7)','次要文字'],['--jjb-text-tertiary','rgba(0,0,0,.6)','说明、品牌副标'],
-    ['--jjb-text-quartus','rgba(0,0,0,.4)','占位、禁用'],['--jjb-text-on-dark-secondary','rgba(255,255,255,.8)','深底次要','dark'],['--jjb-text-on-dark-tertiary','rgba(255,255,255,.6)','深底说明','dark']],
+    ['--jjb-text-quartus','rgba(0,0,0,.56)','占位、禁用'],['--jjb-text-on-dark-secondary','rgba(255,255,255,.8)','深底次要','dark'],['--jjb-text-on-dark-tertiary','rgba(255,255,255,.6)','深底说明','dark']],
   surface: [['--jjb-surface-media','#F5F5F5','商品图片区底'],['--jjb-surface-sunken','#F9F9F9','下沉区块'],['--jjb-surface-inverse','#000000','页脚、公告栏'],
     ['--jjb-mask','rgba(0,0,0,.2)','深色导航底 + blur'],['--jjb-mask-light','rgba(0,0,0,.1)','浅遮罩'],['--jjb-border','#F0F0F0','默认边框']],
   func: [['--jjb-sale','#DA3217','折扣价、Sale 标签'],['--jjb-error','#F03742','表单错误'],['--jjb-focus','#4A9AFC','键盘焦点环'],['--jjb-stock-ok','#54C63A','有货'],['--jjb-stock-low','#F4AF29','库存紧张']],
@@ -1077,7 +1188,7 @@ function renderTypeScale(mode) {
 document.querySelectorAll('[data-type-mode]').forEach(button => button.addEventListener('click', () => renderTypeScale(button.dataset.typeMode)));
 renderTypeScale(matchMedia('(max-width: 767px)').matches ? 'mobile' : 'desktop');
 const TA = [['Headline L','24','700'],['Headline M','22','700'],['Headline S','16','700'],['Body M','14','400 / 600'],['Body S','12','400'],['Foot','10','400'],['Button L / M / S','16 / 14 / 12','600']];
-$('#type-app').innerHTML = TA.map(([n, s, w]) => `<div class="type-row"><div class="spec"><b>${n}</b><br>${s}px · SF Pro 系统栈 ${w}</div><div style="font-size:var(--jjb-app-${n === 'Foot' ? 'foot' : n.startsWith('Headline') ? 'headline-' + n.split(' ')[1].toLowerCase() : n.startsWith('Body') ? 'body-' + n.split(' ')[1].toLowerCase() : 'btn-l'});font-weight:${w.split(' ')[0]}">Create your own collectible</div></div>`).join('');
+$('#type-app').innerHTML = TA.map(([n, s, w]) => `<div class="type-row"><div class="spec"><b>${n}</b><br>${s}px · SF Pro 系统栈 ${w}</div><div style="font-size:var(--jjb-app-${n === 'Foot' ? 'body-s' : n.startsWith('Headline') ? 'headline-' + n.split(' ')[1].toLowerCase() : n.startsWith('Body') ? 'body-' + n.split(' ')[1].toLowerCase() : 'btn-l'});font-weight:${w.split(' ')[0]}">Create your own collectible</div></div>`).join('');
 
 $('#space-scale').innerHTML = [4,8,12,16,20,24,30,40,64,100].map((px, i) =>
   `<div class="space-row copyable" data-copy="var(--jjb-space-${i+1})"><code>--jjb-space-${i+1}</code><div class="bar" style="width:${px*2}px"></div><span>${px}px</span></div>`).join('');
@@ -1145,7 +1256,7 @@ document.querySelectorAll('.jjb-dots').forEach(d => d.querySelectorAll('button')
 
 $('#tpl-grid').innerHTML = [['Dnd Character','#EF507D','rgba(128,16,48,.4)'],['Dnd Creature','#F2A8DC','rgba(150,39,117,.4)'],['Mini Pop','#7CE1AC','rgba(36,162,96,.4)'],
   ['Stylized Couple','#D776FC','rgba(104,21,136,.4)'],['Stylized Couple','#FDCC46','rgba(135,108,34,.4)'],['Pixar','#3571E6','rgba(20,50,130,.4)']]
-  .map(([n, c, g]) => `<div class="tpl copyable" data-copy="${c}" style="background:${c};--g:${g}"><span>${n}<br><small style="font-weight:400;opacity:.8">${c}</small></span></div>`).join('');
+  .map(([n, c, g]) => `<div class="tpl copyable" data-copy="${c}" style="background:${c};--g:${g}"><span>${n}<br><small style="font-weight:400">${c}</small></span></div>`).join('');
 
 document.querySelectorAll('.stage .jjb-option').forEach(o => o.onclick = () => o.parentElement.querySelectorAll('.jjb-option').forEach(x => x.setAttribute('aria-pressed', x === o)));
 $('#show-toast').onclick = () => copy('', '— toast 示例');
@@ -1183,6 +1294,56 @@ document.addEventListener('click', e => {
   }, true);
   document.addEventListener('click', e => { if (!e.target.closest('.pg-help')) all().forEach(x => { x.open = false; }); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') all().forEach(x => { x.open = false; }); });
+})();
+// 三步工艺线稿动效卡：5 圈圆锥螺旋生成 + 入场一笔画完防打断锁
+(() => {
+  const spiralEl = document.getElementById('jjb-wf-spiral-curve');
+  if (spiralEl) {
+    const cx = 101, yBottom = 187, yTop = 35, totalHeight = yBottom - yTop;
+    const rStart = 6, rEnd = 82, squash = 0.28, turns = 5, steps = 360;
+    const pts = [];
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const theta = t * turns * Math.PI * 2;
+      const r = rStart + (rEnd - rStart) * t;
+      const yCenter = yBottom - totalHeight * t;
+      const x = cx + r * Math.cos(theta);
+      const y = yCenter + r * squash * Math.sin(theta);
+      pts.push(`${i === 0 ? 'M' : 'L'} ${x.toFixed(2)} ${y.toFixed(2)}`);
+    }
+    spiralEl.setAttribute('d', pts.join(' '));
+  }
+  const wfCards = [...document.querySelectorAll('#wf-card-grid .jjb-wireframe-card')];
+  if (!wfCards.length) return;
+  wfCards.forEach(card => {
+    card.querySelectorAll('.jjb-wf-solid').forEach(el => {
+      if (el.id === 'jjb-wf-spiral-curve') { el.style.setProperty('--path-len', '1'); return; }
+      try {
+        const len = typeof el.getTotalLength === 'function' ? el.getTotalLength() : 600;
+        el.style.setProperty('--path-len', Math.ceil(len + 6).toString());
+      } catch (_) { el.style.setProperty('--path-len', '600'); }
+    });
+  });
+  let wfTimer = null;
+  function runWfEntrance(force) {
+    clearTimeout(wfTimer);
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      wfCards.forEach(c => { c.classList.remove('is-entering'); c.classList.add('is-ready'); });
+      return;
+    }
+    if (!force && sessionStorage.getItem('jjb_wf_entered_v1') === '1') {
+      wfCards.forEach(c => { c.classList.remove('is-entering'); c.classList.add('is-ready'); });
+      return;
+    }
+    wfCards.forEach(c => { c.classList.remove('is-ready', 'is-entering'); void c.offsetWidth; c.classList.add('is-entering'); });
+    wfTimer = setTimeout(() => {
+      wfCards.forEach(c => { c.classList.remove('is-entering'); c.classList.add('is-ready'); });
+      sessionStorage.setItem('jjb_wf_entered_v1', '1');
+    }, 1450);
+  }
+  runWfEntrance(false);
+  const replayBtn = document.getElementById('wf-replay-btn');
+  if (replayBtn) replayBtn.addEventListener('click', () => { sessionStorage.removeItem('jjb_wf_entered_v1'); runWfEntrance(true); });
 })();
 </script>
 </body>
